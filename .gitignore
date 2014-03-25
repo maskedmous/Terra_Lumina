@@ -58,7 +58,6 @@ build/
 *_p.c
 *.ilk
 *.meta
-*.obj
 *.pch
 *.pdb
 *.pgc
@@ -73,7 +72,7 @@ build/
 *.log
 *.vspscc
 *.vssscc
-.builds
+*.builds
 *.pidb
 *.log
 *.scc
