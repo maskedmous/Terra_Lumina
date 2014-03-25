@@ -34,6 +34,8 @@ private var prevRot = 0;
 public var rot:float = 0.03;
 public var limitRotation:boolean;
 
+private var inventory:List.<GameObject> = new List.<GameObject>();
+
 function Start() {
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
@@ -165,6 +167,12 @@ function LateUpdate()
 	if (limitRotation) {
 		if (this.gameObject.transform.rotation.z > 0.5) this.gameObject.transform.rotation.z = 0.4;
 	}
+}
+
+function Add(obj:GameObject)
+{
+	inventory.Add(obj);
+	Debug.Log("Added " + obj.name);
 }
 
 function handleTricks()
