@@ -31,3 +31,8 @@ function toWaitState()
 {
 	currentState = waitState;
 }
+
+function setBounds(left:float, right:float)
+{
+	moveState.setBounds(left, right);
+}

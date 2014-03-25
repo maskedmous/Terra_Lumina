@@ -156,6 +156,8 @@ function shoot()
 	vx = 0;
 	vy = 0;
 	x8 = 0;
+	yield WaitForSeconds(3);
+	lineRenderer.enabled = false;
 }
 
 function LateUpdate()

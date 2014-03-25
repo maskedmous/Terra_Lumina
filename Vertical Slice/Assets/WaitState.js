@@ -12,5 +12,4 @@ class WaitState extends State {
 	function toMoveState() {
 		parentScript.toMoveState();
 	}
-	
 }
