@@ -46,6 +46,7 @@ function Start() {
 function Update()
 {
 	movement();
+	if(inventory.Count == 1) Debug.Log(inventory[0].gameObject.name);
 }
 
 function movement()
@@ -171,8 +172,27 @@ function LateUpdate()
 
 function Add(obj:GameObject)
 {
-	inventory.Add(obj);
-	Debug.Log("Added " + obj.name);
+	if (inventory.Count == 0) {
+		inventory.Add(obj);
+		Debug.Log("Added " + obj.name);
+	}
+	else Debug.Log("Inventory already full.." );
+}
+
+function Place()
+{
+	if (inventory.Count > 0) {
+		if (getDirection() == "Right") inventory[0].gameObject.transform.position = this.gameObject.transform.position + new Vector3(3, 0, 0);
+		else if (getDirection() == "Left") inventory[0].gameObject.transform.position = this.gameObject.transform.position + new Vector3(-3, 0, 0);
+		inventory.RemoveAt(0);
+	}
+	else Debug.Log("You can't place an item right now");
+}
+
+function getInventory(index:uint)
+{
+	if (inventory.Count > 0) return inventory[index].name;
+	else return "De laadruimte is leeg";
 }
 
 function handleTricks()

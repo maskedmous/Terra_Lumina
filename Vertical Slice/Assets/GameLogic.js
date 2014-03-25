@@ -19,9 +19,12 @@ private var secondTimer:float = 0;			//counting seconds
 */
 private var plantSamples:Array = new Array();
 
+private var itemInInventory:String = "";
+
 function Update()
 {
 	decreaseBattery();
+	itemInInventory = GameObject.Find("Player").GetComponent(PlayerController).getInventory(0);
 }
 
 function decreaseBattery()
@@ -82,4 +85,5 @@ function OnGUI()
 {
 	GUI.Label(Rect(0,0, 500, 20), ("Batterij Lading: " + battery.ToString()));
 	GUI.Label(Rect(0, 40, 500, 20), ("Plant Monsters: " + plantSamples.length.ToString()));
+	GUI.Label(Rect(0, 80, 500, 20), ("Object in laadruimte: " + itemInInventory));
 }
