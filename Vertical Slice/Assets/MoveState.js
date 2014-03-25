@@ -2,12 +2,25 @@
 
 class MoveState extends State {
 
-	function Start () {
+	private var movedX:float;
+	private var speed:float = 5;
 	
+	private var direction:String = "right";
+			
+	function update () {
+		parent.rigidbody.velocity.x = speed;
+		movedX += speed;
+		if (movedX > 200) {
+			speed = -speed;
+			setDirection("left");
+		}
+		if (movedX < -200) {
+			speed = -speed;
+			setDirection("right");
+		}
 	}
-	
-	function Update () {
-	
+
+	function setDirection(dir:String) {
+		direction = dir;
 	}
-	
 }

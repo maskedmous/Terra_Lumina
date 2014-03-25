@@ -6,18 +6,20 @@ private var moveState:MoveState;
 private var waitState:WaitState;
 
 function Start () {
-	fleeState = new FleeState();
-	moveState = new MoveState();
-	waitState = new WaitState();
+	fleeState = this.gameObject.AddComponent("FleeState");
+	moveState = this.gameObject.AddComponent("MoveState");
+	waitState = this.gameObject.AddComponent("WaitState");
+	
+	currentState = moveState;
+}
+
+function Update () {
+	currentState.update();
 }
 
 function toFleeState()
 {
 	currentState = fleeState;
-}
-
-function Update () {
-	currentState.update();
 }
 
 function toMoveState()
