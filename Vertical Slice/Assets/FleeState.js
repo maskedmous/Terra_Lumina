@@ -6,4 +6,8 @@ class FleeState extends State {
 	
 	}
 	
+	function toWaitState() {
+		parentScript.toWaitState();
+	}
+	
 }
