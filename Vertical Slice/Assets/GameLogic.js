@@ -1,14 +1,22 @@
 #pragma strict
 
-var battery:float = 100;						//current battery
+/*
+	Battery variables
+*/
+var battery:float = 100;					//current battery
 var maximumBatteryCapacity:int = 100;		//max battery
-
-private var secondTimer:float = 0;			//counting seconds
 var decreaseTimer:float = 1.0;				//every x seconds it decreases battery
-
 var negativeBatteryFlow:int = 1;			//amount of battery that it decreases
 var positiveBatteryFlow:int = 2;			//amount of battery that it increases
 
+/*
+	Timer variables
+*/
+private var secondTimer:float = 0;			//counting seconds
+
+/*
+	Array Variables
+*/
 private var plantSamples:Array = new Array();
 
 function Update()
@@ -58,6 +66,7 @@ function setPlant(direction:String, endVec:Vector3)
 	newObject.transform.position = GameObject.Find("Player").transform.position;
 	newObject.name = "Plant";
 	newObject.transform.position = endVec;
+	newObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 	
 //	if(direction == "Right")
 //	{

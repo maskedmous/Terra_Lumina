@@ -150,6 +150,8 @@ function shootSeed()
 function shoot()
 {
 	var newSeed:GameObject = Instantiate(seed, this.gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+	newSeed.gameObject.name = "Plant";
+	newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 	newSeed.rigidbody.velocity = new Vector3(vx, vy, 0);
 	vx = 0;
 	vy = 0;

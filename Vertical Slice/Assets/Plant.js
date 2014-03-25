@@ -1,7 +1,10 @@
 #pragma strict
 
-function OnTriggerEnter()
+function OnTriggerEnter(collider:Collider)
 {
-	GameObject.Find("GameLogic").GetComponent(GameLogic).addPlantSample(this.gameObject);
-	Destroy(this.gameObject);
+	if(collider.gameObject.name == "Player")
+	{
+		GameObject.Find("GameLogic").GetComponent(GameLogic).addPlantSample(this.gameObject);
+		Destroy(this.gameObject);
+	}
 }

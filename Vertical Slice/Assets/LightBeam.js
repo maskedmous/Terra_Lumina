@@ -3,6 +3,7 @@
 var secondTimer:float = 0;
 var increaseBatteryTimer:float = 0.4;
 var growTimer:float = 1.0;
+private var growing:boolean = true;
 
 function OnTriggerStay(hit:Collider)
 {
@@ -14,7 +15,10 @@ function OnTriggerStay(hit:Collider)
 	
 	if(hit.gameObject.name == "Plant")
 	{
-		grow(hit.gameObject);
+		if(growing == true)
+		{
+			grow(hit.gameObject);
+		}
 	}
 }
 
@@ -33,7 +37,6 @@ function charge()
 
 function grow(plant:GameObject)
 {
-	Debug.Log("growing plant");
 	if(secondTimer > growTimer && plant.transform.localScale.x < 2)
 	{
 		plant.transform.localScale.x *= 1.2;
@@ -44,5 +47,10 @@ function grow(plant:GameObject)
 	else
 	{
 		secondTimer += Time.deltaTime;
+		
+		if(plant.transform.localScale.x >= 2)
+		{
+			growing = false;
+		}
 	}
 }

@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameLogic.js">
+    <Files>
+      <File FileName="Assets\Plant.js" Line="3" Column="42" />
+      <File FileName="Assets\GameLogic.js" Line="20" Column="46" />
+      <File FileName="Assets\PlayerController.js" Line="154" Column="94" />
+      <File FileName="Assets\LightBeam.js" Line="18" Column="22" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
