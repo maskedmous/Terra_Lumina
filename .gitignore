@@ -76,6 +76,7 @@ build/
 *.pidb
 *.log
 *.scc
+*.sln
 
 # Visual C++ cache files
 ipch/
@@ -212,3 +213,14 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#########
+## Unity
+#########
+*.unityproj
+*.dll
+*.sln
+*.userprefs
+Library/
+*.sln
+
