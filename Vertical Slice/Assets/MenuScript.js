@@ -25,7 +25,7 @@ function OnGUI(){
 	GUI.DrawTexture(Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill, true, 0);
 	if(started){
 		if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), startButton)){
-	  		Application.LoadLevel("PrototypeScene");
+	  		Application.LoadLevel("LevelScene");
 	  		print("Start game");
 	  		started = false;
 	  	}
