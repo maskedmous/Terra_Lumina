@@ -222,5 +222,5 @@ pip-log.txt
 *.sln
 *.userprefs
 Library/
+Temp/
 *.sln
-
