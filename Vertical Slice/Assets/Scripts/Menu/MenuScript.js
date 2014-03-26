@@ -3,12 +3,15 @@
 
 private var BUTTONWIDTH = Screen.width/6;
 private var BUTTONHEIGHT = Screen.height/8;
+private var TEXTUREWIDTH = Screen.width/5;
+private var TEXTUREHEIGHT = Screen.height/6;
 var startButton:Texture;
 var exitButton:Texture;
 var settingsButton:Texture;
 var creditsButton:Texture;
 var background:Texture;
 var loadingScreen:Texture;
+var empty:Texture;
 var skin:GUIStyle;
 var started:boolean;
 
@@ -28,18 +31,22 @@ function OnGUI(){
 		print("loading");
 	}
 	if(!started){
-		if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), startButton, skin)){
+		GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*6/24, TEXTUREWIDTH, TEXTUREHEIGHT), startButton, ScaleMode.StretchToFill, true, 0);
+		if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin)){
 	  		Application.LoadLevel("LevelScene");
 	  		print("Start game");
 	  		started = true;
 	  	}
-	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*10/24, BUTTONWIDTH, BUTTONHEIGHT), settingsButton, skin)){
+	  	GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*10/24, TEXTUREWIDTH, TEXTUREHEIGHT), settingsButton, ScaleMode.StretchToFill, true, 0);
+	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*10/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin)){
 	  		print("Settings");
 	  	}
-	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*14/24, BUTTONWIDTH, BUTTONHEIGHT), creditsButton, skin)){
+	  	GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*14/24, TEXTUREWIDTH, TEXTUREHEIGHT), creditsButton, ScaleMode.StretchToFill, true, 0);
+	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*14/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin)){
 	  		print("Credits");
 	  	}
-		 if (GUI.Button(new Rect(Screen.width*0, Screen.height*18/24, BUTTONWIDTH, BUTTONHEIGHT), exitButton, skin)){
+	  	GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*18/24, TEXTUREWIDTH, TEXTUREHEIGHT), exitButton, ScaleMode.StretchToFill, true, 0);
+		 if (GUI.Button(new Rect(Screen.width*0, Screen.height*18/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin)){
 			print("Quit Game");
 			Application.Quit();
 		}
