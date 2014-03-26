@@ -28,18 +28,18 @@ function OnGUI(){
 		print("loading");
 	}
 	if(!started){
-		if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), startButton)){
+		if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), startButton, skin)){
 	  		Application.LoadLevel("LevelScene");
 	  		print("Start game");
 	  		started = true;
 	  	}
-	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*10/24, BUTTONWIDTH, BUTTONHEIGHT), settingsButton)){
+	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*10/24, BUTTONWIDTH, BUTTONHEIGHT), settingsButton, skin)){
 	  		print("Settings");
 	  	}
-	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*14/24, BUTTONWIDTH, BUTTONHEIGHT), creditsButton)){
+	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*14/24, BUTTONWIDTH, BUTTONHEIGHT), creditsButton, skin)){
 	  		print("Credits");
 	  	}
-		 if (GUI.Button(new Rect(Screen.width*0, Screen.height*18/24, BUTTONWIDTH, BUTTONHEIGHT), exitButton)){
+		 if (GUI.Button(new Rect(Screen.width*0, Screen.height*18/24, BUTTONWIDTH, BUTTONHEIGHT), exitButton, skin)){
 			print("Quit Game");
 			Application.Quit();
 		}
