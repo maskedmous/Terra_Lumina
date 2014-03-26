@@ -21,6 +21,11 @@ private var plantSamples:Array = new Array();
 
 private var itemInInventory:String = "";
 
+/*
+	Win Variables
+*/
+public var samplesToComplete:int;
+
 function Update()
 {
 	decreaseBattery();
@@ -57,6 +62,17 @@ function addPlantSample(newSample:GameObject)
 {
 	Debug.Log("adding sample!");
 	plantSamples.push(newSample);
+}
+
+function getPlantSampleCount():int{
+	return plantSamples.length;
+}
+
+function checkWin():boolean{
+	if(samplesToComplete >= getPlantSampleCount()){
+		return true;
+	}
+	else return false;
 }
 
 function setPlant(direction:String, endVec:Vector3)
