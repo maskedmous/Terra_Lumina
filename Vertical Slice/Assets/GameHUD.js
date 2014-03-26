@@ -7,18 +7,18 @@ private var isJumping:boolean = false;
 
 public function OnGUI()
 {
-	if(GUI.RepeatButton(new Rect(Screen.width*1/16, Screen.height* 7/ 8, 50, 50), "Left"))
+	if(GUI.RepeatButton(new Rect(Screen.width*1/16, Screen.height* 7/ 8, 100, 100), "Left"))
 	{
 		//function call movement left
 		GameObject.Find("Player").GetComponent(PlayerController).moveLeft();
 	}
-	if(GUI.RepeatButton(new Rect(Screen.width*3/16, Screen.height*7/8, 50, 50), "Right"))
+	if(GUI.RepeatButton(new Rect(Screen.width*3/16, Screen.height*7/8, 100 100), "Right"))
 	{
 		//function call movement right
 		GameObject.Find("Player").GetComponent(PlayerController).moveRight();
 	}
 	
-	if(GUI.RepeatButton(new Rect(Screen.width*5/16, Screen.height*6/8, 50, 50), "Jump"))
+	if(GUI.RepeatButton(new Rect(Screen.width*5/16, Screen.height*6/8, 100, 100), "Jump"))
 	{
 		buttonDownJumping = true;
 		isJumping = true;
@@ -31,7 +31,7 @@ public function OnGUI()
 	
 	//OnButtonUp event with shooting
 	//use Update()
-	if(GUI.RepeatButton(new Rect(Screen.width*5/16, Screen.height*7/8, 50, 50), "Shoot"))
+	if(GUI.RepeatButton(new Rect(Screen.width*5/16, Screen.height*7/8, 100, 100), "Shoot"))
 	{
 		buttonDownShooting = true;
 		isShooting = true;
@@ -40,7 +40,7 @@ public function OnGUI()
 	{
 		buttonDownShooting = false;
 	}
-	if (GUI.Button(new Rect(Screen.width * 7 / 16, Screen.height * 7 / 8, 50, 50), "Place")) {
+	if (GUI.Button(new Rect(Screen.width * 7 / 16, Screen.height * 7 / 8, 100, 100), "Place")) {
 		//places item in inventory
 		GameObject.Find("Player").GetComponent(PlayerController).Place();
 	}
