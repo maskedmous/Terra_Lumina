@@ -175,6 +175,11 @@ function shoot()
 	}
 }
 
+function getSeeds()
+{
+	return currentSeeds;
+}
+
 function LateUpdate()
 {
 	if (limitRotation) {
