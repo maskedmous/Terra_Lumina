@@ -86,4 +86,5 @@ function OnGUI()
 	GUI.Label(Rect(0,0, 500, 20), ("Batterij Lading: " + battery.ToString()));
 	GUI.Label(Rect(0, 40, 500, 20), ("Plant Monsters: " + plantSamples.length.ToString()));
 	GUI.Label(Rect(0, 80, 500, 20), ("Object in laadruimte: " + itemInInventory));
+	GUI.Label(Rect(0, 120, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString()));
 }
