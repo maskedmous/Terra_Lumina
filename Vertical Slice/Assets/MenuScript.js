@@ -13,7 +13,7 @@ var skin:GUIStyle;
 var started:boolean;
 
 function Start () {
-	started = true;
+	started = false;
 
 }
 
@@ -24,10 +24,14 @@ function Update () {
 function OnGUI(){
 	GUI.DrawTexture(Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill, true, 0);
 	if(started){
+		GUI.DrawTexture(Rect(0, 0, Screen.width, Screen.height), loadingScreen, ScaleMode.StretchToFill, true, 0);
+		print("loading");
+	}
+	if(!started){
 		if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), startButton)){
 	  		Application.LoadLevel("LevelScene");
 	  		print("Start game");
-	  		started = false;
+	  		started = true;
 	  	}
 	  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*10/24, BUTTONWIDTH, BUTTONHEIGHT), settingsButton)){
 	  		print("Settings");
