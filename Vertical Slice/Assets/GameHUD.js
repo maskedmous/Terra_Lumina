@@ -12,7 +12,7 @@ public function OnGUI()
 		//function call movement left
 		GameObject.Find("Player").GetComponent(PlayerController).moveLeft();
 	}
-	if(GUI.RepeatButton(new Rect(Screen.width*3/16, Screen.height*7/8, 100 100), "Right"))
+	if(GUI.RepeatButton(new Rect(Screen.width*3/16, Screen.height*7/8, 100, 100), "Right"))
 	{
 		//function call movement right
 		GameObject.Find("Player").GetComponent(PlayerController).moveRight();
