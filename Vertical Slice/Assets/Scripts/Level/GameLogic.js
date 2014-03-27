@@ -69,7 +69,8 @@ function getPlantSampleCount():int{
 }
 
 function checkWin():boolean{
-	if(samplesToComplete >= getPlantSampleCount()){
+	print("samples to complete " + samplesToComplete);
+	if(samplesToComplete <= getPlantSampleCount()){
 		return true;
 	}
 	else return false;

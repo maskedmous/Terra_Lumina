@@ -12,6 +12,7 @@ function Update () {
 
 function OnTriggerEnter(hit:Collider){
 	if(hit.gameObject.name == "Player"){
+		print("hit player");
 		if(GameObject.Find("GameLogic").GetComponent(GameLogic).checkWin() == true){
 			finished = true;
 		}
