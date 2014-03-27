@@ -60,7 +60,7 @@ function movement()
 		var hitDown:RaycastHit;
 		if (Physics.Raycast(this.gameObject.transform.position, new Vector3(this.gameObject.transform.rotation.z, -1 + (this.gameObject.transform.rotation.z), 0), hitDown, 1.0 + (this.gameObject.transform.rotation.z / 1.5)))
 		{
-			if (hitDown.collider.gameObject.name == "Plateau") isJumping = false;
+			if (hitDown.collider.gameObject.name == "Plateau" || hitDown.collider.gameObject.name == "GrownPlant(Clone)") isJumping = false;
 		}
 	}
 

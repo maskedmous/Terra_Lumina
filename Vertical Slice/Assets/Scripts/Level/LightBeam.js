@@ -5,6 +5,8 @@ var increaseBatteryTimer:float = 0.4;
 var growTimer:float = 1.0;
 private var growing:boolean = true;
 
+public var grownPlant:GameObject;
+
 function OnTriggerStay(hit:Collider)
 {
 	//if it hits anything execute code
@@ -15,10 +17,7 @@ function OnTriggerStay(hit:Collider)
 	
 	if(hit.gameObject.name == "Plant")
 	{
-		if(growing == true)
-		{
-			grow(hit.gameObject);
-		}
+		grow(hit.gameObject);
 	}
 }
 
@@ -42,6 +41,7 @@ function grow(plant:GameObject)
 		plant.transform.localScale.x *= 1.2;
 		plant.transform.localScale.y *= 1.2;
 		plant.transform.localScale.z *= 1.2;
+		plant.transform.position.y+= 0.1;
 		secondTimer = 0;
 	}
 	else
@@ -51,6 +51,8 @@ function grow(plant:GameObject)
 		if(plant.transform.localScale.x >= 2)
 		{
 			growing = false;
+			var newPlant:GameObject = Instantiate(grownPlant, plant.transform.position - new Vector3(0,1,0), Quaternion.identity);
+			Destroy(plant);
 		}
 	}
 }
