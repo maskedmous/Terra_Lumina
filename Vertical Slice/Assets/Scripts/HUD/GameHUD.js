@@ -25,7 +25,11 @@ public function OnGUI()
 	}
 	else
 	{
-		buttonDownJumping = false;
+		//button might still be held in
+		if(!Input.GetMouseButton(0))
+		{
+			buttonDownJumping = false;
+		}
 	}
 	
 	
@@ -38,11 +42,20 @@ public function OnGUI()
 	}
 	else
 	{
-		buttonDownShooting = false;
+		//button might still be held in
+		if(!Input.GetMouseButton(0))
+		{
+			buttonDownShooting = false;
+		}
 	}
 	if (GUI.Button(new Rect(Screen.width * 7 / 16, Screen.height * 7 / 8, 80, 50), "Place")) {
 		//places item in inventory
 		GameObject.Find("Player").GetComponent(PlayerController).Place();
+	}
+	
+	if(GUI.Button(new Rect(Screen.width * 9 / 16, Screen.height * 7 / 8, 90, 50), "Reset Rover"))
+	{
+		GameObject.Find("Player").transform.rotation.eulerAngles.z = 0;
 	}
 }
 
