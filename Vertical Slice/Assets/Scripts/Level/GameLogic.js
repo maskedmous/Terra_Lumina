@@ -87,15 +87,6 @@ function setPlant(direction:String, endVec:Vector3)
 	newObject.name = "Plant";
 	newObject.transform.position = endVec;
 	newObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
-	
-//	if(direction == "Right")
-//	{
-//		newObject.transform.position.x = GameObject.Find("Player").transform.position.x + 2;
-//	}
-//	else
-//	{
-//		newObject.transform.position.x = GameObject.Find("Player").transform.position.x - 2;
-//	}
 }
 
 function OnGUI()
@@ -104,4 +95,29 @@ function OnGUI()
 	GUI.Label(Rect(0, 40, 500, 20), ("Plant Monsters: " + plantSamples.length.ToString()));
 	GUI.Label(Rect(0, 80, 500, 20), ("Object in laadruimte: " + itemInInventory));
 	GUI.Label(Rect(0, 120, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString()));
+}
+
+function getBattery():float
+{
+	return battery;
+}
+
+function getBatteryCapacity():int
+{
+	return maximumBatteryCapacity;
+}
+
+function getDecreaseTimer():float
+{
+	return decreaseTimer;
+}
+
+function getNegativeBatteryFlow():int
+{
+	return negativeBatteryFlow;
+}
+
+function getPositiveBatteryFlow():int
+{
+	return positiveBatteryFlow;
 }
