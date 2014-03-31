@@ -12,11 +12,11 @@
     </Rotation>
   </Camera>
   <GameLogic>
-    <battery>120</battery>
-    <maximumBatteryCapacity>120</maximumBatteryCapacity>
-    <decreaseTimer>1</decreaseTimer>
-    <negativeBatteryFlow>1</negativeBatteryFlow>
-    <positiveBatteryFlow>3</positiveBatteryFlow>
+    <Battery>120</Battery>
+    <MaximumBatteryCapacity>120</MaximumBatteryCapacity>
+    <DecreaseTimer>1</DecreaseTimer>
+    <NegativeBatteryFlow>1</NegativeBatteryFlow>
+    <PositiveBatteryFlow>3</PositiveBatteryFlow>
   </GameLogic>
   <Level>
     <GameObject>

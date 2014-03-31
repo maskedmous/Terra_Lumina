@@ -102,9 +102,19 @@ function getBattery():float
 	return battery;
 }
 
+function setBattery(value:float):void
+{
+	battery = value;
+}
+
 function getBatteryCapacity():int
 {
 	return maximumBatteryCapacity;
+}
+
+function setBatteryCapacity(value:int):void
+{
+	maximumBatteryCapacity = value;
 }
 
 function getDecreaseTimer():float
@@ -112,12 +122,27 @@ function getDecreaseTimer():float
 	return decreaseTimer;
 }
 
+function setDecreaseTimer(value:float)
+{
+	decreaseTimer = value;
+}
+
 function getNegativeBatteryFlow():int
 {
 	return negativeBatteryFlow;
 }
 
+function setNegativeBatteryFlow(value:int)
+{
+	negativeBatteryFlow = value;
+}
+
 function getPositiveBatteryFlow():int
 {
 	return positiveBatteryFlow;
+}
+
+function setPositiveBatteryFlow(value:int)
+{
+	positiveBatteryFlow = value;
 }

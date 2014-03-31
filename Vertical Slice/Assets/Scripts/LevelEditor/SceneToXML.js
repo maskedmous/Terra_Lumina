@@ -94,11 +94,11 @@ function saveLevel():void
 		var gameLogicObject:GameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 		
 		//save the variables into the GameLogic xml
-		var batteryNode:XmlElement = xmlDocument.CreateElement("battery");
-		var maximumBatteryCapacityNode:XmlElement = xmlDocument.CreateElement("maximumBatteryCapacity");
-		var decreaseTimerNode:XmlElement = xmlDocument.CreateElement("decreaseTimer");
-		var negativeBatteryFlowNode:XmlElement = xmlDocument.CreateElement("negativeBatteryFlow");
-		var positiveBatteryFlowNode:XmlElement = xmlDocument.CreateElement("positiveBatteryFlow");
+		var batteryNode:XmlElement = xmlDocument.CreateElement("Battery");
+		var maximumBatteryCapacityNode:XmlElement = xmlDocument.CreateElement("MaximumBatteryCapacity");
+		var decreaseTimerNode:XmlElement = xmlDocument.CreateElement("DecreaseTimer");
+		var negativeBatteryFlowNode:XmlElement = xmlDocument.CreateElement("NegativeBatteryFlow");
+		var positiveBatteryFlowNode:XmlElement = xmlDocument.CreateElement("PositiveBatteryFlow");
 			
 		//append them
 		gameLogic.AppendChild(batteryNode);
@@ -121,8 +121,9 @@ function saveLevel():void
 		masterNode.AppendChild(levelNode);
 		
 		var levelObject:GameObject = GameObject.Find("Level");
-		for(var obj:Transform in levelObject.transform)
+		for(var _obj in levelObject.transform)
 		{
+			var obj:Transform = _obj as Transform;
 			var objectNode:XmlElement = xmlDocument.CreateElement("GameObject");
 			levelNode.AppendChild(objectNode);
 			
