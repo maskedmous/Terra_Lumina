@@ -20,18 +20,16 @@ function loadLevel()
 	var xmlDocument:XmlDocument = new XmlDocument();
 	
 	if(File.Exists(filePath))
-	{
-		Debug.Log("im reading");
-		
+	{		
 		xmlDocument.Load(filePath);
 		//getting the necessary gameobjects into variables
-		var camera:GameObject = Camera.main.gameObject;
+		var camera:GameObject 	= Camera.main.gameObject;
 		var gameLogic:GameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
-		var level:GameObject = GameObject.Find("Level");
-		var player:GameObject = GameObject.Find("Player");
+		var level:GameObject 	= GameObject.Find("Level");
+		var player:GameObject 	= GameObject.Find("Player");
 		
-		var rootNode:XmlNode = xmlDocument.DocumentElement;
-		var masterNode:XmlNodeList = rootNode.ChildNodes;
+		var rootNode:XmlNode 		= xmlDocument.DocumentElement;
+		var masterNode:XmlNodeList 	= rootNode.ChildNodes;
 		
 		for each(var _nodes in masterNode)
 		{
@@ -135,7 +133,7 @@ function loadLevel()
 					var gameObjectNodes:XmlNode = _gameObjectNodes as XmlNode;
 					var gameObjectStatsNodeList = gameObjectNodes.ChildNodes;
 					
-					var newGameObject:GameObject;
+					var newGameObject:GameObject = null;
 					var prefabName:String = "";
 					var position:Vector3 = new Vector3(9999,9999,9999);
 					var rotation:Vector3 = new Vector3(9999,9999,9999);
@@ -147,86 +145,70 @@ function loadLevel()
 						if(gameObjectStatsNodes.Name == "Prefab")
 						{
 							prefabName = gameObjectStatsNodes.InnerText;
-							//newGameObject = Instantiate(Resources.Load("/Prefabs/" + gameObjectStatsNodes.InnerText)) as GameObject;
-							//add the new GameObject to level
-							//newGameObject.transform.parent = level.transform;
 						}
 						if(gameObjectStatsNodes.Name == "Position")
 						{
-//							if(newGameObject != null)
-//							{
-								var gameObjectPositionNodes:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							var gameObjectPositionNodes:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							
+							for each(var _positionNodes in gameObjectPositionNodes)
+							{
+								var positionNode:XmlNode = _positionNodes as XmlNode;
 								
-								for each(var _positionNodes in gameObjectPositionNodes)
+								if(positionNode.Name == "x")
 								{
-									var positionNode:XmlNode = _positionNodes as XmlNode;
-									
-									if(positionNode.Name == "x")
-									{
-										//newGameObject.transform.position.x = float.Parse(positionNode.InnerText);
-										position.x = float.Parse(positionNode.InnerText);
-									}
-									if(positionNode.Name == "y")
-									{
-										//newGameObject.transform.position.y = float.Parse(positionNode.InnerText);
-										position.y = float.Parse(positionNode.InnerText);
-									}
-									if(positionNode.Name == "z")
-									{
-										//newGameObject.transform.position.z = float.Parse(positionNode.InnerText);
-										position.z = float.Parse(positionNode.InnerText);
-									}
+									//newGameObject.transform.position.x = float.Parse(positionNode.InnerText);
+									position.x = float.Parse(positionNode.InnerText);
 								}
-//							}
-//							else
-//							{
-//								Debug.LogError("newGameObject is null");
-//							}
+								if(positionNode.Name == "y")
+								{
+									//newGameObject.transform.position.y = float.Parse(positionNode.InnerText);
+									position.y = float.Parse(positionNode.InnerText);
+								}
+								if(positionNode.Name == "z")
+								{
+									//newGameObject.transform.position.z = float.Parse(positionNode.InnerText);
+									position.z = float.Parse(positionNode.InnerText);
+								}
+							}
 						}
 						
 						if(gameObjectStatsNodes.Name == "Rotation")
 						{
-//							if(newGameObject != null)
-//							{
-								var gameObjectRotationNodes:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							var gameObjectRotationNodes:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							
+							for each(var _rotationNodes in gameObjectRotationNodes)
+							{
+								var rotationNode:XmlNode = _rotationNodes as XmlNode;
 								
-								for each(var _rotationNodes in gameObjectRotationNodes)
+								if(rotationNode.Name == "x")
 								{
-									var rotationNode:XmlNode = _rotationNodes as XmlNode;
-									
-									if(rotationNode.Name == "x")
-									{
-										//newGameObject.transform.eulerAngles.x = float.Parse(rotationNode.InnerText);
-										rotation.x = float.Parse(rotationNode.InnerText);
-									}
-									if(rotationNode.Name == "y")
-									{
-										//newGameObject.transform.eulerAngles.y = float.Parse(rotationNode.InnerText);
-										rotation.y = float.Parse(rotationNode.InnerText);
-									}
-									if(rotationNode.Name == "z")
-									{
-										//newGameObject.transform.eulerAngles.z = float.Parse(rotationNode.InnerText);
-										rotation.z = float.Parse(rotationNode.InnerText);
-									}
+									rotation.x = float.Parse(rotationNode.InnerText);
 								}
-//							}
-//							else
-//							{
-//								Debug.LogError("newGameObject is null");
-//							}
+								if(rotationNode.Name == "y")
+								{
+									rotation.y = float.Parse(rotationNode.InnerText);
+								}
+								if(rotationNode.Name == "z")
+								{
+									rotation.z = float.Parse(rotationNode.InnerText);
+								}
+							}
 						}
 					}
 					
 					//instantiate the things
 					if(prefabName != "" && position != Vector3(9999,9999,9999) && rotation != Vector3(9999,9999,9999))
 					{
-						newGameObject = Instantiate(Resources.Load(("Prefabs/" + prefabName))) as GameObject;
-						newGameObject.name = prefabName;
-						newGameObject.transform.parent = level.transform;
-						newGameObject.transform.position = position;
+						newGameObject 						= Instantiate(Resources.Load(("Prefabs/" + prefabName))) as GameObject;
+						newGameObject.name 					= prefabName;
+						newGameObject.transform.parent 		= level.transform;
+						newGameObject.transform.position 	= position;
 						newGameObject.transform.eulerAngles = rotation;
 						Debug.Log("created: " + prefabName + " at: " + position);
+					}
+					else
+					{
+						Debug.LogError("Something went wrong creating this: " + prefabName + " " + position + " " + rotation);
 					}
 				}
 			}
@@ -295,7 +277,7 @@ function loadLevel()
 	else
 	{
 		Debug.LogError("This level doesn't even exist!");
-		Debug.Log("Loading back to menu again as this is non existant level");
+		Debug.Log("Loading back to menu again as this is a non existant level");
 		Application.LoadLevel("Menu");
 	}
 	

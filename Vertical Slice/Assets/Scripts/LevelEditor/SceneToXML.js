@@ -5,6 +5,7 @@ import System.IO;	//needed for File IO (example: File.Exists)
 
 public var levelName:String = "";		//name of the xml it will be saved as
 public var levelID:int 		= 0;		//level ID (level0, level1, level2 etc)
+public var overwrite:boolean = false;	//override the current .xml if it already exists
 
 private var xmlPath:String 	= "";		//initialized in the awake
 
@@ -12,12 +13,19 @@ function Awake()
 {
 	xmlPath = Application.dataPath + "/LevelsXML/";
 	
-	if(!levelName.Contains(".xml"))
+	if(levelName != "")
 	{
-		levelName = levelName + ".xml";
+		if(!levelName.Contains(".xml"))
+		{
+			levelName = levelName + ".xml";
+		}
+		
+		saveLevel();
 	}
-	
-	saveLevel();
+	else
+	{
+		Debug.LogError("You haven't filled in a Level Name, see SaveLevel");
+	}
 }
 
 function saveLevel():void
@@ -31,22 +39,33 @@ function saveLevel():void
 	if(File.Exists(filePath))
 	{
 		//file already exists!
-		//ask for override...
-		Debug.Log("OVERRIDE?");
-		return;
+		//check if you may override or not (standard false)
+		if(overwrite)
+		{
+			xmlDocument.Load(filePath);
+			masterNode = xmlDocument.DocumentElement;
+			masterNode.RemoveAll();
+		}
+		else
+		{
+			Debug.LogError("This file already exists and override is set to false");
+			return;
+		}
+		
 	}
 	else
 	{
 		//file does not exist yet so we are going to create it
-		File.WriteAllText(levelName, "<Root></Root>");
+		File.WriteAllText(filePath, "<Root></Root>");
 		//load the xml document
-		xmlDocument.Load(levelName);
+		xmlDocument.Load(filePath);
 		//set the masternode for appending level stuff
 		masterNode = xmlDocument.DocumentElement;
 	}
 	
 	//begin saving the level elements!
 	
+	//
 	//camera
 	//
 		var mainCamera:GameObject = Camera.main.gameObject;
@@ -86,6 +105,7 @@ function saveLevel():void
 		cameraZRotationNode.InnerText = mainCamera.transform.eulerAngles.z.ToString();
 	//
 	
+	//
 	//GameLogic xml
 	//
 		var gameLogic:XmlElement = xmlDocument.CreateElement("GameLogic");
@@ -94,11 +114,11 @@ function saveLevel():void
 		var gameLogicObject:GameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 		
 		//save the variables into the GameLogic xml
-		var batteryNode:XmlElement = xmlDocument.CreateElement("Battery");
-		var maximumBatteryCapacityNode:XmlElement = xmlDocument.CreateElement("MaximumBatteryCapacity");
-		var decreaseTimerNode:XmlElement = xmlDocument.CreateElement("DecreaseTimer");
-		var negativeBatteryFlowNode:XmlElement = xmlDocument.CreateElement("NegativeBatteryFlow");
-		var positiveBatteryFlowNode:XmlElement = xmlDocument.CreateElement("PositiveBatteryFlow");
+		var batteryNode:XmlElement 					= xmlDocument.CreateElement("Battery");
+		var maximumBatteryCapacityNode:XmlElement 	= xmlDocument.CreateElement("MaximumBatteryCapacity");
+		var decreaseTimerNode:XmlElement 			= xmlDocument.CreateElement("DecreaseTimer");
+		var negativeBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("NegativeBatteryFlow");
+		var positiveBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("PositiveBatteryFlow");
 			
 		//append them
 		gameLogic.AppendChild(batteryNode);
@@ -115,6 +135,7 @@ function saveLevel():void
 		positiveBatteryFlowNode.InnerText		= gameLogicObject.getPositiveBatteryFlow().ToString();
 	//
 	
+	//
 	//Level xml
 	//
 		var levelNode:XmlElement = xmlDocument.CreateElement("Level");
@@ -123,14 +144,14 @@ function saveLevel():void
 		var levelObject:GameObject = GameObject.Find("Level");
 		for(var _obj in levelObject.transform)
 		{
-			var obj:Transform = _obj as Transform;
-			var objectNode:XmlElement = xmlDocument.CreateElement("GameObject");
+			var obj:Transform 			= _obj as Transform;
+			var objectNode:XmlElement 	= xmlDocument.CreateElement("GameObject");
 			levelNode.AppendChild(objectNode);
 			
 			//save prefab name
-			var prefabNode:XmlElement = xmlDocument.CreateElement("Prefab");
+			var prefabNode:XmlElement 	= xmlDocument.CreateElement("Prefab");
 			objectNode.AppendChild(prefabNode);
-			prefabNode.InnerText = obj.gameObject.name;
+			prefabNode.InnerText 		= obj.gameObject.name;
 			
 			//save position
 			var positionNode:XmlElement = xmlDocument.CreateElement("Position");
