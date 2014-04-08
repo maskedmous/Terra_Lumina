@@ -2,6 +2,8 @@
 
 import System.Collections.Generic;
 
+var debugInfo:String = "";
+
 var lastDirection:String="Right";
 private var lineRenderer:LineRenderer;
 public var seed:GameObject;
@@ -47,8 +49,68 @@ function Start() {
 
 function Update()
 {
+	Swipe();
 	movement();
 	if(inventory.Count == 1) Debug.Log(inventory[0].gameObject.name);
+}
+
+private var firstPressPos:Vector2;
+private var secondPressPos:Vector2;
+private var currentSwipe:Vector2;
+
+public function Swipe():void
+{
+     if(Input.GetMouseButtonDown(0))
+     {
+         //save began touch 2d point
+        firstPressPos = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+     }
+     if(Input.GetMouseButtonUp(0))
+     {
+            //save ended touch 2d point
+        secondPressPos = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+       
+            //create vector from the two points
+        currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y); 
+           
+        //normalize the 2d vector
+        currentSwipe.Normalize();
+ 
+        //swipe upwards
+        if(currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+        {
+            Debug.Log("up swipe");
+            debugInfo += "\nSwiping up";
+        }
+        //swipe down
+        if(currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+        {
+            Debug.Log("down swipe");
+            debugInfo += "\nSwiping down";
+        }
+        //swipe left
+        if(currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+        {
+            Debug.Log("left swipe");
+            debugInfo += "\nSwiping left";
+        }
+        //swipe right
+        if(currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+        {
+            Debug.Log("right swipe");
+            debugInfo += "\nSwiping right";
+        }
+    }
+}
+
+function OnGUI()
+{
+	GUI.Label(new Rect(Screen.width / 2, 20, 300, 300), debugInfo);
+	
+	if(debugInfo.Length > 200)
+	{
+		debugInfo = "";
+	}
 }
 
 function movement()

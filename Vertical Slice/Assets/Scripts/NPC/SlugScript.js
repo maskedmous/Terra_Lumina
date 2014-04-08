@@ -5,7 +5,8 @@ private var fleeState:FleeState;
 private var moveState:MoveState;
 private var waitState:WaitState;
 
-function Start () {
+function Awake()
+{
 	fleeState = this.gameObject.AddComponent("FleeState") as FleeState;
 	moveState = this.gameObject.AddComponent("MoveState") as MoveState;
 	waitState = this.gameObject.AddComponent("WaitState") as WaitState;
