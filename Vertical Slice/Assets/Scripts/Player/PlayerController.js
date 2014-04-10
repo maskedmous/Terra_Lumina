@@ -43,6 +43,10 @@ private var inventory:List.<GameObject> = new List.<GameObject>();
 private var gameLogic:GameObject;
 private var gameLogicScript:GameLogic;
 
+public var flashlight:GameObject;
+private var flashBool:boolean;
+private var counter:int;
+
 private var jumpDrain:float;
 
 function Awake() {
@@ -65,6 +69,15 @@ function Update()
 	ReadTouch();
 	movement();
 	if(inventory.Count == 1) Debug.Log(inventory[0].gameObject.name);
+	
+	if(flashBool == true){
+		counter++;
+		if(counter >= 50){
+			flashlight.active = false;
+			flashBool = false;
+			counter = 0;
+		}
+	}
 }
 
 private var firstPressPos:Vector2;
@@ -261,6 +274,8 @@ function flash() {
 	if (Physics.Raycast(this.gameObject.transform.position, this.gameObject.rigidbody.velocity.normalized, hit)) {
 		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
 	}
+	flashlight.active = true;
+	flashBool = true;
 }
 
 function getSeeds()
