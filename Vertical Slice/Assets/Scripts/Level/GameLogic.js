@@ -1,6 +1,12 @@
 #pragma strict
 
 /*
+	Contol variables
+*/
+
+private var speed:float;
+
+/*
 	Battery variables
 */
 var battery:float = 100;					//current battery
@@ -8,6 +14,16 @@ var maximumBatteryCapacity:int = 100;		//max battery
 var decreaseTimer:float = 1.0;				//every x seconds it decreases battery
 var negativeBatteryFlow:int = 1;			//amount of battery that it decreases
 var positiveBatteryFlow:int = 2;			//amount of battery that it increases
+
+/*
+	Action energy cost
+*/
+private var jumpDrain:float;
+private var shootDrain:float;
+private var pickUpDrain:float;
+private var placeDrain:float;
+private var flashDrain:float;
+private var collectDrain:float;
 
 /*
 	Timer variables
@@ -91,7 +107,8 @@ function setPlant(direction:String, endVec:Vector3)
 
 function OnGUI()
 {
-	GUI.Label(Rect(0,0, 500, 20), ("Batterij Lading: " + battery.ToString()));
+	var cBattery:int = battery;
+	GUI.Label(Rect(0,0, 500, 20), ("Batterij Lading: " + cBattery.ToString()));
 	GUI.Label(Rect(0, 40, 500, 20), ("Plant Monsters: " + plantSamples.length.ToString()));
 	GUI.Label(Rect(0, 80, 500, 20), ("Object in laadruimte: " + itemInInventory));
 	GUI.Label(Rect(0, 120, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString()));
@@ -145,4 +162,74 @@ function getPositiveBatteryFlow():int
 function setPositiveBatteryFlow(value:int)
 {
 	positiveBatteryFlow = value;
+}
+
+public function getSpeed()
+{
+	return speed;
+}
+
+public function setSpeed(value:float)
+{
+	speed = value;
+}
+
+public function getJumpDrain()
+{
+	return jumpDrain;
+}
+
+public function setJumpDrain(value:float)
+{
+	jumpDrain = value;
+}
+
+public function getShootDrain()
+{
+	return shootDrain;
+}
+
+public function setShootDrain(value:float)
+{
+	shootDrain = value;
+}
+
+public function getPickUpDrain()
+{
+	return pickUpDrain;
+}
+
+public function setPickUpDrain(value:float)
+{
+	pickUpDrain = value;
+}
+
+public function getPlaceDrain()
+{
+	return placeDrain;
+}
+
+public function setPlaceDrain(value:float)
+{
+	placeDrain = value;
+}
+
+public function getFlashDrain()
+{
+	return flashDrain;
+}
+
+public function setFlashDrain(value:float)
+{
+	flashDrain = value;
+}
+
+public function getCollectDrain()
+{
+	return collectDrain;
+}
+
+public function setCollectDrain(value:float)
+{
+	collectDrain = value;
 }

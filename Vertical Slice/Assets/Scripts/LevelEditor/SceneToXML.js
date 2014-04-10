@@ -119,6 +119,13 @@ function saveLevel():void
 		var decreaseTimerNode:XmlElement 			= xmlDocument.CreateElement("DecreaseTimer");
 		var negativeBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("NegativeBatteryFlow");
 		var positiveBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("PositiveBatteryFlow");
+		var speedNode:XmlElement									= xmlDocument.CreateElement("Speed");
+		var jumpDrainNode:XmlElement							= xmlDocument.CreateElement("JumpDrain");
+		var shootDrainNode:XmlElement						 	= xmlDocument.CreateElement("ShootDrain");
+		var pickUpDrainNode:XmlElement						= xmlDocument.CreateElement("PickUpDrain");
+		var placeDrainNode:XmlElement							= xmlDocument.CreateElement("PlaceDrain"); 
+		var flashDrainNode:XmlElement							= xmlDocument.CreateElement("FlashDrain");
+		var collectDrainNode:XmlElement						= xmlDocument.CreateElement("CollectDrain");
 			
 		//append them
 		gameLogic.AppendChild(batteryNode);
@@ -126,6 +133,13 @@ function saveLevel():void
 		gameLogic.AppendChild(decreaseTimerNode);
 		gameLogic.AppendChild(negativeBatteryFlowNode);
 		gameLogic.AppendChild(positiveBatteryFlowNode);
+		gameLogic.AppendChild(speedNode);
+		gameLogic.AppendChild(jumpDrainNode);
+		gameLogic.AppendChild(shootDrainNode);
+		gameLogic.AppendChild(pickUpDrainNode);
+		gameLogic.AppendChild(placeDrainNode);
+		gameLogic.AppendChild(flashDrainNode);
+		gameLogic.AppendChild(collectDrainNode);
 		
 		//write text to it
 		batteryNode.InnerText 					= gameLogicObject.getBattery().ToString();
@@ -133,6 +147,13 @@ function saveLevel():void
 		decreaseTimerNode.InnerText				= gameLogicObject.getDecreaseTimer().ToString();
 		negativeBatteryFlowNode.InnerText		= gameLogicObject.getNegativeBatteryFlow().ToString();
 		positiveBatteryFlowNode.InnerText		= gameLogicObject.getPositiveBatteryFlow().ToString();
+		speedNode.InnerText									= gameLogicObject.getSpeed().ToString();
+		jumpDrainNode.InnerText							= gameLogicObject.getJumpDrain().ToString();
+		shootDrainNode.InnerText							= gameLogicObject.getShootDrain().ToString();
+		pickUpDrainNode.InnerText						= gameLogicObject.getPickUpDrain().ToString();
+		placeDrainNode.InnerText							= gameLogicObject.getPlaceDrain().ToString();
+		flashDrainNode.InnerText							= gameLogicObject.getFlashDrain().ToString();
+		collectDrainNode.InnerText						= gameLogicObject.getCollectDrain().ToString();
 	//
 	
 	//

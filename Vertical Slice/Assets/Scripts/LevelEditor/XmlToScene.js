@@ -120,6 +120,27 @@ function loadLevel()
 					{
 						gameLogic.setPositiveBatteryFlow(int.Parse(gameLogicStats.InnerText));
 					}
+					if (gameLogicStats.Name == "Speed") {
+						gameLogic.setSpeed(float.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "JumpDrain") {
+						gameLogic.setJumpDrain(float.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "ShootDrain") {
+						gameLogic.setShootDrain(float.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "PickUpDrain") {
+						gameLogic.setPickUpDrain(float.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "PlaceDrain") {
+						gameLogic.setPlaceDrain(float.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "FlashDrain") {
+						gameLogic.setFlashDrain(float.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "CollectDrain") {
+						gameLogic.setCollectDrain(float.Parse(gameLogicStats.InnerText));
+					}
 				}
 			}
 			

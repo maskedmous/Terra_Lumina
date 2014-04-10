@@ -23,10 +23,10 @@ private var v:float;
 private var vx:float = 0;
 private var vy:float = 0;
 
+private var speed:float;
 private var isJumping:boolean = true;
 private var initializeJumping:boolean = false;
 private var jumpForce:float = 0.0;
-private var maxJForce:float = 10;
 
 private var isShooting:boolean = false;
 private var currentSeeds:uint = 5;
@@ -40,11 +40,24 @@ public var limitRotation:boolean;
 
 private var inventory:List.<GameObject> = new List.<GameObject>();
 
+private var gameLogic:GameObject;
+private var gameLogicScript:GameLogic;
+
+private var jumpDrain:float;
+
+function Awake() {
+	gameLogic = GameObject.Find("GameLogic") as GameObject;
+	gameLogicScript = gameLogic.GetComponent("GameLogic") as GameLogic;
+}
+
 function Start() {
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
 	lineRenderer.SetColors(Color.red, Color.blue);
 	g = -Physics.gravity.y;
+	
+	speed = gameLogicScript.getSpeed();
+	jumpDrain = gameLogicScript.getJumpDrain();
 }
 
 function Update()
@@ -93,12 +106,14 @@ public function Swipe():void
         {
             Debug.Log("left swipe");
             debugInfo += "\nSwiping left";
+            moveLeft();
         }
         //swipe right
         if(currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
         {
             Debug.Log("right swipe");
             debugInfo += "\nSwiping right";
+            moveRight();
         }
     }
 }
@@ -141,13 +156,8 @@ function jumpButtonDown()
 	//hold event
 	if (isJumping == false && initializeJumping == true)
 	{
-		if (jumpForce < maxJForce) {
-			jumpForce += 0.05;
-			GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
-		}
-		else {
-			Debug.Log("You have reached maximum jump power");
-		}
+		jumpForce += 0.05;
+		GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
 	}
 
 }
@@ -166,13 +176,13 @@ function jumpButtonUp()
 
 function moveLeft()
 {
-	this.gameObject.rigidbody.velocity.x -= 0.18;
+	this.gameObject.rigidbody.velocity.x -=6;
 	setDirection("Left");
 }
 
 function moveRight()
 {
-	this.gameObject.rigidbody.velocity.x += 0.18;
+	this.gameObject.rigidbody.velocity.x += 6;
 	setDirection("Right");
 }
 

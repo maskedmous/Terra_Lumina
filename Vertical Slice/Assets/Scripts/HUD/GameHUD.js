@@ -7,7 +7,7 @@ private var isJumping:boolean = false;
 
 public function OnGUI()
 {
-	if(GUI.RepeatButton(new Rect(Screen.width*1/16, Screen.height* 7/ 8, 80, 50), "Left"))
+	/*if(GUI.RepeatButton(new Rect(Screen.width*1/16, Screen.height* 7/ 8, 80, 50), "Left"))
 	{
 		//function call movement left
 		GameObject.Find("Player").GetComponent(PlayerController).moveLeft();
@@ -16,7 +16,7 @@ public function OnGUI()
 	{
 		//function call movement right
 		GameObject.Find("Player").GetComponent(PlayerController).moveRight();
-	}
+	}*/
 	
 	if(GUI.RepeatButton(new Rect(Screen.width*5/16, Screen.height*6/8, 80, 50), "Jump"))
 	{

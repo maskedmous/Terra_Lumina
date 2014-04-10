@@ -17,6 +17,13 @@
     <DecreaseTimer>1</DecreaseTimer>
     <NegativeBatteryFlow>1</NegativeBatteryFlow>
     <PositiveBatteryFlow>3</PositiveBatteryFlow>
+    <Speed>0.18</Speed>
+    <JumpDrain>0.1</JumpDrain>
+    <ShootDrain>0.0</ShootDrain>
+    <PickUpDrain>0.0</PickUpDrain>
+    <PlaceDrain>0.0</PlaceDrain>
+    <FlashDrain>0.0</FlashDrain>
+    <CollectDrain>0.0</CollectDrain>
   </GameLogic>
   <Level>
     <GameObject>
