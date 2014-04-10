@@ -351,3 +351,15 @@ function getDirection():String
 {
 	return lastDirection;
 }
+
+public function brake():void
+{
+	if(this.gameObject.rigidbody.velocity.x > 0)
+	{
+		this.gameObject.rigidbody.velocity.x -= 0.06;
+	}
+	else
+	{
+		this.gameObject.rigidbody.velocity.x = 0;
+	}
+}

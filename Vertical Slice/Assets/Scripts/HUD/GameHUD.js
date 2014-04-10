@@ -18,6 +18,12 @@ public function OnGUI()
 		GameObject.Find("Player").GetComponent(PlayerController).moveRight();
 	}*/
 	
+	if(GUI.RepeatButton(new Rect(Screen.width*3/16, Screen.height*7/8, 80, 50), "Brake"))
+	{
+		//function call movement right
+		GameObject.Find("Player").GetComponent(PlayerController).brake();
+	}
+	
 	if(GUI.RepeatButton(new Rect(Screen.width*5/16, Screen.height*6/8, 80, 50), "Jump"))
 	{
 		buttonDownJumping = true;
