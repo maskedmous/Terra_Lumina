@@ -62,7 +62,7 @@ function Start() {
 
 function Update()
 {
-	Swipe();
+	ReadTouch();
 	movement();
 	if(inventory.Count == 1) Debug.Log(inventory[0].gameObject.name);
 }
@@ -71,7 +71,7 @@ private var firstPressPos:Vector2;
 private var secondPressPos:Vector2;
 private var currentSwipe:Vector2;
 
-public function Swipe():void
+public function ReadTouch():void
 {
      if(Input.GetMouseButtonDown(0))
      {
@@ -86,41 +86,44 @@ public function Swipe():void
        
             //create vector from the two points
         currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y); 
-           
-        //normalize the 2d vector
-        currentSwipe.Normalize();
- 
-        //swipe upwards
-        if(currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-        {
-            Debug.Log("up swipe");
-            debugInfo += "\nSwiping up";
-        }
-        //swipe down
-        if(currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-        {
-            Debug.Log("down swipe");
-            debugInfo += "\nSwiping down";
-        }
-        //swipe left
-        if(currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-        {
-            Debug.Log("left swipe");
-            debugInfo += "\nSwiping left";
-            flashlight();
-            //moveLeft();
-        }
-        //swipe right
-        if(currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-        {
-            Debug.Log("right swipe");
-            debugInfo += "\nSwiping right";
-            flashlight();
-            //moveRight();
-        }
         
-        if (firstPressPos.x > Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveRight();
-        if (firstPressPos.x < Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveLeft();
+        //if swiping 
+        if (currentSwipe.magnitude > 100) {
+        
+	        //normalize the 2d vector
+	        currentSwipe.Normalize();
+	 
+	        //swipe upwards
+	        if(currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+	        {
+	            Debug.Log("up swipe");
+	            debugInfo += "\nSwiping up";
+	        }
+	        //swipe down
+	        if(currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+	        {
+	            Debug.Log("down swipe");
+	            debugInfo += "\nSwiping down";
+	        }
+	        //swipe left
+	        if(currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+	        {
+	            Debug.Log("left swipe");
+	            debugInfo += "\nSwiping left";
+	            flash();
+	        }
+	        //swipe right
+	        if(currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+	        {
+	            Debug.Log("right swipe");
+	            debugInfo += "\nSwiping right";
+	            flash();
+	   		}
+		}
+		else {
+	        if (firstPressPos.x > Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveRight();
+	        if (firstPressPos.x < Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveLeft();
+		}
     }
 }
 
@@ -132,10 +135,6 @@ function OnGUI()
 	{
 		debugInfo = "";
 	}
-}
-
-function flashlight(){
-	print("flashing...");
 }
 
 function movement()
@@ -254,6 +253,13 @@ function shoot()
 		x8 = 0;
 		yield WaitForSeconds(3);
 		lineRenderer.enabled = false;
+	}
+}
+
+function flash() {
+	var hit:RaycastHit;
+	if (Physics.Raycast(this.gameObject.transform.position, this.gameObject.rigidbody.velocity.normalized, hit)) {
+		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
 	}
 }
 

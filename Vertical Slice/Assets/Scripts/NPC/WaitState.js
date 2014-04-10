@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-private var waitTime:float = 50;
+private var waitTime:float = 150;
 
 class WaitState extends State {
 	
@@ -11,5 +11,9 @@ class WaitState extends State {
 	
 	function toMoveState() {
 		parentScript.toMoveState();
+		//this.parent.renderer.enabled = true;
+		this.parent.collider.enabled = true;
+		this.parent.rigidbody.useGravity = true;
+		waitTime = 150;
 	}
 }
