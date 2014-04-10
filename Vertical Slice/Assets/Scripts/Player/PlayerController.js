@@ -107,6 +107,7 @@ public function Swipe():void
         {
             Debug.Log("left swipe");
             debugInfo += "\nSwiping left";
+            flashlight();
             //moveLeft();
         }
         //swipe right
@@ -114,6 +115,7 @@ public function Swipe():void
         {
             Debug.Log("right swipe");
             debugInfo += "\nSwiping right";
+            flashlight();
             //moveRight();
         }
         
@@ -130,6 +132,10 @@ function OnGUI()
 	{
 		debugInfo = "";
 	}
+}
+
+function flashlight(){
+	print("flashing...");
 }
 
 function movement()
