@@ -77,6 +77,7 @@ public function Swipe():void
      {
          //save began touch 2d point
         firstPressPos = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+        Debug.Log(firstPressPos);
      }
      if(Input.GetMouseButtonUp(0))
      {
@@ -106,15 +107,18 @@ public function Swipe():void
         {
             Debug.Log("left swipe");
             debugInfo += "\nSwiping left";
-            moveLeft();
+            //moveLeft();
         }
         //swipe right
         if(currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
         {
             Debug.Log("right swipe");
             debugInfo += "\nSwiping right";
-            moveRight();
+            //moveRight();
         }
+        
+        if (firstPressPos.x > Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveRight();
+        if (firstPressPos.x < Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveLeft();
     }
 }
 
