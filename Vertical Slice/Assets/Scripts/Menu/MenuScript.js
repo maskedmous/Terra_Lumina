@@ -5,12 +5,12 @@ private var BUTTONWIDTH = Screen.width/6;
 private var BUTTONHEIGHT = Screen.height/8;
 private var TEXTUREWIDTH = Screen.width/5;
 private var TEXTUREHEIGHT = Screen.height/6;
-var startButton:Texture;
-var exitButton:Texture;
-var settingsButton:Texture;
-var creditsButton:Texture;
-var background:Texture;
-var loadingScreen:Texture;
+private var startButton:Texture;
+private var exitButton:Texture;
+private var settingsButton:Texture;
+private var creditsButton:Texture;
+private var background:Texture;
+private var loadingScreen:Texture;
 var empty:Texture;
 var skin:GUIStyle;
 var started:boolean;
@@ -18,6 +18,16 @@ var started:boolean;
 function Start () {
 	started = false;
 
+}
+
+function Awake(){
+	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
+	startButton = textureLoader.getTexture("Start");
+	exitButton = textureLoader.getTexture("Quit");
+	creditsButton = textureLoader.getTexture("Credits");
+	settingsButton = textureLoader.getTexture("Settings");
+	background = textureLoader.getTexture("Background");
+	loadingScreen = textureLoader.getTexture("Loading");
 }
 
 function Update () {
