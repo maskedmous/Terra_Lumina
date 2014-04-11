@@ -11,7 +11,7 @@ class WaitState extends State {
 	
 	function toMoveState() {
 		parentScript.toMoveState();
-		//this.parent.renderer.enabled = true;
+		this.parent.renderer.enabled = true;
 		this.parent.collider.enabled = true;
 		this.parent.rigidbody.useGravity = true;
 		waitTime = 150;
