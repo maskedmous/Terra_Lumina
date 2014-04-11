@@ -70,9 +70,9 @@ function Update()
 	movement();
 	if(inventory.Count == 1) Debug.Log(inventory[0].gameObject.name);
 	
-	if(flashBool == true){
+	if(flashBool == true) {
 		counter++;
-		if(counter >= 50){
+		if(counter >= 50) {
 			flashlight.active = false;
 			flashBool = false;
 			counter = 0;
