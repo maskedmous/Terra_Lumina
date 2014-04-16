@@ -45,7 +45,6 @@ public var samplesToComplete:int;
 function Update()
 {
 	decreaseBattery();
-	itemInInventory = GameObject.Find("Player").GetComponent(PlayerController).getInventory(0);
 }
 
 function decreaseBattery()

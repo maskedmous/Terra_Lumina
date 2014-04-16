@@ -5,6 +5,8 @@ import System.Collections.Generic;
 var debugInfo:String = "";
 
 var lastDirection:String="Right";
+private var maxSpeed:float = 8.0;
+
 private var lineRenderer:LineRenderer;
 public var seed:GameObject;
 private var y0:float;
@@ -23,22 +25,17 @@ private var v:float;
 private var vx:float = 0;
 private var vy:float = 0;
 
-private var speed:float;
 private var isJumping:boolean = true;
 private var initializeJumping:boolean = false;
-private var jumpForce:float = 0.0;
+private var jumpForce:float = 10.0;
+private var maxJumpForce:float = 15.0;
 
 private var isShooting:boolean = false;
 private var currentSeeds:uint = 5;
+private var currentShroom:GameObject;
+private var shrooms:List.<GameObject> = new List.<GameObject>();
 
-private var stdTrickCD = 100;
-private var trickCD = stdTrickCD;
-private var prevRot = 0;
-
-public var rot:float = 0.03;
-public var limitRotation:boolean;
-
-private var inventory:List.<GameObject> = new List.<GameObject>();
+private var samples:List.<GameObject> = new List.<GameObject>();
 
 private var gameLogic:GameObject;
 private var gameLogicScript:GameLogic;
@@ -47,6 +44,7 @@ public var flashlight:GameObject;
 private var flashBool:boolean;
 private var counter:int;
 
+private var speed:float;
 private var jumpDrain:float;
 
 function Awake() {
@@ -66,9 +64,7 @@ function Start() {
 
 function Update()
 {
-	ReadTouch();
 	movement();
-	if(inventory.Count == 1) Debug.Log(inventory[0].gameObject.name);
 	
 	if(flashBool == true) {
 		counter++;
@@ -80,136 +76,77 @@ function Update()
 	}
 }
 
-private var firstPressPos:Vector2;
-private var secondPressPos:Vector2;
-private var currentSwipe:Vector2;
-
-public function ReadTouch():void
-{
-     if(Input.GetMouseButtonDown(0))
-     {
-         //save began touch 2d point
-        firstPressPos = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
-        Debug.Log(firstPressPos);
-     }
-     if(Input.GetMouseButtonUp(0))
-     {
-            //save ended touch 2d point
-        secondPressPos = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
-       
-            //create vector from the two points
-        currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y); 
-        
-        //if swiping 
-        if (currentSwipe.magnitude > 100) {
-        
-	        //normalize the 2d vector
-	        currentSwipe.Normalize();
-	 
-	        //swipe upwards
-	        if(currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-	        {
-	            Debug.Log("up swipe");
-	            debugInfo += "\nSwiping up";
-	        }
-	        //swipe down
-	        if(currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-	        {
-	            Debug.Log("down swipe");
-	            debugInfo += "\nSwiping down";
-	        }
-	        //swipe left
-	        if(currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-	        {
-	            Debug.Log("left swipe");
-	            debugInfo += "\nSwiping left";
-	            flash();
-	        }
-	        //swipe right
-	        if(currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-	        {
-	            Debug.Log("right swipe");
-	            debugInfo += "\nSwiping right";
-	            flash();
-	   		}
-		}
-		else {
-	        if (firstPressPos.x > Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveRight();
-	        if (firstPressPos.x < Screen.width / 2 && firstPressPos.y > Screen.height / 4) moveLeft();
-		}
-    }
+public function move(mousePos:float) {
+	if (mousePos > Screen.width / 2) moveRight();
+	if (mousePos < Screen.width / 2) moveLeft();
 }
 
-function OnGUI()
+private function moveLeft()
 {
-	GUI.Label(new Rect(Screen.width / 2, 20, 300, 300), debugInfo);
-	
-	if(debugInfo.Length > 200)
-	{
-		debugInfo = "";
+	if (this.gameObject.rigidbody.velocity.x > -maxSpeed) this.gameObject.rigidbody.velocity.x -= 0.30;
+	setDirection("Left");
+}
+
+private function moveRight()
+{
+	if (this.gameObject.rigidbody.velocity.x < maxSpeed) this.gameObject.rigidbody.velocity.x += 0.30;
+	setDirection("Right");
+}
+
+public function brake():void
+{
+	if (!isJumping) {
+		if (this.gameObject.rigidbody.velocity.x > 0.10) this.gameObject.rigidbody.velocity.x -= 0.10;
+		if (this.gameObject.rigidbody.velocity.x < -0.10) this.gameObject.rigidbody.velocity.x += 0.10;
 	}
+}
+
+public function jump() {
+	if (!isJumping) {
+		this.gameObject.rigidbody.velocity.y = jumpForce;
+		jumpForce = 5.0f;
+		isJumping = true;
+		this.gameObject.rigidbody.freezeRotation = true;
+	}
+}
+
+function chargeJump() {
+	jumpForce += 0.05;
+	if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
+	else GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
 }
 
 function movement()
 {
-
+	var hitDown:RaycastHit;
+	//if (Physics.Raycast(this.gameObject.transform.position, new Vector3(this.gameObject.transform.rotation.z, -1 + (this.gameObject.transform.rotation.z), 0), hitDown, 1.0 + (this.gameObject.transform.rotation.z / 1.5))) {
+	if (Physics.Raycast(this.gameObject.transform.position, new Vector3(0, -1, 0), hitDown, 2)) {	
+		isJumping = false;
+		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
+		//this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
+		Debug.Log(hitDown.collider.gameObject.name);
+	}
+	else {
+		Debug.Log("Raycast missed.");
+		isJumping = true;
+		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+	}
+		
 	//update event
-	if (isJumping)
+	/*if (isJumping)
 	{
 		var hitDown:RaycastHit;
 		if (Physics.Raycast(this.gameObject.transform.position, new Vector3(this.gameObject.transform.rotation.z, -1 + (this.gameObject.transform.rotation.z), 0), hitDown, 1.0 + (this.gameObject.transform.rotation.z / 1.5)))
 		{
-			if (hitDown.collider.gameObject.name == "Plateau" || hitDown.collider.gameObject.name == "GrownPlant(Clone)") isJumping = false;
+			if (hitDown.collider.gameObject.name == "Plateau" || hitDown.collider.gameObject.name == "GrownPlant(Clone)") {
+				isJumping = false;
+				this.gameObject.rigidbody.freezeRotation = false;
+			}
 		}
-	}
-
-	handleTricks();
+	}*/
 }
 
-function jumpButtonDown()
-{
-	//initial event
-	if (isJumping == false && !initializeJumping)
-	{
-		jumpForce = 5;
-		GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 3;
-		initializeJumping = true;
-	}
-	//hold event
-	if (isJumping == false && initializeJumping == true)
-	{
-		jumpForce += 0.05;
-		GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
-	}
-
-}
-
-function jumpButtonUp()
-{
-	//release event
-	if (!isJumping)
-	{
-		this.gameObject.rigidbody.velocity.y = jumpForce;
-		isJumping = true;
-		initializeJumping = false;
-		jumpForce = 0;
-	}
-}
-
-function moveLeft()
-{
-	this.gameObject.rigidbody.velocity.x -=6;
-	setDirection("Left");
-}
-
-function moveRight()
-{
-	this.gameObject.rigidbody.velocity.x += 6;
-	setDirection("Right");
-}
-
-function shootSeed()
-{
+function chargeShot() {
 	if (currentSeeds > 0) {
 		lineRenderer.enabled = true;	
 		
@@ -269,6 +206,15 @@ function shoot()
 	}
 }
 
+public function setShroom(index:int) {
+	currentShroom = shrooms[index];
+}
+
+function getSeeds()
+{
+	return currentSeeds;
+}
+
 function flash() {
 	var hit:RaycastHit;
 	if (Physics.Raycast(this.gameObject.transform.position, this.gameObject.rigidbody.velocity.normalized, hit)) {
@@ -278,80 +224,8 @@ function flash() {
 	flashBool = true;
 }
 
-function getSeeds()
-{
-	return currentSeeds;
-}
-
-function LateUpdate()
-{
-	if (limitRotation) {
-		if (this.gameObject.transform.rotation.z > 0.5) this.gameObject.transform.rotation.z = 0.4;
-	}
-}
-
-function Add(obj:GameObject)
-{
-	if (inventory.Count == 0) {
-		inventory.Add(obj);
-		Debug.Log("Added " + obj.name);
-	}
-	else Debug.Log("Inventory already full.." );
-}
-
-function Place()
-{
-	if (inventory.Count > 0) {
-		if (getDirection() == "Right") inventory[0].gameObject.transform.position = this.gameObject.transform.position + new Vector3(3, 0, 0);
-		else if (getDirection() == "Left") inventory[0].gameObject.transform.position = this.gameObject.transform.position + new Vector3(-3, 0, 0);
-		inventory.RemoveAt(0);
-	}
-	else Debug.Log("You can't place an item right now");
-}
-
-function getInventory(index:uint)
-{
-	if (inventory.Count > 0) return inventory[index].name;
-	else return "De laadruimte is leeg";
-}
-
-function handleTricks()
-{
-	trickCD--;
-	if (prevRot == 0) {
-		if (this.gameObject.transform.rotation.z > 0.5) {
-			prevRot = 90;
-			trickCD = stdTrickCD;
-			Debug.Log(prevRot);
-		}
-	}
-	if (prevRot == 90) {
-		if (this.gameObject.transform.rotation.z > 0.9) {
-			prevRot = 180;
-			trickCD = stdTrickCD;
-			Debug.Log(prevRot);
-		}
-	}
-	if (prevRot == 180) {
-		if (this.gameObject.transform.rotation.z < 0.5) {
-			prevRot = 270;
-			trickCD = stdTrickCD;
-			Debug.Log(prevRot);
-		}
-	}
-	if (prevRot == 270) {
-		if (this.gameObject.transform.rotation.z < 0.1) {
-			prevRot = 0;
-			trickCD = stdTrickCD;
-			Debug.Log(prevRot);
-			Debug.Log("backflip.");
-		}
-	}
-	if (trickCD < 0 && prevRot != 0) {
-		trickCD = stdTrickCD;
-		prevRot = 0;
-		Debug.Log(prevRot);
-	}
+public function addSample(sample:GameObject) {
+	samples.Add(sample);
 }
 
 function setDirection(direction:String)
@@ -365,16 +239,4 @@ function setDirection(direction:String)
 function getDirection():String
 {
 	return lastDirection;
-}
-
-public function brake():void
-{
-	if(this.gameObject.rigidbody.velocity.x > 0)
-	{
-		this.gameObject.rigidbody.velocity.x -= 0.06;
-	}
-	else
-	{
-		this.gameObject.rigidbody.velocity.x = 0;
-	}
 }

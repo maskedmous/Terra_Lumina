@@ -1,9 +1,9 @@
 ﻿#pragma strict
 
-private var buttonDownShooting:boolean = false;
+/*private var buttonDownShooting:boolean = false;
 private var buttonDownJumping:boolean = false;
 private var isShooting:boolean = false;
-private var isJumping:boolean = false;
+private var isJumping:boolean = false;*/
 
 public function OnGUI()
 {
@@ -16,7 +16,7 @@ public function OnGUI()
 	{
 		//function call movement right
 		GameObject.Find("Player").GetComponent(PlayerController).moveRight();
-	}*/
+	}
 	
 	if(GUI.RepeatButton(new Rect(Screen.width*3/16, Screen.height*7/8, 80, 50), "Brake"))
 	{
@@ -62,7 +62,7 @@ public function OnGUI()
 	if(GUI.Button(new Rect(Screen.width * 9 / 16, Screen.height * 7 / 8, 90, 50), "Reset Rover"))
 	{
 		GameObject.Find("Player").transform.rotation.eulerAngles.z = 0;
-	}
+	}*/
 }
 
 
@@ -75,7 +75,7 @@ public function OnGUI()
 public function Update()
 {
 	//on down event
-	if(buttonDownShooting)
+	/*if(buttonDownShooting)
 	{
 		GameObject.Find("Player").GetComponent(PlayerController).shootSeed();
 	}
@@ -96,5 +96,5 @@ public function Update()
 	{
 		GameObject.Find("Player").GetComponent(PlayerController).jumpButtonUp();
 		isJumping = false;
-	}
+	}*/
 }
