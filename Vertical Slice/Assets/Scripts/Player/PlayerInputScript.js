@@ -22,7 +22,7 @@ function Update () {
 	else playerController.brake();
 }
 
-private function OnGUI() {
+public function OnGUI() {
 	if (GUI.Button(new Rect(0, Screen.height - 75, 150, 75), "Jump")) {
 		if (!chargingJump) chargingJump = true;
 		else {

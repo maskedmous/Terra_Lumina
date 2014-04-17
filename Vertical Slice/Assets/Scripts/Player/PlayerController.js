@@ -8,7 +8,6 @@ var lastDirection:String="Right";
 private var maxSpeed:float = 8.0;
 
 private var lineRenderer:LineRenderer;
-public var seed:GameObject;
 private var y0:float;
 private var x1:float;
 private var x2:float;
@@ -30,11 +29,11 @@ private var initializeJumping:boolean = false;
 private var jumpForce:float = 10.0;
 private var maxJumpForce:float = 15.0;
 
-private var isShooting:boolean = false;
-private var currentSeeds:uint = 5;
-private var currentShroom:GameObject;
-private var shrooms:List.<GameObject> = new List.<GameObject>();
-
+//shroom seed shooting
+private var isShooting:boolean = false;								//is it shooting at the moment?
+private var currentSeeds:uint = 10;									//current amount of seed
+private var currentShroom:GameObject;								//current shroom that is active
+public var shrooms:List.<GameObject> = new List.<GameObject>();
 private var samples:List.<GameObject> = new List.<GameObject>();
 
 private var gameLogic:GameObject;
@@ -50,6 +49,10 @@ private var jumpDrain:float;
 function Awake() {
 	gameLogic = GameObject.Find("GameLogic") as GameObject;
 	gameLogicScript = gameLogic.GetComponent("GameLogic") as GameLogic;
+	
+	shrooms.Add(Resources.Load("Prefabs/NormalShroom") as GameObject);
+	shrooms.Add(Resources.Load("Prefabs/BumpyShroom") as GameObject);
+	setShroom(0);//set initial shroom
 }
 
 function Start() {
@@ -69,7 +72,7 @@ function Update()
 	if(flashBool == true) {
 		counter++;
 		if(counter >= 50) {
-			flashlight.active = false;
+			flashlight.SetActive(false);
 			flashBool = false;
 			counter = 0;
 		}
@@ -125,26 +128,13 @@ function movement()
 		isJumping = false;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
 		//this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
-		Debug.Log(hitDown.collider.gameObject.name);
+		//Debug.Log(hitDown.collider.gameObject.name);
 	}
 	else {
 		Debug.Log("Raycast missed.");
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 	}
-		
-	//update event
-	/*if (isJumping)
-	{
-		var hitDown:RaycastHit;
-		if (Physics.Raycast(this.gameObject.transform.position, new Vector3(this.gameObject.transform.rotation.z, -1 + (this.gameObject.transform.rotation.z), 0), hitDown, 1.0 + (this.gameObject.transform.rotation.z / 1.5)))
-		{
-			if (hitDown.collider.gameObject.name == "Plateau" || hitDown.collider.gameObject.name == "GrownPlant(Clone)") {
-				isJumping = false;
-				this.gameObject.rigidbody.freezeRotation = false;
-			}
-		}
-	}*/
 }
 
 function chargeShot() {
@@ -195,9 +185,10 @@ function shoot()
 {
 	if (currentSeeds > 0) {
 		currentSeeds--;
-		var newSeed:GameObject = Instantiate(seed, this.gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity);
-		newSeed.gameObject.name = "Plant";
+		var newSeed:GameObject = Instantiate(Resources.Load("Prefabs/Seed", GameObject), this.gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+		newSeed.gameObject.name = "Seed";
 		newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
+		newSeed.gameObject.GetComponent(SeedBehaviour).setShroomType(currentShroom);
 		newSeed.rigidbody.velocity = new Vector3(vx, vy, 0);
 		vx = 0;
 		vy = 0;
@@ -207,7 +198,8 @@ function shoot()
 	}
 }
 
-public function setShroom(index:int) {
+public function setShroom(index:int)
+{
 	currentShroom = shrooms[index];
 }
 
@@ -220,9 +212,9 @@ function flash() {
 	var hit:RaycastHit;
 	if (Physics.Raycast(this.gameObject.transform.position, this.gameObject.rigidbody.velocity.normalized, hit)) {
 		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
-		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.active = false;
+		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
 	}
-	flashlight.active = true;
+	flashlight.SetActive(true);
 	flashBool = true;
 }
 
