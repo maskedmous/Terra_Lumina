@@ -114,6 +114,7 @@ function chargeJump() {
 	jumpForce += 0.05;
 	if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
 	else GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
+	
 }
 
 function movement()
@@ -219,6 +220,7 @@ function flash() {
 	var hit:RaycastHit;
 	if (Physics.Raycast(this.gameObject.transform.position, this.gameObject.rigidbody.velocity.normalized, hit)) {
 		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
+		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.active = false;
 	}
 	flashlight.active = true;
 	flashBool = true;
