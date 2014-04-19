@@ -29,11 +29,12 @@ private var initializeJumping:boolean = false;
 private var jumpForce:float = 10.0;
 private var maxJumpForce:float = 15.0;
 
+
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
 private var currentSeeds:uint = 10;									//current amount of seed
 private var currentShroom:GameObject;								//current shroom that is active
-public var shrooms:List.<GameObject> = new List.<GameObject>();
+public 	var shrooms:List.<GameObject> = new List.<GameObject>();
 private var samples:List.<GameObject> = new List.<GameObject>();
 
 private var gameLogic:GameObject;
@@ -208,7 +209,8 @@ function getSeeds()
 	return currentSeeds;
 }
 
-function flash() {
+function flash()
+{
 	var hit:RaycastHit;
 	if (Physics.Raycast(this.gameObject.transform.position, this.gameObject.rigidbody.velocity.normalized, hit)) {
 		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
@@ -233,4 +235,44 @@ function setDirection(direction:String)
 function getDirection():String
 {
 	return lastDirection;
+}
+
+function bounceShroomY():void
+{
+	this.gameObject.rigidbody.velocity.x = 0;
+	this.gameObject.rigidbody.velocity.y = 15;
+}
+
+function bounceShroomX():void
+{
+	//left side
+//	if(this.gameObject.transform.position.x < shroom.transform.position.x)
+//	{
+//		this.gameObject.rigidbody.velocity.y = 0;
+//		this.gameObject.rigidbody.velocity.x = -15;
+//	}
+//	//right side
+//	else if(this.gameObject.transform.position.x > shroom.transform.position.x)
+//	{
+//		this.gameObject.rigidbody.velocity.y = 0;
+//		this.gameObject.rigidbody.velocity.x = 15;
+//	}
+
+	var velocity = this.gameObject.rigidbody.velocity.x;
+	if(Mathf.Abs(velocity) < 0.4)
+	{
+		if(velocity < 0) velocity = -3;
+		else if(velocity > 0) velocity = 3;
+	}
+	
+	velocity *= -4;
+	if(velocity > 10)
+	{
+		velocity = 10;
+	}
+	else if(velocity < -10)
+	{
+		velocity = -10;
+	}
+	this.gameObject.rigidbody.velocity.x = velocity;
 }
