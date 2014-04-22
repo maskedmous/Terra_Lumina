@@ -26,7 +26,7 @@ private var vy:float = 0;
 
 private var isJumping:boolean = true;
 private var initializeJumping:boolean = false;
-private var jumpForce:float = 10.0;
+private var jumpForce:float = 5.0;
 private var maxJumpForce:float = 15.0;
 
 
@@ -59,7 +59,7 @@ function Awake() {
 function Start() {
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
-	lineRenderer.SetColors(Color.red, Color.blue);
+	lineRenderer.SetColors(Color.white, Color.white);
 	g = -Physics.gravity.y;
 	
 	speed = gameLogicScript.getSpeed();
@@ -68,7 +68,6 @@ function Start() {
 
 function Update()
 {
-	Debug.Log(this.gameObject.transform.rotation.eulerAngles.z);
 	movement();
 	
 	if(flashBool == true) {
@@ -79,47 +78,6 @@ function Update()
 			counter = 0;
 		}
 	}
-}
-
-public function move(mousePos:float) {
-	if (mousePos > Screen.width / 2) moveRight();
-	if (mousePos < Screen.width / 2) moveLeft();
-}
-
-private function moveLeft()
-{
-	if (this.gameObject.rigidbody.velocity.x > -maxSpeed) this.gameObject.rigidbody.velocity.x -= 0.30;
-	setDirection("Left");
-}
-
-private function moveRight()
-{
-	if (this.gameObject.rigidbody.velocity.x < maxSpeed) this.gameObject.rigidbody.velocity.x += 0.30;
-	setDirection("Right");
-}
-
-public function brake():void
-{
-	if (!isJumping) {
-		if (this.gameObject.rigidbody.velocity.x > 0.10) this.gameObject.rigidbody.velocity.x -= 0.10;
-		if (this.gameObject.rigidbody.velocity.x < -0.10) this.gameObject.rigidbody.velocity.x += 0.10;
-	}
-}
-
-public function jump() {
-	if (!isJumping) {
-		this.gameObject.rigidbody.velocity.y = jumpForce;
-		jumpForce = 5.0f;
-		isJumping = true;
-		this.gameObject.rigidbody.freezeRotation = true;
-	}
-}
-
-function chargeJump() {
-	jumpForce += 0.05;
-	if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
-	else GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
-	
 }
 
 function movement()
@@ -143,6 +101,93 @@ function movement()
 	if (cRot > 180 && cRot < 315) this.gameObject.transform.rotation.eulerAngles.z = 315;
 }
 
+
+public function move(mousePos:float) {
+	if (mousePos > Screen.width / 2) moveRight();
+	if (mousePos < Screen.width / 2) moveLeft();
+}
+
+private function moveLeft()
+{
+	if (this.gameObject.rigidbody.velocity.x > -maxSpeed) this.gameObject.rigidbody.velocity.x -= 0.30;
+	if (this.getDirection() == "Right")	{
+		this.gameObject.transform.rotation.eulerAngles.y = 180;
+		this.gameObject.transform.rotation.eulerAngles.z *= -1;
+		this.gameObject.transform.rotation.eulerAngles.x *= -1;
+	}
+	setDirection("Left");
+}
+
+private function moveRight()
+{
+	if (this.gameObject.rigidbody.velocity.x < maxSpeed) this.gameObject.rigidbody.velocity.x += 0.30;
+	if (this.getDirection() == "Left")	{
+		this.gameObject.transform.rotation.eulerAngles.y = 0;
+		this.gameObject.transform.rotation.eulerAngles.z *= -1;
+		this.gameObject.transform.rotation.eulerAngles.x *= -1;
+	}
+	setDirection("Right");
+}
+
+public function brake():void
+{
+	if (!isJumping) {
+		if (this.gameObject.rigidbody.velocity.x > 0.10) this.gameObject.rigidbody.velocity.x -= 0.10;
+		if (this.gameObject.rigidbody.velocity.x < -0.10) this.gameObject.rigidbody.velocity.x += 0.10;
+	}
+}
+
+public function jump() {
+	if (!isJumping) {
+		this.gameObject.rigidbody.velocity.y = jumpForce;
+		jumpForce = 5.0f;
+		isJumping = true;
+		this.gameObject.rigidbody.freezeRotation = true;
+		
+		x8 = 0;
+		v = 0;
+		yield WaitForSeconds(3);
+		lineRenderer.enabled = false;
+	}
+}
+
+function chargeJump() {
+	lineRenderer.enabled = true;
+	
+	//formula for max height: h = (v * v * sin(angle) * sin(angle)) / 2 * gravity
+	v = jumpForce * jumpForce;	//no horizontal movement
+	x8 = v / (2 * g); 							//sin(90) = 1, v already squared
+	x1 = x8 / 8;								//here used for y coordinates
+	x2 = 2 * x8 / 8;
+	x3 = 3 * x8 / 8;
+	x4 = 4 * x8 / 8;
+	x5 = 5 * x8 / 8;
+	x6 = 6 * x8 / 8;
+	x7 = 7 * x8 / 8;
+	Debug.Log(v);
+	Debug.Log(g);
+	Debug.Log(x8);
+	
+	var x0 = this.gameObject.transform.position.x;
+	y0 = this.gameObject.transform.position.y;
+	var z0 = this.gameObject.transform.position.z;
+	lineRenderer.SetPosition(0, new Vector3(x0, y0, z0));
+	lineRenderer.SetPosition(1, new Vector3(x0, x1 + y0, z0));
+	lineRenderer.SetPosition(2, new Vector3(x0, x2 + y0, z0));
+	lineRenderer.SetPosition(3, new Vector3(x0, x3 + y0, z0));
+	lineRenderer.SetPosition(4, new Vector3(x0, x4 + y0, z0));
+	lineRenderer.SetPosition(5, new Vector3(x0, x5 + y0, z0));
+	lineRenderer.SetPosition(6, new Vector3(x0, x6 + y0, z0));
+	lineRenderer.SetPosition(7, new Vector3(x0, x7 + y0, z0));
+	lineRenderer.SetPosition(8, new Vector3(x0, x7 + y0, z0));
+	
+	jumpForce += 0.05;
+	
+	if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
+	else GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
+	
+}
+
 function chargeShot() {
 	if (currentSeeds > 0) {
 		lineRenderer.enabled = true;	
@@ -153,7 +198,7 @@ function chargeShot() {
 		vy += 0.09;
 		v = vx * vx + vy * vy;
 
-		//formula for max dist: d = v*v*sin(2*angle) / gravity
+		//formula for max dist: d = (v*v*sin(2*angle)) / gravity
 		//replaced sin(2*angle), which was .96, with a bigger number due to the trajectory not starting on the ground.
 		x8 = v * 1.15 / 9.81;
 		x1 = x8 / 8;
