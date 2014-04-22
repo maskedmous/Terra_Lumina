@@ -23,26 +23,26 @@ function Update () {
 }
 
 public function OnGUI() {
-	if (GUI.Button(new Rect(0, Screen.height - 75, 150, 75), "Jump")) {
+	if (GUI.Button(new Rect(0, Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Jump")) {
 		if (!chargingJump) chargingJump = true;
 		else {
 			playerController.jump();
 			chargingJump = false;
 		}
 	}
-	if (GUI.Button(new Rect(Screen.width - 300, Screen.height - 75, 150, 75), "Shoot")) {
+	if (GUI.Button(new Rect(Screen.width * (4.0 / 6.0), Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Shoot")) {
 		if (!chargingShot) chargingShot = true;
 		else {
 			playerController.shoot();
 			chargingShot = false;
 		}
 	}
-	if (GUI.Button(new Rect(Screen.width - 150, Screen.height - 150, 150, 75), "Normal Shroom")) playerController.setShroom(0);
-	if (GUI.Button(new Rect(Screen.width - 150, Screen.height - 75, 150, 75), "Bumpy Shroom")) playerController.setShroom(1);
+	if (GUI.Button(new Rect(Screen.width * (5.0 / 6.0), Screen.height * (4.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Normal Shroom")) playerController.setShroom(0);
+	if (GUI.Button(new Rect(Screen.width * (5.0 / 6.0), Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Bumpy Shroom")) playerController.setShroom(1);
 }
 
 function readTouch() {
-	playerController.move(Input.mousePosition.x);
+	if (Input.mousePosition.y > Screen.height * (1.0 / 6.0)) playerController.move(Input.mousePosition.x);
 }
 
 function OnMouseDown() {

@@ -35,7 +35,6 @@ private var secondTimer:float = 0;			//counting seconds
 */
 private var plantSamples:Array = new Array();
 
-private var itemInInventory:String = "";
 
 /*
 	Win Variables
@@ -109,8 +108,7 @@ function OnGUI()
 	var cBattery:int = battery;
 	GUI.Label(Rect(0,0, 500, 20), ("Batterij Lading: " + cBattery.ToString()));
 	GUI.Label(Rect(0, 40, 500, 20), ("Plant Monsters: " + plantSamples.length.ToString()));
-	GUI.Label(Rect(0, 80, 500, 20), ("Object in laadruimte: " + itemInInventory));
-	GUI.Label(Rect(0, 120, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString()));
+	GUI.Label(Rect(0, 80, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString()));
 }
 
 function getBattery():float

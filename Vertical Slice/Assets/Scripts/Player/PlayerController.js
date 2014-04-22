@@ -68,6 +68,7 @@ function Start() {
 
 function Update()
 {
+	Debug.Log(this.gameObject.transform.rotation.eulerAngles.z);
 	movement();
 	
 	if(flashBool == true) {
@@ -136,6 +137,10 @@ function movement()
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 	}
+	
+	var cRot = this.gameObject.transform.rotation.eulerAngles.z;
+	if (cRot > 45 && cRot < 180) this.gameObject.transform.rotation.eulerAngles.z = 45;
+	if (cRot > 180 && cRot < 315) this.gameObject.transform.rotation.eulerAngles.z = 315;
 }
 
 function chargeShot() {
@@ -212,7 +217,10 @@ function getSeeds()
 function flash()
 {
 	var hit:RaycastHit;
-	if (Physics.Raycast(this.gameObject.transform.position, this.gameObject.rigidbody.velocity.normalized, hit)) {
+	var direction:Vector3;
+	if (getDirection() == "Right") direction = new Vector3(1, 0, 0);
+	else if (getDirection() == "Left") direction = new Vector3(-1, 0, 0);
+	if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 10)) {
 		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
 		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
 	}
