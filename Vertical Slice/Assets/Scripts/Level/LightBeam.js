@@ -13,11 +13,20 @@ function OnTriggerStay(hit:Collider)
 	if(hit.gameObject.name == "Player")
 	{
 		charge();
+		displayFact();
 	}
 	
 	if(hit.gameObject.name == "Plant")
 	{
 		grow(hit.gameObject);
+	}
+}
+
+function OnTriggerExit(hit:Collider) 
+{
+	if (hit.gameObject.name == "Player")
+	{
+		stopDisplay();
 	}
 }
 
@@ -32,6 +41,16 @@ function charge()
 	{
 		secondTimer += Time.deltaTime;
 	}
+}
+
+function displayFact()
+{
+	GameObject.Find("Player").GetComponent(FunFactScript).displayFact();
+}
+
+function stopDisplay()
+{
+	GameObject.Find("Player").GetComponent(FunFactScript).stopDisplay();
 }
 
 function grow(plant:GameObject)
