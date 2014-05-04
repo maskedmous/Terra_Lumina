@@ -140,10 +140,10 @@ public class TextureLoader extends MonoBehaviour
 		return loadedFiles;
 	}
 	
-	public function loadTextureInArray(filePath:String, textureName:String):IEnumerator
+	public function loadTextureInArray(aFilePath:String, textureName:String):IEnumerator
 	{
 		//searching for the specific texture
-		var fileInfo = Directory.GetFiles(filePath, textureName + fileType, SearchOption.AllDirectories);
+		var fileInfo = Directory.GetFiles(aFilePath, textureName + fileType, SearchOption.AllDirectories);
 		//if the texture is found then the length would be 1 if not found it would be 0
 		//so if it is not 0 continue
 		if(fileInfo.Length != 0)
