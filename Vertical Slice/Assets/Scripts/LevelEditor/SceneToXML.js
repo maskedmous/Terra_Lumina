@@ -265,4 +265,5 @@ function saveLevel():void
 	//
 	
 	xmlDocument.Save(filePath);
+	Debug.Log("Xml saved to: Assets/LevelsXML/" + levelName);
 }
