@@ -68,7 +68,9 @@ function Start() {
 
 function Update()
 {
-	movement();
+	if(flashBool == false){
+		movement();
+	}
 	
 	if(flashBool == true) {
 		counter++;
@@ -103,8 +105,8 @@ function movement()
 
 
 public function move(mousePos:float) {
-	if (mousePos > Screen.width / 2) moveRight();
-	if (mousePos < Screen.width / 2) moveLeft();
+	if (mousePos > ((Screen.width / 2) + (Screen.width * (1.0 / 50.0)))) moveRight();
+	if (mousePos < ((Screen.width / 2) - (Screen.width * (1.0 / 50.0)))) moveLeft();
 }
 
 private function moveLeft()
