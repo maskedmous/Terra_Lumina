@@ -11,20 +11,27 @@ private var xmlPath:String 	= "";		//initialized in the awake
 
 function Awake()
 {
-	xmlPath = Application.dataPath + "/LevelsXML/";
-	
-	if(levelName != "")
-	{
-		if(!levelName.Contains(".xml"))
-		{
-			levelName = levelName + ".xml";
-		}
-		
-		saveLevel();
+	if(Application.loadedLevelName == "LevelEditor")
+	{	
+		Debug.LogError("Please save this scene first as a new scene before saving the level");
 	}
 	else
 	{
-		Debug.LogError("You haven't filled in a Level Name, see SaveLevel");
+		xmlPath = Application.dataPath + "/LevelsXML/";
+		
+		if(levelName != "")
+		{
+			if(!levelName.Contains(".xml"))
+			{
+				levelName = levelName + ".xml";
+			}
+			
+			saveLevel();
+		}
+		else
+		{
+			Debug.LogError("You haven't filled in a Level Name, see SaveLevel");
+		}
 	}
 }
 
