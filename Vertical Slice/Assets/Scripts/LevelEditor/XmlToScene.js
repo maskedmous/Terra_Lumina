@@ -158,6 +158,7 @@ function loadLevel()
 					var prefabName:String = "";
 					var position:Vector3 = new Vector3(9999,9999,9999);
 					var rotation:Vector3 = new Vector3(9999,9999,9999);
+					var scaling:Vector3 = new Vector3(9999,9999,9999);
 					
 					for each(var _gameObjectStatsNodes in gameObjectStatsNodeList)
 					{
@@ -215,21 +216,52 @@ function loadLevel()
 								}
 							}
 						}
+						
+						if(gameObjectStatsNodes.Name == "Scaling")
+						{
+							var gameObjectScalingNodes:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							
+							for each(var _scalingNodes in gameObjectScalingNodes)
+							{
+								var scalingNode:XmlNode = _scalingNodes as XmlNode;
+								
+								if(scalingNode.Name == "x")
+								{
+									scaling.x = float.Parse(scalingNode.InnerText);
+								}
+								if(scalingNode.Name == "y")
+								{
+									scaling.y = float.Parse(scalingNode.InnerText);
+								}
+								if(scalingNode.Name == "z")
+								{
+									scaling.z = float.Parse(scalingNode.InnerText);
+								}
+							}
+						}
 					}
 					
 					//instantiate the things
-					if(prefabName != "" && position != Vector3(9999,9999,9999) && rotation != Vector3(9999,9999,9999))
+					if(prefabName != "" && position != Vector3(9999,9999,9999) && rotation != Vector3(9999,9999,9999) && scaling != Vector3(9999,9999,9999))
 					{
 						newGameObject 						= Instantiate(Resources.Load(("Prefabs/" + prefabName))) as GameObject;
-						newGameObject.name 					= prefabName;
-						newGameObject.transform.parent 		= level.transform;
-						newGameObject.transform.position 	= position;
-						newGameObject.transform.eulerAngles = rotation;
-						Debug.Log("created: " + prefabName + " at: " + position);
+						if(newGameObject != null)
+						{
+							newGameObject.name 					= prefabName;
+							newGameObject.transform.parent 		= level.transform;
+							newGameObject.transform.position 	= position;
+							newGameObject.transform.eulerAngles = rotation;
+							newGameObject.transform.localScale 	= scaling;
+							Debug.Log("created: " + prefabName + " at: " + position);
+						}
+						else
+						{
+							Debug.LogError("something went wrong creating the new object");
+						}
 					}
 					else
 					{
-						Debug.LogError("Something went wrong creating this: " + prefabName + " " + position + " " + rotation);
+						Debug.LogError("Something went wrong creating this: " + prefabName + " " + position + " " + rotation + " " + scaling);
 					}
 				}
 			}

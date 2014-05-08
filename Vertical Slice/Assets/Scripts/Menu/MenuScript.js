@@ -11,7 +11,7 @@ private var settingsButton:Texture;
 private var creditsButton:Texture;
 private var background:Texture;
 private var loadingScreen:Texture;
-var empty:Texture;
+var empty:String = "";
 var skin:GUIStyle;
 var started:boolean;
 
@@ -43,7 +43,7 @@ function OnGUI(){
 	if(!started){
 		GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*6/24, TEXTUREWIDTH, TEXTUREHEIGHT), startButton, ScaleMode.StretchToFill, true, 0);
 		if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin)){
-	  		Application.LoadLevel("LevelScene");
+	  		Application.LoadLevel("LevelLoaderScene");
 	  		print("Start game");
 	  		started = true;
 	  	}

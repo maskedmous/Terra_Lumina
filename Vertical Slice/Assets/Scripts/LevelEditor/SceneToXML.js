@@ -119,13 +119,13 @@ function saveLevel():void
 		var decreaseTimerNode:XmlElement 			= xmlDocument.CreateElement("DecreaseTimer");
 		var negativeBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("NegativeBatteryFlow");
 		var positiveBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("PositiveBatteryFlow");
-		var speedNode:XmlElement									= xmlDocument.CreateElement("Speed");
-		var jumpDrainNode:XmlElement							= xmlDocument.CreateElement("JumpDrain");
-		var shootDrainNode:XmlElement						 	= xmlDocument.CreateElement("ShootDrain");
-		var pickUpDrainNode:XmlElement						= xmlDocument.CreateElement("PickUpDrain");
-		var placeDrainNode:XmlElement							= xmlDocument.CreateElement("PlaceDrain"); 
-		var flashDrainNode:XmlElement							= xmlDocument.CreateElement("FlashDrain");
-		var collectDrainNode:XmlElement						= xmlDocument.CreateElement("CollectDrain");
+		var speedNode:XmlElement					= xmlDocument.CreateElement("Speed");
+		var jumpDrainNode:XmlElement				= xmlDocument.CreateElement("JumpDrain");
+		var shootDrainNode:XmlElement				= xmlDocument.CreateElement("ShootDrain");
+		var pickUpDrainNode:XmlElement				= xmlDocument.CreateElement("PickUpDrain");
+		var placeDrainNode:XmlElement				= xmlDocument.CreateElement("PlaceDrain"); 
+		var flashDrainNode:XmlElement				= xmlDocument.CreateElement("FlashDrain");
+		var collectDrainNode:XmlElement				= xmlDocument.CreateElement("CollectDrain");
 			
 		//append them
 		gameLogic.AppendChild(batteryNode);
@@ -205,6 +205,22 @@ function saveLevel():void
 			xRotationNode.InnerText = obj.gameObject.transform.eulerAngles.x.ToString();
 			yRotationNode.InnerText = obj.gameObject.transform.eulerAngles.y.ToString();
 			zRotationNode.InnerText = obj.gameObject.transform.eulerAngles.z.ToString();
+			
+			//save the scale
+			var scaleNode:XmlElement = xmlDocument.CreateElement("Scaling");
+			objectNode.AppendChild(scaleNode);
+			
+			var xScaleNode:XmlElement = xmlDocument.CreateElement("x");
+			var yScaleNode:XmlElement = xmlDocument.CreateElement("y");
+			var zScaleNode:XmlElement = xmlDocument.CreateElement("z");
+			
+			scaleNode.AppendChild(xScaleNode);
+			scaleNode.AppendChild(yScaleNode);
+			scaleNode.AppendChild(zScaleNode);
+			
+			xScaleNode.InnerText = obj.gameObject.transform.localScale.x.ToString();
+			yScaleNode.InnerText = obj.gameObject.transform.localScale.y.ToString();
+			zScaleNode.InnerText = obj.gameObject.transform.localScale.z.ToString();
 		}
 	//
 	
