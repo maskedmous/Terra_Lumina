@@ -1,19 +1,34 @@
 ﻿#pragma strict
 
-private var tutorialObject:GameObject;
-private var tutorialScript:TutorialScript;
+public var tutorialText:String = "";
+private var label:GameObject = null;
 
-function Start () {
-	tutorialObject = GameObject.Find("TutorialObject") as GameObject;
-	tutorialScript = tutorialObject.GetComponent(TutorialScript) as TutorialScript;
-}
-
-function Update () {
-
-}
-
-function OnTriggerEnter(collider:Collider) {
-	if (collider.gameObject.name == "Player") {
-		tutorialScript.nextHint();
+//Start because label might not be created yet
+function Start ()
+{
+	label = GameObject.Find("Label");
+	//if the label is still null log the error
+	if(label == null)
+	{
+		Debug.LogError("Not initialized properly");
 	}
+}
+
+function OnTriggerStay (collider:Collider)
+{
+	if(collider.gameObject.name == "Player")
+	{
+		label.gameObject.guiText.text = tutorialText;
+	}
+
+}
+
+function OnTriggerExit (collider:Collider)
+{
+	label.guiText.text = "";
+}
+
+public function getTutorialText():String
+{
+	return tutorialText;
 }
