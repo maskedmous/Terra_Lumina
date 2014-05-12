@@ -9,7 +9,7 @@ private var xmlLevel:String = "";
 public function Awake():void
 {
 	xmlPath = Application.dataPath + "/LevelsXML/";	//standard XML Level Path
-	xmlLevel = "Level1.xml";	//get it somewhere from (menu?)
+	xmlLevel = "Level2.xml";	//get it somewhere from (menu?)
 	
 	loadLevel();
 }
@@ -160,6 +160,10 @@ function loadLevel()
 					var rotation:Vector3 = new Vector3(9999,9999,9999);
 					var scaling:Vector3 = new Vector3(9999,9999,9999);
 					
+					//tutorial things
+					var tutorialTriggerString:String = "";
+					var boundingBox:Vector3 = new Vector3(9999,9999,9999);
+					
 					for each(var _gameObjectStatsNodes in gameObjectStatsNodeList)
 					{
 						var gameObjectStatsNodes:XmlNode = _gameObjectStatsNodes as XmlNode;
@@ -239,6 +243,43 @@ function loadLevel()
 								}
 							}
 						}
+						
+						if(gameObjectStatsNodes.Name == "Tutorial")
+						{
+							var tutorialNode:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							
+							for each(var _tutorialNodeStats in tutorialNode)
+							{
+								var tutorialNodeStats:XmlNode = _tutorialNodeStats as XmlNode;
+								
+								if(tutorialNodeStats.Name == "TriggerString")
+								{
+									tutorialTriggerString = tutorialNodeStats.InnerText;
+								}
+								if(tutorialNodeStats.Name == "BoundingBox")
+								{
+									var boundingBoxStatsNode:XmlNodeList = tutorialNodeStats.ChildNodes;
+									
+									for each(_boundingBoxStats in boundingBoxStatsNode)
+									{
+										var boundingBoxStats:XmlNode = _boundingBoxStats as XmlNode;
+										
+										if(boundingBoxStats.Name == "x")
+										{
+											boundingBox.x = float.Parse(boundingBoxStats.InnerText);
+										}
+										if(boundingBoxStats.Name == "y")
+										{
+											boundingBox.y = float.Parse(boundingBoxStats.InnerText);
+										}
+										if(boundingBoxStats.Name == "z")
+										{
+											boundingBox.z = float.Parse(boundingBoxStats.InnerText);
+										}
+									}
+								}
+							}
+						}
 					}
 					
 					//instantiate the things
@@ -252,6 +293,12 @@ function loadLevel()
 							newGameObject.transform.position 	= position;
 							newGameObject.transform.eulerAngles = rotation;
 							newGameObject.transform.localScale 	= scaling;
+							
+							if(newGameObject.name == "TutorialObject" && tutorialTriggerString != "" && boundingBox != Vector3(9999,9999,9999))
+							{
+								newGameObject.GetComponent(TutorialTriggerScript).setTutorialText(tutorialTriggerString);
+								newGameObject.GetComponent(BoxCollider).size = boundingBox;
+							}
 							Debug.Log("created: " + prefabName + " at: " + position);
 						}
 						else

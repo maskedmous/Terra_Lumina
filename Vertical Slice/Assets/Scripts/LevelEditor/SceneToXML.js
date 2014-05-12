@@ -228,6 +228,41 @@ function saveLevel():void
 			xScaleNode.InnerText = obj.gameObject.transform.localScale.x.ToString();
 			yScaleNode.InnerText = obj.gameObject.transform.localScale.y.ToString();
 			zScaleNode.InnerText = obj.gameObject.transform.localScale.z.ToString();
+			
+			//special nodes
+			//only if it is a tutorial object
+			if(obj.gameObject.name == "TutorialObject")
+			{
+				//required objects
+				var triggerScript:TutorialTriggerScript = obj.gameObject.GetComponent(TutorialTriggerScript) as TutorialTriggerScript;
+				var boxCollider:BoxCollider = obj.gameObject.GetComponent(BoxCollider) as BoxCollider;
+				var boundingBox:Vector3 = boxCollider.size;
+				
+				//tutorial node
+				var tutorialNode:XmlElement = xmlDocument.CreateElement("Tutorial");
+				objectNode.AppendChild(tutorialNode);
+				
+				//trigger string
+				var triggerStringNode:XmlElement = xmlDocument.CreateElement("TriggerString");
+				tutorialNode.AppendChild(triggerStringNode);
+				triggerStringNode.InnerText = triggerScript.getTutorialText();
+				
+				//bounding box
+				var boundingBoxNode:XmlElement = xmlDocument.CreateElement("BoundingBox");
+				tutorialNode.AppendChild(boundingBoxNode);
+				
+				var xBoundingBoxNode:XmlElement = xmlDocument.CreateElement("x");
+				var yBoundingBoxNode:XmlElement = xmlDocument.CreateElement("y");
+				var zBoundingBoxNode:XmlElement = xmlDocument.CreateElement("z");
+				
+				boundingBoxNode.AppendChild(xBoundingBoxNode);
+				boundingBoxNode.AppendChild(yBoundingBoxNode);
+				boundingBoxNode.AppendChild(zBoundingBoxNode);
+				
+				xBoundingBoxNode.InnerText = boundingBox.x.ToString();
+				yBoundingBoxNode.InnerText = boundingBox.y.ToString();
+				zBoundingBoxNode.InnerText = boundingBox.z.ToString();
+			}
 		}
 	//
 	

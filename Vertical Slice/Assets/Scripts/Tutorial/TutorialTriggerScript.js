@@ -32,3 +32,8 @@ public function getTutorialText():String
 {
 	return tutorialText;
 }
+
+public function setTutorialText(text:String):void
+{
+	tutorialText = text;
+}
