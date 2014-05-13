@@ -62,7 +62,7 @@ function decreaseBattery()
 
 function addBatteryPower()
 {
-	if(battery < 100)
+	if(battery < maximumBatteryCapacity)
 	{
 		battery += positiveBatteryFlow;
 	}

@@ -9,7 +9,7 @@ private var xmlLevel:String = "";
 public function Awake():void
 {
 	xmlPath = Application.dataPath + "/LevelsXML/";	//standard XML Level Path
-	xmlLevel = "Level2.xml";	//get it somewhere from (menu?)
+	xmlLevel = "Level1.xml";	//get it somewhere from (menu?)
 	
 	loadLevel();
 }
