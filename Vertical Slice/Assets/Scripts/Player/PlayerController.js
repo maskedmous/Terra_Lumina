@@ -65,7 +65,7 @@ function Start() {
 	speed = gameLogicScript.getSpeed();
 	jumpDrain = gameLogicScript.getJumpDrain();
 	
-	rigidbody.centerOfMass = new Vector3(-0.2f, -0.15f, 0.0f);
+	rigidbody.centerOfMass = new Vector3(-0.2f, -0.25f, 0.0f);
 }
 
 function Update()
