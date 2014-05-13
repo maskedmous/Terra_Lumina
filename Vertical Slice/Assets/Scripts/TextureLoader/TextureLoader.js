@@ -105,6 +105,7 @@ public class TextureLoader extends MonoBehaviour
 			loadedFiles++;
 		}
 		loaded = true;
+		Debug.Log("Done loading textures");
 		//its done loading so load the next scene
 		Application.LoadLevel(nextScene);
 	}
