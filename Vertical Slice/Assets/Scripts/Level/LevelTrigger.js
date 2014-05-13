@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var finished:boolean = false;
+private var finished:boolean = false;
 
 function Start () {
 
@@ -25,4 +25,8 @@ function OnGUI(){
 		  		Application.LoadLevel("Menu");
 		}
 	}
+}
+
+function setFinished(isFinished:boolean) {
+	finished = isFinished;
 }

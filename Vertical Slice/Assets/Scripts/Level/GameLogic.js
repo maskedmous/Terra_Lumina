@@ -52,6 +52,7 @@ function decreaseBattery()
 	{
 		battery -= negativeBatteryFlow;
 		secondTimer = 0;
+		if (battery < 0.01) gameOver();
 	}
 	else
 	{
@@ -88,6 +89,12 @@ function checkWin():boolean{
 		return true;
 	}
 	else return false;
+}
+
+function gameOver():void {
+	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
+	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
+	levelTriggerScript.setFinished(true);
 }
 
 function setPlant(direction:String, endVec:Vector3)
