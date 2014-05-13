@@ -19,7 +19,7 @@ function Update () {
 	if (chargingJump) playerController.chargeJump();
 	else if (chargingShot) playerController.chargeShot();
 	else if (Input.GetMouseButton(0)) readTouch();
-	else playerController.brake();
+	playerController.brake();
 }
 
 public function OnGUI() {

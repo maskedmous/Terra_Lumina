@@ -64,10 +64,13 @@ function Start() {
 	
 	speed = gameLogicScript.getSpeed();
 	jumpDrain = gameLogicScript.getJumpDrain();
+	
+	rigidbody.centerOfMass = new Vector3(-0.2f, -0.15f, 0.0f);
 }
 
 function Update()
 {
+	Debug.Log(rigidbody.centerOfMass);
 	if(flashBool == false){
 		movement();
 	}
@@ -166,9 +169,6 @@ function chargeJump() {
 	x5 = 5 * x8 / 8;
 	x6 = 6 * x8 / 8;
 	x7 = 7 * x8 / 8;
-	Debug.Log(v);
-	Debug.Log(g);
-	Debug.Log(x8);
 	
 	var x0 = this.gameObject.transform.position.x;
 	y0 = this.gameObject.transform.position.y;
