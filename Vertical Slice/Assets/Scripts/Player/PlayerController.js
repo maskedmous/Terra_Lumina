@@ -148,7 +148,7 @@ public function jump() {
 		
 		x8 = 0;
 		v = 0;
-		yield WaitForSeconds(3);
+		yield WaitForSeconds(2);
 		lineRenderer.enabled = false;
 	}
 }
@@ -183,7 +183,7 @@ function chargeJump() {
 	lineRenderer.SetPosition(7, new Vector3(x0, x7 + y0, z0));
 	lineRenderer.SetPosition(8, new Vector3(x0, x7 + y0, z0));
 	
-	jumpForce += 0.05;
+	jumpForce += 0.1;
 	
 	if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
 	else GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
