@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-enum menuState {mainMenu, startMenu, optionsMenu, creditsMen}
+enum menuState {mainMenu, startMenu, optionsMenu, creditsMenu}
 
 private var currentMenuState:menuState = menuState.mainMenu;
 private var BUTTONWIDTH		:float 		= Screen.width/6;
@@ -87,7 +87,7 @@ public function OnGUI():void
 			//back button
 		break;
 		
-		case(menuState.settingsMenu):
+		case(menuState.optionsMenu):
 			//show settings (slider volume?)
 			//back button
 		break;
