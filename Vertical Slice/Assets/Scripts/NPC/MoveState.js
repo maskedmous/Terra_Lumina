@@ -8,8 +8,15 @@ class MoveState extends State {
 	private var leftBound:float = -200;
 	
 	private var direction:String = "right";
+	
+	private var difficulty:String;
+			
+	function Start() {
+		difficulty = parentScript.getDifficulty();
+	}		
 			
 	function update () {
+		Debug.Log(parent.rigidbody.velocity.normalized);
 		parent.rigidbody.velocity.x = speed;
 		movedX += speed;
 		if (movedX > rightBound) {
@@ -20,7 +27,17 @@ class MoveState extends State {
 			speed = -speed;
 			setDirection("right");
 		}
+		
+		if (difficulty == "Hard") {
+			var hitSide:RaycastHit;
+			if (Physics.Raycast(parent.transform.position, parent.rigidbody.velocity.normalized, hitSide)) {
+				if (hitSide.collider.gameObject.name == "Player") {
+					parentScript.toChaseState();
+				}
+			}
+		}
 	}
+	
 
 	function setDirection(dir:String) {
 		direction = dir;

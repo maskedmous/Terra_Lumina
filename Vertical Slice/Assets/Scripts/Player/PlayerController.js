@@ -70,9 +70,7 @@ function Start() {
 
 function Update()
 {
-	//if(flashBool == false){
-		movement();
-	//}
+	movement();
 	
 	if(flashBool == true) {
 		flash();
