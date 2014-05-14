@@ -9,12 +9,19 @@ private var xmlLevel:String = "";
 public function Awake():void
 {
 	xmlPath = Application.dataPath + "/LevelsXML/";	//standard XML Level Path
-	xmlLevel = "Level1.xml";	//get it somewhere from (menu?)
-	
-	loadLevel();
 }
 
-function loadLevel()
+public function setLevel(levelString:String):void
+{
+	xmlLevel = levelString;
+	
+	if(!xmlLevel.Contains(".xml"))
+	{
+		xmlLevel += ".xml";
+	}
+}
+
+public function loadLevel()
 {
 	var filePath:String = xmlPath + xmlLevel;
 	var xmlDocument:XmlDocument = new XmlDocument();

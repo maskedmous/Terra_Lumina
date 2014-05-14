@@ -7,6 +7,10 @@ public var levelName:String = "";		//name of the xml it will be saved as
 public var levelID:int 		= 0;		//level ID (level0, level1, level2 etc)
 public var overwrite:boolean = false;	//override the current .xml if it already exists
 
+public var easy:boolean = false;		//boolean for level difficulty setting
+public var medium:boolean = false;
+public var hard:boolean = false;
+
 private var xmlPath:String 	= "";		//initialized in the awake
 
 function Awake()
@@ -26,7 +30,10 @@ function Awake()
 				levelName = levelName + ".xml";
 			}
 			
-			saveLevel();
+			if(saveLevel() == -1)
+			{
+				Debug.LogError("Xml not saved due to an error");
+			}
 		}
 		else
 		{
@@ -35,7 +42,7 @@ function Awake()
 	}
 }
 
-function saveLevel():void
+private function saveLevel():int
 {
 	var xmlDocument:XmlDocument = new XmlDocument();
 	var filePath:String = xmlPath + levelName;
@@ -49,6 +56,7 @@ function saveLevel():void
 		//check if you may override or not (standard false)
 		if(overwrite)
 		{
+			Debug.Log("overwriting = true, overwriting xml file");
 			xmlDocument.Load(filePath);
 			masterNode = xmlDocument.DocumentElement;
 			masterNode.RemoveAll();
@@ -56,7 +64,7 @@ function saveLevel():void
 		else
 		{
 			Debug.LogError("This file already exists and override is set to false");
-			return;
+			return -1;
 		}
 		
 	}
@@ -71,6 +79,49 @@ function saveLevel():void
 	}
 	
 	//begin saving the level elements!
+	
+	//
+	//Level ID
+	//
+		var levelIDNode:XmlElement = xmlDocument.CreateElement("LevelID");
+		masterNode.AppendChild(levelIDNode);
+		levelIDNode.InnerText = levelID.ToString();
+		Debug.Log("Level ID: " + levelID);
+	
+	//
+	//Difficulty
+	//
+		var difficultyNode:XmlElement = xmlDocument.CreateElement("Difficulty");
+		masterNode.AppendChild(difficultyNode);
+		
+		if(easy != false || medium != false || hard != false)
+		{
+			if(easy == true && medium == false && hard == false)
+			{
+				difficultyNode.InnerText = "Easy";
+				Debug.Log("Difficulty = easy");
+			}
+			else if(medium == true && easy == false && hard == false)
+			{
+				difficultyNode.InnerText = "Medium";
+				Debug.Log("Difficulty = Medium");
+			}
+			else if(hard == true && easy == false && medium == false)
+			{
+				difficultyNode.InnerText = "Hard";
+				Debug.Log("Difficulty = Hard");
+			}
+			else
+			{
+				Debug.LogError("Something went wrong with selecting the difficulty setting, thicked 2 boxes perhaps?");
+				return -1;
+			}
+		}
+		else
+		{
+			Debug.LogError("Please state the difficulty setting correctly");
+			return -1;
+		}
 	
 	//
 	//camera
@@ -308,4 +359,5 @@ function saveLevel():void
 	
 	xmlDocument.Save(filePath);
 	Debug.Log("Xml saved to: Assets/LevelsXML/" + levelName);
+	return 0;
 }
