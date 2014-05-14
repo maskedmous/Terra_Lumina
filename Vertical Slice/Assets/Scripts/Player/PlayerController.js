@@ -277,6 +277,10 @@ public function addSample(sample:GameObject) {
 	samples.Add(sample);
 }
 
+public function addAmmo(extraAmmo:int){
+	currentSeeds += extraAmmo;
+}
+
 function setDirection(direction:String)
 {
 	if(lastDirection != direction)
