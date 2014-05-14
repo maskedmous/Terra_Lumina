@@ -70,12 +70,12 @@ function Start() {
 
 function Update()
 {
-	Debug.Log(rigidbody.centerOfMass);
-	if(flashBool == false){
+	//if(flashBool == false){
 		movement();
-	}
+	//}
 	
 	if(flashBool == true) {
+		flash();
 		counter++;
 		if(counter >= 50) {
 			flashlight.SetActive(false);
