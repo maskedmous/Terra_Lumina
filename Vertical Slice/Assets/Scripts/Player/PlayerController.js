@@ -33,6 +33,7 @@ private var maxJumpForce:float = 15.0;
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
 private var currentSeeds:uint = 10;									//current amount of seed
+private var maxSeeds:uint = 15;										//Max amount of seeds
 private var currentShroom:GameObject;								//current shroom that is active
 public 	var shrooms:List.<GameObject> = new List.<GameObject>();
 private var samples:List.<GameObject> = new List.<GameObject>();
@@ -258,6 +259,10 @@ public function setShroom(index:int)
 function getSeeds()
 {
 	return currentSeeds;
+}
+
+public function getMaxSeeds(){
+	return maxSeeds;
 }
 
 function flash()
