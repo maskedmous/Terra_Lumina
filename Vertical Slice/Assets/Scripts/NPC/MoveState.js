@@ -16,7 +16,7 @@ class MoveState extends State {
 	}		
 			
 	function update () {
-		Debug.Log(parent.rigidbody.velocity.normalized);
+		//Debug.Log(parent.rigidbody.velocity.normalized);
 		parent.rigidbody.velocity.x = speed;
 		movedX += speed;
 		if (movedX > rightBound) {

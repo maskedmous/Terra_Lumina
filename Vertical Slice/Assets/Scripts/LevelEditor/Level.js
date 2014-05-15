@@ -1,5 +1,8 @@
 ﻿#pragma strict
 
+
+public class Level
+{
 private var levelID:int = -1;
 
 private var easyXml:String = "";
@@ -111,4 +114,5 @@ public function getLevelXmlByDifficulty(levelDifficulty:String):String
 		Debug.LogError("Difficulty not even found! Impossible: " + levelDifficulty);
 	}
 	return "";
+}
 }
