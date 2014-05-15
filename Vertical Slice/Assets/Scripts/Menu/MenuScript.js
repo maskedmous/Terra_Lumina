@@ -16,6 +16,8 @@ private var settingsButton	:Texture	= null;
 private var creditsButton	:Texture	= null;
 private var background		:Texture	= null;
 private var loadingScreen	:Texture	= null;
+private var level1			:Texture	= null;
+private var backToMenuButton:Texture	= null;
 private var empty			:String = "";
 private var skin			:GUIStyle = new GUIStyle();
 
@@ -38,6 +40,9 @@ public function Awake():void
 	settingsButton = textureLoader.getTexture("Settings");
 	background = textureLoader.getTexture("Background");
 	loadingScreen = textureLoader.getTexture("Loading");
+	level1 = textureLoader.getTexture("Level1");
+	backToMenuButton = textureLoader.getTexture("Hoofdmenu");
+	
 	
 	//backButton = textureLoader.getTexture("Back");
 	
@@ -105,7 +110,8 @@ public function OnGUI():void
 			{
 				if(i <= levels.length)
 				{
-					if(GUI.Button(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), levelCount.ToString()))
+					GUI.DrawTexture(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), level1, ScaleMode.StretchToFill);
+					if(GUI.Button(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), empty, skin))
 					{
 						setLevelFileNameByInt(i);
 						loadLevel();
@@ -143,7 +149,8 @@ public function OnGUI():void
 			
 			if(startLevelCount < 6)
 			{
-				if(GUI.Button(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), "Hoofd Menu"))
+				//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
+				if(GUI.Button(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, skin))
 				{
 					currentMenuState = menuState.mainMenu;
 				}
