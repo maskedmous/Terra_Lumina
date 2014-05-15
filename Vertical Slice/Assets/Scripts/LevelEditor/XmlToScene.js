@@ -292,9 +292,9 @@ public function loadLevel()
 					//instantiate the things
 					if(prefabName != "" && position != Vector3(9999,9999,9999) && rotation != Vector3(9999,9999,9999) && scaling != Vector3(9999,9999,9999))
 					{
-						newGameObject 						= Instantiate(Resources.Load(("Prefabs/" + prefabName))) as GameObject;
-						if(newGameObject != null)
+						if(Resources.Load(("Prefabs/" + prefabName)) != null)
 						{
+							newGameObject 						= Instantiate(Resources.Load(("Prefabs/" + prefabName))) as GameObject;
 							newGameObject.name 					= prefabName;
 							newGameObject.transform.parent 		= level.transform;
 							newGameObject.transform.position 	= position;
@@ -310,7 +310,7 @@ public function loadLevel()
 						}
 						else
 						{
-							Debug.LogError("something went wrong creating the new object");
+							Debug.LogError("something went wrong creating the new object, prefab might not exist: " + prefabName);
 						}
 					}
 					else
