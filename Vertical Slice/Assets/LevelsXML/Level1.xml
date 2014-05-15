@@ -29,7 +29,7 @@
   </GameLogic>
   <Level>
     <GameObject>
-      <Prefab>Ammo box</Prefab>
+      <Prefab>AmmoBox</Prefab>
       <Position>
         <x>-10.73744</x>
         <y>-13.66211</y>
