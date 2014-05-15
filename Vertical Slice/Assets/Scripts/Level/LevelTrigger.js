@@ -15,6 +15,7 @@ function OnTriggerEnter(hit:Collider){
 		print("hit player");
 		if(GameObject.Find("GameLogic").GetComponent(GameLogic).checkWin() == true){
 			finished = true;
+			GameObject.Find("GameLogic").GetComponent(GameLogic).setSpeed(-GameObject.Find("GameLogic").GetComponent(GameLogic).getSpeed());
 		}
 	}
 }
@@ -22,7 +23,7 @@ function OnTriggerEnter(hit:Collider){
 function OnGUI(){
 	if(finished){
 		if (GUI.Button(new Rect(Screen.width*5/24, Screen.height*7/24, Screen.width/3, Screen.height/4), "Click here to go back to the Menu")){
-		  		Application.LoadLevel("Menu");
+		  		Application.LoadLevel("Textureloader");
 		}
 	}
 }

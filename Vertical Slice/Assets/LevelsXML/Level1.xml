@@ -29,6 +29,24 @@
   </GameLogic>
   <Level>
     <GameObject>
+      <Prefab>Ammo box</Prefab>
+      <Position>
+        <x>-10.73744</x>
+        <y>-13.66211</y>
+        <z>14.58265</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
       <Prefab>EndLevelTrigger</Prefab>
       <Position>
         <x>127.163</x>
