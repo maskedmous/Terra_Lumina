@@ -3,7 +3,7 @@
 private var player:GameObject;
 private var playerController:PlayerController;
 
-private var chargingJump:boolean;
+//private var chargingJump:boolean;
 private var chargingShot:boolean;
 
 function Awake() {
@@ -16,19 +16,20 @@ function Start () {
 }
 
 function Update () {
-	if (chargingJump) playerController.chargeJump();
-	else if (chargingShot) playerController.chargeShot();
+	//if (chargingJump) playerController.chargeJump();
+	if (chargingShot) playerController.chargeShot();
 	else if (Input.GetMouseButton(0)) readTouch();
 	playerController.brake();
 }
 
 public function OnGUI() {
 	if (GUI.Button(new Rect(0, Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Jump")) {
-		if (!chargingJump) chargingJump = true;
+		/*if (!chargingJump) chargingJump = true;
 		else {
 			playerController.jump();
 			chargingJump = false;
-		}
+		}*/
+		playerController.jump();
 	}
 	if (GUI.Button(new Rect(Screen.width * (4.0 / 6.0), Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Shoot")) {
 		if (!chargingShot) chargingShot = true;
@@ -46,5 +47,6 @@ function readTouch() {
 }
 
 function OnMouseDown() {
-	if (!chargingJump && !chargingShot) playerController.flash();
+	//if (!chargingJump && !chargingShot) playerController.flash();
+	if (!chargingShot) playerController.flash();
 }

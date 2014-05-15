@@ -3,7 +3,7 @@
 class MoveState extends State {
 
 	private var movedX:float;
-	private var speed:float = 5;
+	private var speed:float = 250;
 	private var rightBound:float = 200;
 	private var leftBound:float = -200;
 	
@@ -17,8 +17,8 @@ class MoveState extends State {
 			
 	function update () {
 		//Debug.Log(parent.rigidbody.velocity.normalized);
-		parent.rigidbody.velocity.x = speed;
-		movedX += speed;
+		parent.rigidbody.velocity.x = speed * Time.deltaTime;
+		movedX += speed * Time.deltaTime;
 		if (movedX > rightBound) {
 			speed = -speed;
 			setDirection("left");

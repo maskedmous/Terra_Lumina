@@ -1,11 +1,11 @@
 ﻿#pragma strict
 
-private var waitTime:float = 150;
+private var waitTime:float = 2.0f;
 
 class WaitState extends State {
 	
 	function update () {
-		waitTime--;
+		waitTime -= Time.deltaTime;
 		if (waitTime < 0) toMoveState();
 	}
 	
@@ -14,6 +14,6 @@ class WaitState extends State {
 		this.parent.renderer.enabled = true;
 		this.parent.collider.enabled = true;
 		this.parent.rigidbody.useGravity = true;
-		waitTime = 150;
+		waitTime = 2.0f;
 	}
 }
