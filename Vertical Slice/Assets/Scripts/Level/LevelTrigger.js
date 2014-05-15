@@ -30,3 +30,7 @@ function OnGUI(){
 function setFinished(isFinished:boolean) {
 	finished = isFinished;
 }
+
+function getFinished():boolean {
+	return finished;
+}

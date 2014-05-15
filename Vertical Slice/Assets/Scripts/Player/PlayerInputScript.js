@@ -6,9 +6,15 @@ private var playerController:PlayerController;
 //private var chargingJump:boolean;
 private var chargingShot:boolean;
 
+private var endLevelTriggerObject:GameObject;
+private var endLevelTriggerScript:LevelTrigger;
+
 function Awake() {
 	player = this.gameObject;
 	playerController = player.GetComponent("PlayerController") as PlayerController;
+	
+	endLevelTriggerObject = GameObject.Find("EndLevelTrigger") as GameObject;
+	endLevelTriggerScript = endLevelTriggerObject.GetComponent(LevelTrigger) as LevelTrigger;
 }
 
 function Start () {
@@ -16,10 +22,12 @@ function Start () {
 }
 
 function Update () {
-	//if (chargingJump) playerController.chargeJump();
-	if (chargingShot) playerController.chargeShot();
-	else if (Input.GetMouseButton(0)) readTouch();
-	playerController.brake();
+	if (!endLevelTriggerScript.getFinished()) {
+		//if (chargingJump) playerController.chargeJump();
+		if (chargingShot) playerController.chargeShot();
+		else if (Input.GetMouseButton(0)) readTouch();
+		playerController.brake();
+	}
 }
 
 public function OnGUI() {
@@ -29,7 +37,7 @@ public function OnGUI() {
 			playerController.jump();
 			chargingJump = false;
 		}*/
-		playerController.jump();
+		if (!endLevelTriggerScript.getFinished()) playerController.jump();
 	}
 	if (GUI.Button(new Rect(Screen.width * (4.0 / 6.0), Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Shoot")) {
 		if (!chargingShot) chargingShot = true;
