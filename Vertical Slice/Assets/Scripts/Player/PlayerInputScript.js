@@ -13,16 +13,20 @@ function Awake() {
 	player = this.gameObject;
 	playerController = player.GetComponent("PlayerController") as PlayerController;
 	
-	endLevelTriggerObject = GameObject.Find("EndLevelTrigger") as GameObject;
-	endLevelTriggerScript = endLevelTriggerObject.GetComponent(LevelTrigger) as LevelTrigger;
-}
-
-function Start () {
 
 }
 
 function Update () {
-	if (!endLevelTriggerScript.getFinished()) {
+
+	if(endLevelTriggerObject == null)
+	{
+		if(GameObject.Find("EndLevelTrigger") != null)
+		{
+			endLevelTriggerObject = GameObject.Find("EndLevelTrigger") as GameObject;
+			endLevelTriggerScript = endLevelTriggerObject.GetComponent(LevelTrigger) as LevelTrigger;
+		}
+	}
+	else if (!endLevelTriggerScript.getFinished()) {
 		//if (chargingJump) playerController.chargeJump();
 		if (chargingShot) playerController.chargeShot();
 		else if (Input.GetMouseButton(0)) readTouch();
