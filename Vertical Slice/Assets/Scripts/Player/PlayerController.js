@@ -16,7 +16,8 @@ private var x4:float = 0;
 private var x5:float = 0;
 private var x6:float = 0;
 private var x7:float = 0;
-private var x8:float = 0;
+private var x8:float = 2.3f;
+private var increasing:boolean = true;
 private var g:float = 0;
 private var tanAngle:float = .75;
 private var cosAngle:float = .6;
@@ -204,16 +205,36 @@ function chargeJump() {
 
 function chargeShot() {
 	if (currentSeeds > 0) {
+		//if (getDirection() == "Right") mod = 3.0f;
+		//else mod = -3.0f;
 		lineRenderer.enabled = true;	
 		
 		y0 = this.gameObject.transform.position.y;
 		
-		vx += 0.12;
-		vy += 0.09;
+		//vx += mod * Time.deltaTime;
+		//vy += mod * Time.deltaTime;
+		if (increasing) {
+			vx += 3.0f * Time.deltaTime;
+			vy += 2.25f * Time.deltaTime;
+		}
+		else {
+			vx -= 3.0f * Time.deltaTime;
+			vy -= 2.25f * Time.deltaTime;
+		}
 		v = vx * vx + vy * vy;
 
 		//formula for max dist: d = (v*v*sin(2*angle)) / gravity
 		//replaced sin(2*angle), which was .96, with a bigger number due to the trajectory not starting on the ground.
+
+		if (vx < 3.0f) {
+			increasing = true;
+			vx = 3.0f;
+			vy = 2.25f;
+		}
+		if (vx > 8.8f) {
+			increasing = false;
+		}
+		
 		x8 = v * 1.15 / 9.81;
 		x1 = x8 / 8;
 		x2 = 2 * x8 / 8;
@@ -222,7 +243,7 @@ function chargeShot() {
 		x5 = 5 * x8 / 8;
 		x6 = 6 * x8 / 8;
 		x7 = 7 * x8 / 8;
-
+		
 		//trajectory function: Y = Y0 + tan(angle) * X - (gravity*x*x)/(2*v*v*cos(angle)*cos(angle))
 		var y1:float = (y0 + x1 * 0.75) - (9.81 * x1 * x1) / (1.28 * v);
 		var y2:float = (y0 + x2 * 0.75) - (9.81 * x2 * x2) / (1.28 * v);
@@ -233,6 +254,18 @@ function chargeShot() {
 		var y7:float = (y0 + x7 * 0.75) - (9.81 * x7 * x7) / (1.28 * v);
 		var y8:float = (y0 + x8 * 0.75) - (9.81 * x8 * x8) / (1.28 * v);
 		//0 = y0 + x8 * tanAngle - (g * x8 * x8) / (2 * (v * v * cosAngle * cosAngle))
+		
+		if (getDirection() == "Left") {
+			Debug.Log("going left");
+			x1 = -x1;
+			x2 = -x2;
+			x3 = -x3;
+			x4 = -x4;
+			x5 = -x5;
+			x6 = -x6;
+			x7 = -x7;
+			x8 = -x8;
+		}
 		
 		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x + 2, y0, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x + 2 + x1, y1, this.gameObject.transform.position.z));
@@ -257,10 +290,11 @@ function shoot()
 		newSeed.gameObject.name = "Seed";
 		newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 		newSeed.gameObject.GetComponent(SeedBehaviour).setShroomType(currentShroom);
+		if (getDirection() == "Left") vx = -vx;
 		newSeed.rigidbody.velocity = new Vector3(vx, vy, 0);
 		vx = 0;
 		vy = 0;
-		x8 = 0;
+		x8 = 2.3f;
 		yield WaitForSeconds(1.5f);
 		lineRenderer.enabled = false;
 	}

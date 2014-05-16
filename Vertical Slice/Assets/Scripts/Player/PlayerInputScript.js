@@ -3,7 +3,7 @@
 private var player:GameObject = null;
 private var playerController:PlayerController = null;
 
-private var chargingJump:boolean = false;
+//private var chargingJump:boolean = false;
 private var chargingShot:boolean = false;
 
 private var endLevelTriggerObject:GameObject = null;
@@ -25,7 +25,7 @@ function Update ()
 		}
 	}
 	else if (!endLevelTriggerScript.getFinished()) {
-		if (chargingJump) playerController.chargeJump();
+		//if (chargingJump) playerController.chargeJump();
 		if (chargingShot) playerController.chargeShot();
 		else if (Input.GetMouseButton(0)) readTouch();
 		playerController.brake();
@@ -44,7 +44,7 @@ public function OnGUI() {
 		{
 			if (GUI.Button(new Rect(0, Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Jump"))
 			{
-					if (!chargingJump)
+					/*if (!chargingJump)
 					{
 						chargingJump = true;
 					}
@@ -52,7 +52,8 @@ public function OnGUI() {
 					{
 						playerController.jump();
 						chargingJump = false;
-					}
+					}*/
+				playerController.jump();
 			}
 			if (GUI.Button(new Rect(Screen.width * (4.0 / 6.0), Screen.height * (5.0 / 6.0), Screen.width * (1.0 / 6.0), Screen.height * (1.0 / 6.0)), "Shoot")) {
 				if (!chargingShot) chargingShot = true;
@@ -73,6 +74,6 @@ function readTouch() {
 }
 
 function OnMouseDown() {
-	if (!chargingJump && !chargingShot) playerController.flash();
-	//if (!chargingShot) playerController.flash();
+	//if (!chargingJump && !chargingShot) playerController.flash();
+	if (!chargingShot) playerController.flash();
 }
