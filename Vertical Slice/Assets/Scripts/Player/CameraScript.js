@@ -8,5 +8,5 @@ function Start () {
 
 function Update () {
 	 this.gameObject.transform.position.x = target.transform.position.x;
-	 this.gameObject.transform.position.y = target.transform.position.y + 10;
+	 this.gameObject.transform.position.y = target.transform.position.y + 5;
 }
