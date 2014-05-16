@@ -11,7 +11,7 @@ public function Update():void
 
 function OnCollisionEnter(collision:Collision)
 {
-	if (collision.gameObject.name == "Plateau")
+	if (collision.gameObject.name.Contains("GroundPiece"))
 	{
 		this.rigidbody.velocity = new Vector3(0, 0, 0);
 		this.rigidbody.isKinematic = true;

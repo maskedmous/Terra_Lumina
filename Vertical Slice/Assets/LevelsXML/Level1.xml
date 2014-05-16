@@ -19,7 +19,10 @@
     <DecreaseTimer>1</DecreaseTimer>
     <NegativeBatteryFlow>1</NegativeBatteryFlow>
     <PositiveBatteryFlow>3</PositiveBatteryFlow>
+    <SamplesToComplete>2</SamplesToComplete>
     <Speed>0</Speed>
+    <MaximumAmmo>10</MaximumAmmo>
+    <InfiniteAmmo>True</InfiniteAmmo>
     <JumpDrain>0</JumpDrain>
     <ShootDrain>0</ShootDrain>
     <PickUpDrain>0</PickUpDrain>
@@ -29,7 +32,7 @@
   </GameLogic>
   <Level>
     <GameObject>
-      <Prefab>Ammo box</Prefab>
+      <Prefab>AmmoBox</Prefab>
       <Position>
         <x>63.93077</x>
         <y>-8.721054</y>
@@ -4335,7 +4338,7 @@
     <Position>
       <x>-24.47943</x>
       <y>-8</y>
-      <z>14.93456</z>
+      <z>15</z>
     </Position>
     <Rotation>
       <x>0</x>

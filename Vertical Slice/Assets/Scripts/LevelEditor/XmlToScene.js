@@ -127,9 +127,24 @@ public function loadLevel()
 					{
 						gameLogic.setPositiveBatteryFlow(int.Parse(gameLogicStats.InnerText));
 					}
+					if(gameLogicStats.Name == "SamplesToComplete")
+					{
+						gameLogic.setSamplesToComplete(int.Parse(gameLogicStats.InnerText));
+					}
 					if (gameLogicStats.Name == "Speed") {
 						gameLogic.setSpeed(float.Parse(gameLogicStats.InnerText));
 					}
+					
+					if (gameLogicStats.Name == "MaximumAmmo")
+					{
+						gameLogic.setMaximumAmmo(int.Parse(gameLogicStats.InnerText));
+					}
+					
+					if(gameLogicStats.Name == "InfiniteAmmo")
+					{
+						gameLogic.setInfiniteAmmo(boolean.Parse(gameLogicStats.InnerText));
+					}
+					
 					if (gameLogicStats.Name == "JumpDrain") {
 						gameLogic.setJumpDrain(float.Parse(gameLogicStats.InnerText));
 					}

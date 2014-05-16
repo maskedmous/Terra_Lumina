@@ -5,15 +5,22 @@
 */
 
 private var speed:float;
+public var maximumAmmo:int = 10;
+public var infiniteAmmo:boolean = false;
 
 /*
 	Battery variables
 */
-var battery:float = 100;					//current battery
-var maximumBatteryCapacity:int = 100;		//max battery
-var decreaseTimer:float = 1.0;				//every x seconds it decreases battery
-var negativeBatteryFlow:int = 1;			//amount of battery that it decreases
-var positiveBatteryFlow:int = 2;			//amount of battery that it increases
+public var battery:float = 100;					//current battery
+public var maximumBatteryCapacity:int = 100;		//max battery
+public var decreaseTimer:float = 1.0;				//every x seconds it decreases battery
+public var negativeBatteryFlow:int = 1;			//amount of battery that it decreases
+public var positiveBatteryFlow:int = 2;			//amount of battery that it increases
+private var charging:boolean = false;
+/*
+	Win Variables
+*/
+public var samplesToComplete:int = 0;
 
 /*
 	Action energy cost
@@ -36,14 +43,18 @@ private var secondTimer:float = 0;			//counting seconds
 private var plantSamples:Array = new Array();
 
 
-/*
-	Win Variables
-*/
-public var samplesToComplete:int;
+
 
 function Update()
 {
-	decreaseBattery();
+	if(!charging)
+	{
+		decreaseBattery();
+	}
+	else if(secondTimer != 0)
+	{
+		secondTimer = 0;
+	}
 }
 
 function decreaseBattery()
@@ -84,7 +95,6 @@ function getPlantSampleCount():int{
 }
 
 function checkWin():boolean{
-	print("samples to complete " + samplesToComplete);
 	if(samplesToComplete <= getPlantSampleCount()){
 		return true;
 	}
@@ -115,7 +125,34 @@ function OnGUI()
 	var cBattery:int = battery;
 	GUI.Label(Rect(0,0, 500, 20), ("Batterij Lading: " + cBattery.ToString()));
 	GUI.Label(Rect(0, 40, 500, 20), ("Plant Monsters: " + plantSamples.length.ToString()));
-	GUI.Label(Rect(0, 80, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString()));
+	if(infiniteAmmo)
+	{
+		GUI.Label(Rect(0, 80, 500, 20), ("Aantal zaadjes over: Infinite"));
+	}
+	else
+	{
+		GUI.Label(Rect(0, 80, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString() + " / " + maximumAmmo.ToString()));
+	}
+}
+
+public function setMaximumAmmo(value:int):void
+{
+	maximumAmmo = value;
+}
+
+public function getMaximumAmmo()
+{
+	return maximumAmmo;
+}
+
+public function setInfiniteAmmo(value:boolean):void
+{
+	infiniteAmmo = value;
+}
+
+public function getInfiniteAmmo():boolean
+{
+	return infiniteAmmo;
 }
 
 function getBattery():float
@@ -166,6 +203,17 @@ function getPositiveBatteryFlow():int
 function setPositiveBatteryFlow(value:int)
 {
 	positiveBatteryFlow = value;
+}
+
+public function setSamplesToComplete(value:int):void
+{
+	samplesToComplete = value;
+}
+
+
+public function getSamplesToComplete():int
+{
+	return samplesToComplete;
 }
 
 public function getSpeed()
@@ -237,3 +285,14 @@ public function setCollectDrain(value:float)
 {
 	collectDrain = value;
 }
+
+public function setCharging(value:boolean):void
+{
+	charging = value;
+}
+
+public function getCharging():boolean
+{
+	return charging;
+}
+

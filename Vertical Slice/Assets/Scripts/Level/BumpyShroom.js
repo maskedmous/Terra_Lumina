@@ -1,15 +1,14 @@
 ﻿#pragma strict
 
-private var counter:float;
+private var counter:float = -1;
 
-function Start () {
+function Awake () {
 	counter = 30.0f;
 }
 
 function Update () {
 	if(counter >= 0.0){
 		counter -= Time.deltaTime;
-		print(counter);
 	}
 	if(counter <= 0.0){
 		Destroy(this.gameObject);

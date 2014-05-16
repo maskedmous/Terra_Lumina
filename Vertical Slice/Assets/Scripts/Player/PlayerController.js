@@ -7,20 +7,20 @@ var debugInfo:String = "";
 var lastDirection:String="Right";
 private var maxSpeed:float = 8.0;
 
-private var lineRenderer:LineRenderer;
-private var y0:float;
-private var x1:float;
-private var x2:float;
-private var x3:float;
-private var x4:float;
-private var x5:float;
-private var x6:float;
-private var x7:float;
-private var x8:float;
-private var g:float;
+private var lineRenderer:LineRenderer = null;
+private var y0:float = 0;
+private var x1:float = 0;
+private var x2:float = 0;
+private var x3:float = 0;
+private var x4:float = 0;
+private var x5:float = 0;
+private var x6:float = 0;
+private var x7:float = 0;
+private var x8:float = 0;
+private var g:float = 0;
 private var tanAngle:float = .75;
 private var cosAngle:float = .6;
-private var v:float;
+private var v:float  = 0;
 private var vx:float = 0;
 private var vy:float = 0;
 
@@ -33,13 +33,12 @@ private var maxJumpForce:float = 15.0;
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
 private var currentSeeds:uint = 10;									//current amount of seed
-private var maxSeeds:uint = 15;										//Max amount of seeds
-private var currentShroom:GameObject;								//current shroom that is active
-public 	var shrooms:List.<GameObject> = new List.<GameObject>();
-private var samples:List.<GameObject> = new List.<GameObject>();
+private var currentShroom:GameObject  = null;						//current shroom that is active for shooting
+private var shrooms:List.<GameObject> = new List.<GameObject>();	//list of shrooms to shoot (should be 2)
+private var samples:List.<GameObject> = new List.<GameObject>();	//the samples you collect
 
-private var gameLogic:GameObject;
-private var gameLogicScript:GameLogic;
+private var gameLogic:GameObject		= null;
+private var gameLogicScript:GameLogic   = null;
 
 public var flashlight:GameObject;
 private var flashBool:boolean;
@@ -47,6 +46,8 @@ private var counter:float;
 
 private var speed:float;
 private var jumpDrain:float;
+
+private var control:boolean = true;
 
 function Awake() {
 	gameLogic = GameObject.Find("GameLogic") as GameObject;
@@ -71,18 +72,30 @@ function Start() {
 
 function Update()
 {
-	movement();
-	
-	if(flashBool == true) {
-		flash();
-		counter += Time.deltaTime;
-		Debug.Log(counter);
-		if(counter >= 2) {
-			flashlight.SetActive(false);
-			flashBool = false;
-			counter = 0;
+	if(control)
+	{
+		movement();
+		
+		if(flashBool == true) {
+			flash();
+			counter += Time.deltaTime;
+			if(counter >= 2) {
+				flashlight.SetActive(false);
+				flashBool = false;
+				counter = 0;
+			}
 		}
 	}
+}
+
+public function stopMovement()
+{
+	this.gameObject.rigidbody.velocity.x = 0;
+}
+
+public function stopControl()
+{
+	control = false;
 }
 
 function movement()
@@ -96,7 +109,6 @@ function movement()
 		//Debug.Log(hitDown.collider.gameObject.name);
 	}
 	else {
-		Debug.Log("Raycast missed.");
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 	}
@@ -149,14 +161,14 @@ public function jump() {
 		isJumping = true;
 		this.gameObject.rigidbody.freezeRotation = true;
 		
-		//x8 = 0;
-		//v = 0;
-		//yield WaitForSeconds(1.5f);
-		//lineRenderer.enabled = false;
+		x8 = 0;
+		v = 0;
+		yield WaitForSeconds(1.5f);
+		lineRenderer.enabled = false;
 	}
 }
 
-/*function chargeJump() {
+function chargeJump() {
 	lineRenderer.enabled = true;
 	
 	//formula for max height: h = (v * v * sin(angle) * sin(angle)) / 2 * gravity
@@ -188,7 +200,7 @@ public function jump() {
 	if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
 	else GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
 	
-}*/
+}
 
 function chargeShot() {
 	if (currentSeeds > 0) {
@@ -237,7 +249,10 @@ function chargeShot() {
 function shoot()
 {
 	if (currentSeeds > 0) {
-		currentSeeds--;
+		if(!gameLogicScript.getInfiniteAmmo()) 
+		{
+			currentSeeds--;
+		}
 		var newSeed:GameObject = Instantiate(Resources.Load("Prefabs/Seed", GameObject), this.gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity);
 		newSeed.gameObject.name = "Seed";
 		newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
@@ -261,11 +276,7 @@ function getSeeds()
 	return currentSeeds;
 }
 
-public function getMaxSeeds(){
-	return maxSeeds;
-}
-
-function flash()
+function flash():void
 {
 	var hit:RaycastHit;
 	var direction:Vector3;
@@ -283,8 +294,15 @@ public function addSample(sample:GameObject) {
 	samples.Add(sample);
 }
 
-public function addAmmo(extraAmmo:int){
+public function addAmmo(extraAmmo:int)
+{
 	currentSeeds += extraAmmo;
+	
+	var maximumAmmo = gameLogicScript.getMaximumAmmo();
+	if(currentSeeds > maximumAmmo)
+	{
+		currentSeeds = maximumAmmo;
+	}
 }
 
 function setDirection(direction:String)

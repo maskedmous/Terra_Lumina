@@ -24,15 +24,12 @@ function Update(){
 
 function OnTriggerEnter( object: Collider){
 	if(canHit == true){
-		if(object.name == "Player"){
-			//Destroy(this.gameObject);
-			if((GameObject.Find("Player").GetComponent(PlayerController).getSeeds() + extraSeeds) <= GameObject.Find("Player").GetComponent(PlayerController).getMaxSeeds()){
-				GameObject.Find("Player").GetComponent(PlayerController).addAmmo(extraSeeds);
-				this.gameObject.renderer.enabled = false;
-				counter = 20.0f;
-				canHit = false;
-			}
-			
+		if(object.gameObject.name == "Player")
+		{
+			object.gameObject.GetComponent(PlayerController).addAmmo(extraSeeds);
+			this.gameObject.renderer.enabled = false;
+			counter = 20.0f;
+			canHit = false;
 		}
 	}
 }
