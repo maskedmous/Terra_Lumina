@@ -12,7 +12,6 @@ function Awake(){
 
 function Update(){
 	if(canHit == false){
-		print(counter);
 		if ( counter >= 0.0){
 			counter -= Time.deltaTime;
 		}
