@@ -102,12 +102,10 @@ public function stopControl()
 function movement()
 {
 	var hitDown:RaycastHit;
-	//if (Physics.Raycast(this.gameObject.transform.position, new Vector3(this.gameObject.transform.rotation.z, -1 + (this.gameObject.transform.rotation.z), 0), hitDown, 1.0 + (this.gameObject.transform.rotation.z / 1.5))) {
+	
 	if (Physics.Raycast(this.gameObject.transform.position, new Vector3(0, -1, 0), hitDown, 1)) {	
 		isJumping = false;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
-		//this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
-		//Debug.Log(hitDown.collider.gameObject.name);
 	}
 	else {
 		isJumping = true;
@@ -360,19 +358,6 @@ function bounceShroomY():void
 
 function bounceShroomX():void
 {
-	//left side
-//	if(this.gameObject.transform.position.x < shroom.transform.position.x)
-//	{
-//		this.gameObject.rigidbody.velocity.y = 0;
-//		this.gameObject.rigidbody.velocity.x = -15;
-//	}
-//	//right side
-//	else if(this.gameObject.transform.position.x > shroom.transform.position.x)
-//	{
-//		this.gameObject.rigidbody.velocity.y = 0;
-//		this.gameObject.rigidbody.velocity.x = 15;
-//	}
-
 	var velocity = this.gameObject.rigidbody.velocity.x;
 	if(Mathf.Abs(velocity) < 0.4)
 	{
