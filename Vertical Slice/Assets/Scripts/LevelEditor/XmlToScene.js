@@ -176,15 +176,22 @@ public function loadLevel()
 					var gameObjectNodes:XmlNode = _gameObjectNodes as XmlNode;
 					var gameObjectStatsNodeList = gameObjectNodes.ChildNodes;
 					
-					var newGameObject:GameObject = null;
-					var prefabName:String = "";
-					var position:Vector3 = new Vector3(9999,9999,9999);
-					var rotation:Vector3 = new Vector3(9999,9999,9999);
-					var scaling:Vector3 = new Vector3(9999,9999,9999);
+					var newGameObject	:GameObject = null;
+					var prefabName		:String 	= "";
+					var position		:Vector3 	= new Vector3(9999,9999,9999);
+					var rotation		:Vector3 	= new Vector3(9999,9999,9999);
+					var scaling			:Vector3 	= new Vector3(9999,9999,9999);
 					
 					//tutorial things
-					var tutorialTriggerString:String = "";
-					var boundingBox:Vector3 = new Vector3(9999,9999,9999);
+					var tutorialTriggerString	:String 	= "";
+					var boundingBox				:Vector3 	= new Vector3(9999,9999,9999);
+					var tutorialTextTimer		:int 		= -1;
+					var movementLeftEnabled		:boolean	= true;
+					var movementRightEnabled	:boolean	= true;
+					var jumpButtonEnabled		:boolean	= true;
+					var normalShroomButtonEnabled:boolean	= true;
+					var bumpyShroomButtonEnabled:boolean	= true;
+					var destroyOnExit			:boolean	= false;
 					
 					for each(var _gameObjectStatsNodes in gameObjectStatsNodeList)
 					{
@@ -278,6 +285,44 @@ public function loadLevel()
 								{
 									tutorialTriggerString = tutorialNodeStats.InnerText;
 								}
+								if(tutorialNodeStats.Name == "Timer")
+								{
+									tutorialTextTimer = int.Parse(tutorialNodeStats.InnerText);
+								}
+								if(tutorialNodeStats.Name == "ButtonsEnabled")
+								{
+									var buttonNodes:XmlNodeList = tutorialNodeStats.ChildNodes;
+									
+									for each(var _buttonNodeStats in buttonNodes)
+									{
+										var buttonNodeStats:XmlNode = _buttonNodeStats as XmlNode;
+										
+										if(buttonNodeStats.Name == "MovementLeft")
+										{
+											movementLeftEnabled = boolean.Parse(buttonNodeStats.InnerText);
+										}
+										if(buttonNodeStats.Name == "MovementRight")
+										{
+											movementRightEnabled = boolean.Parse(buttonNodeStats.InnerText);
+										}
+										if(buttonNodeStats.Name == "Jumpbutton")
+										{
+											jumpButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+										}
+										if(buttonNodeStats.Name == "NormalShroomButton")
+										{
+											normalShroomButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+										}
+										if(buttonNodeStats.Name == "BumpyShroomButton")
+										{
+											bumpyShroomButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+										}
+									}
+								}
+								if(tutorialNodeStats.Name == "DestroyOnExit")
+								{
+									destroyOnExit = boolean.Parse(tutorialNodeStats.InnerText);
+								}
 								if(tutorialNodeStats.Name == "BoundingBox")
 								{
 									var boundingBoxStatsNode:XmlNodeList = tutorialNodeStats.ChildNodes;
@@ -318,7 +363,22 @@ public function loadLevel()
 							
 							if(newGameObject.name == "TutorialObject" && tutorialTriggerString != "" && boundingBox != Vector3(9999,9999,9999))
 							{
-								newGameObject.GetComponent(TutorialTriggerScript).setTutorialText(tutorialTriggerString);
+								var triggerScript:TutorialTriggerScript = newGameObject.GetComponent(TutorialTriggerScript);
+								//set string
+								triggerScript.setTutorialText(tutorialTriggerString);
+								//set timer
+								triggerScript.setTextInSeconds(tutorialTextTimer);
+								//set button booleans
+								triggerScript.setMovementLeftEnabled(movementLeftEnabled);
+								triggerScript.setMovementRightEnabled(movementRightEnabled);
+								triggerScript.setJumpButtonEnabled(jumpButtonEnabled);
+								triggerScript.setNormalShroomButtonEnabled(normalShroomButtonEnabled);
+								triggerScript.setBumpyShroomButtonEnabled(bumpyShroomButtonEnabled);
+								
+								//set destroy on exit
+								triggerScript.setDestroyOnExit(destroyOnExit);
+								
+								//set bounding box
 								newGameObject.GetComponent(BoxCollider).size = boundingBox;
 							}
 							Debug.Log("created: " + prefabName + " at: " + position);

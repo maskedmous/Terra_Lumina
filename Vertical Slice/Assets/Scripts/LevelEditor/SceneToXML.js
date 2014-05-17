@@ -307,6 +307,39 @@ private function saveLevel():int
 				tutorialNode.AppendChild(triggerStringNode);
 				triggerStringNode.InnerText = triggerScript.getTutorialText();
 				
+				//trigger text seconds
+				var triggerStringSecondsNode:XmlElement = xmlDocument.CreateElement("Timer");
+				tutorialNode.AppendChild(triggerStringSecondsNode);
+				triggerStringSecondsNode.InnerText = triggerScript.getTextInSeconds().ToString();
+				
+				//button booleans
+				var buttonsEnabledNode:XmlElement = xmlDocument.CreateElement("ButtonsEnabled");
+				tutorialNode.AppendChild(buttonsEnabledNode);
+				
+				var movementLeftEnabledNode				:XmlElement = xmlDocument.CreateElement("MovementLeft");
+				var movementRightEnabledNode			:XmlElement = xmlDocument.CreateElement("MovementRight");
+				var jumpButtonEnabledNode				:XmlElement	= xmlDocument.CreateElement("Jumpbutton");
+				var shootNormalShroomButtonEnabledNode	:XmlElement = xmlDocument.CreateElement("NormalShroomButton");
+				var shootBumpyShroomButtonEnabledNode	:XmlElement = xmlDocument.CreateElement("BumpyShroomButton");
+				
+				buttonsEnabledNode.AppendChild(movementLeftEnabledNode);
+				buttonsEnabledNode.AppendChild(movementRightEnabledNode);
+				buttonsEnabledNode.AppendChild(jumpButtonEnabledNode);
+				buttonsEnabledNode.AppendChild(shootNormalShroomButtonEnabledNode);
+				buttonsEnabledNode.AppendChild(shootBumpyShroomButtonEnabledNode);
+				
+				movementLeftEnabledNode.InnerText 				= triggerScript.getMovementLeftEnabled().ToString();
+				movementRightEnabledNode.InnerText 				= triggerScript.getMovementRightEnabled().ToString();
+				jumpButtonEnabledNode.InnerText 				= triggerScript.getJumpButtonEnabled().ToString();
+				shootNormalShroomButtonEnabledNode.InnerText 	= triggerScript.getNormalShroomButtonEnabled().ToString();
+				shootBumpyShroomButtonEnabledNode.InnerText 	= triggerScript.getBumpyShroomButtonEnabled().ToString();
+				
+				
+				//destroy on exit boolean
+				var destroyOnExitNode:XmlElement = xmlDocument.CreateElement("DestroyOnExit");
+				tutorialNode.AppendChild(destroyOnExitNode);
+				destroyOnExitNode.InnerText = triggerScript.getDestroyOnExit().ToString();
+				
 				//bounding box
 				var boundingBoxNode:XmlElement = xmlDocument.CreateElement("BoundingBox");
 				tutorialNode.AppendChild(boundingBoxNode);

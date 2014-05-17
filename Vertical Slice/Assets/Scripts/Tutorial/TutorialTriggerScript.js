@@ -104,12 +104,81 @@ public function OnTriggerExit (collider:Collider):void
 	
 }
 
+//
+//setters
+//
+
+public function setTutorialText(text:String):void
+{
+	tutorialText = text;
+}
+
+public function setTextInSeconds(value:int):void
+{
+	textInSeconds = value;
+}
+
+public function setMovementLeftEnabled(value:boolean):void
+{
+	movementLeftEnabled = value;
+}
+public function setMovementRightEnabled(value:boolean):void
+{
+	movementRightEnabled = value;
+}
+
+public function setJumpButtonEnabled(value:boolean):void
+{
+	jumpButtonEnabled = value;
+}
+public function setNormalShroomButtonEnabled(value:boolean):void
+{
+	shootNormalShroomButtonEnabled = value;
+}
+public function setBumpyShroomButtonEnabled(value:boolean):void
+{
+	shootBumpyShroomButtonEnabled = value;
+}
+
+public function setDestroyOnExit(value:boolean):void
+{
+	destroyOnExit = value;
+}
+//
+//getters
+//
 public function getTutorialText():String
 {
 	return tutorialText;
 }
 
-public function setTutorialText(text:String):void
+public function getTextInSeconds():int
 {
-	tutorialText = text;
+	return textInSeconds;
+}
+
+public function getMovementLeftEnabled():boolean
+{
+	return movementLeftEnabled;
+}
+public function getMovementRightEnabled():boolean
+{
+	return movementRightEnabled;
+}
+public function getJumpButtonEnabled():boolean
+{
+	return jumpButtonEnabled;
+}
+public function getNormalShroomButtonEnabled():boolean
+{
+	return shootNormalShroomButtonEnabled;
+}
+public function getBumpyShroomButtonEnabled():boolean
+{
+	return shootBumpyShroomButtonEnabled;
+}
+
+public function getDestroyOnExit():boolean
+{
+	return destroyOnExit;
 }
