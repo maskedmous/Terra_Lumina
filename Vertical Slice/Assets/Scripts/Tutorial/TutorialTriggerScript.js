@@ -18,16 +18,8 @@ public var jumpButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
 public var shootBumpyShroomButtonEnabled	:boolean = false;
 
-////non animated
-//public var pngTexture				:Texture2D	= null;
-//public var xPositionTexture			:float		= 99999;
-//public var yPositionTexture			:float		= 99999;
-//
-////animated
-//public var animatedPng				:boolean	= false;
-//public var pngAnimatedTexture		:GameObject = null;
-//public var xPositionAnimatedTexture :float		= 99999;
-//public var yPositionAnimatedTexture :float		= 99999;
+//public var pngTexture:Texture2D	= null;
+//positioninig of the texture
 
 
 //destroy this tutorial object on exit
