@@ -30,10 +30,10 @@ private var normalShroomButtonRect		:Rect;
 public 	var normalShroomButtonX			:float = 1600;
 public 	var normalShroomButtonY			:float = 900;
 
-public var bumpyShroomButtonTexture	:Texture2D = null;
+public 	var bumpyShroomButtonTexture:Texture2D = null;
 private var bumpyShroomButtonRect	:Rect;
-public var bumpyShroomButtonX		:float = 1600;
-public var bumpyShroomButtonY		:float = 720;
+public 	var bumpyShroomButtonX		:float = 1600;
+public 	var bumpyShroomButtonY		:float = 720;
 
 //scales for button positions
 private var originalWidth 	:float = 1920;
@@ -42,7 +42,7 @@ private var scale			:Vector3;
 
 public function Awake():void
 {
-	playerController 		= this.gameObject.GetComponent("PlayerController") as PlayerController;
+	playerController = this.gameObject.GetComponent("PlayerController") as PlayerController;
 }
 
 function Update ()

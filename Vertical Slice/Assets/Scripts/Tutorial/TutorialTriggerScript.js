@@ -18,9 +18,23 @@ public var jumpButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
 public var shootBumpyShroomButtonEnabled	:boolean = false;
 
-//public var pngTexture:Texture2D	= null;
-//positioninig of the texture
+//texture for the tutorial to show
+private var scale:Vector2;
+private var originalWidth	:float = 1920;
+private var originalHeight	:float = 1080;
+private var showTutorialTextures:boolean = false;
 
+private var tutorialTextureARect:Rect;
+public var tutorialTextureA	:Texture2D 	= null;
+public var xPositionTexA	:float 		= 0;
+public var yPositionTexA	:float 		= 0;
+public var timerTexA		:float		= -1;
+
+private var tutorialTextureBRect:Rect;
+public var tutorialTextureB	:Texture2D 	= null;
+public var xPositionTexB	:float 		= 0;
+public var yPositionTexB	:float 		= 0;
+public var timerTexB		:float		= -1;
 
 //destroy this tutorial object on exit
 public var destroyOnExit:boolean = false;
@@ -37,6 +51,48 @@ public function Start ():void
 	if(label == null)
 	{
 		Debug.LogError("Not initialized properly");
+	}
+}
+
+private function scaleButtons():void
+{
+	//get the current scale by using the current screen size and the original screen size
+	//original width / height is defined in a variable at top, we use an aspect ratio of 16:9 and original screen size of 1920x1080
+	scale.x = Screen.width / originalWidth;		//X scale is the current width divided by the original width
+	scale.y = Screen.height / originalHeight;	//Y scale is the current height divided by the original height
+	
+	if(tutorialTextureA != null)
+	{
+		tutorialTextureARect = new Rect(xPositionTexA, yPositionTexA, tutorialTextureA.width, tutorialTextureA.height);
+		tutorialTextureARect = scaleRect(tutorialTextureARect);
+	}
+	if(tutorialTextureB != null)
+	{
+		tutorialTextureBRect = new Rect(xPositionTexB, yPositionTexB, tutorialTextureB.width, tutorialTextureB.height);
+		tutorialTextureBRect = scaleRect(tutorialTextureBRect);
+	}
+}
+
+private function scaleRect(rect:Rect):Rect
+{
+	var newRect:Rect = new Rect(rect.x * scale.x, rect.y * scale.y, rect.width * scale.x, rect.height * scale.y);
+	return newRect;
+}
+
+public function OnGUI()
+{
+	if(showTutorialTextures)
+	{
+		scaleButtons();
+		
+		if(tutorialTextureA != null)
+		{
+			GUI.DrawTexture(tutorialTextureARect, tutorialTextureA);
+		}
+		if(tutorialTextureB != null)
+		{
+			GUI.DrawTexture(tutorialTextureBRect, tutorialTextureB);
+		}
 	}
 }
 
@@ -66,7 +122,14 @@ private function changeControls():void
 public function OnTriggerEnter(collider:Collider):void
 {
 	//change the controls upon entering the trigger box
-	changeControls();
+	if(collider.gameObject.name == "Player")
+	{
+		changeControls();
+		if(tutorialTextureA != null || tutorialTextureB != null)
+		{
+			showTutorialTextures = true;
+		}
+	}
 }
 
 public function OnTriggerStay (collider:Collider):void
@@ -81,6 +144,15 @@ public function OnTriggerStay (collider:Collider):void
 		else
 		{
 			label.gameObject.guiText.text = tutorialText;
+		}
+		
+		if(timePassed > timerTexA)
+		{
+			tutorialTextureA = null;
+		}
+		if(timePassed > timerTexB)
+		{
+			tutorialTextureB = null;
 		}
 	}
 }
