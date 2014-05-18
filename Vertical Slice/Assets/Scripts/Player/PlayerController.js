@@ -254,7 +254,6 @@ function chargeShot() {
 		//0 = y0 + x8 * tanAngle - (g * x8 * x8) / (2 * (v * v * cosAngle * cosAngle))
 		
 		if (getDirection() == "Left") {
-			Debug.Log("going left");
 			x1 = -x1;
 			x2 = -x2;
 			x3 = -x3;
@@ -263,17 +262,28 @@ function chargeShot() {
 			x6 = -x6;
 			x7 = -x7;
 			x8 = -x8;
+			
+			lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x - 2, y0, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x - 2 + x1, y1, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(2, new Vector3(this.gameObject.transform.position.x - 2 + x2, y2, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(3, new Vector3(this.gameObject.transform.position.x - 2 + x3, y3, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(4, new Vector3(this.gameObject.transform.position.x - 2 + x4, y4, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(5, new Vector3(this.gameObject.transform.position.x - 2 + x5, y5, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(6, new Vector3(this.gameObject.transform.position.x - 2 + x6, y6, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(7, new Vector3(this.gameObject.transform.position.x - 2 + x7, y7, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(8, new Vector3(this.gameObject.transform.position.x - 2 + x8, y8, this.gameObject.transform.position.z));
 		}
-		
-		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x + 2, y0, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x + 2 + x1, y1, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(2, new Vector3(this.gameObject.transform.position.x + 2 + x2, y2, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(3, new Vector3(this.gameObject.transform.position.x + 2 + x3, y3, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(4, new Vector3(this.gameObject.transform.position.x + 2 + x4, y4, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(5, new Vector3(this.gameObject.transform.position.x + 2 + x5, y5, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(6, new Vector3(this.gameObject.transform.position.x + 2 + x6, y6, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(7, new Vector3(this.gameObject.transform.position.x + 2 + x7, y7, this.gameObject.transform.position.z));
-		lineRenderer.SetPosition(8, new Vector3(this.gameObject.transform.position.x + 2 + x8, y8, this.gameObject.transform.position.z));
+		else {	
+			lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x + 2, y0, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x + 2 + x1, y1, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(2, new Vector3(this.gameObject.transform.position.x + 2 + x2, y2, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(3, new Vector3(this.gameObject.transform.position.x + 2 + x3, y3, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(4, new Vector3(this.gameObject.transform.position.x + 2 + x4, y4, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(5, new Vector3(this.gameObject.transform.position.x + 2 + x5, y5, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(6, new Vector3(this.gameObject.transform.position.x + 2 + x6, y6, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(7, new Vector3(this.gameObject.transform.position.x + 2 + x7, y7, this.gameObject.transform.position.z));
+			lineRenderer.SetPosition(8, new Vector3(this.gameObject.transform.position.x + 2 + x8, y8, this.gameObject.transform.position.z));
+		}
 	}
 }
 
@@ -284,7 +294,9 @@ function shoot()
 		{
 			currentSeeds--;
 		}
-		var newSeed:GameObject = Instantiate(Resources.Load("Prefabs/Seed", GameObject), this.gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+		var newSeed:GameObject;
+		if (getDirection() == "Right") newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject), this.gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity);
+		else newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject), this.gameObject.transform.position - new Vector3(2, 0, 0), Quaternion.identity);
 		newSeed.gameObject.name = "Seed";
 		newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 		newSeed.gameObject.GetComponent(SeedBehaviour).setShroomType(currentShroom);
