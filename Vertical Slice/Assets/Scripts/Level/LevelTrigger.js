@@ -15,6 +15,7 @@ function OnTriggerEnter(hit:Collider){
 		if(gameLogicScript.checkWin() == true)
 		{
 			finished = true;
+			gameLogicScript.stopTimer();
 		}
 		else
 		{

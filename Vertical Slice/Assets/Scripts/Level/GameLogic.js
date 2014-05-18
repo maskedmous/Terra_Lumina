@@ -1,4 +1,4 @@
-#pragma strict
+ #pragma strict
 
 /*
 	Contol variables
@@ -36,6 +36,8 @@ private var collectDrain:float;
 	Timer variables
 */
 private var secondTimer:float = 0;			//counting seconds
+private var levelTimer:float = 0;
+private var runTimer:boolean = true;
 
 /*
 	Array Variables
@@ -44,9 +46,18 @@ private var plantSamples:Array = new Array();
 
 
 
+function Start(){
+	startTimer();
+}
+
 
 function Update()
 {
+	if(runTimer == true){
+		levelTimer += Time.deltaTime;
+		var timerInt:int = levelTimer;
+		print(timerInt);
+	}
 	if(!charging)
 	{
 		decreaseBattery();
@@ -105,6 +116,14 @@ function gameOver():void {
 	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
 	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
 	levelTriggerScript.setFinished(true);
+}
+
+function startTimer(){
+	runTimer = true;
+}
+
+function stopTimer(){
+	runTimer = false;
 }
 
 function setPlant(direction:String, endVec:Vector3)
