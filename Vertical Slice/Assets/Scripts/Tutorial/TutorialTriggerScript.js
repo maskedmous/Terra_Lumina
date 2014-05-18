@@ -204,10 +204,47 @@ public function setBumpyShroomButtonEnabled(value:boolean):void
 	shootBumpyShroomButtonEnabled = value;
 }
 
+public function setTutorialTextureA(tex:Texture2D):void
+{
+	tutorialTextureA = tex;
+}
+public function setXPositionTexA(value:float):void
+{
+	xPositionTexA = value;
+}
+public function setYPositionTexA(value:float):void
+{
+	yPositionTexA = value;
+}
+public function setTimerTexA(value:float):void
+{
+	timerTexA = value;
+}
+
+public function setTutorialTextureB(tex:Texture2D):void
+{
+	tutorialTextureB = tex;
+}
+
+public function setXPositionTexB(value:float):void
+{
+	xPositionTexB = value;
+}
+public function setYPositionTexB(value:float):void
+{
+	xPositionTexB = value;
+}
+
+public function setTimerTexB(value:float):void
+{
+	timerTexB = value;
+}
+
 public function setDestroyOnExit(value:boolean):void
 {
 	destroyOnExit = value;
 }
+
 //
 //getters
 //
@@ -241,6 +278,57 @@ public function getBumpyShroomButtonEnabled():boolean
 {
 	return shootBumpyShroomButtonEnabled;
 }
+
+public function getTutorialTextureA():String
+{
+	if(tutorialTextureA != null)
+	{
+		return tutorialTextureA.name;
+	}
+	
+	return "";
+}
+
+public function getXPositionTexA():float
+{
+	return xPositionTexA;
+}
+
+public function getYPositionTexA():float
+{
+	return yPositionTexA;
+}
+
+public function getTimerTexA():float
+{
+	return timerTexA;
+}
+
+public function getTutorialTextureB():String
+{
+	if(tutorialTextureB != null)
+	{
+		return tutorialTextureB.name;
+	}
+	return "";
+}
+
+public function getXPositionTexB():float
+{
+	return xPositionTexB;
+}
+
+public function getYPositionTexB():float
+{
+	return yPositionTexB;
+}
+
+public function getTimerTexB():float
+{
+	return timerTexB;
+}
+
+
 
 public function getDestroyOnExit():boolean
 {

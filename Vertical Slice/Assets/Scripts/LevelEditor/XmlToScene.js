@@ -34,6 +34,7 @@ public function loadLevel()
 		var gameLogic:GameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 		var level:GameObject 	= GameObject.Find("Level");
 		var player:GameObject 	= GameObject.Find("Player");
+		var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
 		
 		var rootNode:XmlNode 		= xmlDocument.DocumentElement;
 		var masterNode:XmlNodeList 	= rootNode.ChildNodes;
@@ -191,6 +192,17 @@ public function loadLevel()
 					var jumpButtonEnabled		:boolean	= true;
 					var normalShroomButtonEnabled:boolean	= true;
 					var bumpyShroomButtonEnabled:boolean	= true;
+					
+					var tutorialTextureA		:Texture2D	= null;
+					var xPositionTexA			:float		= 0;
+					var yPositionTexA			:float		= 0;
+					var timerTexA				:float		= 0;
+					
+					var tutorialTextureB		:Texture2D	= null;
+					var xPositionTexB			:float		= 0;
+					var yPositionTexB			:float		= 0;
+					var timerTexB				:float		= 0;
+					
 					var destroyOnExit			:boolean	= false;
 					
 					for each(var _gameObjectStatsNodes in gameObjectStatsNodeList)
@@ -319,6 +331,68 @@ public function loadLevel()
 										}
 									}
 								}
+								if(tutorialNodeStats.Name == "Textures")
+								{
+									var textureNodes:XmlNodeList = tutorialNodeStats.ChildNodes;
+									
+									for each(var _textureNodeStats in textureNodes)
+									{
+										var textureNodeStats:XmlNode = _textureNodeStats as XmlNode;
+										
+										if(textureNodeStats.Name == "TextureA")
+										{
+											var textureANode:XmlNodeList = textureNodeStats.ChildNodes;
+											
+											for each(var _textureANodeStats in textureANode)
+											{
+												var textureANodeStats:XmlNode = _textureANodeStats as XmlNode;
+												
+												if(textureANodeStats.Name == "Texturename")
+												{
+													tutorialTextureA = textureLoader.getTexture(textureANodeStats.InnerText);
+												}
+												if(textureANodeStats.Name == "x")
+												{
+													xPositionTexA = float.Parse(textureANodeStats.InnerText);
+												}
+												if(textureANodeStats.Name == "y")
+												{
+													yPositionTexA = float.Parse(textureANodeStats.InnerText);
+												}
+												if(textureANodeStats.Name == "Timer")
+												{
+													timerTexA = float.Parse(textureANodeStats.InnerText);
+												}
+											}
+										}
+										if(textureNodeStats.Name == "TextureB")
+										{
+											var textureBNode:XmlNodeList = textureNodeStats.ChildNodes;
+											
+											for each(var _textureBNodeStats in textureBNode)
+											{
+												var textureBNodeStats:XmlNode = _textureBNodeStats as XmlNode;
+												
+												if(textureBNodeStats.Name == "Texturename")
+												{
+													tutorialTextureB = textureLoader.getTexture(textureBNodeStats.InnerText);
+												}
+												if(textureBNodeStats.Name == "x")
+												{
+													xPositionTexB = float.Parse(textureBNodeStats.InnerText);
+												}
+												if(textureBNodeStats.Name == "y")
+												{
+													xPositionTexB = float.Parse(textureBNodeStats.InnerText);
+												}
+												if(textureBNodeStats.Name == "Timer")
+												{
+													timerTexB = float.Parse(textureBNodeStats.InnerText);
+												}
+											}
+										}
+									}
+								}
 								if(tutorialNodeStats.Name == "DestroyOnExit")
 								{
 									destroyOnExit = boolean.Parse(tutorialNodeStats.InnerText);
@@ -361,7 +435,7 @@ public function loadLevel()
 							newGameObject.transform.eulerAngles = rotation;
 							newGameObject.transform.localScale 	= scaling;
 							
-							if(newGameObject.name == "TutorialObject" && tutorialTriggerString != "" && boundingBox != Vector3(9999,9999,9999))
+							if(newGameObject.name == "TutorialObject" && boundingBox != Vector3(9999,9999,9999))
 							{
 								var triggerScript:TutorialTriggerScript = newGameObject.GetComponent(TutorialTriggerScript);
 								//set string
@@ -375,13 +449,29 @@ public function loadLevel()
 								triggerScript.setNormalShroomButtonEnabled(normalShroomButtonEnabled);
 								triggerScript.setBumpyShroomButtonEnabled(bumpyShroomButtonEnabled);
 								
+								if(tutorialTextureA != null)
+								{									
+									triggerScript.setTutorialTextureA(tutorialTextureA);
+									triggerScript.setXPositionTexA(xPositionTexA);
+									triggerScript.setYPositionTexA(yPositionTexA);
+									triggerScript.setTimerTexA(timerTexA);
+								}
+								
+								if(tutorialTextureB != null)
+								{
+									triggerScript.setTutorialTextureB(tutorialTextureB);
+									triggerScript.setXPositionTexB(xPositionTexB);
+									triggerScript.setYPositionTexB(yPositionTexB);
+									triggerScript.setTimerTexB(timerTexB);
+								}
+								
 								//set destroy on exit
 								triggerScript.setDestroyOnExit(destroyOnExit);
 								
 								//set bounding box
 								newGameObject.GetComponent(BoxCollider).size = boundingBox;
 							}
-							Debug.Log("created: " + prefabName + " at: " + position);
+							//Debug.Log("created: " + prefabName + " at: " + position);
 						}
 						else
 						{
