@@ -62,7 +62,7 @@ function Awake() {
 function Start() {
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
-	lineRenderer.SetColors(Color.white, Color.white);
+	//lineRenderer.SetColors(Color.white, Color.white);
 	g = -Physics.gravity.y;
 	
 	speed = gameLogicScript.getSpeed();
