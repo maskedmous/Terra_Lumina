@@ -104,8 +104,13 @@ function movement()
 	var hitDown:RaycastHit;
 	
 	if (Physics.Raycast(this.gameObject.transform.position, new Vector3(0, -1, 0), hitDown, 1)) {	
-		isJumping = false;
-		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
+		if (hitDown.collider.name == "Light"){
+			isJumping = true;
+		}
+		else{
+			isJumping = false;
+			this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
+		}
 	}
 	else {
 		isJumping = true;

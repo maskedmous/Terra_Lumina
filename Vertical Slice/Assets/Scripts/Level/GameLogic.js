@@ -21,6 +21,8 @@ private var charging:boolean = false;
 	Win Variables
 */
 public var samplesToComplete:int = 0;
+public var maxSamples:int = 3;
+public var score:int = 0;
 
 /*
 	Action energy cost
@@ -38,6 +40,16 @@ private var collectDrain:float;
 private var secondTimer:float = 0;			//counting seconds
 private var levelTimer:float = 0;
 private var runTimer:boolean = true;
+private var timerInt:int = 0;
+
+/*
+	Score Variables
+*/
+public var techieTime:int = 45;
+public var platinumTime:int = 50;
+public var goldTime:int = 65;
+public var silverTime:int = 90;
+public var bronzeTime:int = 120;
 
 /*
 	Array Variables
@@ -55,7 +67,7 @@ function Update()
 {
 	if(runTimer == true){
 		levelTimer += Time.deltaTime;
-		var timerInt:int = levelTimer;
+		timerInt = levelTimer;
 		print(timerInt);
 	}
 	if(!charging)
@@ -99,6 +111,7 @@ function addPlantSample(newSample:GameObject)
 {
 	Debug.Log("adding sample!");
 	plantSamples.push(newSample);
+	setScore(100);
 }
 
 function getPlantSampleCount():int{
@@ -106,8 +119,21 @@ function getPlantSampleCount():int{
 }
 
 function checkWin():boolean{
+	print("checkWin function is being called");
 	if(samplesToComplete <= getPlantSampleCount()){
-		return true;
+		if(getPlantSampleCount() == maxSamples){
+			setScore(200);
+			print("Congratulations! You got all plant samples, you get 200 bonus points");
+			return true;
+		}
+		else return true;
+	}
+	
+	if(samplesToComplete >= getMaxSamples()){
+		print("You need more samples then that exist in the level..");
+		if(getPlantSampleCount() == getMaxSamples()){
+			return true;
+		}
 	}
 	else return false;
 }
@@ -124,6 +150,35 @@ function startTimer(){
 
 function stopTimer(){
 	runTimer = false;
+	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
+	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
+	if(levelTriggerScript.getFinished()){
+		if(timerInt <= techieTime){
+			setScore(500);
+			print("Congratulations! You are as fast as a techie, plus 500 points");
+		}
+		if(timerInt <= platinumTime && timerInt >= techieTime+1){
+			setScore(300);
+			print("Congratulations! You were really fast, you get 300 bonus points");
+		}
+		if(timerInt <= goldTime && timerInt >= platinumTime+1){
+			setScore(200);
+			print("Congratulations! You were  fast, you get 200 bonus points");
+		}
+		if(timerInt <= silverTime && timerInt >= goldTime+1){
+			setScore(150);
+			print("Congratulations! You got the silver medal, you get 150 bonus points");
+		}
+		if(timerInt <= bronzeTime && timerInt >= silverTime+1){
+			setScore(100);
+			print("Congratulations! You got the bronze medel, you get 100 bonus points");
+		}
+		if(timerInt >= bronzeTime){
+			setScore(0);
+			print("Congratulations! You were in time, you get no bonus points however");
+		}
+		
+	}
 }
 
 function setPlant(direction:String, endVec:Vector3)
@@ -233,6 +288,24 @@ public function setSamplesToComplete(value:int):void
 public function getSamplesToComplete():int
 {
 	return samplesToComplete;
+}
+
+public function setMaxSamples(value:int):void
+{
+	maxSamples = value;
+}
+
+public function getMaxSamples():int
+{
+	return maxSamples;
+}
+
+public function setScore(value:int){
+	score += value;
+}
+
+public function getScore():int{
+	return score;
 }
 
 public function getSpeed()
