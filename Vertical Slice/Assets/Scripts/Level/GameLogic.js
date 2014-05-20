@@ -21,6 +21,8 @@ private var charging:boolean = false;
 	Win Variables
 */
 public var samplesToComplete:int = 0;
+public var maxSamples:int = 0;
+public var score:int = 0;
 
 /*
 	Action energy cost
@@ -53,6 +55,7 @@ function Start(){
 
 function Update()
 {
+	setScore();
 	if(runTimer == true){
 		levelTimer += Time.deltaTime;
 		var timerInt:int = levelTimer;
@@ -108,6 +111,12 @@ function getPlantSampleCount():int{
 function checkWin():boolean{
 	if(samplesToComplete <= getPlantSampleCount()){
 		return true;
+	}
+	if(samplesToComplete >= getMaxSamples()){
+		print("You need more samples then that exist in the level..");
+		if(getPlantSampleCount() == getMaxSamples()){
+			return true;
+		}
 	}
 	else return false;
 }
@@ -233,6 +242,23 @@ public function setSamplesToComplete(value:int):void
 public function getSamplesToComplete():int
 {
 	return samplesToComplete;
+}
+
+public function setMaxSamples(value:int):void
+{
+	maxSamples = value;
+}
+
+public function getMaxSamples():int
+{
+	return maxSamples;
+}
+
+public function setScore():int{
+	score = getPlantSampleCount() * 100;
+	if(getPlantSampleCount() == getMaxSamples()){
+		score += 200;
+	}
 }
 
 public function getSpeed()
