@@ -135,7 +135,8 @@ function checkWin():boolean{
 			return true;
 		}
 	}
-	else return false;
+	
+	return false;
 }
 
 function gameOver():void {

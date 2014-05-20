@@ -164,8 +164,6 @@ function readTouch()
 
 private function isTouchingButton(inputXY:Vector2):boolean
 {	
-	//var inputXY:Vector2 = Vector2(Input.mousePosition.x, (Input.mousePosition.y - Screen.height) * -1);
-	
 	if(jumpButtonRect.Contains(inputXY))
 	{
 		return true;
