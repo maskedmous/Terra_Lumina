@@ -46,30 +46,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\TouchScript\Examples\General\2D - Double Tap\Scripts\DoubleTap_Sprite.cs" />
-     <Compile Include="Assets\TouchScript\Examples\General\Input\Scripts\InputExample.cs" />
-     <Compile Include="Assets\TouchScript\Examples\General\Input\Scripts\InputExample_Ball.cs" />
-     <Compile Include="Assets\TouchScript\Examples\General\LongPress\Scripts\LongPress_Button.cs" />
-     <Compile Include="Assets\TouchScript\Examples\General\Pan\Scripts\Pan_Button.cs" />
-     <Compile Include="Assets\TouchScript\Examples\General\Pan\Scripts\Pan_Object.cs" />
-     <Compile Include="Assets\TouchScript\Examples\General\Tap\Scripts\Tap_Breaker.cs" />
-     <Compile Include="Assets\TouchScript\Examples\General\Tap\Scripts\Tap_Spawner.cs" />
-     <Compile Include="Assets\TouchScript\Examples\_misc\Scripts\Example.cs" />
-     <Compile Include="Assets\TouchScript\Examples\_misc\Scripts\Examples.cs" />
+     <Compile Include="Assets\TouchInputScript.cs" />
      <None Include="Assets\LevelsXML\Level1.xml" />
      <None Include="Assets\LevelsXML\Level1.3.xml" />
      <None Include="Assets\LevelsXML\Level1.2.xml" />
  <Reference Include="TouchScript">
  <HintPath>Assets\Scripts\TouchScript\Plugins\TouchScript.dll</HintPath>
  </Reference>
- <Reference Include="TouchScript.TUIO">
- <HintPath>Assets\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
- </Reference>
  <Reference Include="OSCsharp">
- <HintPath>Assets\TouchScript\Plugins\OSCsharp.dll</HintPath>
+ <HintPath>Assets\Standard Assets\TouchScript\Plugins\OSCsharp.dll</HintPath>
+ </Reference>
+ <Reference Include="TouchScript.TUIO">
+ <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
  </Reference>
  <Reference Include="TUIOsharp">
- <HintPath>Assets\TouchScript\Plugins\TUIOsharp.dll</HintPath>
+ <HintPath>Assets\Standard Assets\TouchScript\Plugins\TUIOsharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

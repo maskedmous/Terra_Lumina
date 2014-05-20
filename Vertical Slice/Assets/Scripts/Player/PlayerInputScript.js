@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-
+import TouchScript;
 
 private var player:GameObject = null;
 private var playerController:PlayerController = null;
@@ -56,9 +56,8 @@ function Update ()
 		}
 	}
 	else if (!endLevelTriggerScript.getFinished()) {
-		//if (chargingJump) playerController.chargeJump();
 		if (chargingShot) playerController.chargeShot();
-		else if (Input.GetMouseButton(0)) readTouch();
+		readTouch();
 		playerController.brake();
 	}
 	else if(endLevelTriggerScript.getFinished())
@@ -144,22 +143,28 @@ private function scaleRect(rect:Rect):Rect
 
 function readTouch()
 {
-	if(!isTouchingButton())
+	for each(var touch in TouchManager.Instance.ActiveTouches)
 	{
-		if(movementLeftEnabled && Input.mousePosition.x < (Screen.width / 2))
+		var position:Vector2 = touch.Position;
+		position = Vector2(position.x, (position.y - Screen.height)*-1);
+		
+		if(!isTouchingButton(position))
 		{
-			playerController.move(Input.mousePosition.x);
-		}
-		else if(movementRightEnabled && Input.mousePosition.x > (Screen.width / 2))
-		{
-			playerController.move(Input.mousePosition.x);
+			if(movementLeftEnabled && position.x < (Screen.width / 2))
+			{
+				playerController.move(position.x);
+			}
+			else if(movementRightEnabled && position.x > (Screen.width / 2))
+			{
+				playerController.move(position.x);
+			}
 		}
 	}
 }
 
-private function isTouchingButton():boolean
+private function isTouchingButton(inputXY:Vector2):boolean
 {	
-	var inputXY:Vector2 = Vector2(Input.mousePosition.x, (Input.mousePosition.y - Screen.height) * -1);
+	//var inputXY:Vector2 = Vector2(Input.mousePosition.x, (Input.mousePosition.y - Screen.height) * -1);
 	
 	if(jumpButtonRect.Contains(inputXY))
 	{
@@ -176,8 +181,6 @@ private function isTouchingButton():boolean
 	
 	return false;
 }
-
-
 
 function OnMouseDown()
 {

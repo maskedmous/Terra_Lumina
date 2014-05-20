@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{E1C87592-E7DE-6AD3-AAC0-E54D4F235190}</ProjectGuid>
+	<ProjectGuid>{FF21C6C4-3A7B-BBD5-02DF-14177D74D45F}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,15 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\TouchInputScript.cs" />
+     <Compile Include="Assets\Standard Assets\TouchScript\Scripts\DontDestroyTouch.cs" />
      <None Include="Assets\LevelsXML\Level1.xml" />
      <None Include="Assets\LevelsXML\Level1.3.xml" />
      <None Include="Assets\LevelsXML\Level1.2.xml" />
- <Reference Include="TouchScript">
- <HintPath>Assets\Scripts\TouchScript\Plugins\TouchScript.dll</HintPath>
- </Reference>
  <Reference Include="OSCsharp">
  <HintPath>Assets\Standard Assets\TouchScript\Plugins\OSCsharp.dll</HintPath>
+ </Reference>
+ <Reference Include="TouchScript">
+ <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.TUIO">
  <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
