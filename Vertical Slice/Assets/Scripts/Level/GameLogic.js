@@ -68,7 +68,6 @@ function Update()
 	if(runTimer == true){
 		levelTimer += Time.deltaTime;
 		timerInt = levelTimer;
-		print(timerInt);
 	}
 	if(!charging)
 	{
