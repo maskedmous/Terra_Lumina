@@ -2,10 +2,7 @@
 
 class MoveState extends State {
 
-	private var movedX:float;
 	private var speed:float = 250;
-	private var rightBound:float = 200;
-	private var leftBound:float = -200;
 	
 	private var direction:String = "right";
 	
@@ -18,15 +15,15 @@ class MoveState extends State {
 	function update () {
 		//Debug.Log(parent.rigidbody.velocity.normalized);
 		parent.rigidbody.velocity.x = speed * Time.deltaTime;
-		movedX += speed * Time.deltaTime;
-		if (movedX > rightBound) {
-			speed = -speed;
-			setDirection("left");
-		}
-		if (movedX < leftBound) {
-			speed = -speed;
-			setDirection("right");
-		}
+//		movedX += speed * Time.deltaTime;
+//		if (movedX > rightBound) {
+//			speed = -speed;
+//			setDirection("left");
+//		}
+//		if (movedX < leftBound) {
+//			speed = -speed;
+//			setDirection("right");
+//		}
 		
 		if (difficulty == "Hard") {
 			var hitSide:RaycastHit;
@@ -38,13 +35,13 @@ class MoveState extends State {
 		}
 	}
 	
+	function OnTriggerEnter(collider:Collider) {
+		if (collider.name == "SlugBound") {
+			speed = -speed;
+		}
+	}
 
 	function setDirection(dir:String) {
 		direction = dir;
-	}
-	
-	function setBounds(left:float, right:float) {
-		leftBound = left;
-		rightBound = right;
 	}
 }

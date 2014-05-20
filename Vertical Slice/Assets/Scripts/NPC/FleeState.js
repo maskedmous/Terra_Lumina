@@ -12,7 +12,5 @@ class FleeState extends State {
 		this.parent.renderer.enabled = false;
 		this.parent.rigidbody.useGravity = false;
 		parentScript.toWaitState();
-		Debug.Log("toFleeState");
 	}
-	
 }

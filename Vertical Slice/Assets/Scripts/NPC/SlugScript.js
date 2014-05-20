@@ -7,6 +7,8 @@ private var waitState:WaitState;
 private var chaseState:ChaseState;
 private var returnState:ReturnState;
 
+private var startPosition:Vector3;
+
 private var difficulty:String;
 
 function Awake()
@@ -21,6 +23,8 @@ function Awake()
 		chaseState = this.gameObject.AddComponent("ChaseState") as ChaseState;
 		returnState = this.gameObject.AddComponent("ReturnState") as ReturnState;
 	}
+	
+	startPosition = this.gameObject.transform.position;
 }
 
 function Update () 
@@ -53,11 +57,6 @@ function toChaseState()
 	currentState = chaseState;
 }
 
-function setBounds(left:float, right:float)
-{
-	moveState.setBounds(left, right);
-}
-
 function getDifficulty():String 
 {
 	return difficulty;
@@ -66,4 +65,9 @@ function getDifficulty():String
 function setDifficulty(dif:String) 
 {
 	difficulty = dif;
+}
+
+function getStart()
+{
+	return startPosition;
 }
