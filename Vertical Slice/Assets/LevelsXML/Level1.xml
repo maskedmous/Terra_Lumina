@@ -770,7 +770,7 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>NormalShroom</Prefab>
+      <Prefab>NormalShroom 1</Prefab>
       <Position>
         <x>-4.796116</x>
         <y>-13.97649</y>
@@ -788,7 +788,7 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>NormalShroom</Prefab>
+      <Prefab>NormalShroom 1</Prefab>
       <Position>
         <x>-2.702309</x>
         <y>-13.97649</y>
@@ -800,9 +800,9 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>1.764917</x>
-        <y>1.764917</y>
-        <z>1.764917</z>
+        <x>1.386534</x>
+        <y>1.61705</y>
+        <z>1.192537</z>
       </Scaling>
     </GameObject>
     <GameObject>

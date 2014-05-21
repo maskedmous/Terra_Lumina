@@ -156,8 +156,7 @@ private function numberToTexture(number:String):Texture2D
 	if(number.Contains("7")) return number7;
 	if(number.Contains("8")) return number8;
 	if(number.Contains("9")) return number9;
-	
-	Debug.LogError("Returning null");
+
 	return null;
 }
 

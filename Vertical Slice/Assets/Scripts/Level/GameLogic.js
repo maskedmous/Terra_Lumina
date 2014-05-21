@@ -56,7 +56,9 @@ public var bronzeTime:int = 120;
 */
 private var plantSamples:Array = new Array();
 
-
+private var scale:Vector3;
+private var originalWidth:float = 1920;
+private var originalHeight:float = 1080;
 
 function Start(){
 	startTimer();
@@ -81,15 +83,17 @@ function Update()
 
 public function OnGUI():void
 {
-	var cBattery:int = battery;
-	GUI.Label(Rect(0, 250, 500, 20), ("Crystallen: " + plantSamples.length.ToString()));
+	scale.x = Screen.width / originalWidth;
+	scale.y = Screen.height / originalHeight;
+	
+	GUI.Label(Rect(0, (375 * scale.y), 500, 20), ("Crystallen: " + plantSamples.length.ToString()));
 	if(infiniteAmmo)
 	{
-		GUI.Label(Rect(0, 280, 500, 20), ("Aantal zaadjes over: Infinite"));
+		GUI.Label(Rect(0, (425 * scale.y), 500, 20), ("Aantal zaadjes over: Infinite"));
 	}
 	else
 	{
-		GUI.Label(Rect(0, 280, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString() + " / " + maximumAmmo.ToString()));
+		GUI.Label(Rect(0, 280 * scale.y, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString() + " / " + maximumAmmo.ToString()));
 	}
 }
 
