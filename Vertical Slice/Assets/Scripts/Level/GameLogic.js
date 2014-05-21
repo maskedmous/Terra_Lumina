@@ -79,13 +79,27 @@ function Update()
 	}
 }
 
+public function OnGUI():void
+{
+	var cBattery:int = battery;
+	GUI.Label(Rect(0, 250, 500, 20), ("Crystallen: " + plantSamples.length.ToString()));
+	if(infiniteAmmo)
+	{
+		GUI.Label(Rect(0, 280, 500, 20), ("Aantal zaadjes over: Infinite"));
+	}
+	else
+	{
+		GUI.Label(Rect(0, 280, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString() + " / " + maximumAmmo.ToString()));
+	}
+}
+
 function decreaseBattery()
 {
 	if(secondTimer > decreaseTimer)
 	{
 		battery -= negativeBatteryFlow;
 		secondTimer = 0;
-		if (battery < 0.01) gameOver();
+		if (battery < 0.01) gameOverLose();
 	}
 	else
 	{
@@ -118,7 +132,6 @@ function getPlantSampleCount():int{
 }
 
 function checkWin():boolean{
-	print("checkWin function is being called");
 	if(samplesToComplete <= getPlantSampleCount()){
 		if(getPlantSampleCount() == maxSamples){
 			setScore(200);
@@ -138,10 +151,16 @@ function checkWin():boolean{
 	return false;
 }
 
-function gameOver():void {
+function gameOverWin():void {
 	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
 	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
 	levelTriggerScript.setFinished(true);
+}
+
+function gameOverLose():void {
+	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
+	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
+	levelTriggerScript.setLost(true);
 }
 
 function startTimer(){
@@ -192,21 +211,6 @@ function setPlant(direction:String, endVec:Vector3)
 	newObject.name = "Plant";
 	newObject.transform.position = endVec;
 	newObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
-}
-
-function OnGUI()
-{
-	var cBattery:int = battery;
-	GUI.Label(Rect(0,0, 500, 20), ("Batterij Lading: " + cBattery.ToString()));
-	GUI.Label(Rect(0, 40, 500, 20), ("Plant Monsters: " + plantSamples.length.ToString()));
-	if(infiniteAmmo)
-	{
-		GUI.Label(Rect(0, 80, 500, 20), ("Aantal zaadjes over: Infinite"));
-	}
-	else
-	{
-		GUI.Label(Rect(0, 80, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString() + " / " + maximumAmmo.ToString()));
-	}
 }
 
 public function setMaximumAmmo(value:int):void

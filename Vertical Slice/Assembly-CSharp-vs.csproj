@@ -46,22 +46,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\TouchInputScript.cs" />
+     <Compile Include="Assets\Scripts\TouchScript\Scripts\DontDestroyTouch.cs" />
      <None Include="Assets\LevelsXML\Level1.xml" />
      <None Include="Assets\LevelsXML\Level1.3.xml" />
      <None Include="Assets\LevelsXML\Level1.2.xml" />
  <Reference Include="TouchScript">
  <HintPath>Assets\Scripts\TouchScript\Plugins\TouchScript.dll</HintPath>
  </Reference>
- <Reference Include="OSCsharp">
- <HintPath>Assets\Standard Assets\TouchScript\Plugins\OSCsharp.dll</HintPath>
- </Reference>
  <Reference Include="TouchScript.TUIO">
- <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
+ <HintPath>Assets\Scripts\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
+ </Reference>
+ <Reference Include="OSCsharp">
+ <HintPath>Assets\Scripts\TouchScript\Plugins\OSCsharp.dll</HintPath>
  </Reference>
  <Reference Include="TUIOsharp">
- <HintPath>Assets\Standard Assets\TouchScript\Plugins\TUIOsharp.dll</HintPath>
+ <HintPath>Assets\Scripts\TouchScript\Plugins\TUIOsharp.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{FF21C6C4-3A7B-BBD5-02DF-14177D74D45F}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
