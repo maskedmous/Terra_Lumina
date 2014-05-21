@@ -383,7 +383,7 @@ public function loadLevel()
 												}
 												if(textureBNodeStats.Name == "y")
 												{
-													xPositionTexB = float.Parse(textureBNodeStats.InnerText);
+													yPositionTexB = float.Parse(textureBNodeStats.InnerText);
 												}
 												if(textureBNodeStats.Name == "Timer")
 												{

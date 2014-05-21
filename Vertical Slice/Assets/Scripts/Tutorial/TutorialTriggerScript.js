@@ -232,7 +232,7 @@ public function setXPositionTexB(value:float):void
 }
 public function setYPositionTexB(value:float):void
 {
-	xPositionTexB = value;
+	yPositionTexB = value;
 }
 
 public function setTimerTexB(value:float):void

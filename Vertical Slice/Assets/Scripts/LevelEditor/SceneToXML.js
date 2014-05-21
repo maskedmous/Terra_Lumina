@@ -334,47 +334,58 @@ private function saveLevel():int
 				shootNormalShroomButtonEnabledNode.InnerText 	= triggerScript.getNormalShroomButtonEnabled().ToString();
 				shootBumpyShroomButtonEnabledNode.InnerText 	= triggerScript.getBumpyShroomButtonEnabled().ToString();
 				
-				//textures
-				var tutorialTexturesNode:XmlElement = xmlDocument.CreateElement("Textures");
-				tutorialNode.AppendChild(tutorialTexturesNode);
+				if(triggerScript.getTutorialTextureA() != "" || triggerScript.getTutorialTextureB() != "")
+				{
+					//textures
+					var tutorialTexturesNode:XmlElement = xmlDocument.CreateElement("Textures");
+					tutorialNode.AppendChild(tutorialTexturesNode);
+					
 				
-				//textureA
-				var textureANode:XmlElement = xmlDocument.CreateElement("TextureA");
-				tutorialTexturesNode.AppendChild(textureANode);
-				
-				var textureANameNode:XmlElement = xmlDocument.CreateElement("Texturename");
-				var textureAXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-				var textureAYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-				var textureATimerNode:XmlElement = xmlDocument.CreateElement("Timer");
-				
-				textureANode.AppendChild(textureANameNode);
-				textureANode.AppendChild(textureAXPositionNode);
-				textureANode.AppendChild(textureAYPositionNode);
-				textureANode.AppendChild(textureATimerNode);
-				
-				textureANameNode.InnerText 		= triggerScript.getTutorialTextureA();
-				textureAXPositionNode.InnerText = triggerScript.getXPositionTexA().ToString();
-				textureAYPositionNode.InnerText = triggerScript.getYPositionTexA().ToString();
-				textureATimerNode.InnerText 	= triggerScript.getTimerTexA().ToString();
-				
-				//textureB
-				var textureBNode:XmlElement = xmlDocument.CreateElement("TextureB");
-				tutorialTexturesNode.AppendChild(textureBNode);
-				
-				var textureBNameNode:XmlElement = xmlDocument.CreateElement("Texturename");
-				var textureBXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-				var textureBYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-				var textureBTimerNode:XmlElement = xmlDocument.CreateElement("Timer");
-				
-				textureBNode.AppendChild(textureBNameNode);
-				textureBNode.AppendChild(textureBXPositionNode);
-				textureBNode.AppendChild(textureBYPositionNode);
-				textureBNode.AppendChild(textureBTimerNode);
-				
-				textureBNameNode.InnerText 		= triggerScript.getTutorialTextureB();
-				textureBXPositionNode.InnerText = triggerScript.getXPositionTexB().ToString();
-				textureBYPositionNode.InnerText = triggerScript.getYPositionTexB().ToString();
-				textureBTimerNode.InnerText 	= triggerScript.getTimerTexB().ToString();
+					//textureA
+					if(triggerScript.getTutorialTextureA() != "")
+					{
+						var textureANode:XmlElement = xmlDocument.CreateElement("TextureA");
+						tutorialTexturesNode.AppendChild(textureANode);
+					
+					
+						var textureANameNode:XmlElement = xmlDocument.CreateElement("Texturename");
+						var textureAXPositionNode:XmlElement = xmlDocument.CreateElement("x");
+						var textureAYPositionNode:XmlElement = xmlDocument.CreateElement("y");
+						var textureATimerNode:XmlElement = xmlDocument.CreateElement("Timer");
+						
+						textureANode.AppendChild(textureANameNode);
+						textureANode.AppendChild(textureAXPositionNode);
+						textureANode.AppendChild(textureAYPositionNode);
+						textureANode.AppendChild(textureATimerNode);
+						
+						textureANameNode.InnerText 		= triggerScript.getTutorialTextureA();
+						textureAXPositionNode.InnerText = triggerScript.getXPositionTexA().ToString();
+						textureAYPositionNode.InnerText = triggerScript.getYPositionTexA().ToString();
+						textureATimerNode.InnerText 	= triggerScript.getTimerTexA().ToString();
+					}
+					//textureB
+					if(triggerScript.getTutorialTextureB() != "")
+					{
+						var textureBNode:XmlElement = xmlDocument.CreateElement("TextureB");
+						tutorialTexturesNode.AppendChild(textureBNode);
+						
+						var textureBNameNode:XmlElement = xmlDocument.CreateElement("Texturename");
+						var textureBXPositionNode:XmlElement = xmlDocument.CreateElement("x");
+						var textureBYPositionNode:XmlElement = xmlDocument.CreateElement("y");
+						var textureBTimerNode:XmlElement = xmlDocument.CreateElement("Timer");
+						
+						textureBNode.AppendChild(textureBNameNode);
+						textureBNode.AppendChild(textureBXPositionNode);
+						textureBNode.AppendChild(textureBYPositionNode);
+						textureBNode.AppendChild(textureBTimerNode);
+						
+						textureBNameNode.InnerText 		= triggerScript.getTutorialTextureB();
+						textureBXPositionNode.InnerText = triggerScript.getXPositionTexB().ToString();
+						textureBYPositionNode.InnerText = triggerScript.getYPositionTexB().ToString();
+						textureBTimerNode.InnerText 	= triggerScript.getTimerTexB().ToString();
+					}
+				}
+
 				
 				//destroy on exit boolean
 				var destroyOnExitNode:XmlElement = xmlDocument.CreateElement("DestroyOnExit");
