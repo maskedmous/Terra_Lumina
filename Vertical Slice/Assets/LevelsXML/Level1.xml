@@ -772,8 +772,8 @@
     <GameObject>
       <Prefab>NormalShroom</Prefab>
       <Position>
-        <x>-4.799419</x>
-        <y>-14.22667</y>
+        <x>-4.796116</x>
+        <y>-13.97649</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -782,9 +782,9 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>1.323643</x>
-        <y>0.9856771</y>
-        <z>1.177794</z>
+        <x>1.386534</x>
+        <y>1.006538</y>
+        <z>1.192537</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -5058,7 +5058,7 @@
     <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
-        <x>-18.09649</x>
+        <x>-18</x>
         <y>-13.61654</y>
         <z>15.06729</z>
       </Position>
@@ -5078,7 +5078,7 @@
         <Timer>0</Timer>
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
-          <MovementRight>True</MovementRight>
+          <MovementRight>False</MovementRight>
           <Jumpbutton>False</Jumpbutton>
           <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
@@ -5093,7 +5093,7 @@
         </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <BoundingBox>
-          <x>6.88</x>
+          <x>7</x>
           <y>2.74</y>
           <z>2.5</z>
         </BoundingBox>
@@ -5428,7 +5428,7 @@
     <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
-        <x>-27.00669</x>
+        <x>-27.13036</x>
         <y>-13.58168</y>
         <z>15.51743</z>
       </Position>
@@ -5463,7 +5463,7 @@
         </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <BoundingBox>
-          <x>13.04</x>
+          <x>10</x>
           <y>2.44</y>
           <z>3.2</z>
         </BoundingBox>

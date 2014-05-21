@@ -11,8 +11,6 @@ private var newShroom:GameObject;
 public function Update():void
 {
 	grow();
-	print(currentScale);
-	
 }
 
 function OnCollisionEnter(collision:Collision)
@@ -42,7 +40,6 @@ private function grow():void
 		}
 		if(currentScale >= 1.0){
 			growing = false;
-			print("growing complete");
 			Destroy(this.gameObject);
 		}
 		//newShroom.gameObject.transform.scale = currentScale;
