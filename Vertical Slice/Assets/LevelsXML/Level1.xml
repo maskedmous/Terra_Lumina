@@ -3,7 +3,7 @@
   <Difficulty>Easy</Difficulty>
   <Camera>
     <Position>
-      <x>-15.38272</x>
+      <x>-14.58424</x>
       <y>-8.261707</y>
       <z>3.077739</z>
     </Position>
@@ -4887,13 +4887,13 @@
           <TextureA>
             <Texturename>jumping text</Texturename>
             <x>400</x>
-            <y>700</y>
+            <y>820</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
             <Texturename>Arrow2</Texturename>
-            <x>150</x>
-            <y>750</y>
+            <x>200</x>
+            <y>820</y>
             <Timer>20</Timer>
           </TextureB>
         </Textures>
@@ -4936,13 +4936,13 @@
         <Textures>
           <TextureA>
             <Texturename>Arrow</Texturename>
-            <x>100</x>
+            <x>400</x>
             <y>100</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
             <Texturename>Arrow2</Texturename>
-            <x>1500</x>
+            <x>1400</x>
             <y>100</y>
             <Timer>20</Timer>
           </TextureB>
@@ -4952,56 +4952,6 @@
           <x>7.48</x>
           <y>2.41</y>
           <z>2.53</z>
-        </BoundingBox>
-      </Tutorial>
-    </GameObject>
-    <GameObject>
-      <Prefab>TutorialObject</Prefab>
-      <Position>
-        <x>70.16671</x>
-        <y>-10.40622</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-      <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
-        <ButtonsEnabled>
-          <MovementLeft>True</MovementLeft>
-          <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
-          <NormalShroomButton>True</NormalShroomButton>
-          <BumpyShroomButton>False</BumpyShroomButton>
-        </ButtonsEnabled>
-        <Textures>
-          <TextureA>
-            <Texturename>charging in sunlight</Texturename>
-            <x>350</x>
-            <y>0</y>
-            <Timer>20</Timer>
-          </TextureA>
-          <TextureB>
-            <Texturename>Arrow2Smaal</Texturename>
-            <x>200</x>
-            <y>0</y>
-            <Timer>20</Timer>
-          </TextureB>
-        </Textures>
-        <DestroyOnExit>True</DestroyOnExit>
-        <BoundingBox>
-          <x>7.01</x>
-          <y>8.52</y>
-          <z>2.57</z>
         </BoundingBox>
       </Tutorial>
     </GameObject>
@@ -5042,7 +4992,7 @@
           </TextureA>
           <TextureB>
             <Texturename>Arrowsmall</Texturename>
-            <x>1000</x>
+            <x>1130</x>
             <y>650</y>
             <Timer>20</Timer>
           </TextureB>
@@ -5052,6 +5002,56 @@
           <x>3.13</x>
           <y>2.47</y>
           <z>2.92</z>
+        </BoundingBox>
+      </Tutorial>
+    </GameObject>
+    <GameObject>
+      <Prefab>TutorialObject</Prefab>
+      <Position>
+        <x>70.25629</x>
+        <y>-10.40622</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+      <Tutorial>
+        <TriggerString>
+        </TriggerString>
+        <Timer>0</Timer>
+        <ButtonsEnabled>
+          <MovementLeft>True</MovementLeft>
+          <MovementRight>True</MovementRight>
+          <Jumpbutton>True</Jumpbutton>
+          <NormalShroomButton>True</NormalShroomButton>
+          <BumpyShroomButton>False</BumpyShroomButton>
+        </ButtonsEnabled>
+        <Textures>
+          <TextureA>
+            <Texturename>charging in sunlight</Texturename>
+            <x>550</x>
+            <y>100</y>
+            <Timer>20</Timer>
+          </TextureA>
+          <TextureB>
+            <Texturename>Arrow2Smaal</Texturename>
+            <x>400</x>
+            <y>150</y>
+            <Timer>20</Timer>
+          </TextureB>
+        </Textures>
+        <DestroyOnExit>True</DestroyOnExit>
+        <BoundingBox>
+          <x>7.01</x>
+          <y>8.52</y>
+          <z>2.57</z>
         </BoundingBox>
       </Tutorial>
     </GameObject>
@@ -5130,13 +5130,13 @@
         <Textures>
           <TextureA>
             <Texturename>jump on bouncy shroom</Texturename>
-            <x>1000</x>
+            <x>1150</x>
             <y>300</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
             <Texturename>Bouncy tutorial image</Texturename>
-            <x>1600</x>
+            <x>1650</x>
             <y>100</y>
             <Timer>20</Timer>
           </TextureB>
@@ -5180,14 +5180,14 @@
         <Textures>
           <TextureA>
             <Texturename>charging in sunlight</Texturename>
-            <x>350</x>
-            <y>0</y>
+            <x>550</x>
+            <y>100</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
             <Texturename>Arrow2Smaal</Texturename>
-            <x>200</x>
-            <y>0</y>
+            <x>400</x>
+            <y>150</y>
             <Timer>20</Timer>
           </TextureB>
         </Textures>
@@ -5231,7 +5231,7 @@
           <TextureA>
             <Texturename>shoot general</Texturename>
             <x>900</x>
-            <y>800</y>
+            <y>820</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
@@ -5252,7 +5252,7 @@
     <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
-        <x>16.23299</x>
+        <x>18.10371</x>
         <y>-7.891999</y>
         <z>15.37506</z>
       </Position>
@@ -5280,8 +5280,8 @@
         <Textures>
           <TextureA>
             <Texturename>aim to shoot</Texturename>
-            <x>500</x>
-            <y>200</y>
+            <x>800</x>
+            <y>400</y>
             <Timer>20</Timer>
           </TextureA>
         </Textures>
@@ -5324,7 +5324,7 @@
         <Textures>
           <TextureA>
             <Texturename>Normal tutorial image</Texturename>
-            <x>1100</x>
+            <x>1400</x>
             <y>200</y>
             <Timer>20</Timer>
           </TextureA>
@@ -5412,7 +5412,7 @@
         <Textures>
           <TextureA>
             <Texturename>Arrowsmalturnl</Texturename>
-            <x>1550</x>
+            <x>1650</x>
             <y>650</y>
             <Timer>20</Timer>
           </TextureA>
@@ -5469,54 +5469,10 @@
         </BoundingBox>
       </Tutorial>
     </GameObject>
-    <GameObject>
-      <Prefab>TutorialObject</Prefab>
-      <Position>
-        <x>35.85112</x>
-        <y>-7.803722</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-      <Tutorial>
-        <TriggerString>
-        </TriggerString>
-        <Timer>0</Timer>
-        <ButtonsEnabled>
-          <MovementLeft>True</MovementLeft>
-          <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
-          <NormalShroomButton>True</NormalShroomButton>
-          <BumpyShroomButton>False</BumpyShroomButton>
-        </ButtonsEnabled>
-        <Textures>
-          <TextureA>
-            <Texturename>Arrowsmalturnl</Texturename>
-            <x>1100</x>
-            <y>900</y>
-            <Timer>20</Timer>
-          </TextureA>
-        </Textures>
-        <DestroyOnExit>True</DestroyOnExit>
-        <BoundingBox>
-          <x>5.42</x>
-          <y>2.89</y>
-          <z>1.9</z>
-        </BoundingBox>
-      </Tutorial>
-    </GameObject>
   </Level>
   <Player>
     <Position>
-      <x>-17.86216</x>
+      <x>-17.06367</x>
       <y>-12.56171</y>
       <z>15</z>
     </Position>
