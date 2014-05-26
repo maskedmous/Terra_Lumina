@@ -28,8 +28,6 @@ private var vy:float = 0;
 private var isJumping:boolean = true;
 private var initializeJumping:boolean = false;
 private var jumpForce:float = 7.0;
-private var maxJumpForce:float = 15.0;
-
 
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
@@ -62,7 +60,6 @@ function Awake() {
 function Start() {
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
-	//lineRenderer.SetColors(Color.white, Color.white);
 	g = -Physics.gravity.y;
 	
 	speed = gameLogicScript.getSpeed();
@@ -153,8 +150,10 @@ private function moveRight()
 public function brake():void
 {
 	if (!isJumping) {
-		if (this.gameObject.rigidbody.velocity.x > 0.10) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
-		if (this.gameObject.rigidbody.velocity.x < -0.10) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
+		var vx = this.gameObject.rigidbody.velocity.x;
+		if (vx > 0.10f) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
+		else if (vx < -0.10f) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
+		else if (vx > -0.05f && vx < 0.05f) this.gameObject.rigidbody.velocity.x = 0.0f;
 	}
 }
 
@@ -170,40 +169,6 @@ public function jump() {
 		yield WaitForSeconds(1.5f);
 		lineRenderer.enabled = false;
 	}
-}
-
-function chargeJump() {
-	lineRenderer.enabled = true;
-	
-	//formula for max height: h = (v * v * sin(angle) * sin(angle)) / 2 * gravity
-	v = jumpForce * jumpForce;	//no horizontal movement
-	x8 = v / (2 * g); 							//sin(90) = 1, v already squared
-	x1 = x8 / 8;								//here used for y coordinates
-	x2 = 2 * x8 / 8;
-	x3 = 3 * x8 / 8;
-	x4 = 4 * x8 / 8;
-	x5 = 5 * x8 / 8;
-	x6 = 6 * x8 / 8;
-	x7 = 7 * x8 / 8;
-	
-	var x0 = this.gameObject.transform.position.x;
-	y0 = this.gameObject.transform.position.y;
-	var z0 = this.gameObject.transform.position.z;
-	lineRenderer.SetPosition(0, new Vector3(x0, y0, z0));
-	lineRenderer.SetPosition(1, new Vector3(x0, x1 + y0, z0));
-	lineRenderer.SetPosition(2, new Vector3(x0, x2 + y0, z0));
-	lineRenderer.SetPosition(3, new Vector3(x0, x3 + y0, z0));
-	lineRenderer.SetPosition(4, new Vector3(x0, x4 + y0, z0));
-	lineRenderer.SetPosition(5, new Vector3(x0, x5 + y0, z0));
-	lineRenderer.SetPosition(6, new Vector3(x0, x6 + y0, z0));
-	lineRenderer.SetPosition(7, new Vector3(x0, x7 + y0, z0));
-	lineRenderer.SetPosition(8, new Vector3(x0, x7 + y0, z0));
-	
-	jumpForce += 0.1;
-	
-	if (jumpForce > maxJumpForce) jumpForce = maxJumpForce;
-	else GameObject.Find("GameLogic").GetComponent(GameLogic).battery -= 0.1;
-	
 }
 
 function chargeShot() {
