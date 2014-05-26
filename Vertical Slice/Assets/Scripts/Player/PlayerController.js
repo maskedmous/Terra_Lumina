@@ -257,6 +257,13 @@ function chargeShot() {
 	}
 }
 
+public function resetShot():void {
+	vx = 0;
+	vy = 0;
+	x8 = 2.3f;
+	lineRenderer.enabled = false;
+}
+
 function shoot()
 {
 	if (currentSeeds > 0) {
@@ -272,11 +279,8 @@ function shoot()
 		newSeed.gameObject.GetComponent(SeedBehaviour).setShroomType(currentShroom);
 		if (getDirection() == "Left") vx = -vx;
 		newSeed.rigidbody.velocity = new Vector3(vx, vy, 0);
-		vx = 0;
-		vy = 0;
-		x8 = 2.3f;
 		yield WaitForSeconds(1.5f);
-		lineRenderer.enabled = false;
+		resetShot();
 	}
 }
 

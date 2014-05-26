@@ -84,6 +84,8 @@ public function OnGUI() {
 				if (GUI.Button(jumpButtonRect, "", guiStyle))
 				{
 					playerController.jump();
+					chargingShot = false;
+					playerController.resetShot();
 				}
 			}
 			
@@ -97,6 +99,7 @@ public function OnGUI() {
 					else {
 						playerController.shoot();
 						chargingShot = false;
+						//playerController.resetShot();
 					}
 				}
 			}
@@ -110,6 +113,7 @@ public function OnGUI() {
 					else {
 						playerController.shoot();
 						chargingShot = false;
+						//playerController.resetShot();
 					}
 				}
 			}
@@ -157,6 +161,10 @@ function readTouch()
 			else if(movementRightEnabled && position.x > (Screen.width / 2))
 			{
 				playerController.move(position.x);
+			}
+			if (chargingShot) {
+				chargingShot = false;
+				playerController.resetShot();
 			}
 		}
 	}
