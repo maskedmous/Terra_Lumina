@@ -183,6 +183,10 @@ public function loadLevel()
 					var rotation		:Vector3 	= new Vector3(9999,9999,9999);
 					var scaling			:Vector3 	= new Vector3(9999,9999,9999);
 					
+					//slug things
+					var slugBoundAPosition	:Vector3	= new Vector3(9999,9999,9999);
+					var slugBoundBPosition	:Vector3	= new Vector3(9999,9999,9999);
+					
 					//tutorial things
 					var tutorialTriggerString	:String 	= "";
 					var boundingBox				:Vector3 	= new Vector3(9999,9999,9999);
@@ -281,6 +285,44 @@ public function loadLevel()
 								if(scalingNode.Name == "z")
 								{
 									scaling.z = float.Parse(scalingNode.InnerText);
+								}
+							}
+						}
+						
+						if(gameObjectStatsNodes.Name == "Slug")
+						{
+							var slugNode:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							
+							for each(var _slugStatsNode in slugNode)
+							{
+								var slugStatsNode:XmlNode = _slugStatsNode as XmlNode;
+								
+								if(slugStatsNode.Name == "SlugBoundA")
+								{
+									var slugBoundANode:XmlNodeList = slugStatsNode.ChildNodes;
+									
+									for each(var _slugBoundAPositionNodes in slugBoundANode)
+									{
+										var slugBoundAPositionNodes:XmlNode = _slugBoundAPositionNodes as XmlNode;
+										
+										if(slugBoundAPositionNodes.Name == "x") slugBoundAPosition.x = float.Parse(slugBoundAPositionNodes.InnerText);
+										if(slugBoundAPositionNodes.Name == "y") slugBoundAPosition.y = float.Parse(slugBoundAPositionNodes.InnerText);
+										if(slugBoundAPositionNodes.Name == "z") slugBoundAPosition.z = float.Parse(slugBoundAPositionNodes.InnerText);
+									}
+								}
+								if(slugStatsNode.Name == "SlugBoundB")
+								{
+									var slugBoundBNode:XmlNodeList = slugStatsNode.ChildNodes;
+									
+									for each(var _slugBoundBPositionNodes in slugBoundBNode)
+									{
+										var slugBoundBPositionNodes:XmlNode = _slugBoundBPositionNodes as XmlNode;
+										
+										if(slugBoundBPositionNodes.Name == "x") slugBoundBPosition.x = float.Parse(slugBoundBPositionNodes.InnerText);
+										if(slugBoundBPositionNodes.Name == "y") slugBoundBPosition.y = float.Parse(slugBoundBPositionNodes.InnerText);
+										if(slugBoundBPositionNodes.Name == "z") slugBoundBPosition.z = float.Parse(slugBoundBPositionNodes.InnerText);
+										
+									}
 								}
 							}
 						}
@@ -434,6 +476,23 @@ public function loadLevel()
 							newGameObject.transform.position 	= position;
 							newGameObject.transform.eulerAngles = rotation;
 							newGameObject.transform.localScale 	= scaling;
+							
+							if(newGameObject.name == "Slug" && slugBoundAPosition != Vector3(9999,9999,9999) && slugBoundBPosition != Vector3(9999,9999,9999))
+							{
+								var slugBoundA:GameObject = Instantiate(Resources.Load("Prefabs/SlugBound")) as GameObject;
+								slugBoundA.name = "SlugBound";
+								slugBoundA.transform.position = slugBoundAPosition;
+								slugBoundA.transform.parent = level.transform;
+								
+								var slugBoundB:GameObject = Instantiate(Resources.Load("Prefabs/SlugBound")) as GameObject;
+								slugBoundB.name = "SlugBound";
+								slugBoundB.transform.position = slugBoundBPosition;
+								slugBoundB.transform.parent = level.transform;
+								
+								var slugScript = newGameObject.GetComponent(SlugScript);
+								slugScript.setSlugBoundA(slugBoundA);
+								slugScript.setSlugBoundB(slugBoundB);
+							}
 							
 							if(newGameObject.name == "TutorialObject" && boundingBox != Vector3(9999,9999,9999))
 							{
