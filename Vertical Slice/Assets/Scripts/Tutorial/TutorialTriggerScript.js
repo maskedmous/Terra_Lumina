@@ -163,13 +163,15 @@ public function OnTriggerStay (collider:Collider):void
 
 public function OnTriggerExit (collider:Collider):void
 {
-	label.gameObject.guiText.text = "";
-	
-	if(destroyOnExit)
+	if(collider.name == "Player")
 	{
-		Destroy(this.gameObject);
+		label.gameObject.guiText.text = "";
+		
+		if(destroyOnExit)
+		{
+			Destroy(this.gameObject);
+		}
 	}
-	
 }
 
 //
