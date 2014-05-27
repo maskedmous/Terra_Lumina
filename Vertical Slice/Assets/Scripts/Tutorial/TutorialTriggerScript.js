@@ -18,6 +18,10 @@ public var jumpButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
 public var shootBumpyShroomButtonEnabled	:boolean = false;
 
+
+//alpha GameObject
+public var alphaObject:GameObject = null;
+
 //texture for the tutorial to show
 private var scale:Vector2;
 private var originalWidth	:float = 1920;
@@ -182,6 +186,11 @@ public function setTextInSeconds(value:int):void
 	textInSeconds = value;
 }
 
+public function setAlphaObject(alphaObj:GameObject):void
+{
+	alphaObject = alphaObj;
+}
+
 public function setMovementLeftEnabled(value:boolean):void
 {
 	movementLeftEnabled = value;
@@ -256,6 +265,11 @@ public function getTutorialText():String
 public function getTextInSeconds():int
 {
 	return textInSeconds;
+}
+
+public function getAlphaObject():GameObject
+{
+	return alphaObject;
 }
 
 public function getMovementLeftEnabled():boolean
