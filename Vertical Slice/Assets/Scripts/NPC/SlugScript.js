@@ -37,7 +37,6 @@ function Update ()
 function toFleeState()
 {
 	currentState = fleeState;
-	Debug.Log("toFleeState");
 }
 
 function toMoveState()
@@ -48,13 +47,11 @@ function toMoveState()
 function toWaitState()
 {
 	currentState = waitState;
-	Debug.Log("toWaitState");
 }
 
 function toReturnState() 
 {
 	currentState = returnState;
-	Debug.Log("toReturnState");
 }
 
 function toChaseState() 
