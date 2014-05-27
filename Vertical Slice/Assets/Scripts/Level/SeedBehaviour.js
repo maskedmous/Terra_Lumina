@@ -10,22 +10,35 @@ private var newShroom:GameObject;
 
 public function Update():void
 {
-	grow();
+	//grow();
 }
 
 function OnCollisionEnter(collision:Collision)
 {
-	if (collision.gameObject.name.Contains("GroundPiece"))
+	if (collision.gameObject.name.Contains("GroundPiece") || collision.gameObject.name.Contains("Shroom"))
 	{
-		this.rigidbody.velocity = new Vector3(0, 0, 0);
-		this.rigidbody.isKinematic = true;
-		this.rigidbody.useGravity = false;
+		/*(this.rigidbody.velocity = new Vector3(0, 0, 0);
+		this.rigidbody.isKinematic = false;
+		this.rigidbody.useGravity = true;
 		growing = true;
-		currentScale = startScale;
+		currentScale = startScale;*/
+		if(shroomType != null)
+		{
+			newShroom = Instantiate(shroomType, this.transform.position, Quaternion.identity);
+			newShroom.gameObject.name = "Shroom";
+			newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
+			newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
+			this.gameObject.renderer.enabled = false;
+			Destroy(this.gameObject);
+		}
+		else
+		{
+			Debug.LogError("shroomType is null");
+		}
 	}
 }
 
-private function grow():void
+/*private function grow():void
 {
 	if(growing)
 	{
@@ -47,7 +60,7 @@ private function grow():void
 	}
 }
 
-/*private function grow():void
+private function grow():void
 {
 	if(growing)
 	{
