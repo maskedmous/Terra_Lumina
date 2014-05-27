@@ -180,7 +180,7 @@ private function saveLevel():int
 		var samplesToCompleteNode:XmlElement		= xmlDocument.CreateElement("SamplesToComplete");
 		var speedNode:XmlElement					= xmlDocument.CreateElement("Speed");
 		var maximumAmmoNode:XmlElement				= xmlDocument.CreateElement("MaximumAmmo");
-		var infiniteAmmoNode:XmlElement			= xmlDocument.CreateElement("InfiniteAmmo");
+		var infiniteAmmoNode:XmlElement				= xmlDocument.CreateElement("InfiniteAmmo");
 		var jumpDrainNode:XmlElement				= xmlDocument.CreateElement("JumpDrain");
 		var shootDrainNode:XmlElement				= xmlDocument.CreateElement("ShootDrain");
 		var pickUpDrainNode:XmlElement				= xmlDocument.CreateElement("PickUpDrain");
@@ -233,63 +233,113 @@ private function saveLevel():int
 		for(var _obj in levelObject.transform)
 		{
 			var obj:Transform 			= _obj as Transform;
-			var objectNode:XmlElement 	= xmlDocument.CreateElement("GameObject");
-			levelNode.AppendChild(objectNode);
-			
-			//save prefab name
-			var prefabNode:XmlElement 	= xmlDocument.CreateElement("Prefab");
-			objectNode.AppendChild(prefabNode);
-			prefabNode.InnerText 		= obj.gameObject.name;
-			
-			//save position
-			var positionNode:XmlElement = xmlDocument.CreateElement("Position");
-			objectNode.AppendChild(positionNode);
-			
-			var xNode:XmlElement = xmlDocument.CreateElement("x");
-			var yNode:XmlElement = xmlDocument.CreateElement("y");
-			var zNode:XmlElement = xmlDocument.CreateElement("z");
-			
-			positionNode.AppendChild(xNode);
-			positionNode.AppendChild(yNode);
-			positionNode.AppendChild(zNode);
-			
-			xNode.InnerText = obj.gameObject.transform.position.x.ToString();
-			yNode.InnerText = obj.gameObject.transform.position.y.ToString();
-			zNode.InnerText = obj.gameObject.transform.position.z.ToString();
-			
-			//save the rotation
-			var rotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
-			objectNode.AppendChild(rotationNode);
-			
-			var xRotationNode:XmlElement = xmlDocument.CreateElement("x");
-			var yRotationNode:XmlElement = xmlDocument.CreateElement("y");
-			var zRotationNode:XmlElement = xmlDocument.CreateElement("z");
-			
-			rotationNode.AppendChild(xRotationNode);
-			rotationNode.AppendChild(yRotationNode);
-			rotationNode.AppendChild(zRotationNode);
-			
-			xRotationNode.InnerText = obj.gameObject.transform.eulerAngles.x.ToString();
-			yRotationNode.InnerText = obj.gameObject.transform.eulerAngles.y.ToString();
-			zRotationNode.InnerText = obj.gameObject.transform.eulerAngles.z.ToString();
-			
-			//save the scale
-			var scaleNode:XmlElement = xmlDocument.CreateElement("Scaling");
-			objectNode.AppendChild(scaleNode);
-			
-			var xScaleNode:XmlElement = xmlDocument.CreateElement("x");
-			var yScaleNode:XmlElement = xmlDocument.CreateElement("y");
-			var zScaleNode:XmlElement = xmlDocument.CreateElement("z");
-			
-			scaleNode.AppendChild(xScaleNode);
-			scaleNode.AppendChild(yScaleNode);
-			scaleNode.AppendChild(zScaleNode);
-			
-			xScaleNode.InnerText = obj.gameObject.transform.localScale.x.ToString();
-			yScaleNode.InnerText = obj.gameObject.transform.localScale.y.ToString();
-			zScaleNode.InnerText = obj.gameObject.transform.localScale.z.ToString();
-			
+			if(obj.gameObject.name != "SlugBound")
+			{
+				var objectNode:XmlElement 	= xmlDocument.CreateElement("GameObject");
+				levelNode.AppendChild(objectNode);
+				
+				//save prefab name
+				var prefabNode:XmlElement 	= xmlDocument.CreateElement("Prefab");
+				objectNode.AppendChild(prefabNode);
+				prefabNode.InnerText 		= obj.gameObject.name;
+				
+				//save position
+				var positionNode:XmlElement = xmlDocument.CreateElement("Position");
+				objectNode.AppendChild(positionNode);
+				
+				var xNode:XmlElement = xmlDocument.CreateElement("x");
+				var yNode:XmlElement = xmlDocument.CreateElement("y");
+				var zNode:XmlElement = xmlDocument.CreateElement("z");
+				
+				positionNode.AppendChild(xNode);
+				positionNode.AppendChild(yNode);
+				positionNode.AppendChild(zNode);
+				
+				xNode.InnerText = obj.gameObject.transform.position.x.ToString();
+				yNode.InnerText = obj.gameObject.transform.position.y.ToString();
+				zNode.InnerText = obj.gameObject.transform.position.z.ToString();
+				
+				//save the rotation
+				var rotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
+				objectNode.AppendChild(rotationNode);
+				
+				var xRotationNode:XmlElement = xmlDocument.CreateElement("x");
+				var yRotationNode:XmlElement = xmlDocument.CreateElement("y");
+				var zRotationNode:XmlElement = xmlDocument.CreateElement("z");
+				
+				rotationNode.AppendChild(xRotationNode);
+				rotationNode.AppendChild(yRotationNode);
+				rotationNode.AppendChild(zRotationNode);
+				
+				xRotationNode.InnerText = obj.gameObject.transform.eulerAngles.x.ToString();
+				yRotationNode.InnerText = obj.gameObject.transform.eulerAngles.y.ToString();
+				zRotationNode.InnerText = obj.gameObject.transform.eulerAngles.z.ToString();
+				
+				//save the scale
+				var scaleNode:XmlElement = xmlDocument.CreateElement("Scaling");
+				objectNode.AppendChild(scaleNode);
+				
+				var xScaleNode:XmlElement = xmlDocument.CreateElement("x");
+				var yScaleNode:XmlElement = xmlDocument.CreateElement("y");
+				var zScaleNode:XmlElement = xmlDocument.CreateElement("z");
+				
+				scaleNode.AppendChild(xScaleNode);
+				scaleNode.AppendChild(yScaleNode);
+				scaleNode.AppendChild(zScaleNode);
+				
+				xScaleNode.InnerText = obj.gameObject.transform.localScale.x.ToString();
+				yScaleNode.InnerText = obj.gameObject.transform.localScale.y.ToString();
+				zScaleNode.InnerText = obj.gameObject.transform.localScale.z.ToString();
+			}
 			//special nodes
+			if(obj.gameObject.name == "Slug")
+			{
+				var slugScript:SlugScript = obj.gameObject.GetComponent(SlugScript);
+				var slugBoundA:GameObject = slugScript.getSlugBoundA();
+				var slugBoundB:GameObject = slugScript.getSlugBoundB();
+				
+				if(slugBoundA == null || slugBoundB == null)
+				{
+					Debug.LogError("Slugbound is null!");
+					return -1;
+				}
+				
+				var slugNode:XmlElement = xmlDocument.CreateElement("Slug");
+				objectNode.AppendChild(slugNode);
+				
+				//BoundA
+				var slugBoundANode:XmlElement 	= xmlDocument.CreateElement("SlugBoundA");
+				slugNode.AppendChild(slugBoundANode);
+				
+				var slugBoundAxNode:XmlElement = xmlDocument.CreateElement("x");
+				var slugBoundAyNode:XmlElement = xmlDocument.CreateElement("y");
+				var slugBoundAzNode:XmlElement = xmlDocument.CreateElement("z");
+				
+				slugBoundANode.AppendChild(slugBoundAxNode);
+				slugBoundANode.AppendChild(slugBoundAyNode);
+				slugBoundANode.AppendChild(slugBoundAzNode);
+				
+				slugBoundAxNode.InnerText = slugBoundA.transform.position.x.ToString();
+				slugBoundAyNode.InnerText = slugBoundA.transform.position.y.ToString();
+				slugBoundAzNode.InnerText = slugBoundA.transform.position.z.ToString();
+				
+				//BoundB
+				var slugBoundBNode:XmlElement 	= xmlDocument.CreateElement("SlugBoundB");
+				slugNode.AppendChild(slugBoundBNode);
+				
+				var slugBoundBxNode:XmlElement = xmlDocument.CreateElement("x");
+				var slugBoundByNode:XmlElement = xmlDocument.CreateElement("y");
+				var slugBoundBzNode:XmlElement = xmlDocument.CreateElement("z");
+				
+				slugBoundBNode.AppendChild(slugBoundBxNode);
+				slugBoundBNode.AppendChild(slugBoundByNode);
+				slugBoundBNode.AppendChild(slugBoundBzNode);
+				
+				slugBoundBxNode.InnerText = slugBoundB.transform.position.x.ToString();
+				slugBoundByNode.InnerText = slugBoundB.transform.position.y.ToString();
+				slugBoundBzNode.InnerText = slugBoundB.transform.position.z.ToString();
+			}
+			
 			//only if it is a tutorial object
 			if(obj.gameObject.name == "TutorialObject")
 			{
@@ -311,6 +361,53 @@ private function saveLevel():int
 				var triggerStringSecondsNode:XmlElement = xmlDocument.CreateElement("Timer");
 				tutorialNode.AppendChild(triggerStringSecondsNode);
 				triggerStringSecondsNode.InnerText = triggerScript.getTextInSeconds().ToString();
+				
+//				//Alpha Object
+//				var alphaObject:GameObject = triggerScript.getAlphaObject();
+//				
+//				if(alphaObject != null)
+//				{
+//					//main alphaobject node
+//					var alphaObjectNode:XmlElement = xmlDocument.CreateElement("AlphaObject");
+//					tutorialNode.AppendChild(alphaObjectNode);
+//					
+//					//prefab name
+//					var alphaPrefabNode:XmlElement = xmlDocument.CreateElement("Prefab");
+//					alphaObjectNode.AppendChild(alphaPrefabNode);
+//					alphaPrefabNode.InnerText = alphaObject.name;
+//					
+//					//position
+//					var alphaObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+//					alphaPrefabNode.AppendChild(alphaObjectPositionNode);
+//					
+//					var alphaObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
+//					var alphaObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
+//					var alphaObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
+//					
+//					alphaObjectPositionNode.AppendChild(alphaObjectXPositionNode);
+//					alphaObjectPositionNode.AppendChild(alphaObjectYPositionNode);
+//					alphaObjectPositionNode.AppendChild(alphaObjectZPositionNode);
+//					
+//					alphaObjectXPositionNode.InnerText = alphaObject.transform.position.x.ToString();
+//					alphaObjectYPositionNode.InnerText = alphaObject.transform.position.y.ToString();
+//					alphaObjectZPositionNode.InnerText = alphaObject.transform.position.z.ToString();
+//					
+//					//rotation
+//					var alphaObjectRotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
+//					alphaPrefabNode.AppendChild(alphaObjectRotationNode);
+//					
+//					var alphaObjectXRotationNode:XmlElement = xmlDocument.CreateElement("x");
+//					var alphaObjectYRotationNode:XmlElement = xmlDocument.CreateElement("y");
+//					var alphaObjectZRotationNode:XmlElement = xmlDocument.CreateElement("z");
+//					
+//					alphaObjectPositionNode.AppendChild(alphaObjectXRotationNode);
+//					alphaObjectPositionNode.AppendChild(alphaObjectYRotationNode);
+//					alphaObjectPositionNode.AppendChild(alphaObjectZRotationNode);
+//					
+//					alphaObjectXRotationNode.InnerText = alphaObject.transform.rotation.x.ToString();
+//					alphaObjectYRotationNode.InnerText = alphaObject.transform.rotation.y.ToString();
+//					alphaObjectZRotationNode.InnerText = alphaObject.transform.rotation.z.ToString();   
+//				}
 				
 				//button booleans
 				var buttonsEnabledNode:XmlElement = xmlDocument.CreateElement("ButtonsEnabled");
