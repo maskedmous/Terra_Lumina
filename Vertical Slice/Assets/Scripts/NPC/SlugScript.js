@@ -1,4 +1,4 @@
-﻿#pragma strict
+#pragma strict
 
 private var currentState:State;
 private var fleeState:FleeState;
@@ -8,8 +8,10 @@ private var chaseState:ChaseState;
 private var returnState:ReturnState;
 
 private var startPosition:Vector3;
+public var slugBoundA:GameObject;
+public var slugBoundB:GameObject;
 
-private var difficulty:String;
+public var difficulty:String;
 
 function Awake()
 {
@@ -35,6 +37,7 @@ function Update ()
 function toFleeState()
 {
 	currentState = fleeState;
+	Debug.Log("toFleeState");
 }
 
 function toMoveState()
@@ -45,11 +48,13 @@ function toMoveState()
 function toWaitState()
 {
 	currentState = waitState;
+	Debug.Log("toWaitState");
 }
 
 function toReturnState() 
 {
 	currentState = returnState;
+	Debug.Log("toReturnState");
 }
 
 function toChaseState() 
@@ -62,12 +67,27 @@ function getDifficulty():String
 	return difficulty;
 }
 
-function setDifficulty(dif:String) 
+public function getSlugBoundA():GameObject
 {
-	difficulty = dif;
+	return slugBoundA;
 }
 
-function getStart()
+public function setSlugBoundA(boundA:GameObject)
+{
+	slugBoundA = boundA;
+}
+
+public function getSlugBoundB():GameObject
+{
+	return slugBoundB;
+}
+
+public function setSlugBoundB(boundB:GameObject)
+{
+	slugBoundB = boundB;
+}
+
+public function getStart():Vector3
 {
 	return startPosition;
 }
