@@ -5,7 +5,7 @@ import TouchScript;
 private var player:GameObject = null;
 private var playerController:PlayerController = null;
 
-//private var chargingJump:boolean = false;
+private var shootTimer:float = 0.0f;
 private var chargingShot:boolean = false;
 
 private var endLevelTriggerObject:GameObject 	= null;
@@ -65,6 +65,8 @@ function Update ()
 		playerController.stopMovement();
 		playerController.stopControl();
 	}
+	
+	if (shootTimer > -30.0f) shootTimer -= Time.deltaTime;
 }
 
 public function OnGUI() {
@@ -95,11 +97,18 @@ public function OnGUI() {
 				if (GUI.Button(normalShroomButtonRect, "", guiStyle))
 				{
 					playerController.setShroom(0);
-					if (!chargingShot) chargingShot = true;
+					if (shootTimer < 0.1f) {	
+						if (!chargingShot) chargingShot = true;
+						else {
+							playerController.shoot();
+							chargingShot = false;
+							shootTimer = 2.0f;
+							//playerController.resetShot();
+						}
+					}
 					else {
-						playerController.shoot();
-						chargingShot = false;
-						//playerController.resetShot();
+					//feedback that you cant shoot right now (wait for cooldown)
+					Debug.Log("Wait for cooldown you idiot.");
 					}
 				}
 			}
@@ -109,11 +118,18 @@ public function OnGUI() {
 				if (GUI.Button(bumpyShroomButtonRect, "", guiStyle))
 				{
 					playerController.setShroom(1);
-					if (!chargingShot) chargingShot = true;
+					if (shootTimer < 0.1f) {	
+						if (!chargingShot) chargingShot = true;
+						else {
+							playerController.shoot();
+							chargingShot = false;
+							shootTimer = 2.0f;
+							//playerController.resetShot();
+						}
+					}
 					else {
-						playerController.shoot();
-						chargingShot = false;
-						//playerController.resetShot();
+					//feedback that you cant shoot right now blablabla
+					Debug.Log("Wait for cooldown you idiot.");
 					}
 				}
 			}
