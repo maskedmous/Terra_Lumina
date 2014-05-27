@@ -362,52 +362,70 @@ private function saveLevel():int
 				tutorialNode.AppendChild(triggerStringSecondsNode);
 				triggerStringSecondsNode.InnerText = triggerScript.getTextInSeconds().ToString();
 				
-//				//Alpha Object
-//				var alphaObject:GameObject = triggerScript.getAlphaObject();
-//				
-//				if(alphaObject != null)
-//				{
-//					//main alphaobject node
-//					var alphaObjectNode:XmlElement = xmlDocument.CreateElement("AlphaObject");
-//					tutorialNode.AppendChild(alphaObjectNode);
-//					
-//					//prefab name
-//					var alphaPrefabNode:XmlElement = xmlDocument.CreateElement("Prefab");
-//					alphaObjectNode.AppendChild(alphaPrefabNode);
-//					alphaPrefabNode.InnerText = alphaObject.name;
-//					
-//					//position
-//					var alphaObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
-//					alphaPrefabNode.AppendChild(alphaObjectPositionNode);
-//					
-//					var alphaObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
-//					var alphaObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
-//					var alphaObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
-//					
-//					alphaObjectPositionNode.AppendChild(alphaObjectXPositionNode);
-//					alphaObjectPositionNode.AppendChild(alphaObjectYPositionNode);
-//					alphaObjectPositionNode.AppendChild(alphaObjectZPositionNode);
-//					
-//					alphaObjectXPositionNode.InnerText = alphaObject.transform.position.x.ToString();
-//					alphaObjectYPositionNode.InnerText = alphaObject.transform.position.y.ToString();
-//					alphaObjectZPositionNode.InnerText = alphaObject.transform.position.z.ToString();
-//					
-//					//rotation
-//					var alphaObjectRotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
-//					alphaPrefabNode.AppendChild(alphaObjectRotationNode);
-//					
-//					var alphaObjectXRotationNode:XmlElement = xmlDocument.CreateElement("x");
-//					var alphaObjectYRotationNode:XmlElement = xmlDocument.CreateElement("y");
-//					var alphaObjectZRotationNode:XmlElement = xmlDocument.CreateElement("z");
-//					
-//					alphaObjectPositionNode.AppendChild(alphaObjectXRotationNode);
-//					alphaObjectPositionNode.AppendChild(alphaObjectYRotationNode);
-//					alphaObjectPositionNode.AppendChild(alphaObjectZRotationNode);
-//					
-//					alphaObjectXRotationNode.InnerText = alphaObject.transform.rotation.x.ToString();
-//					alphaObjectYRotationNode.InnerText = alphaObject.transform.rotation.y.ToString();
-//					alphaObjectZRotationNode.InnerText = alphaObject.transform.rotation.z.ToString();   
-//				}
+				//Alpha Object
+				var alphaObject:GameObject = triggerScript.getAlphaObject();
+				
+				if(alphaObject != null)
+				{
+					//main alphaobject node
+					var alphaObjectNode:XmlElement = xmlDocument.CreateElement("AlphaObject");
+					tutorialNode.AppendChild(alphaObjectNode);
+					
+					//prefab name
+					var alphaPrefabNode:XmlElement = xmlDocument.CreateElement("Prefab");
+					alphaObjectNode.AppendChild(alphaPrefabNode);
+					alphaPrefabNode.InnerText = alphaObject.name;
+					
+					//position
+					var alphaObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+					alphaObjectNode.AppendChild(alphaObjectPositionNode);
+					
+					var alphaObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
+					var alphaObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
+					var alphaObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
+					
+					alphaObjectPositionNode.AppendChild(alphaObjectXPositionNode);
+					alphaObjectPositionNode.AppendChild(alphaObjectYPositionNode);
+					alphaObjectPositionNode.AppendChild(alphaObjectZPositionNode);
+					
+					alphaObjectXPositionNode.InnerText = alphaObject.transform.position.x.ToString();
+					alphaObjectYPositionNode.InnerText = alphaObject.transform.position.y.ToString();
+					alphaObjectZPositionNode.InnerText = alphaObject.transform.position.z.ToString();
+					
+					//rotation
+					var alphaObjectRotationNode:XmlElement = xmlDocument.CreateElement("Rotation");
+					alphaObjectNode.AppendChild(alphaObjectRotationNode);
+					
+					var alphaObjectXRotationNode:XmlElement = xmlDocument.CreateElement("x");
+					var alphaObjectYRotationNode:XmlElement = xmlDocument.CreateElement("y");
+					var alphaObjectZRotationNode:XmlElement = xmlDocument.CreateElement("z");
+					
+					alphaObjectRotationNode.AppendChild(alphaObjectXRotationNode);
+					alphaObjectRotationNode.AppendChild(alphaObjectYRotationNode);
+					alphaObjectRotationNode.AppendChild(alphaObjectZRotationNode);
+					
+					alphaObjectXRotationNode.InnerText = alphaObject.transform.eulerAngles.x.ToString();
+					alphaObjectYRotationNode.InnerText = alphaObject.transform.eulerAngles.y.ToString();
+					alphaObjectZRotationNode.InnerText = alphaObject.transform.eulerAngles.z.ToString(); 
+					
+									
+					//save the scale
+					var alphaObjectScaleNode:XmlElement = xmlDocument.CreateElement("Scaling");
+					alphaObjectNode.AppendChild(alphaObjectScaleNode);
+					
+					var alphaObjectScaleXNode:XmlElement = xmlDocument.CreateElement("x");
+					var alphaObjectScaleYNode:XmlElement = xmlDocument.CreateElement("y");
+					var alphaObjectScaleZNode:XmlElement = xmlDocument.CreateElement("z");
+					
+					alphaObjectScaleNode.AppendChild(alphaObjectScaleXNode);
+					alphaObjectScaleNode.AppendChild(alphaObjectScaleYNode);
+					alphaObjectScaleNode.AppendChild(alphaObjectScaleZNode);
+					
+					alphaObjectScaleXNode.InnerText = alphaObject.transform.localScale.x.ToString();
+					alphaObjectScaleYNode.InnerText = alphaObject.transform.localScale.y.ToString();
+					alphaObjectScaleZNode.InnerText = alphaObject.transform.localScale.z.ToString();
+					    
+				}
 				
 				//button booleans
 				var buttonsEnabledNode:XmlElement = xmlDocument.CreateElement("ButtonsEnabled");

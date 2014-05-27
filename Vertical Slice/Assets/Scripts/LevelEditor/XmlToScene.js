@@ -191,6 +191,12 @@ public function loadLevel()
 					var tutorialTriggerString	:String 	= "";
 					var boundingBox				:Vector3 	= new Vector3(9999,9999,9999);
 					var tutorialTextTimer		:int 		= -1;
+					
+					var alphaObjectPrefabName	:String		= "";
+					var alphaObjectPosition		:Vector3	= new Vector3(9999,9999,9999);
+					var alphaObjectRotation		:Vector3	= new Vector3(9999,9999,9999);
+					var alphaObjectScaling		:Vector3	= new Vector3(9999,9999,9999);
+					
 					var movementLeftEnabled		:boolean	= true;
 					var movementRightEnabled	:boolean	= true;
 					var jumpButtonEnabled		:boolean	= true;
@@ -342,6 +348,51 @@ public function loadLevel()
 								if(tutorialNodeStats.Name == "Timer")
 								{
 									tutorialTextTimer = int.Parse(tutorialNodeStats.InnerText);
+								}
+								if(tutorialNodeStats.Name == "AlphaObject")
+								{
+									var alphaObjectStatsNodes:XmlNodeList = tutorialNodeStats.ChildNodes;
+									
+									for each(var _alphaObjectStats in alphaObjectStatsNodes)
+									{
+										var alphaObjectStats:XmlNode = _alphaObjectStats as XmlNode;
+										
+										if(alphaObjectStats.Name == "Prefab")
+										{
+											alphaObjectPrefabName = alphaObjectStats.InnerText;
+										}
+										if(alphaObjectStats.Name == "Position")
+										{
+											for each(var _alphaObjectPositionNodes in alphaObjectStats.ChildNodes)
+											{
+												var alphaObjectPositionNodes:XmlNode = _alphaObjectPositionNodes as XmlNode;
+												
+												if(alphaObjectPositionNodes.Name == "x") alphaObjectPosition.x = float.Parse(alphaObjectPositionNodes.InnerText);
+												if(alphaObjectPositionNodes.Name == "y") alphaObjectPosition.y = float.Parse(alphaObjectPositionNodes.InnerText);
+												if(alphaObjectPositionNodes.Name == "z") alphaObjectPosition.z = float.Parse(alphaObjectPositionNodes.InnerText);
+											}
+										}
+										if(alphaObjectStats.Name == "Rotation")
+										{
+											for each(var _alphaObjectRotationNodes in alphaObjectStats.ChildNodes)
+											{
+												var alphaObjectRotationNodes:XmlNode = _alphaObjectRotationNodes as XmlNode;
+												if(alphaObjectRotationNodes.Name == "x") alphaObjectRotation.x = float.Parse(alphaObjectRotationNodes.InnerText);
+												if(alphaObjectRotationNodes.Name == "y") alphaObjectRotation.y = float.Parse(alphaObjectRotationNodes.InnerText);
+												if(alphaObjectRotationNodes.Name == "z") alphaObjectRotation.z = float.Parse(alphaObjectRotationNodes.InnerText);
+											}
+										}
+										if(alphaObjectStats.Name == "Scaling")
+										{
+											for each(var _alphaObjectScalingNodes in alphaObjectStats.ChildNodes)
+											{
+												var alphaObjectScalingNodes:XmlNode = _alphaObjectScalingNodes as XmlNode;
+												if(alphaObjectScalingNodes.Name == "x") alphaObjectScaling.x = float.Parse(alphaObjectScalingNodes.InnerText);
+												if(alphaObjectScalingNodes.Name == "y") alphaObjectScaling.y = float.Parse(alphaObjectScalingNodes.InnerText);
+												if(alphaObjectScalingNodes.Name == "z") alphaObjectScaling.z = float.Parse(alphaObjectScalingNodes.InnerText);
+											}
+										}
+									}
 								}
 								if(tutorialNodeStats.Name == "ButtonsEnabled")
 								{
@@ -501,6 +552,23 @@ public function loadLevel()
 								triggerScript.setTutorialText(tutorialTriggerString);
 								//set timer
 								triggerScript.setTextInSeconds(tutorialTextTimer);
+								
+								//alpha object
+								if(alphaObjectPrefabName != "" && alphaObjectPosition != Vector3(9999,9999,9999) && alphaObjectRotation != Vector3(9999,9999,9999) && alphaObjectScaling != Vector3(9999,9999,9999))
+								{
+									var alphaObject:GameObject = Instantiate(Resources.Load("Prefabs/" + alphaObjectPrefabName)) as GameObject;
+									if(alphaObject != null)
+									{
+										alphaObject.name = alphaObjectPrefabName;
+										alphaObject.transform.parent = newGameObject.transform;
+										
+										alphaObject.transform.position = alphaObjectPosition;
+										alphaObject.transform.eulerAngles = alphaObjectRotation;
+										alphaObject.transform.localScale = alphaObjectScaling;
+									}
+									else Debug.LogError("Couldn't find alphaobject prefab!");
+								}
+								
 								//set button booleans
 								triggerScript.setMovementLeftEnabled(movementLeftEnabled);
 								triggerScript.setMovementRightEnabled(movementRightEnabled);
