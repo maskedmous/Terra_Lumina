@@ -166,6 +166,8 @@ function readTouch()
 	for each(var touch in TouchManager.Instance.ActiveTouches)
 	{
 		var position:Vector2 = touch.Position;
+		sendRay(position);
+		
 		position = Vector2(position.x, (position.y - Screen.height)*-1);
 		
 		if(!isTouchingButton(position))
@@ -183,6 +185,17 @@ function readTouch()
 				playerController.resetShot();
 			}
 		}
+		//sendRay(position);
+	}
+}
+
+private function sendRay(position:Vector2) {
+	var ray:Ray = Camera.main.ScreenPointToRay(position);
+	var hit:RaycastHit;
+	var layerMask:int = 1 << 8;
+	layerMask = ~layerMask;
+	if (Physics.Raycast(Camera.main.ScreenPointToRay(position), hit, 100.0f, layerMask)) {
+		if (hit.collider.gameObject.name == "Player") playerController.flash();
 	}
 }
 
@@ -204,10 +217,10 @@ private function isTouchingButton(inputXY:Vector2):boolean
 	return false;
 }
 
-function OnMouseDown()
+/*function OnMouseDown()
 {
 	if (!chargingShot) playerController.flash();
-}
+}*/
 
 public function setMovementLeftEnabled(value:boolean):void
 {

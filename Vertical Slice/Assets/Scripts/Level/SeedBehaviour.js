@@ -38,44 +38,6 @@ function OnCollisionEnter(collision:Collision)
 	}
 }
 
-/*private function grow():void
-{
-	if(growing)
-	{
-		if(currentScale == startScale)
-		{
-			replaceWithShroom();
-			currentScale += improveScale;
-		}
-		else
-		{
-			currentScale += improveScale;
-		}
-		if(currentScale >= 1.0){
-			growing = false;
-			Destroy(this.gameObject);
-		}
-		//newShroom.gameObject.transform.scale = currentScale;
-		newShroom.gameObject.transform.localScale = Vector3(currentScale, currentScale, currentScale);
-	}
-}
-
-private function grow():void
-{
-	if(growing)
-	{
-		if(growTime <= 0)
-		{
-			replaceWithShroom();
-			growTime = 3;
-		}
-		else
-		{
-			growTime -= Time.deltaTime;
-		}
-	}
-}*/
-
 function replaceWithShroom():void
 {
 	if(shroomType != null)
@@ -85,7 +47,6 @@ function replaceWithShroom():void
 		newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
 		newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
 		this.gameObject.renderer.enabled = false;
-		//Destroy(this.gameObject);
 	}
 	else
 	{
