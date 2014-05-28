@@ -25,7 +25,7 @@ private var v:float  = 0;
 private var vx:float = 0;
 private var vy:float = 0;
 
-private var isJumping:boolean = true;
+private var isJumping:boolean = false;
 private var initializeJumping:boolean = false;
 private var jumpForce:float = 7.0;
 
@@ -43,9 +43,6 @@ public var flashlight:GameObject;
 private var flashBool:boolean;
 private var counter:float;
 
-private var speed:float;
-private var jumpDrain:float;
-
 private var control:boolean = true;
 
 function Awake() {
@@ -61,9 +58,6 @@ function Start() {
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
 	g = -Physics.gravity.y;
-	
-	speed = gameLogicScript.getSpeed();
-	jumpDrain = gameLogicScript.getJumpDrain();
 	
 	rigidbody.centerOfMass = new Vector3(-0.2f, -0.25f, 0.0f);
 }
@@ -84,6 +78,8 @@ function Update()
 			}
 		}
 	}
+	
+	Debug.Log(isJumping);
 }
 
 public function stopMovement()
@@ -98,9 +94,34 @@ public function stopControl()
 
 function movement()
 {
+	var hitFound:boolean = false;
 	var hitDown:RaycastHit;
+	var wheels:List.<GameObject> = new List.<GameObject>();
+	var layerMask:int = 1 << 8;
+	layerMask = ~layerMask;
 	
-	if (Physics.Raycast(this.gameObject.transform.position, new Vector3(0, -1, 0), hitDown, 1)) {	
+	wheels.Add(this.gameObject.transform.FindChild("Wheel1").gameObject);
+	wheels.Add(this.gameObject.transform.FindChild("Wheel2").gameObject);
+	wheels.Add(this.gameObject.transform.FindChild("Wheel3").gameObject);
+	wheels.Add(this.gameObject.transform.FindChild("Wheel4").gameObject);
+	
+	if (isJumping && this.gameObject.rigidbody.velocity.y < 0) {
+		for (var i:uint = 0; i < wheels.Count; ++i) {
+			if (Physics.Raycast(wheels[i].transform.position, Vector3.down, hitDown, 0.3f, layerMask)) {
+				if (hitDown.collider.name != "Light") {	
+					hitFound = true;
+					break;
+				}
+			}
+		}
+	}
+	
+	if (hitFound) {
+		isJumping = false;
+		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
+	}
+	
+	/*if (Physics.Raycast(this.gameObject.transform.position, new Vector3(0, -1, 0), hitDown, 1)) {	
 		if (hitDown.collider.name == "Light"){
 			isJumping = true;
 		}
@@ -112,8 +133,9 @@ function movement()
 	else {
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-	}
+	}*/
 	
+	//making sure rover does not rotate beyond 45 degrees from original rotation
 	var cRot = this.gameObject.transform.rotation.eulerAngles.z;
 	if (cRot > 45 && cRot < 180) this.gameObject.transform.rotation.eulerAngles.z = 45;
 	if (cRot > 180 && cRot < 315) this.gameObject.transform.rotation.eulerAngles.z = 315;
@@ -159,15 +181,11 @@ public function brake():void
 
 public function jump() {
 	if (!isJumping) {
+		Debug.Log("jump called");
 		this.gameObject.rigidbody.velocity.y = jumpForce;
 		jumpForce = 7.0f;
 		isJumping = true;
-		this.gameObject.rigidbody.freezeRotation = true;
-		
-		x8 = 0;
-		v = 0;
-		yield WaitForSeconds(1.5f);
-		lineRenderer.enabled = false;
+		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 	}
 }
 
