@@ -212,6 +212,8 @@ private function fillLevelArray():void
 			//create new level
 			if(newLevelID == true)
 			{
+				//new level ID add to levelIDs
+				levelIDs.push(levelID);
 				//creating a new level
 				var newLevel:Level = new Level();
 				//setting the ID
@@ -234,9 +236,23 @@ private function fillLevelArray():void
 		}
 	}
 	
+	sortByLevelID();
+	
 	if(levelErrors > 0)
 	{
 		Debug.LogError("Level errors occured: " + levelErrors);
+	}
+}
+
+private function sortByLevelID()
+{
+	levelIDs.sort();
+	
+	var sortedArray:Array = new Array();
+	
+	for(var i:int = 0; i < levelIDs.length; ++i)
+	{
+		sortedArray.push(getLevelByID(levelIDs[i]));
 	}
 }
 
