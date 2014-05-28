@@ -17,6 +17,7 @@ function Update(){
 		}
 		if(counter <= 0.0){
 			this.gameObject.renderer.enabled = true;
+			this.gameObject.collider.enabled = true;
 			canHit = true;
 		}
 	}
@@ -28,6 +29,7 @@ function OnTriggerEnter( object: Collider){
 		{
 			object.gameObject.GetComponent(PlayerController).addAmmo(extraSeeds);
 			this.gameObject.renderer.enabled = false;
+			this.gameObject.collider.enabled = false;
 			counter = 20.0f;
 			canHit = false;
 		}
