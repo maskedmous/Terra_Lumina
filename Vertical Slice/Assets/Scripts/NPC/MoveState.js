@@ -18,13 +18,34 @@ class MoveState extends State {
 	function update () {
 		parent.rigidbody.velocity.x = speed * Time.deltaTime;
 		
-		/*if (difficulty == "Hard") {
+		if (difficulty == "Hard") {
 		
-			var rayStart:Vector3 = parent.transform.position + new Vector3(0.0f, 0.25f, 0.0f);
+			var rayStart:Vector3 = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
 			var vectorDirection:Vector3 = Vector3.zero;
 			var hitSide:RaycastHit;
+			var playerPos:Vector3 = target.transform.position;
+			var distanceToPlayer = Vector3.Distance(parent.transform.position, playerPos);
 			
-			if (direction == "Right") vectorDirection = Vector3.right;
+			if (Mathf.Abs(parent.transform.position.y - playerPos.y) < 1.0f) {
+				if (rayStart.x > playerPos.x) {
+					if (Physics.Raycast(rayStart, Vector3.left, hitSide, Mathf.Infinity, layerMask)) {
+						Debug.Log(hitSide.collider.gameObject.name);
+						if (hitSide.collider.name == "Player" || hitSide.distance > distanceToPlayer) {	
+							parentScript.toChaseState();
+						}
+					}
+				}
+				else {
+					if (Physics.Raycast(rayStart, Vector3.right, hitSide, Mathf.Infinity, layerMask)) {
+						Debug.Log(hitSide.collider.gameObject.name);
+						if (hitSide.collider.name == "Player" || hitSide.distance > distanceToPlayer) {	
+							parentScript.toChaseState();
+						}
+					}
+				}
+			}
+			
+			/*if (direction == "Right") vectorDirection = Vector3.right;
 			else vectorDirection = Vector3.left;
 			if (Physics.Raycast(rayStart, vectorDirection, hitSide, Mathf.Infinity, layerMask)) {
 				if (hitSide.collider.gameObject.name == "Player") {
@@ -32,8 +53,8 @@ class MoveState extends State {
 					parentScript.toChaseState();
 				}
 				Debug.Log(hitSide.collider.gameObject.name);
-			}
-		}*/
+			}*/
+		}
 	}
 	
 	function OnTriggerEnter(collider:Collider) {

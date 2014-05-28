@@ -10,11 +10,10 @@ class ReturnState extends State {
 
 	function update () {
 		var parentPosition:Vector3 = parent.transform.position;
-		if (parentPosition.x < startPosition.x) speed = 200.0f;
-		else if (parentPosition.x > startPosition.x) speed = -200.0f;
+		if (parentPosition.x < startPosition.x) speed = 70.0f;
+		else if (parentPosition.x > startPosition.x) speed = -70.0f;
 		parent.rigidbody.velocity.x = Time.deltaTime * speed;
 		if (Vector3.Distance(parentPosition, startPosition) < 1) {
-			Debug.Log("toMoveState");
 			parentScript.toMoveState();
 		}
 	}
