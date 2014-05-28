@@ -4,6 +4,8 @@ import TouchScript;
 
 private var player:GameObject = null;
 private var playerController:PlayerController = null;
+private var gameLogicObject:GameObject;
+private var gameLogicScript:GameLogic;
 
 private var shootTimer:float = 0.0f;
 private var chargingShot:boolean = false;
@@ -43,6 +45,8 @@ private var scale			:Vector3;
 public function Awake():void
 {
 	playerController = this.gameObject.GetComponent("PlayerController") as PlayerController;
+	gameLogicObject = GameObject.Find("GameLogic") as GameObject;
+	gameLogicScript = gameLogicObject.GetComponent(GameLogic) as GameLogic;
 }
 
 function Update ()
@@ -86,6 +90,7 @@ public function OnGUI() {
 				if (GUI.Button(jumpButtonRect, "", guiStyle))
 				{
 					playerController.jump();
+					gameLogicScript.decreaseBatteryBy(5.0f);
 					chargingShot = false;
 					playerController.resetShot();
 				}
@@ -195,7 +200,10 @@ private function sendRay(position:Vector2) {
 	var layerMask:int = 1 << 8;
 	layerMask = ~layerMask;
 	if (Physics.Raycast(Camera.main.ScreenPointToRay(position), hit, 100.0f, layerMask)) {
-		if (hit.collider.gameObject.name == "Player") playerController.flash();
+		if (hit.collider.gameObject.name == "Player") {
+			playerController.flash();
+			gameLogicScript.decreaseBatteryBy(5.0f);
+		}
 	}
 }
 

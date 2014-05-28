@@ -111,6 +111,10 @@ function decreaseBattery()
 	}
 }
 
+public function decreaseBatteryBy(value:float):void {
+	battery -= value;
+}
+
 function addBatteryPower()
 {
 	if(battery < maximumBatteryCapacity)
@@ -242,7 +246,7 @@ function getBattery():float
 	return battery;
 }
 
-function setBattery(value:float):void
+public function setBattery(value:float):void
 {
 	battery = value;
 }

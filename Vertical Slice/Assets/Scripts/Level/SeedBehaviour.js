@@ -15,25 +15,20 @@ public function Update():void
 
 function OnCollisionEnter(collision:Collision)
 {
-	if (collision.gameObject.name.Contains("GroundPiece") || collision.gameObject.name.Contains("Shroom"))
+	if (collision.gameObject.name.Contains("GroundPiece"))
 	{
-		/*(this.rigidbody.velocity = new Vector3(0, 0, 0);
-		this.rigidbody.isKinematic = false;
-		this.rigidbody.useGravity = true;
-		growing = true;
-		currentScale = startScale;*/
-		if(shroomType != null)
+		if(shroomType != null && newShroom == null)
 		{
+			Debug.Log(newShroom);
 			newShroom = Instantiate(shroomType, this.transform.position, Quaternion.identity);
 			newShroom.gameObject.name = "Shroom";
 			newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
 			newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
-			this.gameObject.renderer.enabled = false;
 			Destroy(this.gameObject);
 		}
 		else
 		{
-			Debug.LogError("shroomType is null");
+			Debug.LogError("shroomType is null or other shroom has already been created by this seed");
 		}
 	}
 }
