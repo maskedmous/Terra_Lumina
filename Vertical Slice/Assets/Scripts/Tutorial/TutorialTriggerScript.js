@@ -54,6 +54,7 @@ public var timerTexB		:float		= -1;
 
 //destroy this tutorial object on exit
 public var destroyOnExit:boolean = false;
+public var destroyOnCompletion:boolean = false;
 
 public function Awake():void
 {
@@ -70,6 +71,7 @@ public function Start ():void
 		Debug.LogError("Not initialized properly");
 	}
 }
+
 
 private function scaleButtons():void
 {
@@ -176,7 +178,7 @@ public function OnTriggerStay (collider:Collider):void
 		{
 			if(gameLogic.getBattery() == gameLogic.getBatteryCapacity())
 			{
-				playAnimation(blockObject);
+				playAnimation();
 				lightTutorial = false;			//completed objective
 			}
 		}
@@ -184,7 +186,7 @@ public function OnTriggerStay (collider:Collider):void
 		{
 			if(gameLogic.getPlantSampleCount() > 0)
 			{
-				playAnimation(blockObject);
+				playAnimation();
 				crystalTutorial = false;
 			}
 		}
@@ -192,7 +194,7 @@ public function OnTriggerStay (collider:Collider):void
 		{
 			if(slugObject.GetComponent(SlugScript).getCurrentState() == WaitState)
 			{
-				playAnimation(blockObject);
+				playAnimation();
 				slugTutorial = false;
 			}
 		}
@@ -204,6 +206,7 @@ public function OnTriggerExit (collider:Collider):void
 	if(collider.name == "Player")
 	{
 		label.gameObject.guiText.text = "";
+		showTutorialTextures = false;
 		
 		if(destroyOnExit)
 		{
@@ -212,12 +215,20 @@ public function OnTriggerExit (collider:Collider):void
 	}
 }
 
-private function playAnimation(animatedObject:GameObject):void
+private function playAnimation():IEnumerator
 {
-	if(animatedObject != null)
+	if(blockObject != null)
 	{
-		var animation:Animator = animatedObject.GetComponent(Animator);
-		animation.Play(0);
+		var animation:Animation = blockObject.GetComponent(Animation);
+		animation.Play();
+		
+		yield WaitForSeconds(animation.GetClip("Take 001").length);
+		Destroy(blockObject);
+		
+		if(destroyOnCompletion)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 }
 

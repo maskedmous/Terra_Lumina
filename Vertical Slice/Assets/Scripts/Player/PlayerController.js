@@ -78,8 +78,6 @@ function Update()
 			}
 		}
 	}
-	
-	Debug.Log(isJumping);
 }
 
 public function stopMovement()
