@@ -191,7 +191,7 @@ public function OnTriggerStay (collider:Collider):void
 		}
 		else if(slugTutorial)
 		{
-			if(slugObject.GetComponent(SlugScript).getCurrentState() == WaitState)
+			if(slugObject.GetComponent(SlugScript).isWaitState())
 			{
 				playAnimation();
 				slugTutorial = false;

@@ -15,15 +15,15 @@ public var difficulty:String;
 
 function Awake()
 {
-	fleeState = this.gameObject.AddComponent("FleeState") as FleeState;
-	moveState = this.gameObject.AddComponent("MoveState") as MoveState;
-	waitState = this.gameObject.AddComponent("WaitState") as WaitState;
+	fleeState = this.gameObject.AddComponent(FleeState) as FleeState;
+	moveState = this.gameObject.AddComponent(MoveState) as MoveState;
+	waitState = this.gameObject.AddComponent(WaitState) as WaitState;
 	
 	currentState = moveState;
 	
 	if (difficulty == "Hard") {
-		chaseState = this.gameObject.AddComponent("ChaseState") as ChaseState;
-		returnState = this.gameObject.AddComponent("ReturnState") as ReturnState;
+		chaseState = this.gameObject.AddComponent(ChaseState) as ChaseState;
+		returnState = this.gameObject.AddComponent(ReturnState) as ReturnState;
 	}
 	
 	startPosition = this.gameObject.transform.position;
@@ -64,9 +64,14 @@ function getDifficulty():String
 	return difficulty;
 }
 
-public function getCurrentState():State
+public function isWaitState():boolean
 {
-	return currentState;
+	if(currentState == waitState)
+	{
+		return true;
+	}
+	
+	return false;
 }
 
 public function getSlugBoundA():GameObject
