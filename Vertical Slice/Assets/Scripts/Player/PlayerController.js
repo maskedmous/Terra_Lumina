@@ -143,6 +143,8 @@ function movement()
 
 
 public function move(mousePos:float) {
+	var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+	soundEngine.playSoundEffect("rover");
 	if (mousePos > ((Screen.width / 2) + (Screen.width * (1.0 / 50.0)))) moveRight();
 	if (mousePos < ((Screen.width / 2) - (Screen.width * (1.0 / 50.0)))) moveLeft();
 }
@@ -186,6 +188,8 @@ public function jump() {
 		jumpForce = 7.0f;
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+		var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+		soundEngine.playSoundEffect("jump");
 	}
 }
 
@@ -295,6 +299,10 @@ function shoot()
 		newSeed.gameObject.name = "Seed";
 		newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 		newSeed.gameObject.GetComponent(SeedBehaviour).setShroomType(currentShroom);
+		
+		var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+		soundEngine.playSoundEffect("shoot");
+		
 		if (getDirection() == "Left") vx = -vx;
 		newSeed.rigidbody.velocity = new Vector3(vx, vy, 0);
 		yield WaitForSeconds(1.5f);
@@ -324,6 +332,8 @@ function flash():void
 	}
 	flashlight.SetActive(true);
 	flashBool = true;
+	var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+	soundEngine.playSoundEffect("flash");
 }
 
 public function addSample(sample:GameObject) {

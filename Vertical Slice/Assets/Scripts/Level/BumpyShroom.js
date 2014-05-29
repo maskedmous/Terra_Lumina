@@ -30,6 +30,8 @@ function OnCollisionEnter(obj:Collision)
 		if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) > 2)
 		{
 			obj.gameObject.GetComponent(PlayerController).bounceShroomY();
+			var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+			soundEngine.playSoundEffect("bounce");
 		}
 		
 		if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) < 1)
