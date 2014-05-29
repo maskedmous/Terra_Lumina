@@ -427,6 +427,29 @@ private function saveLevel():int
 					    
 				}
 				
+				var blockObject:GameObject = triggerScript.getBlockObject();
+				
+				if(blockObject != null)
+				{
+					var blockObjectNode:XmlElement = xmlDocument.CreateElement("BlockObject");
+					tutorialNode.AppendChild(blockObjectNode);
+					//position
+					var blockObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+					blockObjectNode.AppendChild(blockObjectPositionNode);
+					
+					var blockObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
+					var blockObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
+					var blockObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
+					
+					blockObjectPositionNode.AppendChild(blockObjectXPositionNode);
+					blockObjectPositionNode.AppendChild(blockObjectYPositionNode);
+					blockObjectPositionNode.AppendChild(blockObjectZPositionNode);
+					
+					blockObjectXPositionNode.InnerText = blockObject.transform.position.x.ToString();
+					blockObjectYPositionNode.InnerText = blockObject.transform.position.y.ToString();
+					blockObjectZPositionNode.InnerText = blockObject.transform.position.z.ToString();
+				}
+				
 				//button booleans
 				var buttonsEnabledNode:XmlElement = xmlDocument.CreateElement("ButtonsEnabled");
 				tutorialNode.AppendChild(buttonsEnabledNode);
