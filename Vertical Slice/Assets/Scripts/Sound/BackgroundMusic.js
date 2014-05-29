@@ -4,6 +4,14 @@ private var volume:float = 1.0;
 //private var muteBool:boolean;
 static var bgMusicExists:boolean = false;
 
+private var bounceSound:AudioClip;
+private var jumpSound:AudioClip;
+private var shootingSound:AudioClip;
+private var slugForwardSound:AudioClip;
+private var slugBackwardSound:AudioClip;
+private var roverSound:AudioClip;
+private var flashSound:AudioClip;
+
 public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
@@ -12,6 +20,14 @@ public function Awake():void
 		this.audio.volume = volume;
 		this.audio.loop = true;
 		bgMusicExists = true;
+		
+		bounceSound = Resources.Load("SoundEffects/Bounce");
+		jumpSound = Resources.Load("SoundEffects/Jump");
+		shootingSound = Resources.Load("SoundEffects/Shooting");
+		slugForwardSound = Resources.Load("SoundEffects/Move forward");
+		slugBackwardSound = Resources.Load("SoundEffects/Move backwards");
+		roverSound = Resources.Load("SoundEffects/Rover rolling");
+		flashSound = Resources.Load("SoundEffects/Turn on Light");
 	}
 	else{
 		Destroy(this.gameObject);
@@ -43,6 +59,30 @@ public function changeMute(newMute:boolean):void
 public function changeLoop(newLoop:boolean):void
 {
 	this.audio.audio.loop = newLoop;
+}
+
+public function playSoundEffect(name:String){
+	if(name == "bounce"){
+		audio.PlayOneShot(bounceSound);
+	}
+	if(name == "jump"){
+		audio.PlayOneShot(jumpSound);
+	}
+	if(name == "shoot"){
+		audio.PlayOneShot(shootingSound);
+	}
+	if(name == "slugForward"){
+		audio.PlayOneShot(slugForwardSound);
+	}
+	if(name == "slugBackward"){
+		audio.PlayOneShot(slugBackwardSound);
+	}
+	if(name == "rover"){
+		audio.PlayOneShot(roverSound);
+	}
+	if(name == "flash"){
+		audio.PlayOneShot(flashSound);
+	}
 }
 
 public function playMusic(){

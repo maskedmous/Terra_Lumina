@@ -51,16 +51,16 @@
      <None Include="Assets\LevelsXML\Level1.3.xml" />
      <None Include="Assets\LevelsXML\Level1.2.xml" />
  <Reference Include="OSCsharp">
- <HintPath>Assets\Standard Assets\TouchScript\Plugins\OSCsharp.dll</HintPath>
+ <HintPath>Assets\Scripts\TouchScript\Plugins\OSCsharp.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript">
- <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.dll</HintPath>
+ <HintPath>Assets\Scripts\TouchScript\Plugins\TouchScript.dll</HintPath>
  </Reference>
  <Reference Include="TouchScript.TUIO">
- <HintPath>Assets\Standard Assets\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
+ <HintPath>Assets\Scripts\TouchScript\Plugins\TouchScript.TUIO.dll</HintPath>
  </Reference>
  <Reference Include="TUIOsharp">
- <HintPath>Assets\Standard Assets\TouchScript\Plugins\TUIOsharp.dll</HintPath>
+ <HintPath>Assets\Scripts\TouchScript\Plugins\TUIOsharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

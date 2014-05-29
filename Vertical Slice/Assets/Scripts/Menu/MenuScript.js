@@ -10,10 +10,10 @@ private var BUTTONWIDTH		:float 		= Screen.width/6;
 private var BUTTONHEIGHT	:float 		= Screen.height/8;
 private var TEXTUREWIDTH	:float 		= Screen.width/5;
 private var TEXTUREHEIGHT	:float 		= Screen.height/6;
-private var startButton		:Texture	= null;
-private var exitButton		:Texture	= null;
-private var settingsButton	:Texture	= null;
-private var creditsButton	:Texture	= null;
+//private var startButton		:Texture	= null;
+//private var exitButton		:Texture	= null;
+//private var settingsButton	:Texture	= null;
+//private var creditsButton	:Texture	= null;
 private var background		:Texture	= null;
 private var loadingScreen	:Texture	= null;
 private var level1			:Texture	= null;
@@ -28,16 +28,42 @@ private var levelIDs:Array = new Array();
 private var levelsXmlFilePath:String = "";
 private var startLevelCount:int = 1;
 
+//button positions
+public 	var startButtonTexture	:Texture = null;
+private var startButtonRect		:Rect;
+private var startButtonX			:float = 20;
+public 	var startButtonY			:float = 100;
+
+public 	var settingsButtonTexture:Texture2D = null;
+private var settingsButtonRect	:Rect;
+public 	var settingsButtonX		:float = 20;
+public 	var settingsButtonY		:float = 330;
+
+public 	var creditsButtonTexture:Texture2D = null;
+private var creditsButtonRect	:Rect;
+public 	var creditsButtonX		:float = 20;
+public 	var creditsButtonY		:float = 495;
+
+public 	var exitButtonTexture	:Texture2D = null;
+private var exitButtonRect		:Rect;
+public 	var exitButtonX			:float = 20;
+public 	var exitButtonY			:float = 675;
+
+//scales for button positions
+private var originalWidth 	:float = 1920;
+private var originalHeight	:float = 1080;
+private var scale			:Vector3;
+
 public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
 	//getting the texture loader
 	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
 	//get the textures from the texture loader
-	startButton = textureLoader.getTexture("Start");
-	exitButton = textureLoader.getTexture("Quit");
-	creditsButton = textureLoader.getTexture("Credits");
-	settingsButton = textureLoader.getTexture("Settings");
+	startButtonTexture = textureLoader.getTexture("Start");
+	exitButtonTexture = textureLoader.getTexture("Quit");
+	creditsButtonTexture = textureLoader.getTexture("Credits");
+	settingsButtonTexture = textureLoader.getTexture("Settings");
 	background = textureLoader.getTexture("Background");
 	loadingScreen = textureLoader.getTexture("Loading");
 	level1 = textureLoader.getTexture("Level1");
@@ -46,7 +72,7 @@ public function Awake():void
 	
 	//backButton = textureLoader.getTexture("Back");
 	
-	if(startButton == null || exitButton == null || settingsButton == null || background == null || loadingScreen == null)
+	if(startButtonTexture == null || exitButtonTexture == null || settingsButtonTexture == null || background == null || loadingScreen == null)
 	{
 		Debug.LogError("one of the textures loaded is null");
 	}
@@ -61,36 +87,40 @@ public function OnGUI():void
 	//background texture
 	GUI.DrawTexture(Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill, true, 0);
 	
+	//first scale the buttons before drawing them
+	scaleButtons();
 	
 	switch(currentMenuState)
 	{
+		
+		
 		case(menuState.mainMenu):
 			//start button
-			GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*6/24, TEXTUREWIDTH, TEXTUREHEIGHT), startButton, ScaleMode.StretchToFill, true, 0);
-			if (GUI.Button(new Rect(Screen.width*0, Screen.height*6/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin))
+			GUI.DrawTexture(startButtonRect, startButtonTexture);
+			if (GUI.Button(startButtonRect, "", skin))
 			{		  		
 		  		currentMenuState = menuState.startMenu;
 		  	}
 		  	
 		  	//settings button
-		  	GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*10/24, TEXTUREWIDTH, TEXTUREHEIGHT), settingsButton, ScaleMode.StretchToFill, true, 0);
-		  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*10/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin))
+		  	GUI.DrawTexture(settingsButtonRect, settingsButtonTexture);
+			if (GUI.Button(settingsButtonRect, "", skin))
 		  	{
 		  		print("Settings");
 		  		//currentMenuState = menuState.optionsMenu;
 		  	}
 		  	
 		  	//credits button
-		  	GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*14/24, TEXTUREWIDTH, TEXTUREHEIGHT), creditsButton, ScaleMode.StretchToFill, true, 0);
-		  	if (GUI.Button(new Rect(Screen.width*0, Screen.height*14/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin))
+		  	GUI.DrawTexture(creditsButtonRect, creditsButtonTexture);
+			if (GUI.Button(creditsButtonRect, "", skin))
 		  	{
 		  		print("Credits");
 		  		//currentMenuState = menuState.creditsMenu;
 		  	}
 		  	
 		  	//exit button
-		  	GUI.DrawTexture(new Rect(Screen.width*0, Screen.height*18/24, TEXTUREWIDTH, TEXTUREHEIGHT), exitButton, ScaleMode.StretchToFill, true, 0);
-			 if (GUI.Button(new Rect(Screen.width*0, Screen.height*18/24, BUTTONWIDTH, BUTTONHEIGHT), empty, skin))
+		  	GUI.DrawTexture(exitButtonRect, exitButtonTexture);
+			if (GUI.Button(exitButtonRect, "", skin))
 			 {
 				print("Quit Game");
 				Application.Quit();
@@ -166,6 +196,43 @@ public function OnGUI():void
 			//backbutton
 		break;
 	}
+}
+
+private function scaleButtons():void
+{
+	//get the current scale by using the current screen size and the original screen size
+	//original width / height is defined in a variable at top, we use an aspect ratio of 16:9 and original screen size of 1920x1080
+	scale.x = Screen.width / originalWidth;		//X scale is the current width divided by the original width
+	scale.y = Screen.height / originalHeight;	//Y scale is the current height divided by the original height
+	
+	//first put the rectangles back to its original size before scaling
+	if(currentMenuState == menuState.mainMenu)
+	{
+		startButtonRect 		= new Rect(startButtonX			, startButtonY			, startButtonTexture.width			, startButtonTexture.height);
+		settingsButtonRect  	= new Rect(settingsButtonX	, settingsButtonY	, settingsButtonTexture.width	, settingsButtonTexture.height);
+		creditsButtonRect  		= new Rect(creditsButtonX	, creditsButtonY	, creditsButtonTexture.width	, creditsButtonTexture.height);
+		exitButtonRect			= new Rect(exitButtonX	, exitButtonY	, exitButtonTexture.width	, exitButtonTexture.height);
+		
+		//second scale the rectangles
+		startButtonRect 			= scaleRect(startButtonRect);
+		settingsButtonRect	= scaleRect(settingsButtonRect);
+		creditsButtonRect  	= scaleRect(creditsButtonRect);
+		exitButtonRect  	= scaleRect(exitButtonRect);
+	}
+	//jumpButtonRect 			= new Rect(jumpButtonX			, jumpButtonY			, jumpButtonTexture.width			, jumpButtonTexture.height);
+	//normalShroomButtonRect	= new Rect(normalShroomButtonX	, normalShroomButtonY	, normalShroomButtonTexture.width	, normalShroomButtonTexture.height);
+	//bumpyShroomButtonRect  	= new Rect(bumpyShroomButtonX	, bumpyShroomButtonY	, bumpyShroomButtonTexture.width	, bumpyShroomButtonTexture.height);
+	
+	//second scale the rectangles
+	//jumpButtonRect 			= scaleRect(jumpButtonRect);
+	//normalShroomButtonRect	= scaleRect(normalShroomButtonRect);
+	//bumpyShroomButtonRect  	= scaleRect(bumpyShroomButtonRect);
+}
+
+private function scaleRect(rect:Rect):Rect
+{
+	var newRect:Rect = new Rect(rect.x * scale.x, rect.y * scale.y, rect.width * scale.x, rect.height * scale.y);
+	return newRect;
 }
 
 private function fillXmlLevelArray():void
