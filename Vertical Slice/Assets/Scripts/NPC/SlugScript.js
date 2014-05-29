@@ -64,6 +64,11 @@ function getDifficulty():String
 	return difficulty;
 }
 
+public function getCurrentState():State
+{
+	return currentState;
+}
+
 public function getSlugBoundA():GameObject
 {
 	return slugBoundA;

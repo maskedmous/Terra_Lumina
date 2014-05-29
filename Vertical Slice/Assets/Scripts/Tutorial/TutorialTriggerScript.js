@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
-//enum tutorial {movementLeftTutorial, movementRightTutorial, jumpTutorial, shootNormalShroomTutorial, shootBumpyShroomTutorial}
+//gamelogic
+private var gameLogic:GameLogic = null;
 
 //private var tutorialState:tutorial;
 private var label:GameObject 				= null;
@@ -21,6 +22,17 @@ public var shootBumpyShroomButtonEnabled	:boolean = false;
 
 //alpha GameObject
 public var alphaObject:GameObject = null;
+
+//tutorial kind
+public var lightTutorial	:boolean 	= false;
+public var slugTutorial		:boolean 	= false;
+public var crystalTutorial	:boolean 	= false;
+
+//slug tutorial
+public var slugObject:GameObject = null;
+
+//block object
+public var blockObject:GameObject = null;
 
 //texture for the tutorial to show
 private var scale:Vector2;
@@ -46,6 +58,7 @@ public var destroyOnExit:boolean = false;
 public function Awake():void
 {
 	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript);
+	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 }
 //Start because label might not be created yet
 public function Start ():void
@@ -158,6 +171,31 @@ public function OnTriggerStay (collider:Collider):void
 		{
 			tutorialTextureB = null;
 		}
+		
+		if(lightTutorial)
+		{
+			if(gameLogic.getBattery() == gameLogic.getBatteryCapacity())
+			{
+				playAnimation(blockObject);
+				lightTutorial = false;			//completed objective
+			}
+		}
+		else if(crystalTutorial)
+		{
+			if(gameLogic.getPlantSampleCount() > 0)
+			{
+				playAnimation(blockObject);
+				crystalTutorial = false;
+			}
+		}
+		else if(slugTutorial)
+		{
+			if(slugObject.GetComponent(SlugScript).getCurrentState() == WaitState)
+			{
+				playAnimation(blockObject);
+				slugTutorial = false;
+			}
+		}
 	}
 }
 
@@ -171,6 +209,15 @@ public function OnTriggerExit (collider:Collider):void
 		{
 			Destroy(this.gameObject);
 		}
+	}
+}
+
+private function playAnimation(animatedObject:GameObject):void
+{
+	if(animatedObject != null)
+	{
+		var animation:Animator = animatedObject.GetComponent(Animator);
+		animation.Play(0);
 	}
 }
 
@@ -191,6 +238,11 @@ public function setTextInSeconds(value:int):void
 public function setAlphaObject(alphaObj:GameObject):void
 {
 	alphaObject = alphaObj;
+}
+
+public function setBlockObject(blockObj:GameObject):void
+{
+	blockObject = blockObj;
 }
 
 public function setMovementLeftEnabled(value:boolean):void
@@ -272,6 +324,11 @@ public function getTextInSeconds():int
 public function getAlphaObject():GameObject
 {
 	return alphaObject;
+}
+
+public function getBlockObject():GameObject
+{
+	return blockObject;
 }
 
 public function getMovementLeftEnabled():boolean
