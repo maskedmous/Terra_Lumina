@@ -21,13 +21,13 @@ public function Awake():void
 		this.audio.loop = true;
 		bgMusicExists = true;
 		
-		bounceSound = Resources.Load("SoundEffects/Bounce");
-		jumpSound = Resources.Load("SoundEffects/Jump");
-		shootingSound = Resources.Load("SoundEffects/Shooting");
-		slugForwardSound = Resources.Load("SoundEffects/Move forward");
-		slugBackwardSound = Resources.Load("SoundEffects/Move backwards");
-		roverSound = Resources.Load("SoundEffects/Rover rolling");
-		flashSound = Resources.Load("SoundEffects/Turn on Light");
+		bounceSound = Resources.Load("SoundEffects/Bounce") as AudioClip;
+		jumpSound = Resources.Load("SoundEffects/Jump") as AudioClip;
+		shootingSound = Resources.Load("SoundEffects/Shooting") as AudioClip;
+		slugForwardSound = Resources.Load("SoundEffects/Move forward") as AudioClip;
+		slugBackwardSound = Resources.Load("SoundEffects/Move backwards") as AudioClip;
+		roverSound = Resources.Load("SoundEffects/Rover rolling") as AudioClip;
+		flashSound = Resources.Load("SoundEffects/Turn on Light") as AudioClip;
 	}
 	else{
 		Destroy(this.gameObject);
