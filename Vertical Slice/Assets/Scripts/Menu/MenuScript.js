@@ -18,6 +18,9 @@ private var background		:Texture	= null;
 private var loadingScreen	:Texture	= null;
 private var level1			:Texture	= null;
 private var backToMenuButton:Texture	= null;
+
+private var creditsScreen	:Texture2D	= null;
+
 private var empty			:String = "";
 private var skin			:GUIStyle = new GUIStyle();
 
@@ -68,6 +71,7 @@ public function Awake():void
 	loadingScreen = textureLoader.getTexture("Loading");
 	level1 = textureLoader.getTexture("Level1");
 	backToMenuButton = textureLoader.getTexture("Hoofdmenu");
+	//creditsScreen = textureLoader.getTexture("Credits");
 	
 	
 	//backButton = textureLoader.getTexture("Back");
