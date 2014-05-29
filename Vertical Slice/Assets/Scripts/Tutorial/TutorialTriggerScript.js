@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
-//enum tutorial {movementLeftTutorial, movementRightTutorial, jumpTutorial, shootNormalShroomTutorial, shootBumpyShroomTutorial}
+//gamelogic
+private var gameLogic:GameLogic = null;
 
 //private var tutorialState:tutorial;
 private var label:GameObject 				= null;
@@ -18,9 +19,19 @@ public var jumpButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
 public var shootBumpyShroomButtonEnabled	:boolean = false;
 
-
 //alpha GameObject
 public var alphaObject:GameObject = null;
+
+//tutorial kind
+public var lightTutorial	:boolean 	= false;
+public var slugTutorial		:boolean 	= false;
+public var crystalTutorial	:boolean 	= false;
+
+//slug tutorial
+public var slugObject:GameObject = null;
+
+//block object
+public var blockObject:GameObject = null;
 
 //texture for the tutorial to show
 private var scale:Vector2;
@@ -42,10 +53,12 @@ public var timerTexB		:float		= -1;
 
 //destroy this tutorial object on exit
 public var destroyOnExit:boolean = false;
+public var destroyOnCompletion:boolean = false;
 
 public function Awake():void
 {
 	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript);
+	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 }
 //Start because label might not be created yet
 public function Start ():void
@@ -57,6 +70,7 @@ public function Start ():void
 		Debug.LogError("Not initialized properly");
 	}
 }
+
 
 private function scaleButtons():void
 {
@@ -158,6 +172,31 @@ public function OnTriggerStay (collider:Collider):void
 		{
 			tutorialTextureB = null;
 		}
+		
+		if(lightTutorial)
+		{
+			if(gameLogic.getBattery() == gameLogic.getBatteryCapacity())
+			{
+				playAnimation();
+				lightTutorial = false;			//completed objective
+			}
+		}
+		else if(crystalTutorial)
+		{
+			if(gameLogic.getPlantSampleCount() > 0)
+			{
+				playAnimation();
+				crystalTutorial = false;
+			}
+		}
+		else if(slugTutorial)
+		{
+			if(slugObject.GetComponent(SlugScript).isWaitState())
+			{
+				playAnimation();
+				slugTutorial = false;
+			}
+		}
 	}
 }
 
@@ -166,8 +205,26 @@ public function OnTriggerExit (collider:Collider):void
 	if(collider.name == "Player")
 	{
 		label.gameObject.guiText.text = "";
+		showTutorialTextures = false;
 		
 		if(destroyOnExit)
+		{
+			Destroy(this.gameObject);
+		}
+	}
+}
+
+private function playAnimation():IEnumerator
+{
+	if(blockObject != null)
+	{
+		var animation:Animation = blockObject.GetComponent(Animation);
+		animation.Play();
+		
+		yield WaitForSeconds(animation.GetClip("Take 001").length);
+		Destroy(blockObject);
+		
+		if(destroyOnCompletion)
 		{
 			Destroy(this.gameObject);
 		}
@@ -191,6 +248,31 @@ public function setTextInSeconds(value:int):void
 public function setAlphaObject(alphaObj:GameObject):void
 {
 	alphaObject = alphaObj;
+}
+
+public function setLightTutorial(value:boolean):void
+{
+	lightTutorial = value;
+}
+
+public function setSlugTutorial(value:boolean):void
+{
+	slugTutorial = value;
+}
+
+public function setCrystalTutorial(value:boolean):void
+{
+	crystalTutorial = value;
+}
+
+public function setSlugObject(slugObj:GameObject):void
+{
+	slugObject = slugObj;
+}
+
+public function setBlockObject(blockObj:GameObject):void
+{
+	blockObject = blockObj;
 }
 
 public function setMovementLeftEnabled(value:boolean):void
@@ -256,6 +338,11 @@ public function setDestroyOnExit(value:boolean):void
 	destroyOnExit = value;
 }
 
+public function setDestroyOnCompletion(value:boolean):void
+{
+	destroyOnCompletion = value;
+}
+
 //
 //getters
 //
@@ -272,6 +359,31 @@ public function getTextInSeconds():int
 public function getAlphaObject():GameObject
 {
 	return alphaObject;
+}
+
+public function getLightTutorial():boolean
+{
+	return lightTutorial;
+}
+
+public function getSlugTutorial():boolean
+{
+	return slugTutorial;
+}
+
+public function getCrystalTutorial():boolean
+{
+	return crystalTutorial;
+}
+
+public function getSlugObject():GameObject
+{
+	return slugObject;
+}
+
+public function getBlockObject():GameObject
+{
+	return blockObject;
 }
 
 public function getMovementLeftEnabled():boolean
@@ -349,4 +461,9 @@ public function getTimerTexB():float
 public function getDestroyOnExit():boolean
 {
 	return destroyOnExit;
+}
+
+public function getDestroyOnCompletion():boolean
+{
+	return destroyOnCompletion;
 }

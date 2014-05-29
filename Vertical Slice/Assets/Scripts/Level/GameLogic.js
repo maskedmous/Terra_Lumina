@@ -86,7 +86,6 @@ public function OnGUI():void
 	scale.x = Screen.width / originalWidth;
 	scale.y = Screen.height / originalHeight;
 	
-	GUI.Label(Rect(0, (375 * scale.y), 500, 20), ("Crystallen: " + plantSamples.length.ToString()));
 	if(infiniteAmmo)
 	{
 		GUI.Label(Rect(0, (425 * scale.y), 500, 20), ("Aantal zaadjes over: Infinite"));
@@ -130,12 +129,12 @@ function addBatteryPower()
 
 function addPlantSample(newSample:GameObject)
 {
-	Debug.Log("adding sample!");
 	plantSamples.push(newSample);
 	setScore(100);
 }
 
-function getPlantSampleCount():int{
+function getPlantSampleCount():int
+{
 	return plantSamples.length;
 }
 
