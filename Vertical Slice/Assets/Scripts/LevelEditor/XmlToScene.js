@@ -197,6 +197,13 @@ public function loadLevel()
 					var alphaObjectRotation		:Vector3	= new Vector3(9999,9999,9999);
 					var alphaObjectScaling		:Vector3	= new Vector3(9999,9999,9999);
 					
+					var lightTutorial			:boolean	= false;
+					var slugTutorial			:boolean	= false;
+					var crystalTutorial			:boolean	= false;
+					
+					var slugObjectPosition		:Vector3	= new Vector3(9999,9999,9999);
+					var blockObjectPosition		:Vector3	= new Vector3(9999,9999,9999);
+					
 					var movementLeftEnabled		:boolean	= true;
 					var movementRightEnabled	:boolean	= true;
 					var jumpButtonEnabled		:boolean	= true;
@@ -214,6 +221,7 @@ public function loadLevel()
 					var timerTexB				:float		= 0;
 					
 					var destroyOnExit			:boolean	= false;
+					var destroyOnCompletion		:boolean	= false;
 					
 					for each(var _gameObjectStatsNodes in gameObjectStatsNodeList)
 					{
@@ -394,6 +402,95 @@ public function loadLevel()
 										}
 									}
 								}
+								
+								if(tutorialNodeStats.Name == "SlugObject")
+								{
+									var slugNode2:XmlNodeList = tutorialNodeStats.ChildNodes;
+									
+									for each(var _slugStatsNode2 in slugNode2)
+									{
+										var slugStatsNode2:XmlNode = _slugStatsNode2 as XmlNode;
+										
+										if(slugStatsNode2.Name == "Position")
+										{
+											for each(var _slugPositionNodes2 in slugStatsNode2.ChildNodes)
+											{
+												var slugPositionNodes2:XmlNode = _slugPositionNodes2 as XmlNode;
+												if(slugPositionNodes2.Name == "x") slugObjectPosition.x = float.Parse(slugPositionNodes2.InnerText);
+												if(slugPositionNodes2.Name == "y") slugObjectPosition.y = float.Parse(slugPositionNodes2.InnerText);
+												if(slugPositionNodes2.Name == "z") slugObjectPosition.z = float.Parse(slugPositionNodes2.InnerText);
+											}
+										}
+										
+										if(slugStatsNode2.Name == "SlugBoundA")
+										{
+											var slugBoundANode2:XmlNodeList = slugStatsNode2.ChildNodes;
+											
+											for each(var _slugBoundAPositionNodes2 in slugBoundANode2)
+											{
+												var slugBoundAPositionNodes2:XmlNode = _slugBoundAPositionNodes2 as XmlNode;
+												
+												if(slugBoundAPositionNodes2.Name == "x") slugBoundAPosition.x = float.Parse(slugBoundAPositionNodes2.InnerText);
+												if(slugBoundAPositionNodes2.Name == "y") slugBoundAPosition.y = float.Parse(slugBoundAPositionNodes2.InnerText);
+												if(slugBoundAPositionNodes2.Name == "z") slugBoundAPosition.z = float.Parse(slugBoundAPositionNodes2.InnerText);
+											}
+										}
+										if(slugStatsNode2.Name == "SlugBoundB")
+										{
+											var slugBoundBNode2:XmlNodeList = slugStatsNode2.ChildNodes;
+											
+											for each(var _slugBoundBPositionNodes2 in slugBoundBNode2)
+											{
+												var slugBoundBPositionNodes2:XmlNode = _slugBoundBPositionNodes2 as XmlNode;
+												
+												if(slugBoundBPositionNodes2.Name == "x") slugBoundBPosition.x = float.Parse(slugBoundBPositionNodes2.InnerText);
+												if(slugBoundBPositionNodes2.Name == "y") slugBoundBPosition.y = float.Parse(slugBoundBPositionNodes2.InnerText);
+												if(slugBoundBPositionNodes2.Name == "z") slugBoundBPosition.z = float.Parse(slugBoundBPositionNodes2.InnerText);
+												
+											}
+										}
+									}
+								}
+								
+								if(tutorialNodeStats.Name == "LightTutorial")
+								{
+									lightTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+								}
+								if(tutorialNodeStats.Name == "SlugTutorial")
+								{
+									slugTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+								}
+								if(tutorialNodeStats.Name == "CrystalTutorial")
+								{
+									crystalTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+								}
+								
+								if(tutorialNodeStats.Name == "BlockObject")
+								{
+									for each(var _blockObjectStats in tutorialNodeStats.ChildNodes)
+									{
+										var blockObjectStats:XmlNode = _blockObjectStats as XmlNode;
+										
+										for each(var _blockObjectPositionNodes in blockObjectStats.ChildNodes)
+										{
+											var blockObjectPositionNodes:XmlNode = _blockObjectPositionNodes as XmlNode;
+											
+											if(blockObjectPositionNodes.Name == "x")
+											{
+												blockObjectPosition.x = float.Parse(blockObjectPositionNodes.InnerText);
+											}
+											if(blockObjectPositionNodes.Name == "y")
+											{
+												blockObjectPosition.y = float.Parse(blockObjectPositionNodes.InnerText);
+											}
+											if(blockObjectPositionNodes.Name == "z")
+											{
+												blockObjectPosition.z = float.Parse(blockObjectPositionNodes.InnerText);
+											}
+										}
+									}
+								}
+								
 								if(tutorialNodeStats.Name == "ButtonsEnabled")
 								{
 									var buttonNodes:XmlNodeList = tutorialNodeStats.ChildNodes;
@@ -490,6 +587,10 @@ public function loadLevel()
 								{
 									destroyOnExit = boolean.Parse(tutorialNodeStats.InnerText);
 								}
+								if(tutorialNodeStats.Name == "DestroyOnCompletion")
+								{
+									destroyOnCompletion = boolean.Parse(tutorialNodeStats.InnerText);
+								}
 								if(tutorialNodeStats.Name == "BoundingBox")
 								{
 									var boundingBoxStatsNode:XmlNodeList = tutorialNodeStats.ChildNodes;
@@ -569,6 +670,43 @@ public function loadLevel()
 									else Debug.LogError("Couldn't find alphaobject prefab!");
 								}
 								
+								if(slugObjectPosition != Vector3(9999,9999,9999))
+								{
+									var newSlug:GameObject = Instantiate(Resources.Load("Prefabs/Slug")) as GameObject;
+									newSlug.name = "Slug";
+									newSlug.transform.position = slugObjectPosition;
+									newSlug.transform.parent = level.transform;
+									
+									var slugBoundA2:GameObject = Instantiate(Resources.Load("Prefabs/SlugBound")) as GameObject;
+									slugBoundA2.name = "SlugBound";
+									slugBoundA2.transform.position = slugBoundAPosition;
+									slugBoundA2.transform.parent = level.transform;
+									
+									var slugBoundB2:GameObject = Instantiate(Resources.Load("Prefabs/SlugBound")) as GameObject;
+									slugBoundB2.name = "SlugBound";
+									slugBoundB2.transform.position = slugBoundBPosition;
+									slugBoundB2.transform.parent = level.transform;
+									
+									var slugScript2 = newSlug.GetComponent(SlugScript);
+									slugScript2.setSlugBoundA(slugBoundA2);
+									slugScript2.setSlugBoundB(slugBoundB2);
+									
+									triggerScript.setSlugObject(newSlug);
+								}
+								
+								if(blockObjectPosition != Vector3(9999,9999,9999))
+								{
+									var newBlockObject:GameObject = Instantiate(Resources.Load("Prefabs/BarrierAnimated")) as GameObject;
+									newBlockObject.name = "BarrierAnimated";
+									newBlockObject.transform.position = blockObjectPosition;
+									newBlockObject.transform.parent = level.transform;
+									triggerScript.setBlockObject(newBlockObject);
+								}
+								
+								triggerScript.setLightTutorial(lightTutorial);
+								triggerScript.setSlugTutorial(slugTutorial);
+								triggerScript.setCrystalTutorial(crystalTutorial);
+								
 								//set button booleans
 								triggerScript.setMovementLeftEnabled(movementLeftEnabled);
 								triggerScript.setMovementRightEnabled(movementRightEnabled);
@@ -594,6 +732,7 @@ public function loadLevel()
 								
 								//set destroy on exit
 								triggerScript.setDestroyOnExit(destroyOnExit);
+								triggerScript.setDestroyOnCompletion(destroyOnCompletion);
 								
 								//set bounding box
 								newGameObject.GetComponent(BoxCollider).size = boundingBox;

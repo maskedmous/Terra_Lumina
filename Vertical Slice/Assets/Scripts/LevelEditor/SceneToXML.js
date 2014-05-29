@@ -427,6 +427,84 @@ private function saveLevel():int
 					    
 				}
 				
+				var lightTutorialNode:XmlElement = xmlDocument.CreateElement("LightTutorial");
+				var slugTutorialNode:XmlElement = xmlDocument.CreateElement("SlugTutorial");
+				var crystalTutorialNode:XmlElement = xmlDocument.CreateElement("CrystalTutorial");
+				
+				tutorialNode.AppendChild(lightTutorialNode);
+				tutorialNode.AppendChild(slugTutorialNode);
+				tutorialNode.AppendChild(crystalTutorialNode);
+				
+				lightTutorialNode.InnerText 	= triggerScript.getLightTutorial().ToString();
+				slugTutorialNode.InnerText		= triggerScript.getSlugTutorial().ToString();
+				crystalTutorialNode.InnerText 	= triggerScript.getCrystalTutorial().ToString();
+				
+				var slugObject:GameObject = triggerScript.getSlugObject();
+				
+				if(slugObject != null)
+				{
+					var slugObjectNode:XmlElement = xmlDocument.CreateElement("SlugObject");
+					tutorialNode.AppendChild(slugObjectNode);
+					//position
+					var slugObjectPositionNode:XmlElement = xmlDocument.CreateElement("Position");
+					slugObjectNode.AppendChild(slugObjectPositionNode);
+					
+					var slugObjectXPositionNode:XmlElement = xmlDocument.CreateElement("x");
+					var slugObjectYPositionNode:XmlElement = xmlDocument.CreateElement("y");
+					var slugObjectZPositionNode:XmlElement = xmlDocument.CreateElement("z");
+					
+					slugObjectPositionNode.AppendChild(slugObjectXPositionNode);
+					slugObjectPositionNode.AppendChild(slugObjectYPositionNode);
+					slugObjectPositionNode.AppendChild(slugObjectZPositionNode);
+					
+					slugObjectXPositionNode.InnerText = slugObject.transform.position.x.ToString();
+					slugObjectYPositionNode.InnerText = slugObject.transform.position.y.ToString();
+					slugObjectZPositionNode.InnerText = slugObject.transform.position.z.ToString();
+					
+					
+					var slugScript2:SlugScript = slugObject.gameObject.GetComponent(SlugScript);
+					var slugBoundA2:GameObject = slugScript2.getSlugBoundA();
+					var slugBoundB2:GameObject = slugScript2.getSlugBoundB();
+					
+					if(slugBoundA2 == null || slugBoundB2 == null)
+					{
+						Debug.LogError("Slugbound is null!");
+						return -1;
+					}
+					
+					//BoundA
+					var slugBoundANode2:XmlElement 	= xmlDocument.CreateElement("SlugBoundA");
+					slugObjectNode.AppendChild(slugBoundANode2);
+					
+					var slugBoundAxNode2:XmlElement = xmlDocument.CreateElement("x");
+					var slugBoundAyNode2:XmlElement = xmlDocument.CreateElement("y");
+					var slugBoundAzNode2:XmlElement = xmlDocument.CreateElement("z");
+					
+					slugBoundANode2.AppendChild(slugBoundAxNode2);
+					slugBoundANode2.AppendChild(slugBoundAyNode2);
+					slugBoundANode2.AppendChild(slugBoundAzNode2);
+					
+					slugBoundAxNode2.InnerText = slugBoundA2.transform.position.x.ToString();
+					slugBoundAyNode2.InnerText = slugBoundA2.transform.position.y.ToString();
+					slugBoundAzNode2.InnerText = slugBoundA2.transform.position.z.ToString();
+					
+					//BoundB
+					var slugBoundBNode2:XmlElement 	= xmlDocument.CreateElement("SlugBoundB");
+					slugObjectNode.AppendChild(slugBoundBNode2);
+					
+					var slugBoundBxNode2:XmlElement = xmlDocument.CreateElement("x");
+					var slugBoundByNode2:XmlElement = xmlDocument.CreateElement("y");
+					var slugBoundBzNode2:XmlElement = xmlDocument.CreateElement("z");
+					
+					slugBoundBNode2.AppendChild(slugBoundBxNode2);
+					slugBoundBNode2.AppendChild(slugBoundByNode2);
+					slugBoundBNode2.AppendChild(slugBoundBzNode2);
+					
+					slugBoundBxNode2.InnerText = slugBoundB2.transform.position.x.ToString();
+					slugBoundByNode2.InnerText = slugBoundB2.transform.position.y.ToString();
+					slugBoundBzNode2.InnerText = slugBoundB2.transform.position.z.ToString();
+				}
+				
 				var blockObject:GameObject = triggerScript.getBlockObject();
 				
 				if(blockObject != null)
@@ -529,6 +607,10 @@ private function saveLevel():int
 				var destroyOnExitNode:XmlElement = xmlDocument.CreateElement("DestroyOnExit");
 				tutorialNode.AppendChild(destroyOnExitNode);
 				destroyOnExitNode.InnerText = triggerScript.getDestroyOnExit().ToString();
+				
+				var destroyOnCompletionNode:XmlElement = xmlDocument.CreateElement("DestroyOnCompletion");
+				tutorialNode.AppendChild(destroyOnCompletionNode);
+				destroyOnCompletionNode.InnerText = triggerScript.getDestroyOnCompletion().ToString();
 				
 				//bounding box
 				var boundingBoxNode:XmlElement = xmlDocument.CreateElement("BoundingBox");

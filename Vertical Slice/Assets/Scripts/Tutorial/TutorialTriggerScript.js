@@ -19,7 +19,6 @@ public var jumpButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
 public var shootBumpyShroomButtonEnabled	:boolean = false;
 
-
 //alpha GameObject
 public var alphaObject:GameObject = null;
 
@@ -251,6 +250,26 @@ public function setAlphaObject(alphaObj:GameObject):void
 	alphaObject = alphaObj;
 }
 
+public function setLightTutorial(value:boolean):void
+{
+	lightTutorial = value;
+}
+
+public function setSlugTutorial(value:boolean):void
+{
+	slugTutorial = value;
+}
+
+public function setCrystalTutorial(value:boolean):void
+{
+	crystalTutorial = value;
+}
+
+public function setSlugObject(slugObj:GameObject):void
+{
+	slugObject = slugObj;
+}
+
 public function setBlockObject(blockObj:GameObject):void
 {
 	blockObject = blockObj;
@@ -319,6 +338,11 @@ public function setDestroyOnExit(value:boolean):void
 	destroyOnExit = value;
 }
 
+public function setDestroyOnCompletion(value:boolean):void
+{
+	destroyOnCompletion = value;
+}
+
 //
 //getters
 //
@@ -335,6 +359,26 @@ public function getTextInSeconds():int
 public function getAlphaObject():GameObject
 {
 	return alphaObject;
+}
+
+public function getLightTutorial():boolean
+{
+	return lightTutorial;
+}
+
+public function getSlugTutorial():boolean
+{
+	return slugTutorial;
+}
+
+public function getCrystalTutorial():boolean
+{
+	return crystalTutorial;
+}
+
+public function getSlugObject():GameObject
+{
+	return slugObject;
 }
 
 public function getBlockObject():GameObject
@@ -417,4 +461,9 @@ public function getTimerTexB():float
 public function getDestroyOnExit():boolean
 {
 	return destroyOnExit;
+}
+
+public function getDestroyOnCompletion():boolean
+{
+	return destroyOnCompletion;
 }

@@ -79,6 +79,7 @@ public function Awake()
 	{
 		highBatteryTexture 		= textureLoader.getTexture("BatteryNormal");
 		lowBatteryTexture 		= textureLoader.getTexture("BatteryDanger");
+		currentBatteryTexture = highBatteryTexture;
 		
 		number0 = textureLoader.getTexture("number0");
 		number1 = textureLoader.getTexture("number1");
@@ -195,7 +196,7 @@ private function checkBatteryState():void
 	
 	amountOfBatteryBars = currentBatteryPower / (maxBattery / 10);
 	
-	if(currentBatteryPower > 50)
+	if(currentBatteryPower >= 30)
 	{
 		if(currentBatteryTexture != highBatteryTexture)
 		{
