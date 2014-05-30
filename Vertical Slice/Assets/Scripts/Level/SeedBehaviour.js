@@ -19,7 +19,6 @@ function OnCollisionEnter(collision:Collision)
 	{
 		if(shroomType != null && newShroom == null)
 		{
-			Debug.Log(newShroom);
 			newShroom = Instantiate(shroomType, this.transform.position, Quaternion.identity);
 			newShroom.gameObject.name = "Shroom";
 			newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;

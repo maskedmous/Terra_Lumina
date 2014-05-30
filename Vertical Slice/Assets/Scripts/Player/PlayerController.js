@@ -125,20 +125,6 @@ function movement()
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
 	}
 	
-	/*if (Physics.Raycast(this.gameObject.transform.position, new Vector3(0, -1, 0), hitDown, 1)) {	
-		if (hitDown.collider.name == "Light"){
-			isJumping = true;
-		}
-		else{
-			isJumping = false;
-			this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
-		}
-	}
-	else {
-		isJumping = true;
-		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-	}*/
-	
 	//making sure rover does not rotate beyond 45 degrees from original rotation
 	var cRot = this.gameObject.transform.rotation.eulerAngles.z;
 	if (cRot > 45 && cRot < 180) this.gameObject.transform.rotation.eulerAngles.z = 45;
@@ -194,8 +180,11 @@ public function jump() {
 		jumpForce = 7.0f;
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-		var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
-		soundEngine.playSoundEffect("jump");
+		
+		if(soundEngine != null)
+		{
+			soundEngine.playSoundEffect("jump");
+		}
 	}
 }
 
@@ -306,8 +295,10 @@ function shoot()
 		newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 		newSeed.gameObject.GetComponent(SeedBehaviour).setShroomType(currentShroom);
 		
-		var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
-		soundEngine.playSoundEffect("shoot");
+		if(soundEngine != null)
+		{
+			soundEngine.playSoundEffect("shoot");
+		}
 		
 		if (getDirection() == "Left") vx = -vx;
 		newSeed.rigidbody.velocity = new Vector3(vx, vy, 0);
@@ -341,8 +332,10 @@ function flash():void
 		flashlight.SetActive(true);
 		flashBool = true;
 		gameLogicScript.decreaseBatteryBy(5.0f);
-		var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
-		soundEngine.playSoundEffect("flash");
+		if(soundEngine != null)
+		{
+			soundEngine.playSoundEffect("flash");
+		}
 	}
 }
 
