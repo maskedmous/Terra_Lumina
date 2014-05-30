@@ -320,18 +320,22 @@ function getSeeds()
 
 function flash():void
 {
-	var hit:RaycastHit;
-	var direction:Vector3;
-	if (getDirection() == "Right") direction = new Vector3(1, 0, 0);
-	else if (getDirection() == "Left") direction = new Vector3(-1, 0, 0);
-	if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 10)) {
-		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
-		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
+	if(flashBool == false)
+	{
+		var hit:RaycastHit;
+		var direction:Vector3;
+		if (getDirection() == "Right") direction = new Vector3(1, 0, 0);
+		else if (getDirection() == "Left") direction = new Vector3(-1, 0, 0);
+		if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 10)) {
+			if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
+			if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
+		}
+		flashlight.SetActive(true);
+		flashBool = true;
+		gameLogicScript.decreaseBatteryBy(5.0f);
+		var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+		soundEngine.playSoundEffect("flash");
 	}
-	flashlight.SetActive(true);
-	flashBool = true;
-	var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
-	soundEngine.playSoundEffect("flash");
 }
 
 public function addSample(sample:GameObject) {

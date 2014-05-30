@@ -13,7 +13,7 @@ private var currentBatteryPower		:float 	   = 0;
 private var batteryBarTextures		:Array = new Array();
 public var batteryBarTex:Texture2D = null;
 private var batteryBarRect			:Rect;
-public var batteryBarX				:float = 45;
+public var batteryBarX				:float = 46;
 public var batteryBarY				:float = 33;
 private var amountOfBatteryBars		:int   = 0;
 

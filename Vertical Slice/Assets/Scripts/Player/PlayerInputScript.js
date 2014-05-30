@@ -224,7 +224,6 @@ private function sendRay(position:Vector2) {
 	if (Physics.Raycast(Camera.main.ScreenPointToRay(position), hit, 100.0f, layerMask)) {
 		if (hit.collider.gameObject.name == "Player") {
 			playerController.flash();
-			gameLogicScript.decreaseBatteryBy(5.0f);
 		}
 	}
 }
