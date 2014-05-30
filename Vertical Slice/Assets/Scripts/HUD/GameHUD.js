@@ -3,7 +3,7 @@
 //
 //Show Battery power
 //
-private var currentBatteryTexture	:Texture2D = null;
+public var currentBatteryTexture	:Texture2D = null;
 private var currentBatteryRect		:Rect;
 private var currentBatteryX			:float	   = -50;
 private var currentBatteryY			:float	   = -19;
@@ -11,30 +11,11 @@ private var currentBatteryY			:float	   = -19;
 private var currentBatteryPower		:float 	   = 0;
 
 private var batteryBarTextures		:Array = new Array();
-private var batteryBarTex:Texture2D = null;
+public var batteryBarTex:Texture2D = null;
 private var batteryBarRect			:Rect;
-public var batteryBarX				:float = 68;
-public var batteryBarY				:float = 230;
+public var batteryBarX				:float = 45;
+public var batteryBarY				:float = 33;
 private var amountOfBatteryBars		:int   = 0;
-
-
-
-////1XX
-//private var batteryNumberTexture1	:Texture2D = null;
-//private var batteryNumber1Rect		:Rect;
-//private var batteryNumber1X			:float	   = 95;
-//private var batteryNumber1Y			:float	   = 146;
-//
-////X2X
-//private var batteryNumberTexture2	:Texture2D = null;
-//private var batteryNumber2Rect		:Rect;
-//private var batteryNumber2X			:float	   = 145;
-//private var batteryNumber2Y			:float	   = 146;
-////XX3
-//private var batteryNumberTexture3	:Texture2D = null;
-//private var batteryNumber3Rect		:Rect;
-//private var batteryNumber3X			:float	   = 195;
-//private var batteryNumber3Y			:float	   = 146;
 
 private var number0:Texture2D = null;
 private var number1:Texture2D = null;
@@ -47,9 +28,8 @@ private var number7:Texture2D = null;
 private var number8:Texture2D = null;
 private var number9:Texture2D = null;
 
-private var highBatteryTexture		:Texture2D = null;
-private var mediumBatteryTexture	:Texture2D = null;
-private var lowBatteryTexture		:Texture2D = null;
+public var highBatteryTexture		:Texture2D = null;
+public var lowBatteryTexture		:Texture2D = null;
 
 private var crystalsTotal:int;
 private var crystalsCollected:int;
@@ -102,10 +82,6 @@ public function Awake()
 		
 		batteryBarTex = batteryBarTextures[0] as Texture2D;
 	}
-	else
-	{
-		Debug.LogError("Can't find TextureLoader to load HUD textures");
-	}
 	
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 }
@@ -123,7 +99,7 @@ public function OnGUI():void
 	{
 		var batteryBarTexture:Texture2D = batteryBarTextures[j] as Texture2D;
 		//draw from bot to top
-		GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y - (j * (batteryBarRect.height + 1)), batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
+		GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
 	}
 	
 	//draw the crystals
@@ -157,23 +133,6 @@ private function scaleHud():void
 	//bars
 	batteryBarRect = new Rect(batteryBarX, batteryBarY, batteryBarTex.width, batteryBarTex.height);
 	batteryBarRect = scaleRect(batteryBarRect);
-
-
-//	if(batteryNumberTexture1 != null)
-//	{
-//		batteryNumber1Rect = new Rect(batteryNumber1X, batteryNumber1Y, batteryNumberTexture1.width, batteryNumberTexture1.height);
-//		batteryNumber1Rect = scaleRect(batteryNumber1Rect);
-//	}
-//	if(batteryNumberTexture2 != null)
-//	{
-//		batteryNumber2Rect = new Rect(batteryNumber2X, batteryNumber2Y, batteryNumberTexture2.width, batteryNumberTexture2.height);
-//		batteryNumber2Rect = scaleRect(batteryNumber2Rect);
-//	}
-//	if(batteryNumberTexture3 != null)
-//	{
-//		batteryNumber3Rect = new Rect(batteryNumber3X, batteryNumber3Y, batteryNumberTexture3.width, batteryNumberTexture3.height);
-//		batteryNumber3Rect = scaleRect(batteryNumber3Rect);
-//	}
 	
 	crystalInactiveRect = new Rect(crystalInactiveX, crystalInactiveY, crystalInactive.width, crystalInactive.height);
 	crystalInactiveRect = scaleRect(crystalInactiveRect);

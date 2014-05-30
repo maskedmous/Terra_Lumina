@@ -4,7 +4,6 @@ import TouchScript;
 
 private var player:GameObject = null;
 private var playerController:PlayerController = null;
-private var gameLogicObject:GameObject;
 private var gameLogicScript:GameLogic;
 
 private var shootTimer:float = 0.0f;
@@ -21,21 +20,32 @@ private var movementRightEnabled		:boolean = true;
 
 //an empty guiStyle
 private var guiStyle:GUIStyle = new GUIStyle();
+
+
 //button positions
-public 	var jumpButtonTexture	:Texture = null;
-private var jumpButtonRect		:Rect;
-private var jumpButtonX			:float = 0;
-public 	var jumpButtonY			:float = 780;
+public 	var jumpButtonTexture			:Texture = null;
+public  var jumpButtonInactiveTexture 	:Texture2D = null;
+private var jumpButtonRect				:Rect;
+private var jumpButtonX					:float = 0;
+public 	var jumpButtonY					:float = 780;
 
-public 	var normalShroomButtonTexture	:Texture2D = null;
-private var normalShroomButtonRect		:Rect;
-public 	var normalShroomButtonX			:float = 1600;
-public 	var normalShroomButtonY			:float = 900;
 
-public 	var bumpyShroomButtonTexture:Texture2D = null;
-private var bumpyShroomButtonRect	:Rect;
-public 	var bumpyShroomButtonX		:float = 1600;
-public 	var bumpyShroomButtonY		:float = 720;
+
+public 	var normalShroomButtonTexture			:Texture2D = null;
+public  var normalShroomButtonInactiveTexture	:Texture2D = null;
+private var normalShroomButtonRect				:Rect;
+public 	var normalShroomButtonX					:float = 1600;
+public 	var normalShroomButtonY					:float = 900;
+
+
+
+public 	var bumpyShroomButtonTexture		:Texture2D = null;
+public 	var bumpyShroomButtonInactiveTexture:Texture2D = null;
+private var bumpyShroomButtonRect			:Rect;
+public 	var bumpyShroomButtonX				:float = 1600;
+public 	var bumpyShroomButtonY				:float = 720;
+
+
 
 //scales for button positions
 private var originalWidth 	:float = 1920;
@@ -45,8 +55,7 @@ private var scale			:Vector3;
 public function Awake():void
 {
 	playerController = this.gameObject.GetComponent("PlayerController") as PlayerController;
-	gameLogicObject = GameObject.Find("GameLogic") as GameObject;
-	gameLogicScript = gameLogicObject.GetComponent(GameLogic) as GameLogic;
+	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
 }
 
 function Update ()
@@ -95,6 +104,11 @@ public function OnGUI() {
 					playerController.resetShot();
 				}
 			}
+			else
+			{
+				//this is the texture of the inactive button
+				GUI.DrawTexture(jumpButtonRect, jumpButtonInactiveTexture);
+			}
 			
 			if(normalShroomButtonEnabled)
 			{
@@ -117,6 +131,10 @@ public function OnGUI() {
 					}
 				}
 			}
+			else
+			{
+				GUI.DrawTexture(normalShroomButtonRect, normalShroomButtonInactiveTexture);
+			}
 			if(bumpyShroomButtonEnabled)
 			{
 				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonTexture);
@@ -137,6 +155,10 @@ public function OnGUI() {
 					Debug.Log("Wait for cooldown you idiot.");
 					}
 				}
+			}
+			else
+			{
+				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonInactiveTexture);
 			}
 		}
 	}
