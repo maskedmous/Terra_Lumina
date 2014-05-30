@@ -5420,14 +5420,6 @@
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
-        <Textures>
-          <TextureA>
-            <Texturename>Arrowsmalturnl</Texturename>
-            <x>1650</x>
-            <y>650</y>
-            <Timer>20</Timer>
-          </TextureA>
-        </Textures>
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
         <BoundingBox>

@@ -2,9 +2,10 @@
 
 import System.Collections.Generic;
 
-var debugInfo:String = "";
+private var soundEngine:SoundEngineScript = null;
+private var debugInfo:String = "";
 
-var lastDirection:String="Right";
+private var lastDirection:String="Right";
 private var maxSpeed:float = 8.0;
 
 private var lineRenderer:LineRenderer = null;
@@ -48,6 +49,11 @@ private var control:boolean = true;
 function Awake() {
 	gameLogic = GameObject.Find("GameLogic") as GameObject;
 	gameLogicScript = gameLogic.GetComponent("GameLogic") as GameLogic;
+	
+	if(Application.loadedLevelName == "LevelLoaderScene")
+	{
+		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+	}
 	
 	shrooms.Add(Resources.Load("Prefabs/NormalShroom") as GameObject);
 	shrooms.Add(Resources.Load("Prefabs/BumpyShroom") as GameObject);
@@ -141,8 +147,10 @@ function movement()
 
 
 public function move(mousePos:float) {
-	var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
-	soundEngine.playSoundEffect("rover");
+	if(soundEngine != null)
+	{
+		soundEngine.playSoundEffect("rover");
+	}
 	if (mousePos > ((Screen.width / 2) + (Screen.width * (1.0 / 50.0)))) moveRight();
 	if (mousePos < ((Screen.width / 2) - (Screen.width * (1.0 / 50.0)))) moveLeft();
 }
