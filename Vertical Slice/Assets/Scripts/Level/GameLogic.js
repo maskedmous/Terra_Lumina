@@ -61,7 +61,7 @@ private var plantSamples:Array = new Array();
 private var scale:Vector3;
 private var originalWidth:float = 1920;
 private var originalHeight:float = 1080;
-private var levelTrigger = null;
+private var levelTriggerScript:LevelTrigger = null;
 
 function Start()
 {
@@ -72,9 +72,9 @@ function Start()
 
 function Update()
 {
-	if(levelTrigger == null && GameObject.Find("EndLevelTrigger") != null)
+	if(levelTriggerScript == null && GameObject.Find("EndLevelTrigger") != null)
 	{
-		levelTrigger = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
+		levelTriggerScript = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
 	}
 
 	if(runTimer == true)
@@ -191,15 +191,13 @@ function checkWin():boolean{
 	return false;
 }
 
-function gameOverWin():void {
-	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
-	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
+function gameOverWin():void
+{
 	levelTriggerScript.setFinished(true);
 }
 
 function gameOverLose():void
 {
-	var levelTriggerScript = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
 	levelTriggerScript.setLost(true);
 }
 
@@ -209,8 +207,6 @@ function startTimer(){
 
 function stopTimer(){
 	runTimer = false;
-	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
-	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
 	if(levelTriggerScript.getFinished()){
 		if(timerInt <= techieTime){
 			setScore(500);
