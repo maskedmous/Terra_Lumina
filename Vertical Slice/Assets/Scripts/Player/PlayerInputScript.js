@@ -4,6 +4,7 @@ import TouchScript;
 
 private var player:GameObject = null;
 private var playerController:PlayerController = null;
+private var soundEngine:SoundEngineScript = null;
 private var gameLogicScript:GameLogic;
 
 private var shootTimer:float = 0.0f;
@@ -56,6 +57,11 @@ public function Awake():void
 {
 	playerController = this.gameObject.GetComponent("PlayerController") as PlayerController;
 	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+	
+	if(Application.loadedLevelName == "LevelLoaderScene")
+	{
+		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+	}
 }
 
 function Update ()
@@ -207,6 +213,12 @@ function readTouch()
 			{
 				playerController.move(position.x);
 			}
+			/*else{ //if(!movementLeftEnabled || !movementRightEnabled){
+				if(soundEngine.getDrive() == true){
+					soundEngine.playSoundEffect("roverStop");
+					soundEngine.setDrive(false);
+				}
+			}*/
 			if (chargingShot) {
 				chargingShot = false;
 				playerController.resetShot();
@@ -214,6 +226,13 @@ function readTouch()
 		}
 		//sendRay(position);
 	}
+	/*if(!movementLeftEnabled || !movementRightEnabled){
+		if(soundEngine.getDrive() == true){
+			soundEngine.playSoundEffect("roverStop");
+			soundEngine.setDrive(false);
+			
+		}
+	}*/
 }
 
 private function sendRay(position:Vector2) {

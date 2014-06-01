@@ -4,13 +4,21 @@ private var volume:float = 1.0;
 //private var muteBool:boolean;
 static var bgMusicExists:boolean = false;
 
+private var aim:boolean = false;
+private var drive:boolean = false;
+private var driveTimer:float = 0;
+private var driveTimerBool:boolean = false;
+
 private var bounceSound:AudioClip;
 private var jumpSound:AudioClip;
 private var shootingSound:AudioClip;
 private var slugForwardSound:AudioClip;
 private var slugBackwardSound:AudioClip;
-private var roverSound:AudioClip;
+private var roverDriveSound:AudioClip;
 private var flashSound:AudioClip;
+private var roverStartSound:AudioClip;
+private var roverStopSound:AudioClip;
+private var roverAimSound:AudioClip;
 
 public function Awake():void
 {
@@ -21,13 +29,16 @@ public function Awake():void
 		this.audio.loop = true;
 		bgMusicExists = true;
 		
-		bounceSound = Resources.Load("SoundEffects/Bounce", AudioClip);
-		jumpSound = Resources.Load("SoundEffects/Jump", AudioClip);
-		shootingSound = Resources.Load("SoundEffects/Shooting", AudioClip);
+		bounceSound = Resources.Load("SoundEffects/Shroom Bounce", AudioClip);
+		jumpSound = Resources.Load("SoundEffects/Rover Jump", AudioClip);
+		shootingSound = Resources.Load("SoundEffects/Rover Shoot", AudioClip);
 		slugForwardSound = Resources.Load("SoundEffects/Move forward", AudioClip);
 		slugBackwardSound = Resources.Load("SoundEffects/Move backwards", AudioClip);
-		roverSound = Resources.Load("SoundEffects/Rover rolling", AudioClip);
-		flashSound = Resources.Load("SoundEffects/Turn on Light", AudioClip);
+		roverDriveSound = Resources.Load("SoundEffects/Rover Drive - Loop This", AudioClip);
+		roverStartSound = Resources.Load("SoundEffects/Rover Drive Startup", AudioClip);
+		roverStopSound = Resources.Load("SoundEffects/Rover Drive Stop", AudioClip);
+		roverAimSound = Resources.Load("SoundEffects/Rover Aim", AudioClip);
+		flashSound = Resources.Load("SoundEffects/Rover Flashlight", AudioClip);
 	}
 	else{
 		Destroy(this.gameObject);
@@ -37,6 +48,13 @@ public function Awake():void
 function Update () {
 	if(gameObject.Find("Player")){
 		this.gameObject.transform.position = gameObject.Find("Player").transform.position;
+	}
+	if(driveTimerBool == true){
+		driveTimer += Time.deltaTime;
+		if(driveTimer >= 3){
+			driveTimerBool = false;
+			driveTimer = 0;
+		}
 	}
 }
 
@@ -83,12 +101,40 @@ public function playSoundEffect(name:String){
 	if(name == "slugBackward"){
 		audio.PlayOneShot(slugBackwardSound);
 	}
-	if(name == "rover"){
-		//audio.PlayOneShot(roverSound);
+	if(name == "roverDrive"){
+		if(driveTimer == 0){
+			audio.PlayOneShot(roverDriveSound);
+			driveTimerBool = true;	
+		}
+		
+	}
+	if(name == "roverStart"){
+		audio.PlayOneShot(roverStartSound);
+	}
+	if(name == "roverStop"){
+		audio.PlayOneShot(roverStopSound);
+		print("play rover stop sound");
+	}
+	if(name == "aim"){
+		if(aim == true){
+			audio.PlayOneShot(roverAimSound);
+		}
 	}
 	if(name == "flash"){
 		audio.PlayOneShot(flashSound);
 	}
+}
+
+public function setAim(aimBool:boolean){
+	aim = aimBool;
+}
+
+public function setDrive(driveBool:boolean){
+	drive = driveBool;
+}
+
+public function getDrive(){
+	return drive;
 }
 
 public function playMusic(){

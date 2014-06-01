@@ -135,7 +135,11 @@ function movement()
 public function move(mousePos:float) {
 	if(soundEngine != null)
 	{
-		soundEngine.playSoundEffect("rover");
+		if(soundEngine.getDrive() == false) {
+			soundEngine.playSoundEffect("roverStart");
+			soundEngine.setDrive(true);
+		}
+		soundEngine.playSoundEffect("roverDrive");
 	}
 	if (mousePos > ((Screen.width / 2) + (Screen.width * (1.0 / 50.0)))) moveRight();
 	if (mousePos < ((Screen.width / 2) - (Screen.width * (1.0 / 50.0)))) moveLeft();
@@ -165,11 +169,23 @@ private function moveRight()
 
 public function brake():void
 {
+	
 	if (!isJumping) {
 		var vx = this.gameObject.rigidbody.velocity.x;
 		if (vx > 0.10f) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
 		else if (vx < -0.10f) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
-		else if (vx > -0.05f && vx < 0.05f) this.gameObject.rigidbody.velocity.x = 0.0f;
+		else if (vx > -0.05f && vx < 0.05f){
+		 	this.gameObject.rigidbody.velocity.x = 0.0f;
+		 	if(soundEngine.getDrive() == true){
+				soundEngine.playSoundEffect("roverStop");
+				soundEngine.setDrive(false);
+			}
+		 }
+		
+		/*if(soundEngine.getDrive() == true){
+			soundEngine.playSoundEffect("roverStop");
+			soundEngine.setDrive(false);
+		}*/
 	}
 }
 
@@ -192,7 +208,9 @@ function chargeShot() {
 	if (currentSeeds > 0) {
 		//if (getDirection() == "Right") mod = 3.0f;
 		//else mod = -3.0f;
-		lineRenderer.enabled = true;	
+		lineRenderer.enabled = true;
+		soundEngine.playSoundEffect("aim");
+		soundEngine.setAim(true);
 		
 		y0 = this.gameObject.transform.position.y;
 		
@@ -283,6 +301,7 @@ public function resetShot():void {
 
 function shoot()
 {
+	soundEngine.setAim(false);
 	if (currentSeeds > 0) {
 		if(!gameLogicScript.getInfiniteAmmo()) 
 		{
