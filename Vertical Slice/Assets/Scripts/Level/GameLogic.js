@@ -7,7 +7,7 @@
 private var speed:float;
 public var maximumAmmo:int = 10;
 public var infiniteAmmo:boolean = false;
-
+private var playerController:PlayerController = null;
 /*
 	Battery variables
 */
@@ -61,20 +61,24 @@ private var plantSamples:Array = new Array();
 private var scale:Vector3;
 private var originalWidth:float = 1920;
 private var originalHeight:float = 1080;
-var levelTrigger;
+private var levelTrigger = null;
 
-function Start(){
+function Start()
+{
 	startTimer();
-}
-
-function Awake(){
-	levelTrigger = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
+	playerController = GameObject.Find("Player").GetComponent(PlayerController);
 }
 
 
 function Update()
 {
-	if(runTimer == true){
+	if(levelTrigger == null && GameObject.Find("EndLevelTrigger") != null)
+	{
+		levelTrigger = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
+	}
+
+	if(runTimer == true)
+	{
 		levelTimer += Time.deltaTime;
 		timerInt = levelTimer;
 	}
@@ -86,7 +90,9 @@ function Update()
 	{
 		secondTimer = 0;
 	}
-	if(lose == false){
+	
+	if(lose == false)
+	{
 		checkLose();
 	}
 }
@@ -102,18 +108,17 @@ public function OnGUI():void
 	}
 	else
 	{
-		GUI.Label(Rect(0, 280 * scale.y, 500, 20), ("Aantal zaadjes over: " + GameObject.Find("Player").GetComponent(PlayerController).getSeeds().ToString() + " / " + maximumAmmo.ToString()));
+		GUI.Label(Rect(0, 280 * scale.y, 500, 20), ("Aantal zaadjes over: " + playerController.getSeeds().ToString() + " / " + maximumAmmo.ToString()));
 	}
 }
 
 function decreaseBattery()
 {	
-	var levelTrigger = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
-	//if(levelTrigger.getLost() == false || levelTrigger.getFinished() == false){
-	if(stopBatteryBool){
+	if(stopBatteryBool == false){
 		if(secondTimer > decreaseTimer)
 		{
 			battery -= negativeBatteryFlow;
+			if(battery < 0) battery = 0;
 			secondTimer = 0;
 		}
 		else
@@ -125,6 +130,8 @@ function decreaseBattery()
 
 public function decreaseBatteryBy(value:float):void {
 	battery -= value;
+	
+	if(battery < 0) battery = 0;	//no negative battery values
 }
 
 function addBatteryPower()
@@ -144,8 +151,10 @@ function stopBattery(){
 	stopBatteryBool = true;
 }
 
-function checkLose(){
-	if(battery <= 0){
+function checkLose()
+{
+	if(battery <= 0)
+	{
 		gameOverLose();
 		lose = true;
 	}
@@ -188,9 +197,9 @@ function gameOverWin():void {
 	levelTriggerScript.setFinished(true);
 }
 
-function gameOverLose():void {
-	var endLevelTrigger = GameObject.Find("EndLevelTrigger");
-	var levelTriggerScript = endLevelTrigger.GetComponent(LevelTrigger);
+function gameOverLose():void
+{
+	var levelTriggerScript = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
 	levelTriggerScript.setLost(true);
 }
 
