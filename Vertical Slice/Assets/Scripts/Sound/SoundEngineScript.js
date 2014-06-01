@@ -113,7 +113,6 @@ public function playSoundEffect(name:String){
 	}
 	if(name == "roverStop"){
 		audio.PlayOneShot(roverStopSound);
-		print("play rover stop sound");
 	}
 	if(name == "aim"){
 		if(aim == true){

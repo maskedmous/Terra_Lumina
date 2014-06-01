@@ -174,18 +174,18 @@ public function brake():void
 		var vx = this.gameObject.rigidbody.velocity.x;
 		if (vx > 0.10f) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
 		else if (vx < -0.10f) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
-		else if (vx > -0.05f && vx < 0.05f){
-		 	this.gameObject.rigidbody.velocity.x = 0.0f;
-		 	if(soundEngine.getDrive() == true){
-				soundEngine.playSoundEffect("roverStop");
-				soundEngine.setDrive(false);
+		else if (vx > -0.05f && vx < 0.05f)
+		{
+			if(vx != 0.0f)
+			{
+			 	this.gameObject.rigidbody.velocity.x = 0.0f;
+			 	if(soundEngine.getDrive() == true)
+			 	{
+					soundEngine.playSoundEffect("roverStop");
+					soundEngine.setDrive(false);
+				}
 			}
-		 }
-		
-		/*if(soundEngine.getDrive() == true){
-			soundEngine.playSoundEffect("roverStop");
-			soundEngine.setDrive(false);
-		}*/
+		}
 	}
 }
 
