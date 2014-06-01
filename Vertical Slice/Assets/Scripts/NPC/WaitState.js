@@ -38,12 +38,12 @@ class WaitState extends State {
 		var currentSpawnPoint:Vector3;
 		currentSpawnPoint = parentScript.getStart();
 		var newSpawnPoint:Vector3;
-		if (target.transform.position.x > currentSpawnPoint.x) {
+		//if (target.transform.position.x > currentSpawnPoint.x) {
 			newSpawnPoint = currentSpawnPoint + new Vector3(-3.0f, 0.0f, 0.0f);
-		}
-		else {
-			newSpawnPoint = currentSpawnPoint + new Vector3(3.0f, 0.0f, 0.0f);
-		}
+		//}
+		//else {
+		//	newSpawnPoint = currentSpawnPoint + new Vector3(3.0f, 0.0f, 0.0f);
+		//}
 		this.parent.transform.position = newSpawnPoint;
 	}
 }
