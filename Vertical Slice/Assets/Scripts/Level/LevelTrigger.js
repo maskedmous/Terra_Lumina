@@ -39,6 +39,7 @@ function OnTriggerEnter(hit:Collider){
 		{
 			finished = true;
 			gameLogicScript.stopTimer();
+			
 		}
 		else
 		{
@@ -57,6 +58,7 @@ public function OnTriggerExit(object:Collider)
 
 function OnGUI(){
 	if(finished){
+		gameLogicScript.stopBattery();
 		//first scale the buttons before drawing them
 		scaleButtons();
 
@@ -73,6 +75,7 @@ function OnGUI(){
 		GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2, 300, 50), "Je hebt " + gameLogicScript.getSamplesToComplete().ToString() + "nodig om het level te eindigen");
 	}
 	if(lost){
+		gameLogicScript.stopBattery();
 		//first scale the buttons before drawing them
 		scaleButtons();
 

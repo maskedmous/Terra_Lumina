@@ -17,12 +17,14 @@ public var decreaseTimer:float = 1.0;				//every x seconds it decreases battery
 public var negativeBatteryFlow:int = 1;			//amount of battery that it decreases
 public var positiveBatteryFlow:int = 2;			//amount of battery that it increases
 private var charging:boolean = false;
+private var stopBatteryBool = false;
 /*
 	Win Variables
 */
 public var samplesToComplete:int = 0;
 public var maxSamples:int = 3;
 public var score:int = 0;
+private var lose:boolean = false;
 
 /*
 	Action energy cost
@@ -59,9 +61,14 @@ private var plantSamples:Array = new Array();
 private var scale:Vector3;
 private var originalWidth:float = 1920;
 private var originalHeight:float = 1080;
+var levelTrigger;
 
 function Start(){
 	startTimer();
+}
+
+function Awake(){
+	levelTrigger = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
 }
 
 
@@ -78,6 +85,9 @@ function Update()
 	else if(secondTimer != 0)
 	{
 		secondTimer = 0;
+	}
+	if(lose == false){
+		checkLose();
 	}
 }
 
@@ -97,16 +107,19 @@ public function OnGUI():void
 }
 
 function decreaseBattery()
-{
-	if(secondTimer > decreaseTimer)
-	{
-		battery -= negativeBatteryFlow;
-		secondTimer = 0;
-		if (battery < 0.01) gameOverLose();
-	}
-	else
-	{
-		secondTimer += Time.deltaTime;
+{	
+	var levelTrigger = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
+	//if(levelTrigger.getLost() == false || levelTrigger.getFinished() == false){
+	if(stopBatteryBool){
+		if(secondTimer > decreaseTimer)
+		{
+			battery -= negativeBatteryFlow;
+			secondTimer = 0;
+		}
+		else
+		{
+			secondTimer += Time.deltaTime;
+		}
 	}
 }
 
@@ -124,6 +137,17 @@ function addBatteryPower()
 	if(battery > maximumBatteryCapacity)
 	{
 		battery = maximumBatteryCapacity;
+	}
+}
+
+function stopBattery(){
+	stopBatteryBool = true;
+}
+
+function checkLose(){
+	if(battery <= 0){
+		gameOverLose();
+		lose = true;
 	}
 }
 
