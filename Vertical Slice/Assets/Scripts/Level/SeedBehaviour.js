@@ -23,6 +23,7 @@ function OnCollisionEnter(collision:Collision)
 			newShroom.gameObject.name = "Shroom";
 			newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
 			newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
+			newShroom.gameObject.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
 			Destroy(this.gameObject);
 		}
 		else
@@ -40,8 +41,8 @@ function replaceWithShroom():void
 		newShroom.gameObject.name = "Shroom";
 		newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
 		newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
-		newShroom.gameObject.transform.rotation.y = Mathf.Abs(Random.Range(0, 360));
-		print(Random.Range(0, 360));
+		newShroom.gameObject.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
+		//print(Random.Range(0, 360));
 		this.gameObject.renderer.enabled = false;
 	}
 	else
