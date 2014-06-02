@@ -37,8 +37,9 @@ private var currentShroom:GameObject  = null;						//current shroom that is acti
 private var shrooms:List.<GameObject> = new List.<GameObject>();	//list of shrooms to shoot (should be 2)
 private var samples:List.<GameObject> = new List.<GameObject>();	//the samples you collect
 
-private var gameLogic:GameObject		= null;
-private var gameLogicScript:GameLogic   = null;
+private var gameLogic:GameObject				= null;
+private var gameLogicScript:GameLogic   		= null;
+private var particleScript:PlayerParticleScript	= null;
 
 public var flashlight:GameObject;
 private var flashBool:boolean;
@@ -49,6 +50,8 @@ private var control:boolean = true;
 function Awake() {
 	gameLogic = GameObject.Find("GameLogic") as GameObject;
 	gameLogicScript = gameLogic.GetComponent("GameLogic") as GameLogic;
+	
+	particleScript = this.gameObject.GetComponent("PlayerParticleScript") as PlayerParticleScript;
 	
 	if(Application.loadedLevelName == "LevelLoaderScene")
 	{
@@ -191,7 +194,6 @@ public function brake():void
 
 public function jump() {
 	if (!isJumping) {
-		Debug.Log("jump called");
 		this.gameObject.rigidbody.velocity.y = jumpForce;
 		jumpForce = 7.0f;
 		isJumping = true;
@@ -200,6 +202,9 @@ public function jump() {
 		if(soundEngine != null)
 		{
 			soundEngine.playSoundEffect("jump");
+		}
+		if (particleScript != null) {
+			particleScript.playParticle("jumpDust");
 		}
 	}
 }
