@@ -32,7 +32,7 @@ private var jumpForce:float = 7.0;
 
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
-private var currentSeeds:uint = 10;									//current amount of seed
+private var currentSeeds:int = 10;									//current amount of seed
 private var currentShroom:GameObject  = null;						//current shroom that is active for shooting
 private var shrooms:List.<GameObject> = new List.<GameObject>();	//list of shrooms to shoot (should be 2)
 private var samples:List.<GameObject> = new List.<GameObject>();	//the samples you collect
@@ -182,10 +182,13 @@ public function brake():void
 			if(vx != 0.0f)
 			{
 			 	this.gameObject.rigidbody.velocity.x = 0.0f;
-			 	if(soundEngine.getDrive() == true)
+			 	if(soundEngine != null)
 			 	{
-					soundEngine.playSoundEffect("roverStop");
-					soundEngine.setDrive(false);
+				 	if(soundEngine.getDrive() == true)
+				 	{
+						soundEngine.playSoundEffect("roverStop");
+						soundEngine.setDrive(false);
+					}
 				}
 			}
 		}

@@ -58,19 +58,20 @@ public var bronzeTime:int = 120;
 */
 private var plantSamples:Array = new Array();
 
-private var scale:Vector3;
-private var originalWidth:float = 1920;
-private var originalHeight:float = 1080;
+/*
+	Other
+*/
 private var levelTriggerScript:LevelTrigger = null;
 
-function Start()
+
+public function Start():void
 {
 	startTimer();
 	playerController = GameObject.Find("Player").GetComponent(PlayerController);
 }
 
 
-function Update()
+public function Update():void
 {
 	if(levelTriggerScript == null && GameObject.Find("EndLevelTrigger") != null)
 	{
@@ -94,21 +95,6 @@ function Update()
 	if(lose == false)
 	{
 		checkLose();
-	}
-}
-
-public function OnGUI():void
-{
-	scale.x = Screen.width / originalWidth;
-	scale.y = Screen.height / originalHeight;
-	
-	if(infiniteAmmo)
-	{
-		GUI.Label(Rect(0, (425 * scale.y), 500, 20), ("Aantal zaadjes over: Infinite"));
-	}
-	else
-	{
-		GUI.Label(Rect(0, 280 * scale.y, 500, 20), ("Aantal zaadjes over: " + playerController.getSeeds().ToString() + " / " + maximumAmmo.ToString()));
 	}
 }
 
@@ -247,6 +233,11 @@ function setPlant(direction:String, endVec:Vector3)
 	newObject.name = "Plant";
 	newObject.transform.position = endVec;
 	newObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
+}
+
+public function getCurrentAmmo():int
+{
+	return playerController.getSeeds();
 }
 
 public function setMaximumAmmo(value:int):void

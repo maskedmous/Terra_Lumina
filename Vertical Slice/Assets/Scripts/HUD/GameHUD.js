@@ -27,10 +27,32 @@ private var number6:Texture2D = null;
 private var number7:Texture2D = null;
 private var number8:Texture2D = null;
 private var number9:Texture2D = null;
+private var infinity:Texture2D = null;
 
 public var highBatteryTexture		:Texture2D = null;
 public var lowBatteryTexture		:Texture2D = null;
 
+//seeds hud
+public var seedsTexture:Texture2D = null;
+private var seedsRect:Rect;
+public var seedsX:float = 20;
+public var seedsY:float = 280;
+
+public var leftSideNumberX:float = 0;
+public var leftSideNumberY:float = 0;
+
+public var middleDivideX:float = 0;
+public var middleDivideY:float = 0;
+
+public var rightSideNumberX:float = 0;
+public var rightsideNumberX:float = 0;
+
+private var infinityRect:Rect;
+private var infiniteAmmo:boolean = false;
+public var infinityAmmoX:float = 120;
+public var infinityAmmoY:float = 300;
+
+//crystals hud
 private var crystalsTotal:int;
 private var crystalsCollected:int;
 
@@ -71,6 +93,8 @@ public function Awake()
 		number7 = textureLoader.getTexture("number7");
 		number8 = textureLoader.getTexture("number8");
 		number9 = textureLoader.getTexture("number9");
+		infinity = textureLoader.getTexture("infinity");
+		seedsTexture = textureLoader.getTexture("SeedElement");
 		
 		crystalActive = textureLoader.getTexture("Crystal Active");
 		crystalInactive = textureLoader.getTexture("Crystal Inactive");
@@ -84,6 +108,13 @@ public function Awake()
 	}
 	
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
+	checkInfiniteAmmo();
+}
+
+private function checkInfiniteAmmo():IEnumerator
+{
+	yield WaitForEndOfFrame;
+	infiniteAmmo = gameLogic.getInfiniteAmmo();
 }
 
 public function OnGUI():void
@@ -116,6 +147,21 @@ public function OnGUI():void
 			GUI.DrawTexture(new Rect(crystalInactiveRect.x + i * crystalInactiveRect.width, crystalInactiveRect.y, crystalInactiveRect.width, crystalInactiveRect.height), crystalInactive);
 		}
 	}
+	
+	//draw the seed hud
+	GUI.DrawTexture(seedsRect, seedsTexture);
+	
+	if(infiniteAmmo)
+	{
+		//draw infinite sign
+		GUI.DrawTexture(infinityRect, infinity);
+	}
+	else
+	{
+		var currentAmountOfAmmo:int = gameLogic.getCurrentAmmo();
+		var maximumAmountOfAmmo:int = gameLogic.getMaximumAmmo();
+		//draw currentAmmo / maximum ammo
+	}
 }
 
 private function scaleHud():void
@@ -139,7 +185,15 @@ private function scaleHud():void
 	
 	crystalActiveRect = new Rect(crystalActiveX, crystalActiveY, crystalActive.width, crystalActive.height);
 	crystalActiveRect = scaleRect(crystalActiveRect);
-		
+	
+	seedsRect = new Rect(seedsX, seedsY, seedsTexture.width, seedsTexture.height);
+	seedsRect = scaleRect(seedsRect);
+	
+	if(infiniteAmmo)
+	{
+		infinityRect = new Rect(infinityAmmoX, infinityAmmoY, infinity.width, infinity.height);
+		infinityRect = scaleRect(infinityRect);
+	}
 }
 
 private function scaleRect(rect:Rect):Rect
