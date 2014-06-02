@@ -19,6 +19,8 @@ private var flashSound:AudioClip;
 private var roverStartSound:AudioClip;
 private var roverStopSound:AudioClip;
 private var roverAimSound:AudioClip;
+private var rockBreakingSound:AudioClip;
+private var sunChargingSound:AudioClip;
 
 public function Awake():void
 {
@@ -39,6 +41,8 @@ public function Awake():void
 		roverStopSound = Resources.Load("SoundEffects/Rover Drive Stop", AudioClip);
 		roverAimSound = Resources.Load("SoundEffects/Rover Aim", AudioClip);
 		flashSound = Resources.Load("SoundEffects/Rover Flashlight", AudioClip);
+		//rockBreakingSound = Resources.Load("SoundEffects/...", AudioClip);
+		//sunChargingSound = Resources.Load("SoundEffects/...", AudioClip);
 	}
 	else{
 		Destroy(this.gameObject);
@@ -121,6 +125,12 @@ public function playSoundEffect(name:String){
 	}
 	if(name == "flash"){
 		audio.PlayOneShot(flashSound);
+	}
+	if(name == "rock"){
+		audio.PlayOneShot(rockBreakingSound);
+	}
+	if(name == "sun"){
+		audio.PlayOneShot(sunChargingSound);
 	}
 }
 
