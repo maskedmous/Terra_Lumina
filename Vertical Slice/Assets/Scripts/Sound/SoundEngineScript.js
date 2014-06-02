@@ -102,11 +102,11 @@ public function playSoundEffect(name:String){
 		audio.PlayOneShot(slugBackwardSound);
 	}
 	if(name == "roverDrive"){
-		if(driveTimer == 0){
+		if(driveTimer == 0)
+		{
 			audio.PlayOneShot(roverDriveSound);
 			driveTimerBool = true;	
-		}
-		
+		}	
 	}
 	if(name == "roverStart"){
 		audio.PlayOneShot(roverStartSound);
