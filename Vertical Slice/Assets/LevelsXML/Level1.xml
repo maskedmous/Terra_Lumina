@@ -790,13 +790,13 @@
     <GameObject>
       <Prefab>Plant</Prefab>
       <Position>
-        <x>97.37665</x>
+        <x>86.67009</x>
         <y>-17.7717</y>
         <z>22.31051</z>
       </Position>
       <Rotation>
         <x>13.73452</x>
-        <y>239.8963</y>
+        <y>260.8643</y>
         <z>351.2784</z>
       </Rotation>
       <Scaling>
@@ -1114,7 +1114,7 @@
     <GameObject>
       <Prefab>Point light</Prefab>
       <Position>
-        <x>80.92676</x>
+        <x>75.58485</x>
         <y>-8.262063</y>
         <z>23.19888</z>
       </Position>
@@ -1330,7 +1330,7 @@
     <GameObject>
       <Prefab>Point light</Prefab>
       <Position>
-        <x>98.0405</x>
+        <x>87.33394</x>
         <y>-18.32363</y>
         <z>18.52409</z>
       </Position>
@@ -2680,7 +2680,7 @@
     <GameObject>
       <Prefab>rock 3</Prefab>
       <Position>
-        <x>83.30717</x>
+        <x>91.35452</x>
         <y>-15.3862</y>
         <z>22.88914</z>
       </Position>
@@ -4733,8 +4733,8 @@
           </TextureA>
           <TextureB>
             <Texturename>Arrow2</Texturename>
-            <x>200</x>
-            <y>820</y>
+            <x>230</x>
+            <y>880</y>
             <Timer>20</Timer>
           </TextureB>
         </Textures>
@@ -5007,16 +5007,16 @@
         <CrystalTutorial>False</CrystalTutorial>
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
-          <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
-          <NormalShroomButton>True</NormalShroomButton>
-          <BumpyShroomButton>True</BumpyShroomButton>
+          <MovementRight>False</MovementRight>
+          <Jumpbutton>False</Jumpbutton>
+          <NormalShroomButton>False</NormalShroomButton>
+          <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
         <Textures>
           <TextureA>
             <Texturename>move to left</Texturename>
             <x>100</x>
-            <y>100</y>
+            <y>0</y>
             <Timer>20</Timer>
           </TextureA>
         </Textures>
@@ -5050,6 +5050,24 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <AlphaObject>
+          <Prefab>BumpyShroom 1</Prefab>
+          <Position>
+            <x>96.04071</x>
+            <y>-14.02076</y>
+            <z>14.73361</z>
+          </Position>
+          <Rotation>
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+          </Rotation>
+          <Scaling>
+            <x>1</x>
+            <y>1</y>
+            <z>1</z>
+          </Scaling>
+        </AlphaObject>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -5263,7 +5281,7 @@
         <AlphaObject>
           <Prefab>NormalShroom 3</Prefab>
           <Position>
-            <x>23.61267</x>
+            <x>23.34937</x>
             <y>-9.301113</y>
             <z>15</z>
           </Position>
@@ -5441,8 +5459,8 @@
         <Textures>
           <TextureA>
             <Texturename>Arrow5</Texturename>
-            <x>1650</x>
-            <y>650</y>
+            <x>1550</x>
+            <y>600</y>
             <Timer>20</Timer>
           </TextureA>
         </Textures>
@@ -5489,8 +5507,8 @@
         <Textures>
           <TextureA>
             <Texturename>move to right</Texturename>
-            <x>900</x>
-            <y>100</y>
+            <x>800</x>
+            <y>0</y>
             <Timer>20</Timer>
           </TextureA>
         </Textures>
