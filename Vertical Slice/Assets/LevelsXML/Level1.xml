@@ -734,24 +734,6 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>NormalShroom 3</Prefab>
-      <Position>
-        <x>23.61267</x>
-        <y>-9.301113</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1.7</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
       <Prefab>Plant</Prefab>
       <Position>
         <x>139.3109</x>
@@ -5281,9 +5263,9 @@
         <AlphaObject>
           <Prefab>NormalShroom 3</Prefab>
           <Position>
-            <x>0</x>
-            <y>0</y>
-            <z>0</z>
+            <x>23.61267</x>
+            <y>-9.301113</y>
+            <z>15</z>
           </Position>
           <Rotation>
             <x>0</x>
@@ -5292,7 +5274,7 @@
           </Rotation>
           <Scaling>
             <x>1</x>
-            <y>1.7</y>
+            <y>1</y>
             <z>1</z>
           </Scaling>
         </AlphaObject>

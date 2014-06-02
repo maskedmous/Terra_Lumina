@@ -358,7 +358,12 @@ public function getTextInSeconds():int
 
 public function getAlphaObject():GameObject
 {
-	return alphaObject;
+	if(alphaObject != null)
+	{
+		return alphaObject;
+	}
+	
+	return null;
 }
 
 public function getLightTutorial():boolean
