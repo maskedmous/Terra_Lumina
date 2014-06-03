@@ -74,6 +74,17 @@ public function isWaitState():boolean
 	return false;
 }
 
+function OnCollisionEnter(collision:Collision) {
+	if (collision.collider.gameObject.name.Contains("Wheel")) {
+		if (collision.collider.gameObject.transform.x > this.gameObject.transform.position.x) {
+		//
+		}
+		else {
+		//
+		}
+	}
+}
+
 public function getSlugBoundA():GameObject
 {
 	return slugBoundA;

@@ -5,7 +5,7 @@ protected var parentScript:SlugScript;
 
 protected var target:GameObject;
 
-protected var speed:float = 100.0f;
+protected var speed:float = 70.0f;
 
 protected var layerMask:int;
 
