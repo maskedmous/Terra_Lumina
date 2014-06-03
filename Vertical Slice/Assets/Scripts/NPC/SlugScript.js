@@ -75,12 +75,13 @@ public function isWaitState():boolean
 }
 
 function OnCollisionEnter(collision:Collision) {
-	if (collision.collider.gameObject.name.Contains("Wheel")) {
-		if (collision.collider.gameObject.transform.x > this.gameObject.transform.position.x) {
-		//
+	var name:String = collision.collider.gameObject.name;
+	if (name.Contains("Wheel") || name == "Player") {
+		if (collision.collider.gameObject.transform.position.x > this.gameObject.transform.position.x) {
+			currentState.bouncePlayer("right");
 		}
 		else {
-		//
+			currentState.bouncePlayer("left");
 		}
 	}
 }

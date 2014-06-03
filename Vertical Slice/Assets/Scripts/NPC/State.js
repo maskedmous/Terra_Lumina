@@ -5,7 +5,7 @@ protected var parentScript:SlugScript;
 
 protected var target:GameObject;
 
-protected var speed:float = 70.0f;
+protected var speed:float = 100.0f;
 
 protected var layerMask:int;
 
@@ -20,4 +20,14 @@ function Awake () {
 }
 
 function update() {
+}
+
+function bouncePlayer(direction:String) {
+	Debug.Log("Hello world");
+	if (direction == "right") {
+		target.rigidbody.velocity.x = 15.0f;
+	}
+	else if (direction == "left") {
+		target.rigidbody.velocity.x = -15.0f;
+	}
 }
