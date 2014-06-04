@@ -6,7 +6,7 @@ private var soundEngine:SoundEngineScript = null;
 private var debugInfo:String = "";
 
 private var lastDirection:String="Right";
-private var maxSpeed:float = 8.0;
+private var maxSpeed:float = 8.0f;
 
 private var lineRenderer:LineRenderer = null;
 private var y0:float = 0.0f;
@@ -29,6 +29,7 @@ private var vy:float = 0.0f;
 private var isJumping:boolean = false;
 private var initializeJumping:boolean = false;
 private var jumpForce:float = 7.0f;
+private var wheels:List.<GameObject> = new List.<GameObject>();
 
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
@@ -69,6 +70,11 @@ function Start():void {
 	g = -Physics.gravity.y;
 	
 	rigidbody.centerOfMass = new Vector3(-0.2f, -0.25f, 0.0f);
+	
+	wheels.Add(this.gameObject.transform.FindChild("Wheel1").gameObject);
+	wheels.Add(this.gameObject.transform.FindChild("Wheel2").gameObject);
+	wheels.Add(this.gameObject.transform.FindChild("Wheel3").gameObject);
+	wheels.Add(this.gameObject.transform.FindChild("Wheel4").gameObject);
 }
 
 function Update():void
@@ -103,29 +109,22 @@ private function movement():void
 {
 	var hitFound:boolean = false;
 	var hitDown:RaycastHit;
-	var wheels:List.<GameObject> = new List.<GameObject>();
 	var layerMask:int = 1 << 8;
 	layerMask = ~layerMask;
 	
-	wheels.Add(this.gameObject.transform.FindChild("Wheel1").gameObject);
-	wheels.Add(this.gameObject.transform.FindChild("Wheel2").gameObject);
-	wheels.Add(this.gameObject.transform.FindChild("Wheel3").gameObject);
-	wheels.Add(this.gameObject.transform.FindChild("Wheel4").gameObject);
-	
-	if (isJumping && this.gameObject.rigidbody.velocity.y < 0) {
-		for (var i:uint = 0; i < wheels.Count; ++i) {
-			if (Physics.Raycast(wheels[i].transform.position, Vector3.down, hitDown, 0.3f, layerMask)) {
-				if (hitDown.collider.name != "Light") {	
-					hitFound = true;
-					break;
-				}
-			}
+	for (var i:uint = 0; i < wheels.Count; ++i) {
+		if (Physics.Raycast(wheels[i].transform.position, Vector3.down, hitDown, 0.5f, layerMask)) {
+			hitFound = true;
+			break;
 		}
 	}
 	
 	if (hitFound) {
 		isJumping = false;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
+	}
+	else {
+		isJumping = true;
 	}
 	
 	//making sure rover does not rotate beyond 45 degrees from original rotation
