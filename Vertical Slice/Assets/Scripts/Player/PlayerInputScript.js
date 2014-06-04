@@ -97,7 +97,7 @@ function Update ()
 	if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;
 }
 
-private function touchBegan(sender:Object, events:TouchEventArgs)
+private function touchBegan(sender:Object, events:TouchEventArgs):void
 {
 	for each(var touchPoint in events.Touches)
 	{
@@ -110,38 +110,48 @@ private function touchBegan(sender:Object, events:TouchEventArgs)
 
 private function isPressingButton(inputXY:Vector2):void
 {
-	if(jumpButtonRect.Contains(inputXY))
+	if(jumpButtonEnabled)
 	{
-		playerController.jump();
-		chargingShot = false;
-		playerController.resetShot();
+		if(jumpButtonRect.Contains(inputXY))
+		{
+			playerController.jump();
+			chargingShot = false;
+			playerController.resetShot();
+		}
 	}
 	
-	if(normalShroomButtonRect.Contains(inputXY))
-	{	
-		if (shootTimer <= 0.0f) {	
-			if (!chargingShot) chargingShot = true;
-			else
-			{
-				playerController.setShroom(0);
-				playerController.shoot();
-				chargingShot = false;
-				shootTimer = 2.0f;
-			}
-		}			
-	}
-	if(bumpyShroomButtonRect.Contains(inputXY))
+	if(normalShroomButtonEnabled)
 	{
-		
-		if (shootTimer <= 0.0f)
+		if(normalShroomButtonRect.Contains(inputXY))
 		{	
-			if (!chargingShot) chargingShot = true;
-			else
-			{
-				playerController.setShroom(1);
-				playerController.shoot();
-				chargingShot = false;
-				shootTimer = 2.0f;
+			if (shootTimer <= 0.0f) {	
+				if (!chargingShot) chargingShot = true;
+				else
+				{
+					playerController.setShroom(0);
+					playerController.shoot();
+					chargingShot = false;
+					shootTimer = 2.0f;
+				}
+			}			
+		}
+	}
+	
+	if(bumpyShroomButtonEnabled)
+	{
+		if(bumpyShroomButtonRect.Contains(inputXY))
+		{
+			
+			if (shootTimer <= 0.0f)
+			{	
+				if (!chargingShot) chargingShot = true;
+				else
+				{
+					playerController.setShroom(1);
+					playerController.shoot();
+					chargingShot = false;
+					shootTimer = 2.0f;
+				}
 			}
 		}
 	}

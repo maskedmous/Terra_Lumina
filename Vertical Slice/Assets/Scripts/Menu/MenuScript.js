@@ -53,6 +53,8 @@ private var originalWidth 	:float = 1920.0f;
 private var originalHeight	:float = 1080.0f;
 private var scale			:Vector3 = Vector3.zero;
 
+private var touchEnabled:boolean = true;
+
 public function Awake()
 {
 	DontDestroyOnLoad(this.gameObject);
@@ -80,6 +82,103 @@ public function Awake()
 	levelsXmlFilePath = Application.dataPath + "/LevelsXML/";
 	fillXmlLevelArray();
 	fillLevelArray();
+	
+	if(TouchManager.Instance != null)
+	{
+		TouchManager.Instance.TouchesBegan += touchBegan;
+	}
+	else
+	{
+		Debug.LogError("Touch Manager is null");
+	}
+}
+
+private function touchBegan(sender:Object, events:TouchEventArgs):void
+{
+	for each(var touchPoint in events.Touches)
+	{
+		var position:Vector2 = touchPoint.Position;
+		position = Vector2(position.x, (position.y - Screen.height)*-1);
+		
+		isPressingButton(position);
+	}
+}
+
+private function isPressingButton(inputXY:Vector2):void
+{
+	if(touchEnabled)
+	{
+		switch(currentMenuState)
+		{
+			case(menuState.mainMenu):
+			if (startButtonRect.Contains(inputXY))
+			{		  		
+		  		currentMenuState = menuState.startMenu;
+		  	}
+		  	if (settingsButtonRect.Contains(inputXY))
+		  	{
+		  		//currentMenuState = menuState.optionsMenu;
+		  	}
+		  	if (creditsButtonRect.Contains(inputXY))
+		  	{
+		  		//currentMenuState = menuState.creditsMenu;
+		  	}
+		  	if (exitButtonRect.Contains(inputXY))
+			{
+				Application.Quit();
+			}
+			break;
+			case(menuState.startMenu):
+			//show all levels (max 6? per screen)
+			var levelCount:int = startLevelCount;
+			var spaceCountX:int = 1;
+			var spaceCountY:int = 1;
+			var levelButtonXSize:float = Screen.width 	/ 9;
+			var levelButtonYSize:float = Screen.height 	/ 5;
+			
+			for(var i:int = startLevelCount; i < startLevelCount + 6; ++i)
+			{
+				if(i <= levels.length)
+				{	
+					if(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize).Contains(inputXY))
+					{
+						touchEnabled = false;
+						setLevelFileNameByInt(i);
+						loadLevel();
+					}
+				}
+				
+				//next page button (if applicable)
+				if(startLevelCount + 5 < levels.length)
+				{
+					//there are more levels available
+					if(new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
+					{
+						startLevelCount += 6;
+					}
+				}
+				//previous page button (if applicable)
+				if(startLevelCount > 6)
+				{
+					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
+					{
+						startLevelCount -= 6;
+					}
+				}
+				//back button
+				
+				if(startLevelCount < 6)
+				{
+					//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
+					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
+					{
+						currentMenuState = menuState.mainMenu;
+					}
+				}
+			}
+			break;
+		}
+	}
 }
 
 public function OnGUI():void
@@ -95,32 +194,15 @@ public function OnGUI():void
 		case(menuState.mainMenu):
 			//start button
 			GUI.DrawTexture(startButtonRect, startButtonTexture);
-			if (GUI.Button(startButtonRect, "", skin))
-			{		  		
-		  		currentMenuState = menuState.startMenu;
-		  	}
 		  	
 		  	//settings button
 		  	GUI.DrawTexture(settingsButtonRect, settingsButtonTexture);
-			if (GUI.Button(settingsButtonRect, "", skin))
-		  	{
-		  		//currentMenuState = menuState.optionsMenu;
-		  	}
 		  	
 		  	//credits button
 		  	GUI.DrawTexture(creditsButtonRect, creditsButtonTexture);
-			if (GUI.Button(creditsButtonRect, "", skin))
-		  	{
-		  		//currentMenuState = menuState.creditsMenu;
-		  	}
-		  	
+
 		  	//exit button
 		  	GUI.DrawTexture(exitButtonRect, exitButtonTexture);
-			if (GUI.Button(exitButtonRect, "", skin))
-			 {
-				Application.Quit();
-			 }
-			
 		break;
 		
 		case(menuState.startMenu):
@@ -136,11 +218,6 @@ public function OnGUI():void
 				if(i <= levels.length)
 				{
 					GUI.DrawTexture(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), level1, ScaleMode.StretchToFill);
-					if(GUI.Button(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), empty, skin))
-					{
-						setLevelFileNameByInt(i);
-						loadLevel();
-					}
 					
 					spaceCountX ++;
 					levelCount ++;
@@ -152,34 +229,31 @@ public function OnGUI():void
 					}
 				}
 			}
-
-			//next page button (if applicable)
-			if(startLevelCount + 5 < levels.length)
-			{
-				//there are more levels available
-				if(GUI.Button(new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize),"Volgende"))
-				{
-					startLevelCount += 6;
-				}
-			}
-			//previous page button (if applicable)
-			if(startLevelCount > 6)
-			{
-				if(GUI.Button(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), "Terug"))
-				{
-					startLevelCount -= 6;
-				}
-			}
-			//back button
 			
-			if(startLevelCount < 6)
-			{
-				//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
-				if(GUI.Button(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, skin))
+//				//next page button (if applicable)
+//				if(startLevelCount + 5 < levels.length)
+//				{
+//					//there are more levels available
+//					if(GUI.DrawTexture(new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), )
+//					{
+//						startLevelCount += 6;
+//					}
+//				}
+//				//previous page button (if applicable)
+//				if(startLevelCount > 6)
+//				{
+//					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), )
+//					{
+//						startLevelCount -= 6;
+//					}
+//				}
+//				//back button
+				
+				if(startLevelCount < 6)
 				{
-					currentMenuState = menuState.mainMenu;
+					//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
+					GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton);
 				}
-			}
 		break;
 		
 		case(menuState.optionsMenu):
