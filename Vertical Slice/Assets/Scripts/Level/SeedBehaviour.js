@@ -1,17 +1,12 @@
 ﻿#pragma strict
 
-private var growTime:float = 3.0;
+private var growTime:float = 3.0f;
 private var shroomType:GameObject = null;
 private var growing:boolean = false;
-private var startScale:float = 0.2;
-private var currentScale:float;
-private var improveScale:float = 0.025;
-private var newShroom:GameObject;
-
-public function Update():void
-{
-	//grow();
-}
+private var startScale:float = 0.2f;
+private var currentScale:float = 0.0f;
+private var improveScale:float = 0.025f;
+private var newShroom:GameObject = null;
 
 function OnCollisionEnter(collision:Collision)
 {
@@ -42,7 +37,6 @@ function replaceWithShroom():void
 		newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
 		newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
 		newShroom.gameObject.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
-		//print(Random.Range(0, 360));
 		this.gameObject.renderer.enabled = false;
 	}
 	else

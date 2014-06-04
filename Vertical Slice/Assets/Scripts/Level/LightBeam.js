@@ -1,22 +1,19 @@
 #pragma strict
 
-private var secondTimer:float = 0;
-private var increaseBatteryTimer:float = 0.4;
+private var secondTimer:float = 0.0f;
+private var increaseBatteryTimer:float = 0.4f;
 
 private var gameLogic:GameLogic = null;
-
-//private var growTimer:float = 1.0;
-//private var growing:boolean = true;
-//
-//public var grownPlant:GameObject;
+private var funFactScript:FunFactScript = null;
 
 public function Awake():void
 {
-	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
+	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+	funFactScript = GameObject.Find("Player").GetComponent(FunFactScript) as FunFactScript;
 }
 
 
-function OnTriggerStay(hit:Collider)
+function OnTriggerStay(hit:Collider):void
 {
 	//if it hits anything execute code
 	if(hit.gameObject.name == "Player")
@@ -28,14 +25,9 @@ function OnTriggerStay(hit:Collider)
 		charge();
 		displayFact();
 	}
-//	
-//	if(hit.gameObject.name == "Plant")
-//	{
-//		grow(hit.gameObject);
-//	}
 }
 
-public function OnTriggerExit(hit:Collider) 
+public function OnTriggerExit(hit:Collider):void
 {
 	if (hit.gameObject.name == "Player")
 	{
@@ -44,12 +36,12 @@ public function OnTriggerExit(hit:Collider)
 	}
 }
 
-private function charge()
+private function charge():void
 {
 	if(secondTimer > increaseBatteryTimer)
 	{
-		GameObject.Find("GameLogic").GetComponent(GameLogic).addBatteryPower();
-		secondTimer = 0;
+		gameLogic.addBatteryPower();
+		secondTimer = 0.0f;
 	}
 	else
 	{
@@ -59,33 +51,10 @@ private function charge()
 
 private function displayFact():void
 {
-	GameObject.Find("Player").GetComponent(FunFactScript).displayFact();
+	funFactScript.displayFact();
 }
 
 private function stopDisplay():void
 {
-	GameObject.Find("Player").GetComponent(FunFactScript).stopDisplay();
+	funFactScript.stopDisplay();
 }
-
-//function grow(plant:GameObject)
-//{
-//	if(secondTimer > growTimer && plant.transform.localScale.x < 2)
-//	{
-//		plant.transform.localScale.x *= 1.2;
-//		plant.transform.localScale.y *= 1.2;
-//		plant.transform.localScale.z *= 1.2;
-//		plant.transform.position.y+= 0.1;
-//		secondTimer = 0;
-//	}
-//	else
-//	{
-//		secondTimer += Time.deltaTime;
-//		
-//		if(plant.transform.localScale.x >= 2)
-//		{
-//			growing = false;
-//			var newPlant:GameObject = Instantiate(grownPlant, plant.transform.position - new Vector3(0,1,0), Quaternion.identity);
-//			Destroy(plant);
-//		}
-//	}
-//}

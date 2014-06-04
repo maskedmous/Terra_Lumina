@@ -4,42 +4,41 @@ private var finished:boolean = false;
 private var lost:boolean = false;
 private var gameLogicScript:GameLogic = null;
 private var notFinished:boolean = false;
-private var skin			:GUIStyle = new GUIStyle();
+private var skin:GUIStyle = new GUIStyle();
 
 private var toMenuWinTexture:Texture	= null;
 private var winMenuRect		:Rect;
-public var winMenuX:float = 300.0;
-public var winMenuY:float = 300.0;
+public var winMenuX:float = 300.0f;
+public var winMenuY:float = 300.0f;
 
 private var toMenuLoseTexture:Texture	= null;
 private var loseMenuRect		:Rect;
-public var loseMenuX:float = 300.0;
-public var loseMenuY:float = 300.0;
+public var loseMenuX:float = 300.0f;
+public var loseMenuY:float = 300.0f;
 
 //scales for button positions
-private var originalWidth 	:float = 1920;
-private var originalHeight	:float = 1080;
-private var scale			:Vector3;
+private var originalWidth 	:float = 1920.0f;
+private var originalHeight	:float = 1080.0f;
+private var scale			:Vector3 = Vector3.zero;
 
 
-public function Awake():void
+public function Awake()
 {
-	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic);
-	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
+	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader) as TextureLoader;
 	//get the textures from the texture loader
 	toMenuWinTexture = textureLoader.getTexture("WIN - return to menu");
 	toMenuLoseTexture = textureLoader.getTexture("LOSE - return to menu");
 	
 }
 
-function OnTriggerEnter(hit:Collider){
+function OnTriggerEnter(hit:Collider):void {
 	if(hit.gameObject.name == "Player")
 	{
 		if(gameLogicScript.checkWin() == true)
 		{
 			finished = true;
-			gameLogicScript.stopTimer();
-			
+			gameLogicScript.stopTimer();	
 		}
 		else
 		{
@@ -48,7 +47,7 @@ function OnTriggerEnter(hit:Collider){
 	}
 }
 
-public function OnTriggerExit(object:Collider)
+public function OnTriggerExit(object:Collider):void
 {
 	if(object.gameObject.name == "Player")
 	{
@@ -56,8 +55,8 @@ public function OnTriggerExit(object:Collider)
 	}
 }
 
-function OnGUI(){
-	if(finished){
+function OnGUI() {
+	if(finished) {
 		gameLogicScript.stopBattery();
 		//first scale the buttons before drawing them
 		scaleButtons();
@@ -112,7 +111,7 @@ private function scaleRect(rect:Rect):Rect
 	return newRect;
 }
 
-function setFinished(isFinished:boolean) {
+function setFinished(isFinished:boolean):void {
 	finished = isFinished;
 }
 
@@ -120,10 +119,10 @@ function getFinished():boolean {
 	return finished;
 }
 
-function setLost(isLost:boolean){
+function setLost(isLost:boolean):void {
 	lost = isLost;
 }
 
-function getLost():boolean{
+function getLost():boolean {
 	return lost;
 }

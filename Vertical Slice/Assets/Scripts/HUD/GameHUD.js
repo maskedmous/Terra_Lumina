@@ -5,16 +5,16 @@
 //
 public var currentBatteryTexture	:Texture2D = null;
 private var currentBatteryRect		:Rect;
-private var currentBatteryX			:float	   = -50;
-private var currentBatteryY			:float	   = -19;
+private var currentBatteryX			:float	   = -50.0f;
+private var currentBatteryY			:float	   = -19.0f;
 
-private var currentBatteryPower		:float 	   = 0;
+private var currentBatteryPower		:float 	   = 0.0f;
 
 private var batteryBarTextures		:Array = new Array();
 public var batteryBarTex:Texture2D = null;
 private var batteryBarRect			:Rect;
-public var batteryBarX				:float = 46;
-public var batteryBarY				:float = 33;
+public var batteryBarX				:float = 46.0f;
+public var batteryBarY				:float = 33.0f;
 private var amountOfBatteryBars		:int   = 0;
 
 private var number0:Texture2D = null;
@@ -35,22 +35,22 @@ public var lowBatteryTexture		:Texture2D = null;
 //seeds hud
 public var seedsTexture:Texture2D = null;
 private var seedsRect:Rect;
-public var seedsX:float = 20;
-public var seedsY:float = 280;
+public var seedsX:float = 20.0f;
+public var seedsY:float = 280.0f;
 
-public var leftSideNumberX:float = 0;
-public var leftSideNumberY:float = 0;
+public var leftSideNumberX:float = 0.0f;
+public var leftSideNumberY:float = 0.0f;
 
-public var middleDivideX:float = 0;
-public var middleDivideY:float = 0;
+public var middleDivideX:float = 0.0f;
+public var middleDivideY:float = 0.0f;
 
-public var rightSideNumberX:float = 0;
-public var rightsideNumberX:float = 0;
+public var rightSideNumberX:float = 0.0f;
+public var rightsideNumberX:float = 0.0f;
 
 private var infinityRect:Rect;
 private var infiniteAmmo:boolean = false;
-public var infinityAmmoX:float = 120;
-public var infinityAmmoY:float = 300;
+public var infinityAmmoX:float = 120.0f;
+public var infinityAmmoY:float = 300.0f;
 
 //crystals hud
 private var crystalsTotal:int;
@@ -58,17 +58,17 @@ private var crystalsCollected:int;
 
 public var crystalActive:Texture2D = null;
 private var crystalActiveRect:Rect;
-public var crystalActiveX:float = 205;
-public var crystalActiveY:float = 80;
+public var crystalActiveX:float = 205.0f;
+public var crystalActiveY:float = 80.0f;
 
 public var crystalInactive:Texture2D = null;
 private var crystalInactiveRect:Rect;
-public var crystalInactiveX:float = 205;
-public var crystalInactiveY:float = 80;
+public var crystalInactiveX:float = 205.0f;
+public var crystalInactiveY:float = 80.0f;
 
 private var scale:Vector3;
-private var originalWidth:float = 1920;
-private var originalHeight:float = 1080;
+private var originalWidth:float = 1920.0f;
+private var originalHeight:float = 1080.0f;
 
 private var gameLogic:GameLogic = null;
 

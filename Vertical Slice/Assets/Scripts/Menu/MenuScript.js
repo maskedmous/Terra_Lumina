@@ -10,10 +10,6 @@ private var BUTTONWIDTH		:float 		= Screen.width/6;
 private var BUTTONHEIGHT	:float 		= Screen.height/8;
 private var TEXTUREWIDTH	:float 		= Screen.width/5;
 private var TEXTUREHEIGHT	:float 		= Screen.height/6;
-//private var startButton		:Texture	= null;
-//private var exitButton		:Texture	= null;
-//private var settingsButton	:Texture	= null;
-//private var creditsButton	:Texture	= null;
 private var background		:Texture	= null;
 private var loadingScreen	:Texture	= null;
 private var level1			:Texture	= null;
@@ -34,34 +30,34 @@ private var startLevelCount:int = 1;
 //button positions
 public 	var startButtonTexture	:Texture = null;
 private var startButtonRect		:Rect;
-private var startButtonX			:float = 20;
-public 	var startButtonY			:float = 100;
+private var startButtonX			:float = 20.0f;
+public 	var startButtonY			:float = 100.0f;
 
 public 	var settingsButtonTexture:Texture2D = null;
 private var settingsButtonRect	:Rect;
-public 	var settingsButtonX		:float = 20;
-public 	var settingsButtonY		:float = 330;
+public 	var settingsButtonX		:float = 20.0f;
+public 	var settingsButtonY		:float = 330.0f;
 
 public 	var creditsButtonTexture:Texture2D = null;
 private var creditsButtonRect	:Rect;
-public 	var creditsButtonX		:float = 20;
-public 	var creditsButtonY		:float = 495;
+public 	var creditsButtonX		:float = 20.0f;
+public 	var creditsButtonY		:float = 495.0f;
 
 public 	var exitButtonTexture	:Texture2D = null;
 private var exitButtonRect		:Rect;
-public 	var exitButtonX			:float = 20;
-public 	var exitButtonY			:float = 675;
+public 	var exitButtonX			:float = 20.0f;
+public 	var exitButtonY			:float = 675.0f;
 
 //scales for button positions
-private var originalWidth 	:float = 1920;
-private var originalHeight	:float = 1080;
-private var scale			:Vector3;
+private var originalWidth 	:float = 1920.0f;
+private var originalHeight	:float = 1080.0f;
+private var scale			:Vector3 = Vector3.zero;
 
-public function Awake():void
+public function Awake()
 {
 	DontDestroyOnLoad(this.gameObject);
 	//getting the texture loader
-	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
+	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader) as TextureLoader;
 	//get the textures from the texture loader
 	startButtonTexture = textureLoader.getTexture("Start");
 	exitButtonTexture = textureLoader.getTexture("Quit");
@@ -96,8 +92,6 @@ public function OnGUI():void
 	
 	switch(currentMenuState)
 	{
-		
-		
 		case(menuState.mainMenu):
 			//start button
 			GUI.DrawTexture(startButtonRect, startButtonTexture);
@@ -110,7 +104,6 @@ public function OnGUI():void
 		  	GUI.DrawTexture(settingsButtonRect, settingsButtonTexture);
 			if (GUI.Button(settingsButtonRect, "", skin))
 		  	{
-		  		print("Settings");
 		  		//currentMenuState = menuState.optionsMenu;
 		  	}
 		  	
@@ -118,7 +111,6 @@ public function OnGUI():void
 		  	GUI.DrawTexture(creditsButtonRect, creditsButtonTexture);
 			if (GUI.Button(creditsButtonRect, "", skin))
 		  	{
-		  		print("Credits");
 		  		//currentMenuState = menuState.creditsMenu;
 		  	}
 		  	
@@ -126,7 +118,6 @@ public function OnGUI():void
 		  	GUI.DrawTexture(exitButtonRect, exitButtonTexture);
 			if (GUI.Button(exitButtonRect, "", skin))
 			 {
-				print("Quit Game");
 				Application.Quit();
 			 }
 			
@@ -315,7 +306,7 @@ private function fillLevelArray():void
 	}
 }
 
-private function sortByLevelID()
+private function sortByLevelID():void
 {
 	levelIDs.sort();
 	

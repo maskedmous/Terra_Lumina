@@ -1,21 +1,20 @@
 ﻿#pragma strict
 
 private var extraSeeds:uint = 5;
-public var counter:float;
-private var canHit:boolean;
+public var counter:float = 0.0f;
+private var canHit:boolean = true;
 
 function Awake(){
 	this.name = "AmmoBox";
-	canHit = true;
-	counter = 20.0;
+	counter = 20.0f;
 }
 
 function Update(){
 	if(canHit == false){
-		if ( counter >= 0.0){
+		if (counter >= 0.0f){
 			counter -= Time.deltaTime;
 		}
-		if(counter <= 0.0){
+		if(counter <= 0.0f){
 			this.gameObject.renderer.enabled = true;
 			this.gameObject.collider.enabled = true;
 			canHit = true;
@@ -23,7 +22,7 @@ function Update(){
 	}
 }
 
-function OnTriggerEnter( object: Collider){
+function OnTriggerEnter(object:Collider):void {
 	if(canHit == true){
 		if(object.gameObject.name == "Player")
 		{

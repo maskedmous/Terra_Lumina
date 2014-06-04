@@ -4,16 +4,16 @@
 	Contol variables
 */
 
-private var speed:float;
+private var speed:float = 0.0f;
 public var maximumAmmo:int = 10;
 public var infiniteAmmo:boolean = false;
 private var playerController:PlayerController = null;
 /*
 	Battery variables
 */
-public var battery:float = 100;					//current battery
-public var maximumBatteryCapacity:int = 100;		//max battery
-public var decreaseTimer:float = 1.0;				//every x seconds it decreases battery
+public var battery:float = 100.0f;					//current battery
+public var maximumBatteryCapacity:int = 100.0f;		//max battery
+public var decreaseTimer:float = 1.0f;				//every x seconds it decreases battery
 public var negativeBatteryFlow:int = 1;			//amount of battery that it decreases
 public var positiveBatteryFlow:int = 2;			//amount of battery that it increases
 private var charging:boolean = false;
@@ -29,18 +29,18 @@ private var lose:boolean = false;
 /*
 	Action energy cost
 */
-private var jumpDrain:float;
-private var shootDrain:float;
-private var pickUpDrain:float;
-private var placeDrain:float;
-private var flashDrain:float;
-private var collectDrain:float;
+private var jumpDrain:float = 0.0f;
+private var shootDrain:float = 0.0f;
+private var pickUpDrain:float = 0.0f;
+private var placeDrain:float = 0.0f;
+private var flashDrain:float = 0.0f;
+private var collectDrain:float = 0.0f;
 
 /*
 	Timer variables
 */
-private var secondTimer:float = 0;			//counting seconds
-private var levelTimer:float = 0;
+private var secondTimer:float = 0.0f;			//counting seconds
+private var levelTimer:float = 0.0f;
 private var runTimer:boolean = true;
 private var timerInt:int = 0;
 
@@ -49,9 +49,9 @@ private var timerInt:int = 0;
 */
 public var techieTime:int = 45;
 public var platinumTime:int = 50;
-public var goldTime:int = 65;
-public var silverTime:int = 90;
-public var bronzeTime:int = 120;
+public var goldTime:int = 80;
+public var silverTime:int = 130;
+public var bronzeTime:int = 180;
 
 /*
 	Array Variables
@@ -67,7 +67,7 @@ private var levelTriggerScript:LevelTrigger = null;
 public function Start():void
 {
 	startTimer();
-	playerController = GameObject.Find("Player").GetComponent(PlayerController);
+	playerController = GameObject.Find("Player").GetComponent(PlayerController) as PlayerController;
 }
 
 
@@ -75,7 +75,7 @@ public function Update():void
 {
 	if(levelTriggerScript == null && GameObject.Find("EndLevelTrigger") != null)
 	{
-		levelTriggerScript = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger);
+		levelTriggerScript = GameObject.Find("EndLevelTrigger").GetComponent(LevelTrigger) as LevelTrigger;
 	}
 
 	if(runTimer == true)
@@ -87,9 +87,9 @@ public function Update():void
 	{
 		decreaseBattery();
 	}
-	else if(secondTimer != 0)
+	else if(secondTimer != 0.0f)
 	{
-		secondTimer = 0;
+		secondTimer = 0.0f;
 	}
 	
 	if(lose == false)
@@ -98,14 +98,14 @@ public function Update():void
 	}
 }
 
-function decreaseBattery()
+function decreaseBattery():void
 {	
 	if(stopBatteryBool == false){
 		if(secondTimer > decreaseTimer)
 		{
 			battery -= negativeBatteryFlow;
-			if(battery < 0) battery = 0;
-			secondTimer = 0;
+			if(battery < 0.0f) battery = 0.0f;
+			secondTimer = 0.0f;
 		}
 		else
 		{
@@ -114,13 +114,14 @@ function decreaseBattery()
 	}
 }
 
-public function decreaseBatteryBy(value:float):void {
+public function decreaseBatteryBy(value:float):void 
+{
 	battery -= value;
 	
-	if(battery < 0) battery = 0;	//no negative battery values
+	if(battery < 0.0f) battery = 0.0f;	//no negative battery values
 }
 
-function addBatteryPower()
+function addBatteryPower():void
 {
 	if(battery < maximumBatteryCapacity)
 	{
@@ -133,20 +134,21 @@ function addBatteryPower()
 	}
 }
 
-function stopBattery(){
+function stopBattery():void
+{
 	stopBatteryBool = true;
 }
 
-function checkLose()
+function checkLose():void
 {
-	if(battery <= 0)
+	if(battery <= 0.1f)
 	{
 		gameOverLose();
 		lose = true;
 	}
 }
 
-function addPlantSample(newSample:GameObject)
+function addPlantSample(newSample:GameObject):void
 {
 	plantSamples.push(newSample);
 	setScore(100);
@@ -157,18 +159,17 @@ function getPlantSampleCount():int
 	return plantSamples.length;
 }
 
-function checkWin():boolean{
+function checkWin():boolean 
+{
 	if(samplesToComplete <= getPlantSampleCount()){
 		if(getPlantSampleCount() == maxSamples){
 			setScore(200);
-			print("Congratulations! You got all plant samples, you get 200 bonus points");
 			return true;
 		}
 		else return true;
 	}
 	
 	if(samplesToComplete >= getMaxSamples()){
-		print("You need more samples then that exist in the level..");
 		if(getPlantSampleCount() == getMaxSamples()){
 			return true;
 		}
@@ -187,52 +188,33 @@ function gameOverLose():void
 	levelTriggerScript.setLost(true);
 }
 
-function startTimer(){
+function startTimer():void {
 	runTimer = true;
 }
 
-function stopTimer(){
+function stopTimer():void {
 	runTimer = false;
 	if(levelTriggerScript.getFinished()){
 		if(timerInt <= techieTime){
 			setScore(500);
-			print("Congratulations! You are as fast as a techie, plus 500 points");
 		}
 		if(timerInt <= platinumTime && timerInt >= techieTime+1){
 			setScore(300);
-			print("Congratulations! You were really fast, you get 300 bonus points");
 		}
 		if(timerInt <= goldTime && timerInt >= platinumTime+1){
 			setScore(200);
-			print("Congratulations! You were  fast, you get 200 bonus points");
 		}
 		if(timerInt <= silverTime && timerInt >= goldTime+1){
 			setScore(150);
-			print("Congratulations! You got the silver medal, you get 150 bonus points");
 		}
 		if(timerInt <= bronzeTime && timerInt >= silverTime+1){
 			setScore(100);
-			print("Congratulations! You got the bronze medel, you get 100 bonus points");
 		}
 		if(timerInt >= bronzeTime){
 			setScore(0);
-			print("Congratulations! You were in time, you get no bonus points however");
 		}
 		
 	}
-}
-
-function setPlant(direction:String, endVec:Vector3)
-{
-	var newObject:GameObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-	newObject.AddComponent(Rigidbody);
-	newObject.AddComponent(LightBeam);
-	newObject.gameObject.rigidbody.freezeRotation = true;
-	newObject.gameObject.rigidbody.isKinematic = true;
-	newObject.transform.position = GameObject.Find("Player").transform.position;
-	newObject.name = "Plant";
-	newObject.transform.position = endVec;
-	newObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 }
 
 public function getCurrentAmmo():int
@@ -245,7 +227,7 @@ public function setMaximumAmmo(value:int):void
 	maximumAmmo = value;
 }
 
-public function getMaximumAmmo()
+public function getMaximumAmmo():int
 {
 	return maximumAmmo;
 }
@@ -285,7 +267,7 @@ function getDecreaseTimer():float
 	return decreaseTimer;
 }
 
-function setDecreaseTimer(value:float)
+function setDecreaseTimer(value:float):void
 {
 	decreaseTimer = value;
 }
@@ -295,7 +277,7 @@ function getNegativeBatteryFlow():int
 	return negativeBatteryFlow;
 }
 
-function setNegativeBatteryFlow(value:int)
+function setNegativeBatteryFlow(value:int):void
 {
 	negativeBatteryFlow = value;
 }
@@ -305,7 +287,7 @@ function getPositiveBatteryFlow():int
 	return positiveBatteryFlow;
 }
 
-function setPositiveBatteryFlow(value:int)
+function setPositiveBatteryFlow(value:int):void
 {
 	positiveBatteryFlow = value;
 }
@@ -314,7 +296,6 @@ public function setSamplesToComplete(value:int):void
 {
 	samplesToComplete = value;
 }
-
 
 public function getSamplesToComplete():int
 {
@@ -331,80 +312,80 @@ public function getMaxSamples():int
 	return maxSamples;
 }
 
-public function setScore(value:int){
+public function setScore(value:int):void {
 	score += value;
 }
 
-public function getScore():int{
+public function getScore():int {
 	return score;
 }
 
-public function getSpeed()
+public function getSpeed():float
 {
 	return speed;
 }
 
-public function setSpeed(value:float)
+public function setSpeed(value:float):void
 {
 	speed = value;
 }
 
-public function getJumpDrain()
+public function getJumpDrain():float
 {
 	return jumpDrain;
 }
 
-public function setJumpDrain(value:float)
+public function setJumpDrain(value:float):void
 {
 	jumpDrain = value;
 }
 
-public function getShootDrain()
+public function getShootDrain():float
 {
 	return shootDrain;
 }
 
-public function setShootDrain(value:float)
+public function setShootDrain(value:float):void
 {
 	shootDrain = value;
 }
 
-public function getPickUpDrain()
+public function getPickUpDrain():float
 {
 	return pickUpDrain;
 }
 
-public function setPickUpDrain(value:float)
+public function setPickUpDrain(value:float):void
 {
 	pickUpDrain = value;
 }
 
-public function getPlaceDrain()
+public function getPlaceDrain():float
 {
 	return placeDrain;
 }
 
-public function setPlaceDrain(value:float)
+public function setPlaceDrain(value:float):void
 {
 	placeDrain = value;
 }
 
-public function getFlashDrain()
+public function getFlashDrain():float
 {
 	return flashDrain;
 }
 
-public function setFlashDrain(value:float)
+public function setFlashDrain(value:float):void
 {
 	flashDrain = value;
 }
 
-public function getCollectDrain()
+public function getCollectDrain():float
 {
 	return collectDrain;
 }
 
-public function setCollectDrain(value:float)
+public function setCollectDrain(value:float):void
 {
 	collectDrain = value;
 }
@@ -418,4 +399,3 @@ public function getCharging():boolean
 {
 	return charging;
 }
-

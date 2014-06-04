@@ -8,7 +8,7 @@ private var target:GameObject;
 private var factList:List.<String> = new List.<String>();
 
 function Awake() {
-	up = new Vector3(0, 5, 0);
+	up = Vector3.up;
 	cam = Camera.main;
 	
 	target = GameObject.Find("Player");
@@ -32,16 +32,16 @@ function Start () {
 }
 
 function Update () {
-	this.gameObject.transform.position = cam.WorldToViewportPoint(target.gameObject.transform.position + up);
+	this.gameObject.transform.position = cam.WorldToViewportPoint(target.gameObject.transform.position + 5 * up);
 }
 
-function displayFact() {
+function displayFact():void {
 	if (this.guiText.text == "") {
 		var random:int = Random.value * factList.Count;
 		this.guiText.text = factList[random];	
 	}
 }
 
-function stopDisplay() {
+function stopDisplay():void {
 	this.guiText.text = "";
 }
