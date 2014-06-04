@@ -350,6 +350,8 @@ function flash():void
 	{
 		var hit:RaycastHit;
 		var direction:Vector3;
+		var layerMask:int = 1 << 8;
+		layerMask = ~layerMask;
 		if (getDirection() == "Right") direction = new Vector3(1, 0, 0);
 		else if (getDirection() == "Left") direction = new Vector3(-1, 0, 0);
 		if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 10)) {

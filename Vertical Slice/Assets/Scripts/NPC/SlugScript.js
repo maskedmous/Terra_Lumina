@@ -74,6 +74,18 @@ public function isWaitState():boolean
 	return false;
 }
 
+function OnCollisionEnter(collision:Collision) {
+	var name:String = collision.collider.gameObject.name;
+	if (name.Contains("Wheel") || name == "Player") {
+		if (collision.collider.gameObject.transform.position.x > this.gameObject.transform.position.x) {
+			currentState.bouncePlayer("right");
+		}
+		else {
+			currentState.bouncePlayer("left");
+		}
+	}
+}
+
 public function getSlugBoundA():GameObject
 {
 	return slugBoundA;

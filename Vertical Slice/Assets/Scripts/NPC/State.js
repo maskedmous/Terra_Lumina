@@ -21,3 +21,13 @@ function Awake () {
 
 function update() {
 }
+
+function bouncePlayer(direction:String) {
+	Debug.Log("Hello world");
+	if (direction == "right") {
+		target.rigidbody.velocity.x = 15.0f;
+	}
+	else if (direction == "left") {
+		target.rigidbody.velocity.x = -15.0f;
+	}
+}
