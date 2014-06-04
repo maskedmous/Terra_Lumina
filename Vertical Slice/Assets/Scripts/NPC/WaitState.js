@@ -2,20 +2,20 @@
 
 private var waitTime:float = 2.0f;
 
-private var player:GameObject;
+private var player:GameObject = null;
 
 class WaitState extends State {
 	
-	function update () {
+	function update():void {
 		waitTime -= Time.deltaTime;
 		if (waitTime < 0) appear();
 	}
 	
-	function toMoveState() {
+	function toMoveState():void {
 		parentScript.toMoveState();
 	}
 	
-	function appear() {
+	function appear():void {
 		var startPosition:Vector3 = this.parentScript.getStart();
 		var playerPosition:Vector3 = target.transform.position;
 		
@@ -34,16 +34,11 @@ class WaitState extends State {
 		toMoveState();
 	}
 	
-	function findNewSpawnPoint() {
-		var currentSpawnPoint:Vector3;
+	function findNewSpawnPoint():void {
+		var currentSpawnPoint:Vector3 = Vector3.zero;
 		currentSpawnPoint = parentScript.getStart();
-		var newSpawnPoint:Vector3;
-		//if (target.transform.position.x > currentSpawnPoint.x) {
-			newSpawnPoint = currentSpawnPoint + new Vector3(-3.0f, 0.0f, 0.0f);
-		//}
-		//else {
-		//	newSpawnPoint = currentSpawnPoint + new Vector3(3.0f, 0.0f, 0.0f);
-		//}
+		var newSpawnPoint:Vector3 = Vector3.zero;
+		newSpawnPoint = currentSpawnPoint + new Vector3(-3.0f, 0.0f, 0.0f);
 		this.parent.transform.position = newSpawnPoint;
 	}
 }

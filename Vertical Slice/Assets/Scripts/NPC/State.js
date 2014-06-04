@@ -1,29 +1,28 @@
 ﻿#pragma strict
 
-protected var parent:GameObject;
-protected var parentScript:SlugScript;
+protected var parent:GameObject = null;
+protected var parentScript:SlugScript = null;
 
-protected var target:GameObject;
+protected var target:GameObject = null;
 
 protected var speed:float = 100.0f;
 
-protected var layerMask:int;
+protected var layerMask:int = 0;
 
 function Awake () {
 	parent = this.gameObject;
 	parentScript = this.gameObject.GetComponent("SlugScript") as SlugScript;
 	
-	target = GameObject.Find("Player");
+	target = GameObject.Find("Player") as GameObject;
 	
 	layerMask = 1 << 8;
 	layerMask = ~layerMask;
 }
 
-function update() {
+function update():void {
 }
 
-function bouncePlayer(direction:String) {
-	Debug.Log("Hello world");
+function bouncePlayer(direction:String):void {
 	if (direction == "right") {
 		target.rigidbody.velocity.x = 15.0f;
 	}

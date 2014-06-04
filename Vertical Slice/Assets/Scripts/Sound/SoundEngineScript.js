@@ -1,12 +1,12 @@
 ﻿#pragma strict
 
-private var volume:float = 1.0;
+private var volume:float = 1.0f;
 //private var muteBool:boolean;
 static var bgMusicExists:boolean = false;
 
 private var aim:boolean = false;
 private var drive:boolean = false;
-private var driveTimer:float = 0;
+private var driveTimer:float = 0.0f;
 private var driveTimerBool:boolean = false;
 
 private var bounceSound:AudioClip;
@@ -26,7 +26,7 @@ public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
 	
-	if(bgMusicExists == false){
+	if(bgMusicExists == false) {
 		this.audio.volume = volume;
 		this.audio.loop = true;
 		bgMusicExists = true;
@@ -44,20 +44,20 @@ public function Awake():void
 		//rockBreakingSound = Resources.Load("SoundEffects/...", AudioClip);
 		//sunChargingSound = Resources.Load("SoundEffects/...", AudioClip);
 	}
-	else{
+	else {
 		Destroy(this.gameObject);
 	}
 }
 
-function Update () {
+public function Update():void {
 	if(gameObject.Find("Player")){
 		this.gameObject.transform.position = gameObject.Find("Player").transform.position;
 	}
 	if(driveTimerBool == true){
 		driveTimer += Time.deltaTime;
-		if(driveTimer >= 3){
+		if(driveTimer >= 3.0f){
 			driveTimerBool = false;
-			driveTimer = 0;
+			driveTimer = 0.0f;
 		}
 	}
 }
@@ -65,14 +65,14 @@ function Update () {
 // give a number between 0 and 1 for the volume
 public function changeVolume(newVolume:float):void
 {
-	if(newVolume > 1)
+	if(newVolume > 1.0f)
 	{
-		newVolume = 1;
+		newVolume = 1.0f;
 		Debug.LogError("Trying to set the volume higher than 1, corrected it to 1");
 	}
-	else if (newVolume < 0)
+	else if (newVolume < 0.0f)
 	{
-		newVolume = 0;
+		newVolume = 0.0f;
 		Debug.LogError("Trying to set the volume lower than 0, corrected it to 0");
 	}
 	
@@ -89,7 +89,7 @@ public function changeLoop(newLoop:boolean):void
 	this.audio.audio.loop = newLoop;
 }
 
-public function playSoundEffect(name:String){
+public function playSoundEffect(name:String):void {
 	if(name == "bounce"){
 		audio.PlayOneShot(bounceSound);
 	}
@@ -106,7 +106,7 @@ public function playSoundEffect(name:String){
 		audio.PlayOneShot(slugBackwardSound);
 	}
 	if(name == "roverDrive"){
-		if(driveTimer == 0)
+		if(driveTimer == 0.0f)
 		{
 			audio.PlayOneShot(roverDriveSound);
 			driveTimerBool = true;	
@@ -134,22 +134,22 @@ public function playSoundEffect(name:String){
 	}
 }
 
-public function setAim(aimBool:boolean){
+public function setAim(aimBool:boolean):void {
 	aim = aimBool;
 }
 
-public function setDrive(driveBool:boolean){
+public function setDrive(driveBool:boolean):void {
 	drive = driveBool;
 }
 
-public function getDrive(){
+public function getDrive():boolean {
 	return drive;
 }
 
-public function playMusic(){
+public function playMusic():void {
 	this.audio.Play();
 }
 
-public function stopMusic(){
+public function stopMusic():void {
 	this.audio.Stop();
 }

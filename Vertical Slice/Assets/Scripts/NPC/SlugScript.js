@@ -1,17 +1,17 @@
 #pragma strict
 
-private var currentState:State;
-private var fleeState:FleeState;
-private var moveState:MoveState;
-private var waitState:WaitState;
-private var chaseState:ChaseState;
-private var returnState:ReturnState;
+private var currentState:State = null;
+private var fleeState:FleeState = null;
+private var moveState:MoveState = null;
+private var waitState:WaitState = null;
+private var chaseState:ChaseState = null;
+private var returnState:ReturnState = null;
 
-private var startPosition:Vector3;
+private var startPosition:Vector3 = Vector3.zero;
 public var slugBoundA:GameObject;
 public var slugBoundB:GameObject;
 
-public var difficulty:String;
+public var difficulty:String = "";
 
 function Awake()
 {
@@ -34,27 +34,27 @@ function Update ()
 	currentState.update();
 }
 
-function toFleeState()
+function toFleeState():void
 {
 	currentState = fleeState;
 }
 
-function toMoveState()
+function toMoveState():void
 {
 	currentState = moveState;
 }
 
-function toWaitState()
+function toWaitState():void
 {
 	currentState = waitState;
 }
 
-function toReturnState() 
+function toReturnState():void 
 {
 	currentState = returnState;
 }
 
-function toChaseState() 
+function toChaseState():void
 {
 	currentState = chaseState;
 }
@@ -74,7 +74,7 @@ public function isWaitState():boolean
 	return false;
 }
 
-function OnCollisionEnter(collision:Collision) {
+function OnCollisionEnter(collision:Collision):void {
 	var name:String = collision.collider.gameObject.name;
 	if (name.Contains("Wheel") || name == "Player") {
 		if (collision.collider.gameObject.transform.position.x > this.gameObject.transform.position.x) {
@@ -91,7 +91,7 @@ public function getSlugBoundA():GameObject
 	return slugBoundA;
 }
 
-public function setSlugBoundA(boundA:GameObject)
+public function setSlugBoundA(boundA:GameObject):void
 {
 	slugBoundA = boundA;
 }
@@ -101,7 +101,7 @@ public function getSlugBoundB():GameObject
 	return slugBoundB;
 }
 
-public function setSlugBoundB(boundB:GameObject)
+public function setSlugBoundB(boundB:GameObject):void
 {
 	slugBoundB = boundB;
 }

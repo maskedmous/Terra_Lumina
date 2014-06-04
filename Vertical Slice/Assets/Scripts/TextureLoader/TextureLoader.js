@@ -65,7 +65,7 @@ public class TextureLoader extends MonoBehaviour
 		}
 	}
 	
-	public function OnGUI()
+	public function OnGUI():void
 	{
 		if(!loaded)
 		{
@@ -90,9 +90,7 @@ public class TextureLoader extends MonoBehaviour
 		fileCount = fileInfo.Length;
 		
 		for(file in fileInfo)
-		{
-			//Debug.Log("Loading: " + Path.GetFileNameWithoutExtension(file));
-			
+		{	
 			//download the file via WWW
 			var wwwPNG = new WWW("file://"+file);
 			//wait for it to download
@@ -125,8 +123,8 @@ public class TextureLoader extends MonoBehaviour
 	{
 		var part:float = currentLoaded();
 		var total:float = countedFiles();
-		var percentage:float = (part / total) * 100;
-		percentage = Mathf.Round(percentage * 100) / 100;
+		var percentage:float = (part / total) * 100.0f;
+		percentage = Mathf.Round(percentage * 100.0f) / 100.0f;
 		return percentage.ToString();
 	}
 
@@ -214,4 +212,3 @@ public class TextureLoader extends MonoBehaviour
 		return false;
 	}
 }
-

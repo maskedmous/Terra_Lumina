@@ -7,7 +7,7 @@ class MoveState extends State {
 	public var slugBoundA:GameObject;
 	public var slugBoundB:GameObject;
 	
-	private var difficulty:String;
+	private var difficulty:String = "";
 			
 	function Start() {
 		difficulty = parentScript.getDifficulty();
@@ -15,7 +15,7 @@ class MoveState extends State {
 		slugBoundB = parentScript.getSlugBoundB();
 	}		
 			
-	function update () {
+	function update():void {
 		parent.rigidbody.velocity.x = speed * Time.deltaTime;
 		
 		if (difficulty == "Hard") {
@@ -44,20 +44,10 @@ class MoveState extends State {
 					}
 				}
 			}
-			
-			/*if (direction == "Right") vectorDirection = Vector3.right;
-			else vectorDirection = Vector3.left;
-			if (Physics.Raycast(rayStart, vectorDirection, hitSide, Mathf.Infinity, layerMask)) {
-				if (hitSide.collider.gameObject.name == "Player") {
-					Debug.Log("toChaseState");
-					parentScript.toChaseState();
-				}
-				Debug.Log(hitSide.collider.gameObject.name);
-			}*/
 		}
 	}
 	
-	function OnTriggerEnter(collider:Collider) {
+	function OnTriggerEnter(collider:Collider):void {
 		if (collider.gameObject == slugBoundA || collider.gameObject == slugBoundB) {
 			speed = -speed;
 			if (direction == "Right") direction = "Left";
@@ -65,7 +55,7 @@ class MoveState extends State {
 		}
 	}
 
-	function setDirection(dir:String) {
+	function setDirection(dir:String):void {
 		direction = dir;
 	}
 }

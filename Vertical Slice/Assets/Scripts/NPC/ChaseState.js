@@ -2,14 +2,10 @@
 
 class ChaseState extends State {
 
-	private var targetFound:boolean;
-	private var turn:boolean;
+	private var targetFound:boolean = false;
+	private var turn:boolean = false;
 
-	function Start () {
-
-	}
-
-	function update () {
+	function update ():void {
 		targetFound = false;
 	
 		var rayStart:Vector3 = parent.transform.position + new Vector3(0.0f, 0.3f, 0.0f);
@@ -43,36 +39,11 @@ class ChaseState extends State {
 			}
 		}
 		else {
-			Debug.Log("to returnState");
 			parentScript.toReturnState();
 		}
-
-		/*if (parent.rigidbody.velocity.x > 0.0f) vectorDirection = Vector3.right;
-		else vectorDirection = Vector3.left;
-		
-		if (Physics.Raycast(parent.transform.position, vectorDirection, hitSide, Mathf.Infinity, layerMask)) {
-			if (hitSide.collider.gameObject == target) {
-				targetFound = true;
-				turn = false;
-			}
-		}
-		if (!targetFound) {
-			if (Physics.Raycast(parent.transform.position, -vectorDirection, hitSide, Mathf.Infinity, layerMask)) {
-				if (hitSide.collider.gameObject == target) {
-					targetFound = true;
-					turn = true;
-				}
-			}
-		}*/
-		
-		/*if (targetFound) moveToTarget();
-		else {
-			Debug.Log("toReturnState");
-			parentScript.toReturnState();
-		}*/
 	}
 	
-	private function moveToTarget(direction:Vector3) {
+	private function moveToTarget(direction:Vector3):void {
 		parent.rigidbody.velocity = direction * Time.deltaTime * speed;
 	}
 }

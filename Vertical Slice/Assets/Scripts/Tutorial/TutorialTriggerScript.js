@@ -6,7 +6,7 @@ private var gameLogic:GameLogic = null;
 //private var tutorialState:tutorial;
 private var label:GameObject 				= null;
 private var playerInput:PlayerInputScript 	= null;
-private var timePassed:float	= 0;
+private var timePassed:float	= 0.0f;
 
 //text to display while inside the box
 public var tutorialText:String 	= "";
@@ -35,15 +35,15 @@ public var blockObject:GameObject = null;
 
 //texture for the tutorial to show
 private var scale:Vector2;
-private var originalWidth	:float = 1920;
-private var originalHeight	:float = 1080;
+private var originalWidth	:float = 1920.0f;
+private var originalHeight	:float = 1080.0f;
 private var showTutorialTextures:boolean = false;
 
 private var tutorialTextureARect:Rect;
 public var tutorialTextureA	:Texture2D 	= null;
-public var xPositionTexA	:float 		= 0;
-public var yPositionTexA	:float 		= 0;
-public var timerTexA		:float		= -1;
+public var xPositionTexA	:float 		= 0.0f;
+public var yPositionTexA	:float 		= 0.0f;
+public var timerTexA		:float		= -1.0f;
 
 private var tutorialTextureBRect:Rect;
 public var tutorialTextureB	:Texture2D 	= null;
@@ -57,8 +57,8 @@ public var destroyOnCompletion:boolean = false;
 
 public function Awake():void
 {
-	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript);
-	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
+	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript) as PlayerInputScript;
+	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
 }
 //Start because label might not be created yet
 public function Start ():void
@@ -70,7 +70,6 @@ public function Start ():void
 		Debug.LogError("Not initialized properly");
 	}
 }
-
 
 private function scaleButtons():void
 {
@@ -97,7 +96,7 @@ private function scaleRect(rect:Rect):Rect
 	return newRect;
 }
 
-public function OnGUI()
+public function OnGUI():void
 {
 	if(showTutorialTextures)
 	{
@@ -460,8 +459,6 @@ public function getTimerTexB():float
 {
 	return timerTexB;
 }
-
-
 
 public function getDestroyOnExit():boolean
 {

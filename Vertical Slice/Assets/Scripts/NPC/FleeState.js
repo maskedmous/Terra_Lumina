@@ -2,12 +2,12 @@
 
 class FleeState extends State {
 	
-	function update () {
+	function update ():void {
 		toWaitState();
 	}
 	
-	function toWaitState() {
-		this.parent.rigidbody.velocity.x = 0;
+	function toWaitState():void {
+		this.parent.rigidbody.velocity.x = 0.0f;
 		this.parent.collider.enabled = false;
 		this.parent.renderer.enabled = false;
 		this.parent.rigidbody.useGravity = false;

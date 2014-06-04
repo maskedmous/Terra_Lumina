@@ -1,22 +1,18 @@
 ﻿#pragma strict
 
-private var label:GameObject;
-private var labelScript:LabelScript;
+private var label:GameObject = null;
+private var labelScript:LabelScript = null;
 
-function Awake () {
+function Awake():void {
 	label = Instantiate(Resources.Load("Prefabs/Label")) as GameObject;
 	label.gameObject.name = "Label";
 	labelScript = label.GetComponent("LabelScript") as LabelScript;
 }
 
-function Update () {
-
-}
-
-function displayFact() {
+public function displayFact():void {
 	labelScript.displayFact();
 }
 
-function stopDisplay() {
+public function stopDisplay():void {
 	labelScript.stopDisplay();
 }
