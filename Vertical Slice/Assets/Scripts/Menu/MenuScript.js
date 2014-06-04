@@ -10,6 +10,10 @@ private var BUTTONWIDTH		:float 		= Screen.width/6;
 private var BUTTONHEIGHT	:float 		= Screen.height/8;
 private var TEXTUREWIDTH	:float 		= Screen.width/5;
 private var TEXTUREHEIGHT	:float 		= Screen.height/6;
+//private var startButton		:Texture	= null;
+//private var exitButton		:Texture	= null;
+//private var settingsButton	:Texture	= null;
+//private var creditsButton		:Texture	= null;
 private var background		:Texture	= null;
 private var loadingScreen	:Texture	= null;
 private var level1			:Texture	= null;
@@ -30,36 +34,47 @@ private var startLevelCount:int = 1;
 //button positions
 public 	var startButtonTexture	:Texture = null;
 private var startButtonRect		:Rect;
-private var startButtonX			:float = 20.0f;
-public 	var startButtonY			:float = 100.0f;
+private var startButtonX			:float = 20;
+public 	var startButtonY			:float = 100;
 
 public 	var settingsButtonTexture:Texture2D = null;
 private var settingsButtonRect	:Rect;
-public 	var settingsButtonX		:float = 20.0f;
-public 	var settingsButtonY		:float = 330.0f;
+public 	var settingsButtonX		:float = 20;
+public 	var settingsButtonY		:float = 330;
 
 public 	var creditsButtonTexture:Texture2D = null;
 private var creditsButtonRect	:Rect;
-public 	var creditsButtonX		:float = 20.0f;
-public 	var creditsButtonY		:float = 495.0f;
+public 	var creditsButtonX		:float = 20;
+public 	var creditsButtonY		:float = 495;
 
 public 	var exitButtonTexture	:Texture2D = null;
 private var exitButtonRect		:Rect;
-public 	var exitButtonX			:float = 20.0f;
-public 	var exitButtonY			:float = 675.0f;
+public 	var exitButtonX			:float = 20;
+public 	var exitButtonY			:float = 675;
+
+// settings vars
+private var soundSliderRect			:Rect;
+public 	var soundSliderX			:float = 200;
+public 	var soundSliderY			:float = 675;
+private var soundSetting			:float = 1.0;
+public var sliderSkin				:GUISkin;
+
+private var backToMenuButtonRect	:Rect;
+public var backToMenuButtonX		:float = 20;
+public var backToMenuButtonY		:float = 400;
 
 //scales for button positions
-private var originalWidth 	:float = 1920.0f;
-private var originalHeight	:float = 1080.0f;
-private var scale			:Vector3 = Vector3.zero;
+private var originalWidth 	:float = 1920;
+private var originalHeight	:float = 1080;
+private var scale			:Vector3;
 
-private var touchEnabled:boolean = true;
+private var soundEngine:SoundEngineScript = null;
 
-public function Awake()
+public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
 	//getting the texture loader
-	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader) as TextureLoader;
+	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
 	//get the textures from the texture loader
 	startButtonTexture = textureLoader.getTexture("Start");
 	exitButtonTexture = textureLoader.getTexture("Quit");
@@ -70,6 +85,9 @@ public function Awake()
 	level1 = textureLoader.getTexture("Level1");
 	backToMenuButton = textureLoader.getTexture("Hoofdmenu");
 	//creditsScreen = textureLoader.getTexture("Credits");
+	
+	soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
+	
 	
 	
 	//backButton = textureLoader.getTexture("Back");
@@ -82,103 +100,6 @@ public function Awake()
 	levelsXmlFilePath = Application.dataPath + "/LevelsXML/";
 	fillXmlLevelArray();
 	fillLevelArray();
-	
-	if(TouchManager.Instance != null)
-	{
-		TouchManager.Instance.TouchesBegan += touchBegan;
-	}
-	else
-	{
-		Debug.LogError("Touch Manager is null");
-	}
-}
-
-private function touchBegan(sender:Object, events:TouchEventArgs):void
-{
-	for each(var touchPoint in events.Touches)
-	{
-		var position:Vector2 = touchPoint.Position;
-		position = Vector2(position.x, (position.y - Screen.height)*-1);
-		
-		isPressingButton(position);
-	}
-}
-
-private function isPressingButton(inputXY:Vector2):void
-{
-	if(touchEnabled)
-	{
-		switch(currentMenuState)
-		{
-			case(menuState.mainMenu):
-			if (startButtonRect.Contains(inputXY))
-			{		  		
-		  		currentMenuState = menuState.startMenu;
-		  	}
-		  	if (settingsButtonRect.Contains(inputXY))
-		  	{
-		  		//currentMenuState = menuState.optionsMenu;
-		  	}
-		  	if (creditsButtonRect.Contains(inputXY))
-		  	{
-		  		//currentMenuState = menuState.creditsMenu;
-		  	}
-		  	if (exitButtonRect.Contains(inputXY))
-			{
-				Application.Quit();
-			}
-			break;
-			case(menuState.startMenu):
-			//show all levels (max 6? per screen)
-			var levelCount:int = startLevelCount;
-			var spaceCountX:int = 1;
-			var spaceCountY:int = 1;
-			var levelButtonXSize:float = Screen.width 	/ 9;
-			var levelButtonYSize:float = Screen.height 	/ 5;
-			
-			for(var i:int = startLevelCount; i < startLevelCount + 6; ++i)
-			{
-				if(i <= levels.length)
-				{	
-					if(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize).Contains(inputXY))
-					{
-						touchEnabled = false;
-						setLevelFileNameByInt(i);
-						loadLevel();
-					}
-				}
-				
-				//next page button (if applicable)
-				if(startLevelCount + 5 < levels.length)
-				{
-					//there are more levels available
-					if(new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
-					{
-						startLevelCount += 6;
-					}
-				}
-				//previous page button (if applicable)
-				if(startLevelCount > 6)
-				{
-					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
-					{
-						startLevelCount -= 6;
-					}
-				}
-				//back button
-				
-				if(startLevelCount < 6)
-				{
-					//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
-					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
-					{
-						currentMenuState = menuState.mainMenu;
-					}
-				}
-			}
-			break;
-		}
-	}
 }
 
 public function OnGUI():void
@@ -191,18 +112,40 @@ public function OnGUI():void
 	
 	switch(currentMenuState)
 	{
+		
+		
 		case(menuState.mainMenu):
 			//start button
 			GUI.DrawTexture(startButtonRect, startButtonTexture);
+			if (GUI.Button(startButtonRect, "", skin))
+			{		  		
+		  		currentMenuState = menuState.startMenu;
+		  	}
 		  	
 		  	//settings button
 		  	GUI.DrawTexture(settingsButtonRect, settingsButtonTexture);
+			if (GUI.Button(settingsButtonRect, "", skin))
+		  	{
+		  		print("Settings");
+		  		currentMenuState = menuState.optionsMenu;
+		  	}
 		  	
 		  	//credits button
 		  	GUI.DrawTexture(creditsButtonRect, creditsButtonTexture);
-
+			if (GUI.Button(creditsButtonRect, "", skin))
+		  	{
+		  		print("Credits");
+		  		//currentMenuState = menuState.creditsMenu;
+		  	}
+		  	
 		  	//exit button
 		  	GUI.DrawTexture(exitButtonRect, exitButtonTexture);
+			if (GUI.Button(exitButtonRect, "", skin))
+			 {
+				print("Quit Game");
+				Application.Quit();
+			 }
+			
 		break;
 		
 		case(menuState.startMenu):
@@ -218,6 +161,11 @@ public function OnGUI():void
 				if(i <= levels.length)
 				{
 					GUI.DrawTexture(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), level1, ScaleMode.StretchToFill);
+					if(GUI.Button(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), empty, skin))
+					{
+						setLevelFileNameByInt(i);
+						loadLevel();
+					}
 					
 					spaceCountX ++;
 					levelCount ++;
@@ -229,36 +177,51 @@ public function OnGUI():void
 					}
 				}
 			}
-			
-//				//next page button (if applicable)
-//				if(startLevelCount + 5 < levels.length)
-//				{
-//					//there are more levels available
-//					if(GUI.DrawTexture(new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), )
-//					{
-//						startLevelCount += 6;
-//					}
-//				}
-//				//previous page button (if applicable)
-//				if(startLevelCount > 6)
-//				{
-//					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), )
-//					{
-//						startLevelCount -= 6;
-//					}
-//				}
-//				//back button
-				
-				if(startLevelCount < 6)
+
+			//next page button (if applicable)
+			if(startLevelCount + 5 < levels.length)
+			{
+				//there are more levels available
+				if(GUI.Button(new Rect(Screen.width - levelButtonXSize, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize),"Volgende"))
 				{
-					//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
-					GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton);
+					startLevelCount += 6;
 				}
+			}
+			//previous page button (if applicable)
+			if(startLevelCount > 6)
+			{
+				if(GUI.Button(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), "Terug"))
+				{
+					startLevelCount -= 6;
+				}
+			}
+			//back button
+			
+			if(startLevelCount < 6)
+			{
+				//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
+				if(GUI.Button(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, skin))
+				{
+					currentMenuState = menuState.mainMenu;
+				}
+			}
 		break;
 		
 		case(menuState.optionsMenu):
+			
 			//show settings (slider volume?)
+			GUI.skin = sliderSkin;
+			soundSetting = GUI.HorizontalSlider (Rect (300, 200, 300, 100), soundSetting, 0.0, 1.0);
+			soundEngine.changeVolume(soundSetting);
+			
+			
 			//back button
+			GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
+			if (GUI.Button(backToMenuButtonRect, "", skin))
+			{
+				currentMenuState = menuState.mainMenu;
+			}
+			
 		break;
 		case(menuState.creditsMenu):
 			//show credits
@@ -287,6 +250,15 @@ private function scaleButtons():void
 		settingsButtonRect	= scaleRect(settingsButtonRect);
 		creditsButtonRect  	= scaleRect(creditsButtonRect);
 		exitButtonRect  	= scaleRect(exitButtonRect);
+	}
+	
+	if(currentMenuState == menuState.optionsMenu)
+	{
+		soundSliderRect 		= new Rect(soundSliderX			, soundSliderY			, startButtonTexture.width			, startButtonTexture.height);
+		backToMenuButtonRect 	= new Rect(backToMenuButtonX			, backToMenuButtonY			, backToMenuButton.width			, backToMenuButton.height);
+	
+		soundSliderRect  	= scaleRect(soundSliderRect);
+		backToMenuButtonRect = scaleRect(backToMenuButtonRect);
 	}
 	//jumpButtonRect 			= new Rect(jumpButtonX			, jumpButtonY			, jumpButtonTexture.width			, jumpButtonTexture.height);
 	//normalShroomButtonRect	= new Rect(normalShroomButtonX	, normalShroomButtonY	, normalShroomButtonTexture.width	, normalShroomButtonTexture.height);
@@ -380,7 +352,7 @@ private function fillLevelArray():void
 	}
 }
 
-private function sortByLevelID():void
+private function sortByLevelID()
 {
 	levelIDs.sort();
 	
