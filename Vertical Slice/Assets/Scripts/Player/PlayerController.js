@@ -395,8 +395,8 @@ function getDirection():String
 
 function bounceShroomY():void
 {
-	this.gameObject.rigidbody.velocity.x = 0;
-	this.gameObject.rigidbody.velocity.y = 15;
+	this.gameObject.rigidbody.velocity.x = 0.0f;
+	this.gameObject.rigidbody.velocity.y = 15.0f;
 }
 
 function bounceShroomX():void
