@@ -304,7 +304,7 @@ public function resetShot():void {
 	lineRenderer.enabled = false;
 }
 
-function shoot():void
+function shoot():IEnumerator
 {
 	soundEngine.setAim(false);
 	if (currentSeeds > 0) {
@@ -336,7 +336,7 @@ public function setShroom(index:int):void
 	currentShroom = shrooms[index];
 }
 
-function getSeeds():void
+function getSeeds():int
 {
 	return currentSeeds;
 }
