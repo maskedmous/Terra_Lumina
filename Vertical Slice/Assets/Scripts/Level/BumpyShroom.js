@@ -7,9 +7,14 @@ private var currentScale:float = 0.0f;
 private var improveScale:float = 0.025f;
 private var fullGrown:boolean = false;
 
+private var yDifference:float = 1.4f;
+
+private var soundEngine:SoundEngineScript = null;
+
 function Awake () {
 	counter = 30.0f;
 	currentScale = startScale;
+	soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
 }
 
 function Update () {
@@ -27,14 +32,12 @@ function OnCollisionEnter(obj:Collision):void
 	//collision and executed once
 	if(obj.gameObject.name == "Player")
 	{
-		if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) > 2.0f)
+		if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) > yDifference)
 		{
 			obj.gameObject.GetComponent(PlayerController).bounceShroomY();
-			var soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
 			soundEngine.playSoundEffect("bounce");
 		}
-		
-		if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) < 1.0f)
+		else
 		{
 			obj.gameObject.GetComponent(PlayerController).bounceShroomX();
 		}
