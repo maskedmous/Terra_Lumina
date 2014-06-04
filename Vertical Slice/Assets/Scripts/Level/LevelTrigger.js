@@ -30,6 +30,43 @@ public function Awake()
 	toMenuWinTexture = textureLoader.getTexture("WIN - return to menu");
 	toMenuLoseTexture = textureLoader.getTexture("LOSE - return to menu");
 	
+	if(TouchManager.Instance != null)
+	{
+		TouchManager.Instance.TouchesBegan += touchBegan;
+	}
+	else
+	{
+		Debug.LogError("Touch Manager is null");
+	}
+}
+
+private function touchBegan(sender:Object, events:TouchEventArgs):void
+{
+	for each(var touchPoint in events.Touches)
+	{
+		var position:Vector2 = touchPoint.Position;
+		position = Vector2(position.x, (position.y - Screen.height)*-1);
+		
+		isPressingButton(position);
+	}
+}
+
+private function isPressingButton(inputXY:Vector2):void
+{
+	if(finished)
+	{
+		if (winMenuRect.Contains(inputXY))
+		{
+			Application.LoadLevel("Menu");
+		}
+	}
+	if(lost)
+	{
+		if (loseMenuRect.Contains(inputXY))
+		{
+			Application.LoadLevel("Menu");
+		}
+	}
 }
 
 function OnTriggerEnter(hit:Collider):void {
