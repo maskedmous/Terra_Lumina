@@ -9,26 +9,26 @@ private var lastDirection:String="Right";
 private var maxSpeed:float = 8.0;
 
 private var lineRenderer:LineRenderer = null;
-private var y0:float = 0;
-private var x1:float = 0;
-private var x2:float = 0;
-private var x3:float = 0;
-private var x4:float = 0;
-private var x5:float = 0;
-private var x6:float = 0;
-private var x7:float = 0;
+private var y0:float = 0.0f;
+private var x1:float = 0.0f;
+private var x2:float = 0.0f;
+private var x3:float = 0.0f;
+private var x4:float = 0.0f;
+private var x5:float = 0.0f;
+private var x6:float = 0.0f;
+private var x7:float = 0.0f;
 private var x8:float = 2.3f;
 private var increasing:boolean = true;
-private var g:float = 0;
-private var tanAngle:float = .75;
-private var cosAngle:float = .6;
-private var v:float  = 0;
-private var vx:float = 0;
-private var vy:float = 0;
+private var g:float = 0.0f;
+private var tanAngle:float = 0.75f;
+private var cosAngle:float = 0.6f;
+private var v:float  = 0.0f;
+private var vx:float = 0.0f;
+private var vy:float = 0.0f;
 
 private var isJumping:boolean = false;
 private var initializeJumping:boolean = false;
-private var jumpForce:float = 7.0;
+private var jumpForce:float = 7.0f;
 
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
@@ -42,12 +42,12 @@ private var gameLogicScript:GameLogic   		= null;
 private var particleScript:PlayerParticleScript	= null;
 
 public var flashlight:GameObject;
-private var flashBool:boolean;
-private var counter:float;
+private var flashBool:boolean = false;
+private var counter:float = 0.0f;
 
 private var control:boolean = true;
 
-function Awake() {
+function Awake():void {
 	gameLogic = GameObject.Find("GameLogic") as GameObject;
 	gameLogicScript = gameLogic.GetComponent("GameLogic") as GameLogic;
 	
@@ -55,7 +55,7 @@ function Awake() {
 	
 	if(Application.loadedLevelName == "LevelLoaderScene")
 	{
-		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
 	}
 	
 	shrooms.Add(Resources.Load("Prefabs/NormalShroom") as GameObject);
@@ -63,7 +63,7 @@ function Awake() {
 	setShroom(0);//set initial shroom
 }
 
-function Start() {
+function Start():void {
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
 	g = -Physics.gravity.y;
@@ -71,7 +71,7 @@ function Start() {
 	rigidbody.centerOfMass = new Vector3(-0.2f, -0.25f, 0.0f);
 }
 
-function Update()
+function Update():void
 {
 	if(control)
 	{
@@ -80,26 +80,26 @@ function Update()
 		if(flashBool == true) {
 			flash();
 			counter += Time.deltaTime;
-			if(counter >= 2) {
+			if(counter >= 2.0f) {
 				flashlight.SetActive(false);
 				flashBool = false;
-				counter = 0;
+				counter = 0.0f;
 			}
 		}
 	}
 }
 
-public function stopMovement()
+public function stopMovement():void
 {
 	this.gameObject.rigidbody.velocity.x = 0;
 }
 
-public function stopControl()
+public function stopControl():void
 {
 	control = false;
 }
 
-function movement()
+private function movement():void
 {
 	var hitFound:boolean = false;
 	var hitDown:RaycastHit;
@@ -129,13 +129,13 @@ function movement()
 	}
 	
 	//making sure rover does not rotate beyond 45 degrees from original rotation
-	var cRot = this.gameObject.transform.rotation.eulerAngles.z;
-	if (cRot > 45 && cRot < 180) this.gameObject.transform.rotation.eulerAngles.z = 45;
-	if (cRot > 180 && cRot < 315) this.gameObject.transform.rotation.eulerAngles.z = 315;
+	var cRot:float = this.gameObject.transform.rotation.eulerAngles.z;
+	if (cRot > 45.0f && cRot < 180.0f) this.gameObject.transform.rotation.eulerAngles.z = 45.0f;
+	if (cRot > 180.0f && cRot < 315.0f) this.gameObject.transform.rotation.eulerAngles.z = 315.0f;
 }
 
 
-public function move(mousePos:float) {
+public function move(mousePos:float):void {
 	if(soundEngine != null)
 	{
 		if(soundEngine.getDrive() == false) {
@@ -144,26 +144,26 @@ public function move(mousePos:float) {
 		}
 		soundEngine.playSoundEffect("roverDrive");
 	}
-	if (mousePos > ((Screen.width / 2) + (Screen.width * (1.0 / 50.0)))) moveRight();
-	if (mousePos < ((Screen.width / 2) - (Screen.width * (1.0 / 50.0)))) moveLeft();
+	if (mousePos > Screen.width / 2) moveRight();
+	if (mousePos < Screen.width / 2) moveLeft();
 }
 
-private function moveLeft()
+private function moveLeft():void
 {
 	if (this.gameObject.rigidbody.velocity.x > -maxSpeed) this.gameObject.rigidbody.velocity.x -= 15 * Time.deltaTime;
 	if (this.getDirection() == "Right")	{
-		this.gameObject.transform.rotation.eulerAngles.y = 180;
+		this.gameObject.transform.rotation.eulerAngles.y = 180.0f;
 		this.gameObject.transform.rotation.eulerAngles.z *= -1;
 		this.gameObject.transform.rotation.eulerAngles.x *= -1;
 	}
 	setDirection("Left");
 }
 
-private function moveRight()
+private function moveRight():void
 {
 	if (this.gameObject.rigidbody.velocity.x < maxSpeed) this.gameObject.rigidbody.velocity.x += 15 * Time.deltaTime;
 	if (this.getDirection() == "Left")	{
-		this.gameObject.transform.rotation.eulerAngles.y = 0;
+		this.gameObject.transform.rotation.eulerAngles.y = 0.0f;
 		this.gameObject.transform.rotation.eulerAngles.z *= -1;
 		this.gameObject.transform.rotation.eulerAngles.x *= -1;
 	}
@@ -174,7 +174,7 @@ public function brake():void
 {
 	
 	if (!isJumping) {
-		var vx = this.gameObject.rigidbody.velocity.x;
+		var vx:float = this.gameObject.rigidbody.velocity.x;
 		if (vx > 0.10f) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
 		else if (vx < -0.10f) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
 		else if (vx > -0.05f && vx < 0.05f)
@@ -214,18 +214,14 @@ public function jump():void
 	}
 }
 
-function chargeShot() {
+function chargeShot():void {
 	if (currentSeeds > 0) {
-		//if (getDirection() == "Right") mod = 3.0f;
-		//else mod = -3.0f;
 		lineRenderer.enabled = true;
 		soundEngine.playSoundEffect("aim");
 		soundEngine.setAim(true);
 		
 		y0 = this.gameObject.transform.position.y;
 		
-		//vx += mod * Time.deltaTime;
-		//vy += mod * Time.deltaTime;
 		if (increasing) {
 			vx += 3.0f * Time.deltaTime;
 			vy += 2.25f * Time.deltaTime;
@@ -237,8 +233,7 @@ function chargeShot() {
 		v = vx * vx + vy * vy;
 
 		//formula for max dist: d = (v*v*sin(2*angle)) / gravity
-		//replaced sin(2*angle), which was .96, with a bigger number due to the trajectory not starting on the ground.
-
+		//replaced sin(2*angle), which is .96, with a bigger number due to the trajectory not starting on the ground.
 		if (vx < 3.0f) {
 			increasing = true;
 			vx = 3.0f;
@@ -249,13 +244,13 @@ function chargeShot() {
 		}
 		
 		x8 = v * 1.15 / 9.81;
-		x1 = x8 / 8;
-		x2 = 2 * x8 / 8;
-		x3 = 3 * x8 / 8;
-		x4 = 4 * x8 / 8;
-		x5 = 5 * x8 / 8;
-		x6 = 6 * x8 / 8;
-		x7 = 7 * x8 / 8;
+		x1 = x8 / 8.0f;
+		x2 = 2.0f * x8 / 8.0f;
+		x3 = 3.0f * x8 / 8.0f;
+		x4 = 4.0f * x8 / 8.0f;
+		x5 = 5.0f * x8 / 8.0f;
+		x6 = 6.0f * x8 / 8.0f;
+		x7 = 7.0f * x8 / 8.0f;
 		
 		//trajectory function: Y = Y0 + tan(angle) * X - (gravity*x*x)/(2*v*v*cos(angle)*cos(angle))
 		var y1:float = (y0 + x1 * 0.75) - (9.81 * x1 * x1) / (1.28 * v);
@@ -303,13 +298,13 @@ function chargeShot() {
 }
 
 public function resetShot():void {
-	vx = 0;
-	vy = 0;
+	vx = 0.0f;
+	vy = 0.0f;
 	x8 = 2.3f;
 	lineRenderer.enabled = false;
 }
 
-function shoot()
+function shoot():void
 {
 	soundEngine.setAim(false);
 	if (currentSeeds > 0) {
@@ -330,18 +325,18 @@ function shoot()
 		}
 		
 		if (getDirection() == "Left") vx = -vx;
-		newSeed.rigidbody.velocity = new Vector3(vx, vy, 0);
+		newSeed.rigidbody.velocity = new Vector3(vx, vy, 0.0f);
 		yield WaitForSeconds(1.5f);
 		resetShot();
 	}
 }
 
-public function setShroom(index:int)
+public function setShroom(index:int):void
 {
 	currentShroom = shrooms[index];
 }
 
-function getSeeds()
+function getSeeds():void
 {
 	return currentSeeds;
 }
@@ -354,8 +349,8 @@ function flash():void
 		var direction:Vector3;
 		var layerMask:int = 1 << 8;
 		layerMask = ~layerMask;
-		if (getDirection() == "Right") direction = new Vector3(1, 0, 0);
-		else if (getDirection() == "Left") direction = new Vector3(-1, 0, 0);
+		if (getDirection() == "Right") direction = new Vector3(1.0f, 0.0f, 0.0f);
+		else if (getDirection() == "Left") direction = new Vector3(-1.0f, 0.0f, 0.0f);
 		if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 10)) {
 			if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
 			if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
@@ -370,11 +365,11 @@ function flash():void
 	}
 }
 
-public function addSample(sample:GameObject) {
+public function addSample(sample:GameObject):void {
 	samples.Add(sample);
 }
 
-public function addAmmo(extraAmmo:int)
+public function addAmmo(extraAmmo:int):void
 {
 	currentSeeds += extraAmmo;
 	
@@ -385,7 +380,7 @@ public function addAmmo(extraAmmo:int)
 	}
 }
 
-function setDirection(direction:String)
+function setDirection(direction:String):void
 {
 	if(lastDirection != direction)
 	{
@@ -409,18 +404,18 @@ function bounceShroomX():void
 	var velocity = this.gameObject.rigidbody.velocity.x;
 	if(Mathf.Abs(velocity) < 0.4)
 	{
-		if(velocity < 0) velocity = -3;
-		else if(velocity > 0) velocity = 3;
+		if(velocity < 0.0f) velocity = -3.0f;
+		else if(velocity > 0.0f) velocity = 3.0f;
 	}
 	
-	velocity *= -4;
-	if(velocity > 10)
+	velocity *= -4.0f;
+	if(velocity > 10.0f)
 	{
-		velocity = 10;
+		velocity = 10.0f;
 	}
-	else if(velocity < -10)
+	else if(velocity < -10.0f)
 	{
-		velocity = -10;
+		velocity = -10.0f;
 	}
 	this.gameObject.rigidbody.velocity.x = velocity;
 }
