@@ -195,12 +195,14 @@ public function brake():void
 	}
 }
 
-public function jump() {
+public function jump():void
+{
 	if (!isJumping) {
 		this.gameObject.rigidbody.velocity.y = jumpForce;
 		jumpForce = 7.0f;
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+		gameLogicScript.decreaseBatteryBy(5.0f);
 		
 		if(soundEngine != null)
 		{

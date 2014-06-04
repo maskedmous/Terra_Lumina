@@ -62,6 +62,15 @@ public function Awake():void
 	{
 		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
 	}
+	
+	if(TouchManager.Instance != null)
+	{
+		TouchManager.Instance.TouchesBegan += touchBegan;
+	}
+	else
+	{
+		Debug.LogError("Touch Manager is null");
+	}
 }
 
 function Update ()
@@ -85,7 +94,75 @@ function Update ()
 		playerController.stopControl();
 	}
 	
-	if (shootTimer > -30.0f) shootTimer -= Time.deltaTime;
+	if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;
+}
+
+private function touchBegan(sender:Object, events:TouchEventArgs)
+{
+	for each(var touchPoint in events.Touches)
+	{
+		var position:Vector2 = touchPoint.Position;
+		position = Vector2(position.x, (position.y - Screen.height)*-1);
+		
+		isPressingButton(position);
+	}
+}
+
+private function isPressingButton(inputXY:Vector2):void
+{
+	if(jumpButtonRect.Contains(inputXY))
+	{
+		playerController.jump();
+		chargingShot = false;
+		playerController.resetShot();
+	}
+	
+	if(normalShroomButtonRect.Contains(inputXY))
+	{	
+		if (shootTimer <= 0.0f) {	
+			if (!chargingShot) chargingShot = true;
+			else
+			{
+				playerController.setShroom(0);
+				playerController.shoot();
+				chargingShot = false;
+				shootTimer = 2.0f;
+			}
+		}			
+	}
+	if(bumpyShroomButtonRect.Contains(inputXY))
+	{
+		
+		if (shootTimer <= 0.0f)
+		{	
+			if (!chargingShot) chargingShot = true;
+			else
+			{
+				playerController.setShroom(1);
+				playerController.shoot();
+				chargingShot = false;
+				shootTimer = 2.0f;
+			}
+		}
+	}
+}
+
+private function isTouchingButton(inputXY:Vector2):boolean
+{	
+	if(jumpButtonRect.Contains(inputXY))
+	{
+		return true;
+	}
+	if(normalShroomButtonRect.Contains(inputXY))
+	{			
+		return true;
+	}
+	if(bumpyShroomButtonRect.Contains(inputXY))
+	{
+		return true;
+	}
+	
+	return false;
 }
 
 public function OnGUI()
@@ -94,6 +171,7 @@ public function OnGUI()
 	{
 		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
 		{
+			
 			//first scale the buttons before drawing them
 			scaleButtons();
 			
@@ -102,14 +180,6 @@ public function OnGUI()
 			{
 				//this is the texture of the button
 				GUI.DrawTexture(jumpButtonRect, jumpButtonTexture);
-				//this is the button itself
-				if (GUI.Button(jumpButtonRect, "", guiStyle))
-				{
-					playerController.jump();
-					gameLogicScript.decreaseBatteryBy(5.0f);
-					chargingShot = false;
-					playerController.resetShot();
-				}
 			}
 			else
 			{
@@ -120,48 +190,16 @@ public function OnGUI()
 			if(normalShroomButtonEnabled)
 			{
 				GUI.DrawTexture(normalShroomButtonRect, normalShroomButtonTexture);
-				if (GUI.Button(normalShroomButtonRect, "", guiStyle))
-				{
-					playerController.setShroom(0);
-					if (shootTimer < 0.1f) {	
-						if (!chargingShot) chargingShot = true;
-						else {
-							playerController.shoot();
-							chargingShot = false;
-							shootTimer = 2.0f;
-							//playerController.resetShot();
-						}
-					}
-					else {
-					//feedback that you cant shoot right now (wait for cooldown)
-					Debug.Log("Wait for cooldown you idiot.");
-					}
-				}
 			}
 			else
 			{
 				GUI.DrawTexture(normalShroomButtonRect, normalShroomButtonInactiveTexture);
 			}
+			
 			if(bumpyShroomButtonEnabled)
 			{
 				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonTexture);
-				if (GUI.Button(bumpyShroomButtonRect, "", guiStyle))
-				{
-					playerController.setShroom(1);
-					if (shootTimer < 0.1f) {	
-						if (!chargingShot) chargingShot = true;
-						else {
-							playerController.shoot();
-							chargingShot = false;
-							shootTimer = 2.0f;
-							//playerController.resetShot();
-						}
-					}
-					else {
-					//feedback that you cant shoot right now blablabla
-					Debug.Log("Wait for cooldown you idiot.");
-					}
-				}
+
 			}
 			else
 			{
@@ -214,26 +252,12 @@ function readTouch()
 			{
 				playerController.move(position.x);
 			}
-			/*else{ //if(!movementLeftEnabled || !movementRightEnabled){
-				if(soundEngine.getDrive() == true){
-					soundEngine.playSoundEffect("roverStop");
-					soundEngine.setDrive(false);
-				}
-			}*/
 			if (chargingShot) {
 				chargingShot = false;
 				playerController.resetShot();
 			}
 		}
-		//sendRay(position);
 	}
-	/*if(!movementLeftEnabled || !movementRightEnabled){
-		if(soundEngine.getDrive() == true){
-			soundEngine.playSoundEffect("roverStop");
-			soundEngine.setDrive(false);
-			
-		}
-	}*/
 }
 
 private function sendRay(position:Vector2) {
@@ -247,29 +271,6 @@ private function sendRay(position:Vector2) {
 		}
 	}
 }
-
-private function isTouchingButton(inputXY:Vector2):boolean
-{	
-	if(jumpButtonRect.Contains(inputXY))
-	{
-		return true;
-	}
-	if(normalShroomButtonRect.Contains(inputXY))
-	{
-		return true;
-	}
-	if(bumpyShroomButtonRect.Contains(inputXY))
-	{
-		return true;
-	}
-	
-	return false;
-}
-
-/*function OnMouseDown()
-{
-	if (!chargingShot) playerController.flash();
-}*/
 
 public function setMovementLeftEnabled(value:boolean):void
 {
