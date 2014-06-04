@@ -88,10 +88,11 @@ function Update ()
 	if (shootTimer > -30.0f) shootTimer -= Time.deltaTime;
 }
 
-public function OnGUI() {
+public function OnGUI()
+{
 	if(endLevelTriggerObject != null)
 	{
-		if (!endLevelTriggerScript.getFinished())
+		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
 		{
 			//first scale the buttons before drawing them
 			scaleButtons();
