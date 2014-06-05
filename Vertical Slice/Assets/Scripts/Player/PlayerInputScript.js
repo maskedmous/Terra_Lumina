@@ -14,6 +14,7 @@ private var endLevelTriggerObject:GameObject 	= null;
 private var endLevelTriggerScript:LevelTrigger 	= null;
 
 private var jumpButtonEnabled			:boolean = true;
+private var flashButtonEnabled			:boolean = true;
 private var normalShroomButtonEnabled	:boolean = true;
 private var bumpyShroomButtonEnabled	:boolean = true;
 private var movementLeftEnabled			:boolean = true;
@@ -27,24 +28,32 @@ private var guiStyle:GUIStyle = new GUIStyle();
 public 	var jumpButtonTexture			:Texture = null;
 public  var jumpButtonInactiveTexture 	:Texture2D = null;
 private var jumpButtonRect				:Rect;
-private var jumpButtonX					:float = 0;
-public 	var jumpButtonY					:float = 780;
+public var jumpButtonX					:float = 0.0f;
+public 	var jumpButtonY					:float = 780.0f;
+
+
+
+public var flashButtonTexture			:Texture = null;
+public var flashButtonInactiveTexture	:Texture2D = null;
+private var flashButtonRect				:Rect;
+public var flashButtonX				:float = 0.0f;
+public var flashButtonY				:float = 900.0f;
 
 
 
 public 	var normalShroomButtonTexture			:Texture2D = null;
 public  var normalShroomButtonInactiveTexture	:Texture2D = null;
 private var normalShroomButtonRect				:Rect;
-public 	var normalShroomButtonX					:float = 1600;
-public 	var normalShroomButtonY					:float = 900;
+public 	var normalShroomButtonX					:float = 1600.0f;
+public 	var normalShroomButtonY					:float = 900.0f;
 
 
 
 public 	var bumpyShroomButtonTexture		:Texture2D = null;
 public 	var bumpyShroomButtonInactiveTexture:Texture2D = null;
 private var bumpyShroomButtonRect			:Rect;
-public 	var bumpyShroomButtonX				:float = 1600;
-public 	var bumpyShroomButtonY				:float = 720;
+public 	var bumpyShroomButtonX				:float = 1600.0f;
+public 	var bumpyShroomButtonY				:float = 720.0f;
 
 
 
@@ -120,6 +129,15 @@ private function isPressingButton(inputXY:Vector2):void
 		}
 	}
 	
+	if (flashButtonEnabled)
+	{
+		if (flashButtonRect.Contains(inputXY))
+		{
+			playerController.flash();
+			playerController.resetShot();
+		}
+	}
+	
 	if(normalShroomButtonEnabled)
 	{
 		if(normalShroomButtonRect.Contains(inputXY))
@@ -163,6 +181,10 @@ private function isTouchingButton(inputXY:Vector2):boolean
 	{
 		return true;
 	}
+	if(flashButtonRect.Contains(inputXY))
+	{
+		return true;
+	}
 	if(normalShroomButtonRect.Contains(inputXY))
 	{			
 		return true;
@@ -196,6 +218,13 @@ public function OnGUI()
 				//this is the texture of the inactive button
 				GUI.DrawTexture(jumpButtonRect, jumpButtonInactiveTexture);
 			}
+			if (flashButtonEnabled)
+			{
+				GUI.DrawTexture(flashButtonRect, flashButtonTexture);
+			}
+			else {
+				GUI.DrawTexture(flashButtonRect, flashButtonInactiveTexture);
+			}
 			
 			if(normalShroomButtonEnabled)
 			{
@@ -228,11 +257,13 @@ private function scaleButtons():void
 	
 	//first put the rectangles back to its original size before scaling
 	jumpButtonRect 			= new Rect(jumpButtonX			, jumpButtonY			, jumpButtonTexture.width			, jumpButtonTexture.height);
+	flashButtonRect			= new Rect(flashButtonX			, flashButtonY			, flashButtonTexture.width			, flashButtonTexture.height);
 	normalShroomButtonRect	= new Rect(normalShroomButtonX	, normalShroomButtonY	, normalShroomButtonTexture.width	, normalShroomButtonTexture.height);
 	bumpyShroomButtonRect  	= new Rect(bumpyShroomButtonX	, bumpyShroomButtonY	, bumpyShroomButtonTexture.width	, bumpyShroomButtonTexture.height);
 	
 	//second scale the rectangles
 	jumpButtonRect 			= scaleRect(jumpButtonRect);
+	flashButtonRect			= scaleRect(flashButtonRect);
 	normalShroomButtonRect	= scaleRect(normalShroomButtonRect);
 	bumpyShroomButtonRect  	= scaleRect(bumpyShroomButtonRect);
 }
@@ -248,7 +279,7 @@ function readTouch()
 	for each(var touch in TouchManager.Instance.ActiveTouches)
 	{
 		var position:Vector2 = touch.Position;
-		sendRay(position);
+		//sendRay(position);
 		
 		position = Vector2(position.x, (position.y - Screen.height)*-1);
 		
@@ -270,7 +301,7 @@ function readTouch()
 	}
 }
 
-private function sendRay(position:Vector2) {
+/*private function sendRay(position:Vector2) {
 	var ray:Ray = Camera.main.ScreenPointToRay(position);
 	var hit:RaycastHit;
 	var layerMask:int = 1 << 8;
@@ -280,7 +311,7 @@ private function sendRay(position:Vector2) {
 			playerController.flash();
 		}
 	}
-}
+}*/
 
 public function setMovementLeftEnabled(value:boolean):void
 {
@@ -295,6 +326,11 @@ public function setMovementRightEnabled(value:boolean):void
 public function setJumpButtonEnabled(value:boolean):void
 {
 	jumpButtonEnabled = value;
+}
+
+public function setFlashButtonEnabled(value:boolean):void
+{
+	flashButtonEnabled = value;
 }
 
 public function setNormalShroomButtonEnabled(value:boolean):void
