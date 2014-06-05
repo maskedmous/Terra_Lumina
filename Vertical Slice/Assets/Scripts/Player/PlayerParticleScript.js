@@ -1,10 +1,10 @@
 ﻿#pragma strict
 
-private var jumpDust:GameObject;
+public var jumpDust:GameObject;
 
 function Start () {
-	jumpDust = this.gameObject.Find("JumpDust");
-	Debug.Log(jumpDust);
+	jumpDust = Instantiate(jumpDust, Vector3.zero, Quaternion.identity);
+	jumpDust.transform.rotation.eulerAngles.x = 270.0f;
 }
 
 function Update () {
