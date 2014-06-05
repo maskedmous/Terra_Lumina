@@ -161,6 +161,15 @@ private function isReleasingButton(inputXY:Vector2):void
 						setLevelFileNameByInt(i);
 						loadLevel();
 					}
+					
+					spaceCountX ++;
+					levelCount ++;
+					
+					if(levelCount == 4)
+					{
+						spaceCountY = 3;
+						spaceCountX = 1;
+					}
 				}
 				
 				//next page button (if applicable)

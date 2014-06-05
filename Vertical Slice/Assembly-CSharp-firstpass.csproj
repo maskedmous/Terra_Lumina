@@ -58,6 +58,7 @@
      <None Include="Assets\LevelsXML\Level1.3.xml" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_Plain_Additive.shader" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureMult.shader" />
+     <None Include="Assets\LevelsXML\Level2.xml" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureAdd.shader" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Textures\MaCrea\MaCrea.txt" />
      <None Include="Assets\LevelsXML\Level1.2.xml" />

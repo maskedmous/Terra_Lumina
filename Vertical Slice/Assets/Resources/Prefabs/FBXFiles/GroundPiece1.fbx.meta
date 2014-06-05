@@ -4,9 +4,17 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Barrier
+    100004: BarrierAnimGrp
+    100006: GroundPiece1
     400000: //RootNode
+    400002: Barrier
+    400004: BarrierAnimGrp
+    400006: GroundPiece1
     2300000: //RootNode
+    2300002: GroundPiece1
     3300000: //RootNode
+    3300002: GroundPiece1
     4300000: GroundPiece1
     9500000: //RootNode
   materials:

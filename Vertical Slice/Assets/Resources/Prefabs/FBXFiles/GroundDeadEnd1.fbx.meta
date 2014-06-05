@@ -1,13 +1,21 @@
 fileFormatVersion: 2
-guid: c3daaee0c5f30d4488862d9ade0c56fc
+guid: 2a60cb31a1cde9346b29dac47cd44fa0
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Barrier
+    100004: BarrierAnimGrp
+    100006: GroundDeadEnd1
     400000: //RootNode
+    400002: Barrier
+    400004: BarrierAnimGrp
+    400006: GroundDeadEnd1
     2300000: //RootNode
+    2300002: GroundDeadEnd1
     3300000: //RootNode
-    4300000: polySurface2
+    3300002: GroundDeadEnd1
+    4300000: GroundDeadEnd1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -17,7 +25,6 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
-    motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -28,7 +35,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

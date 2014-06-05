@@ -44,9 +44,9 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
+        <x>3</x>
+        <y>3</y>
+        <z>3</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -55,6 +55,24 @@
         <x>63.93077</x>
         <y>-8.721054</y>
         <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>3</x>
+        <y>3</y>
+        <z>3</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>BumpyShroom 1</Prefab>
+      <Position>
+        <x>66.04071</x>
+        <y>-14.02076</y>
+        <z>14.73361</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -634,7 +652,7 @@
       </Position>
       <Rotation>
         <x>0</x>
-        <y>0</y>
+        <y>90.00001</y>
         <z>0</z>
       </Rotation>
       <Scaling>
@@ -700,7 +718,7 @@
     <GameObject>
       <Prefab>NormalShroom 1</Prefab>
       <Position>
-        <x>-4.796116</x>
+        <x>-4.445148</x>
         <y>-13.97649</y>
         <z>15</z>
       </Position>
@@ -718,7 +736,7 @@
     <GameObject>
       <Prefab>NormalShroom 1</Prefab>
       <Position>
-        <x>-2.702309</x>
+        <x>-2.488194</x>
         <y>-14.04192</y>
         <z>15</z>
       </Position>
@@ -4694,6 +4712,24 @@
       </Scaling>
     </GameObject>
     <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>-26.40015</x>
+        <y>-13.10374</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
         <x>-5.727345</x>
@@ -4733,8 +4769,8 @@
           </TextureA>
           <TextureB>
             <Texturename>Arrow2</Texturename>
-            <x>230</x>
-            <y>880</y>
+            <x>200</x>
+            <y>820</y>
             <Timer>20</Timer>
           </TextureB>
         </Textures>
@@ -4929,8 +4965,8 @@
         <CrystalTutorial>False</CrystalTutorial>
         <SlugObject>
           <Position>
-            <x>51.83895</x>
-            <y>-14.22578</y>
+            <x>45.94069</x>
+            <y>-14.17725</y>
             <z>15</z>
           </Position>
           <SlugBoundA>
@@ -4939,7 +4975,7 @@
             <z>15</z>
           </SlugBoundA>
           <SlugBoundB>
-            <x>54.25858</x>
+            <x>53.7337</x>
             <y>-13.63099</y>
             <z>15</z>
           </SlugBoundB>
@@ -5016,7 +5052,7 @@
           <TextureA>
             <Texturename>move to left</Texturename>
             <x>100</x>
-            <y>0</y>
+            <y>100</y>
             <Timer>20</Timer>
           </TextureA>
         </Textures>
@@ -5050,24 +5086,6 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
-        <AlphaObject>
-          <Prefab>BumpyShroom 1</Prefab>
-          <Position>
-            <x>96.04071</x>
-            <y>-14.02076</y>
-            <z>14.73361</z>
-          </Position>
-          <Rotation>
-            <x>0</x>
-            <y>0</y>
-            <z>0</z>
-          </Rotation>
-          <Scaling>
-            <x>1</x>
-            <y>1</y>
-            <z>1</z>
-          </Scaling>
-        </AlphaObject>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -5222,7 +5240,7 @@
         <CrystalTutorial>False</CrystalTutorial>
         <BlockObject>
           <Position>
-            <x>-9.978817</x>
+            <x>-12.48174</x>
             <y>-17.02748</y>
             <z>14.21535</z>
           </Position>
@@ -5507,8 +5525,8 @@
         <Textures>
           <TextureA>
             <Texturename>move to right</Texturename>
-            <x>800</x>
-            <y>0</y>
+            <x>900</x>
+            <y>100</y>
             <Timer>20</Timer>
           </TextureA>
         </Textures>
@@ -5524,8 +5542,8 @@
   </Level>
   <Player>
     <Position>
-      <x>-20.74426</x>
-      <y>-12.7698</y>
+      <x>-24.82344</x>
+      <y>-13</y>
       <z>15</z>
     </Position>
     <Rotation>
