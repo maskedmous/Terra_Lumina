@@ -5086,6 +5086,24 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <AlphaObject>
+          <Prefab>BumpyShroom 1</Prefab>
+          <Position>
+            <x>95.87654</x>
+            <y>-14.12244</y>
+            <z>14.72288</z>
+          </Position>
+          <Rotation>
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+          </Rotation>
+          <Scaling>
+            <x>1</x>
+            <y>1</y>
+            <z>1</z>
+          </Scaling>
+        </AlphaObject>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
