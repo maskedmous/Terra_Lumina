@@ -16,6 +16,7 @@ public var textInSeconds:int 	= 0;
 public var movementLeftEnabled				:boolean = true;
 public var movementRightEnabled				:boolean = true;
 public var jumpButtonEnabled				:boolean = false;
+public var flashButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
 public var shootBumpyShroomButtonEnabled	:boolean = false;
 
@@ -286,6 +287,10 @@ public function setMovementRightEnabled(value:boolean):void
 public function setJumpButtonEnabled(value:boolean):void
 {
 	jumpButtonEnabled = value;
+}
+public function setFlashButtonEnabled(value:boolean):void
+{
+	flashButtonEnabled = value;
 }
 public function setNormalShroomButtonEnabled(value:boolean):void
 {
