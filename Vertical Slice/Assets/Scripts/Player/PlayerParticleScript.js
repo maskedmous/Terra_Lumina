@@ -18,5 +18,9 @@ public function playParticle(name:String) {
 			jumpDust.particleSystem.Clear();
 			jumpDust.particleSystem.Play();
 			break;
+		case "wheelDust":
+			break;
+		case "engineJump":
+			break;
 	}
 }
