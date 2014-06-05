@@ -342,18 +342,18 @@ function getSeeds():int
 
 function flash():void
 {
+	var hit:RaycastHit;
+	var direction:Vector3;
+	var layerMask:int = 1 << 8;
+	layerMask = ~layerMask;
+	if (getDirection() == "Right") direction = new Vector3(1.0f, 0.0f, 0.0f);
+	else if (getDirection() == "Left") direction = new Vector3(-1.0f, 0.0f, 0.0f);
+	if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 10)) {
+		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
+		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
+	}
 	if(flashBool == false)
-	{
-		var hit:RaycastHit;
-		var direction:Vector3;
-		var layerMask:int = 1 << 8;
-		layerMask = ~layerMask;
-		if (getDirection() == "Right") direction = new Vector3(1.0f, 0.0f, 0.0f);
-		else if (getDirection() == "Left") direction = new Vector3(-1.0f, 0.0f, 0.0f);
-		if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 10)) {
-			if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
-			if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
-		}
+	{	
 		flashlight.SetActive(true);
 		flashBool = true;
 		gameLogicScript.decreaseBatteryBy(5.0f);

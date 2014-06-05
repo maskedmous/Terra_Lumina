@@ -1,10 +1,10 @@
 ﻿#pragma strict
 
-private var jumpDust:GameObject;
+public var jumpDust:GameObject;
 
 function Start () {
-	jumpDust = this.gameObject.Find("JumpDust");
-	Debug.Log(jumpDust);
+	jumpDust = Instantiate(jumpDust, Vector3.zero, Quaternion.identity);
+	jumpDust.transform.rotation.eulerAngles.x = 270.0f;
 }
 
 function Update () {
@@ -17,6 +17,10 @@ public function playParticle(name:String) {
 			jumpDust.transform.position = this.gameObject.transform.position - new Vector3(0.0f, 0.5f, 0.0f);
 			jumpDust.particleSystem.Clear();
 			jumpDust.particleSystem.Play();
+			break;
+		case "wheelDust":
+			break;
+		case "engineJump":
 			break;
 	}
 }

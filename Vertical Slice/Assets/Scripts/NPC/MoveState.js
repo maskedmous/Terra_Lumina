@@ -50,6 +50,7 @@ class MoveState extends State {
 	function OnTriggerEnter(collider:Collider):void {
 		if (collider.gameObject == slugBoundA || collider.gameObject == slugBoundB) {
 			speed = -speed;
+			parent.gameObject.transform.rotation.eulerAngles.y += 180;
 			if (direction == "Right") direction = "Left";
 			else direction = "Right";
 		}
