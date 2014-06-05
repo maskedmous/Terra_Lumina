@@ -754,9 +754,9 @@
     <GameObject>
       <Prefab>Plant</Prefab>
       <Position>
-        <x>139.3109</x>
-        <y>-8.076132</y>
-        <z>15</z>
+        <x>144.187</x>
+        <y>-10.26396</y>
+        <z>15.66787</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -772,9 +772,9 @@
     <GameObject>
       <Prefab>Plant</Prefab>
       <Position>
-        <x>112.7211</x>
-        <y>-9.273434</y>
-        <z>15</z>
+        <x>144.187</x>
+        <y>-10.26396</y>
+        <z>15.66787</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -790,45 +790,9 @@
     <GameObject>
       <Prefab>Plant</Prefab>
       <Position>
-        <x>220.393</x>
-        <y>-23.63427</y>
-        <z>28.38591</z>
-      </Position>
-      <Rotation>
-        <x>13.93346</x>
-        <y>265.009</y>
-        <z>-1.319485E-06</z>
-      </Rotation>
-      <Scaling>
-        <x>2038.114</x>
-        <y>2038.112</y>
-        <z>2038.113</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Plant</Prefab>
-      <Position>
-        <x>86.67009</x>
-        <y>-17.7717</y>
-        <z>22.31051</z>
-      </Position>
-      <Rotation>
-        <x>13.73452</x>
-        <y>260.8643</y>
-        <z>351.2784</z>
-      </Rotation>
-      <Scaling>
-        <x>1933.189</x>
-        <y>1933.189</y>
-        <z>1933.189</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Plant</Prefab>
-      <Position>
-        <x>35.06577</x>
-        <y>-13.0581</y>
-        <z>24.28162</z>
+        <x>144.187</x>
+        <y>-10.26396</y>
+        <z>15.66787</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -836,9 +800,45 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>889.6233</x>
-        <y>889.6233</y>
-        <z>889.6233</z>
+        <x>200</x>
+        <y>200</y>
+        <z>200</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Plant</Prefab>
+      <Position>
+        <x>144.187</x>
+        <y>-10.26396</y>
+        <z>15.66787</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>200</x>
+        <y>200</y>
+        <z>200</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Plant</Prefab>
+      <Position>
+        <x>144.187</x>
+        <y>-10.26396</y>
+        <z>15.66787</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>200</x>
+        <y>200</y>
+        <z>200</z>
       </Scaling>
     </GameObject>
     <GameObject>
