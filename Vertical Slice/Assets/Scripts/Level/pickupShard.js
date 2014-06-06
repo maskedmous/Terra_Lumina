@@ -1,10 +1,17 @@
 ﻿#pragma strict
 
-function OnTriggerEnter(collider:Collider)
+private var gameLogicScript:GameLogic;
+
+function Start():void
+{
+	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+}
+
+function OnTriggerEnter(collider:Collider):void
 {
 	if(collider.gameObject.name == "Player")
 	{
-		GameObject.Find("GameLogic").GetComponent(GameLogic).addShardScore();
+		gameLogicScript.addShardScore();
 		Destroy(this.gameObject);
 	}
 }

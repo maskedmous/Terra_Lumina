@@ -218,7 +218,8 @@ function stopTimer():void {
 	}
 }
 
-public function addShardScore(){
+public function addShardScore():void 
+{
 	setScore(shardScore);
 }
 
