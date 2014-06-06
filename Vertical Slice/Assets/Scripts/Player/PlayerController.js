@@ -171,9 +171,9 @@ private function moveRight():void
 
 public function brake():void
 {
-	
 	if (!isJumping) {
 		var vx:float = this.gameObject.rigidbody.velocity.x;
+		if (Mathf.Abs(vx) > 0.01f) particleScript.playParticle("driveDust", Mathf.Abs(vx));
 		if (vx > 0.10f) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
 		else if (vx < -0.10f) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
 		else if (vx > -0.05f && vx < 0.05f)

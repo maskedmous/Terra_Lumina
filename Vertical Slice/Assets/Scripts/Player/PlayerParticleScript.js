@@ -2,6 +2,7 @@
 
 public var jumpDust:GameObject;
 public var engineJump:GameObject;
+public var driveDust:GameObject;
 
 private var engineJumpTimer:float = 0.0f;
 
@@ -24,11 +25,24 @@ public function playParticle(name:String) {
 			jumpDust.particleSystem.Clear();
 			jumpDust.particleSystem.Play();
 			break;
-		case "wheelDust":
-			break;
 		case "engineJump":
 			engineJump.particleEmitter.emit = true;
 			engineJumpTimer = 0.2f;
+			break;
+	}
+}
+
+public function playParticle(name:String, speed:float) {
+	switch(name) {
+		case "driveDust":
+			if (speed > 0.08f) {
+				driveDust.particleSystem.startSpeed = speed;
+				if (!driveDust.particleSystem.isPlaying) driveDust.particleSystem.Play();
+			}
+			else if (driveDust.particleSystem.isPlaying) {
+				//driveDust.particleSystem.Clear();
+				driveDust.particleSystem.Stop();
+			}
 			break;
 	}
 }
