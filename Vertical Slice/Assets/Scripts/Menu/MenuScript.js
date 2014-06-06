@@ -30,24 +30,32 @@ private var startLevelCount:int = 1;
 
 //button positions
 public 	var startButtonTexture	:Texture = null;
+public 	var startButtonPressedTexture	:Texture = null;
 private var startButtonRect		:Rect;
 private var startButtonX			:float = 20.0f;
 public 	var startButtonY			:float = 100.0f;
 
 public 	var settingsButtonTexture:Texture2D = null;
+public 	var settingsButtonPressedTexture:Texture2D = null;
 private var settingsButtonRect	:Rect;
 public 	var settingsButtonX		:float = 20.0f;
 public 	var settingsButtonY		:float = 330.0f;
 
 public 	var creditsButtonTexture:Texture2D = null;
+public 	var creditsButtonPressedTexture:Texture2D = null;
 private var creditsButtonRect	:Rect;
 public 	var creditsButtonX		:float = 20.0f;
 public 	var creditsButtonY		:float = 495.0f;
 
 // settings vars
+public var soundSliderTexture		:Texture2D = null;
+public var soundSliderThumbTexture	:Texture2D = null;
 private var soundSliderRect			:Rect;
 public 	var soundSliderX			:float = 200.0f;
 public 	var soundSliderY			:float = 675.0f;
+private var soundSliderThumbRect	:Rect;
+public 	var soundSliderThumbX		:float = 200.0f;
+public 	var soundSliderThumbY		:float = 650.0f;
 private var soundSetting			:float = 1.0f;
 public var sliderSkin				:GUISkin;
 
@@ -57,6 +65,7 @@ public var backToMenuButtonY		:float = 400.0f;
 
 
 public 	var exitButtonTexture	:Texture2D = null;
+public 	var exitButtonPressedTexture	:Texture2D = null;
 private var exitButtonRect		:Rect;
 public 	var exitButtonX			:float = 20.0f;
 public 	var exitButtonY			:float = 675.0f;
@@ -69,24 +78,43 @@ private var scale			:Vector3 = Vector3.zero;
 private var soundEngine:SoundEngineScript = null;
 private var touchEnabled:boolean = true;
 
+//sound slider
+private var min					:float;
+private var max					:float;
+private var calculationLength	:float;
+private var calculation			:float;
+
 public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
 	//getting the texture loader
 	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader) as TextureLoader;
 	//get the textures from the texture loader
-	startButtonTexture = textureLoader.getTexture("Start");
-	exitButtonTexture = textureLoader.getTexture("Quit");
-	creditsButtonTexture = textureLoader.getTexture("Credits");
-	settingsButtonTexture = textureLoader.getTexture("Settings");
+	startButtonTexture = textureLoader.getTexture("startbuttonNormal");
+	exitButtonTexture = textureLoader.getTexture("quitbuttonNormal");
+	creditsButtonTexture = textureLoader.getTexture("creditsbuttonNormal");
+	settingsButtonTexture = textureLoader.getTexture("settingsbuttonNormal");
+	
+	startButtonPressedTexture = textureLoader.getTexture("startbuttonPressed");
+	exitButtonPressedTexture = textureLoader.getTexture("quitbuttonPressed");
+	creditsButtonPressedTexture = textureLoader.getTexture("creditsbuttonPressed");
+	settingsButtonPressedTexture = textureLoader.getTexture("settingsbuttonPressed");
 	background = textureLoader.getTexture("Background");
 	loadingScreen = textureLoader.getTexture("Loading");
 	level1 = textureLoader.getTexture("Level1");
 	backToMenuButton = textureLoader.getTexture("Hoofdmenu");
+	soundSliderTexture = textureLoader.getTexture("sliderBackground");
+	soundSliderThumbTexture = textureLoader.getTexture("sliderThumb");
 	//creditsScreen = textureLoader.getTexture("Credits");
 	
 	soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
 	//backButton = textureLoader.getTexture("Back");
+	
+	min = soundSliderX;
+	max = soundSliderTexture.width;
+	calculationLength = max - min;
+	calculation = (soundSliderThumbX - min) / calculationLength;
+	soundEngine.changeVolume(Mathf.Clamp(calculation, 0.0, 1.0));
 	
 	if(startButtonTexture == null || exitButtonTexture == null || settingsButtonTexture == null || background == null || loadingScreen == null)
 	{
@@ -100,10 +128,55 @@ public function Awake():void
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesEnded += touchEnded;
+		TouchManager.Instance.TouchesBegan += touchBegan;
+		TouchManager.Instance.TouchesMoved += touchMoved;
 	}
 	else
 	{
 		Debug.LogError("Touch Manager is null");
+	}
+}
+
+private function calculateSound(){
+	calculation = (soundSliderThumbX - min) / calculationLength;
+	soundEngine.changeVolume(Mathf.Clamp(calculation, 0.0, 1.0));
+}
+
+private function touchMoved(sender:Object, events:TouchEventArgs):void
+{
+	for each(var touchPoint in events.Touches)
+	{
+			//print(touchPoint.Position.x);
+			if(currentMenuState == menuState.optionsMenu){
+				var position:Vector2 = touchPoint.Position;
+				position = Vector2(position.x, (position.y - Screen.height)*-1);
+				//scaled rect.contains position
+				if(soundSliderRect.Contains(position)){
+					//sliderEnabled = true;
+					soundSliderThumbX = (position.x / scale.x) - (soundSliderThumbTexture.width / 2);
+					calculateSound();
+				}
+			}
+			
+			//soundSliderThumbRect = new Rect(touchPoint.Position.x, soundSliderThumbRect.yMax, soundSliderThumbTexture.width, soundSliderThumbTexture.height);
+	}
+}
+
+private function touchBegan(sender:Object, events:TouchEventArgs):void
+{
+	for each(var touchPoint in events.Touches)
+	{
+		//print(touchPoint.Position.x);
+		if(currentMenuState == menuState.optionsMenu){
+			var position:Vector2 = touchPoint.Position;
+			position = Vector2(position.x, (position.y - Screen.height)*-1);
+			//scaled rect.contains position
+			if(soundSliderRect.Contains(position)){
+				//sliderEnabled = true;
+				soundSliderThumbX = (position.x / scale.x) - ((soundSliderThumbTexture.width / 2));
+				calculateSound();
+			}
+		}
 	}
 }
 
@@ -113,7 +186,6 @@ private function touchEnded(sender:Object, events:TouchEventArgs):void
 	{
 		var position:Vector2 = touchPoint.Position;
 		position = Vector2(position.x, (position.y - Screen.height)*-1);
-		
 		isReleasingButton(position);
 	}
 }
@@ -289,9 +361,12 @@ public function OnGUI():void
 		
 		case(menuState.optionsMenu):
 			
-			GUI.skin = sliderSkin;
-			soundSetting = GUI.HorizontalSlider (Rect (300, 200, 300, 100), soundSetting, 0.0, 1.0);
-			soundEngine.changeVolume(soundSetting);
+			//GUI.skin = sliderSkin;
+			//soundSetting = GUI.HorizontalSlider (soundSliderRect, soundSetting, 0.0, 1.0);
+			//soundEngine.changeVolume(soundSetting);
+			
+			GUI.DrawTexture(soundSliderRect, soundSliderTexture);
+			GUI.DrawTexture(soundSliderThumbRect, soundSliderThumbTexture);
 			
 			
 			//back button
@@ -321,7 +396,7 @@ private function scaleButtons():void
 		exitButtonRect			= new Rect(exitButtonX	, exitButtonY	, exitButtonTexture.width	, exitButtonTexture.height);
 		
 		//second scale the rectangles
-		startButtonRect 			= scaleRect(startButtonRect);
+		startButtonRect 	= scaleRect(startButtonRect);
 		settingsButtonRect	= scaleRect(settingsButtonRect);
 		creditsButtonRect  	= scaleRect(creditsButtonRect);
 		exitButtonRect  	= scaleRect(exitButtonRect);
@@ -329,10 +404,12 @@ private function scaleButtons():void
 	
 	if(currentMenuState == menuState.optionsMenu)
 	{
-		soundSliderRect 		= new Rect(soundSliderX			, soundSliderY		, startButtonTexture.width	, startButtonTexture.height);
+		soundSliderRect 		= new Rect(soundSliderX			, soundSliderY		, soundSliderTexture.width	, soundSliderTexture.height);
+		soundSliderThumbRect 	= new Rect(soundSliderThumbX	, soundSliderThumbY	, soundSliderThumbTexture.width	, soundSliderThumbTexture.height);
 		backToMenuButtonRect 	= new Rect(backToMenuButtonX	, backToMenuButtonY	, backToMenuButton.width	, backToMenuButton.height);
 	
 		soundSliderRect  	 = scaleRect(soundSliderRect);
+		soundSliderThumbRect = scaleRect(soundSliderThumbRect);
 		backToMenuButtonRect = scaleRect(backToMenuButtonRect);
 	}
 }
