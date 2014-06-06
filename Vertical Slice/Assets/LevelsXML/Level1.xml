@@ -716,9 +716,27 @@
       </Scaling>
     </GameObject>
     <GameObject>
+      <Prefab>MegaShard</Prefab>
+      <Position>
+        <x>-30.1977</x>
+        <y>-13.10374</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
       <Prefab>NormalShroom 1</Prefab>
       <Position>
-        <x>-4.445148</x>
+        <x>-4.735554</x>
         <y>-13.97649</y>
         <z>15</z>
       </Position>
@@ -728,7 +746,7 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>1.386534</x>
+        <x>1.559919</x>
         <y>1.006538</y>
         <z>1.192537</z>
       </Scaling>
@@ -736,7 +754,7 @@
     <GameObject>
       <Prefab>NormalShroom 1</Prefab>
       <Position>
-        <x>-2.488194</x>
+        <x>-2.633621</x>
         <y>-14.04192</y>
         <z>15</z>
       </Position>
@@ -746,17 +764,17 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>1.386534</x>
-        <y>1.787921</y>
+        <x>1.837333</x>
+        <y>2.222329</y>
         <z>1.192537</z>
       </Scaling>
     </GameObject>
     <GameObject>
       <Prefab>Plant</Prefab>
       <Position>
-        <x>144.187</x>
-        <y>-10.26396</y>
-        <z>15.66787</z>
+        <x>111.5166</x>
+        <y>-9.345183</y>
+        <z>15</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -772,63 +790,9 @@
     <GameObject>
       <Prefab>Plant</Prefab>
       <Position>
-        <x>144.187</x>
-        <y>-10.26396</y>
-        <z>15.66787</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>200</x>
-        <y>200</y>
-        <z>200</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Plant</Prefab>
-      <Position>
-        <x>144.187</x>
-        <y>-10.26396</y>
-        <z>15.66787</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>200</x>
-        <y>200</y>
-        <z>200</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Plant</Prefab>
-      <Position>
-        <x>144.187</x>
-        <y>-10.26396</y>
-        <z>15.66787</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>200</x>
-        <y>200</y>
-        <z>200</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Plant</Prefab>
-      <Position>
-        <x>144.187</x>
-        <y>-10.26396</y>
-        <z>15.66787</z>
+        <x>139.2324</x>
+        <y>-8.126926</y>
+        <z>15</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -4712,24 +4676,6 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>ShardPickUp</Prefab>
-      <Position>
-        <x>-26.40015</x>
-        <y>-13.10374</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
         <x>-5.727345</x>
@@ -4763,14 +4709,14 @@
         <Textures>
           <TextureA>
             <Texturename>jumping text</Texturename>
-            <x>400</x>
-            <y>820</y>
+            <x>525</x>
+            <y>825</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
             <Texturename>Arrow2</Texturename>
-            <x>200</x>
-            <y>820</y>
+            <x>340</x>
+            <y>885</y>
             <Timer>20</Timer>
           </TextureB>
         </Textures>
@@ -5560,8 +5506,8 @@
   </Level>
   <Player>
     <Position>
-      <x>-24.82344</x>
-      <y>-13</y>
+      <x>-22.9397</x>
+      <y>-12</y>
       <z>15</z>
     </Position>
     <Rotation>
