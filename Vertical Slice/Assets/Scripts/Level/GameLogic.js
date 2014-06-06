@@ -52,6 +52,7 @@ public var platinumTime:int = 50;
 public var goldTime:int = 80;
 public var silverTime:int = 130;
 public var bronzeTime:int = 180;
+public var shardScore:int = 100;
 
 /*
 	Array Variables
@@ -215,6 +216,10 @@ function stopTimer():void {
 		}
 		
 	}
+}
+
+public function addShardScore(){
+	setScore(shardScore);
 }
 
 public function getCurrentAmmo():int
