@@ -201,7 +201,7 @@ public function jump():void
 		jumpForce = 7.0f;
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
-		gameLogicScript.decreaseBatteryBy(5.0f);
+		gameLogicScript.decreaseBatteryBy(3.0f);
 		
 		if(soundEngine != null)
 		{
