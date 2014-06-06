@@ -166,11 +166,11 @@ public function OnTriggerStay (collider:Collider):void
 		
 		if(timePassed > timerTexA)
 		{
-			tutorialTextureA = null;
+			//tutorialTextureA = null;
 		}
 		if(timePassed > timerTexB)
 		{
-			tutorialTextureB = null;
+			//tutorialTextureB = null;
 		}
 		
 		if(lightTutorial)

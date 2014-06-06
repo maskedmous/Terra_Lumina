@@ -1,6 +1,9 @@
 ﻿#pragma strict
 
 public var jumpDust:GameObject;
+public var engineJump:GameObject;
+
+private var engineJumpTimer:float = 0.0f;
 
 function Start () {
 	jumpDust = Instantiate(jumpDust, Vector3.zero, Quaternion.identity);
@@ -8,7 +11,10 @@ function Start () {
 }
 
 function Update () {
-
+	if (engineJump.particleEmitter.emit) {
+		engineJumpTimer -= Time.deltaTime;
+		if (engineJumpTimer < 0.0f) engineJump.particleEmitter.emit = false;
+	}
 }
 
 public function playParticle(name:String) {
@@ -21,6 +27,8 @@ public function playParticle(name:String) {
 		case "wheelDust":
 			break;
 		case "engineJump":
+			engineJump.particleEmitter.emit = true;
+			engineJumpTimer = 0.2f;
 			break;
 	}
 }

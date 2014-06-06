@@ -209,6 +209,7 @@ public function jump():void
 		}
 		if (particleScript != null) {
 			particleScript.playParticle("jumpDust");
+			particleScript.playParticle("engineJump");
 		}
 	}
 }
