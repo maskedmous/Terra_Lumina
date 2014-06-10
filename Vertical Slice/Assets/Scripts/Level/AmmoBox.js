@@ -1,36 +1,142 @@
 ﻿#pragma strict
 
-private var extraSeeds:uint = 5;
-public var counter:float = 0.0f;
-private var canHit:boolean = true;
+public  var extraSeeds:int = 5;
+public  var normalType:boolean = true;
+public  var bumpyType:boolean = false;
+public  var timeToRespawn:float = 20.0f;
+public  var oneTimePickup:boolean = false;
+private var counter:float = 0.0f;
+private var available:boolean = true;
+private var gameLogic:GameLogic = null;
 
-function Awake(){
-	this.name = "AmmoBox";
-	counter = 20.0f;
+public function Awake():void
+{
+	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+	
+	if(gameLogic == null) Debug.LogError("GameLogic is null");
 }
 
-function Update(){
-	if(canHit == false){
-		if (counter >= 0.0f){
+public function Update():void
+{
+	//if the pick up is not available (aka it is already picked up)
+	if(available == false)
+	{
+		//if the counter is higher than 0
+		if (counter > 0.0f)
+		{
 			counter -= Time.deltaTime;
+			if(counter <= 0.0f) counter = 0.0f;	//set counter to 0.0f if lower than 0
 		}
-		if(counter <= 0.0f){
-			this.gameObject.renderer.enabled = true;
-			this.gameObject.collider.enabled = true;
-			canHit = true;
+		//once the counter reached 0
+		else if (counter == 0.0f)
+		{
+			turnPickUpOn();	//turn the pickup on
 		}
 	}
 }
 
-function OnTriggerEnter(object:Collider):void {
-	if(canHit == true){
+private function turnPickUpOn():void
+{
+	this.gameObject.renderer.enabled = true;
+	this.gameObject.collider.enabled = true;
+	available = true;
+}
+
+private function turnPickUpOffTemp():void
+{
+	this.gameObject.renderer.enabled = false;
+	this.gameObject.collider.enabled = false;
+	counter = timeToRespawn;
+	available = false;
+}
+
+private function turnPickUpOffPerm():void
+{
+	Destroy(this.gameObject);
+}
+
+public function OnTriggerEnter(object:Collider):void
+{
+	if(available == true)
+	{
 		if(object.gameObject.name == "Player")
 		{
-			object.gameObject.GetComponent(PlayerController).addAmmo(extraSeeds);
-			this.gameObject.renderer.enabled = false;
-			this.gameObject.collider.enabled = false;
-			counter = 20.0f;
-			canHit = false;
+			sendAmmo();
+			
+			if(!oneTimePickup)
+			{
+				turnPickUpOffTemp();
+			}
+			else
+			{
+				turnPickUpOffPerm();
+			}
 		}
 	}
+}
+
+private function sendAmmo():void
+{
+	if(gameLogic != null)
+	{
+		//if both types are selected
+		if(normalType && bumpyType)
+		{
+			gameLogic.addAmmo(extraSeeds);
+		}
+		//if normal type seed
+		else if(normalType == true && bumpyType == false)
+		{
+			gameLogic.addAmmo(extraSeeds, 0);
+		}
+		//if bympy type seed
+		else if(bumpyType == true && normalType == false)
+		{
+			gameLogic.addAmmo(extraSeeds, 1);
+		}
+	}
+	else Debug.LogError("Can't add Ammo cause gameLogic is null");
+}
+
+
+/*
+
+Getters
+
+*/
+
+
+public function getRespawnTimer():float
+{
+	return timeToRespawn;
+}
+
+public function getExtraSeeds():int
+{
+	return extraSeeds;
+}
+
+public function getOneTimePickup():boolean
+{
+	return oneTimePickup;
+}
+
+/*
+
+Setters
+
+*/
+public function setExtraSeeds(value:int):void
+{
+	extraSeeds = value;
+}
+
+public function setRespawnTimer(value:float):void
+{
+	timeToRespawn = value;
+}
+
+public function setOneTimePickup(value:boolean):void
+{
+	oneTimePickup = value;
 }

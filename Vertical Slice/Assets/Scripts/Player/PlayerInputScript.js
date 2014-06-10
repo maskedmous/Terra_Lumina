@@ -99,7 +99,8 @@ function Update ()
 			endLevelTriggerScript = endLevelTriggerObject.GetComponent(LevelTrigger) as LevelTrigger;
 		}
 	}
-	else if (!endLevelTriggerScript.getFinished()) {
+	else if (!endLevelTriggerScript.getFinished())
+	{
 		if (chargingShot) playerController.chargeShot();
 		readTouch();
 		playerController.brake();

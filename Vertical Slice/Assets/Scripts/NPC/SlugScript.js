@@ -35,8 +35,6 @@ function Start()
 function Update () 
 {
 	currentState.update();
-	
-	Debug.Log(startPosition);
 }
 
 function toFleeState():void

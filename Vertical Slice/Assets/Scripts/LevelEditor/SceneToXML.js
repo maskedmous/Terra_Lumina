@@ -177,16 +177,18 @@ private function saveLevel():int
 		var decreaseTimerNode:XmlElement 			= xmlDocument.CreateElement("DecreaseTimer");
 		var negativeBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("NegativeBatteryFlow");
 		var positiveBatteryFlowNode:XmlElement 		= xmlDocument.CreateElement("PositiveBatteryFlow");
-		var samplesToCompleteNode:XmlElement		= xmlDocument.CreateElement("SamplesToComplete");
+		var crystalsToCompleteNode:XmlElement		= xmlDocument.CreateElement("CrystalsToComplete");
 		var speedNode:XmlElement					= xmlDocument.CreateElement("Speed");
-		var maximumAmmoNode:XmlElement				= xmlDocument.CreateElement("MaximumAmmo");
+		
+		var currentNormalAmmoNode:XmlElement			= xmlDocument.CreateElement("CurrentNormalAmmo");
+		var maxNormalAmmoNode:XmlElement				= xmlDocument.CreateElement("MaximumNormalAmmo");
+		var currentBumpyAmmoNode:XmlElement				= xmlDocument.CreateElement("CurrentBumpyAmmo");
+		var maxBumpyAmmoNode:XmlElement					= xmlDocument.CreateElement("MaximumBumpyAmmo");
+		
 		var infiniteAmmoNode:XmlElement				= xmlDocument.CreateElement("InfiniteAmmo");
-		var jumpDrainNode:XmlElement				= xmlDocument.CreateElement("JumpDrain");
-		var shootDrainNode:XmlElement				= xmlDocument.CreateElement("ShootDrain");
-		var pickUpDrainNode:XmlElement				= xmlDocument.CreateElement("PickUpDrain");
-		var placeDrainNode:XmlElement				= xmlDocument.CreateElement("PlaceDrain"); 
+		var jumpDrainNode:XmlElement				= xmlDocument.CreateElement("JumpDrain"); 
 		var flashDrainNode:XmlElement				= xmlDocument.CreateElement("FlashDrain");
-		var collectDrainNode:XmlElement				= xmlDocument.CreateElement("CollectDrain");
+
 			
 		//append them
 		gameLogic.AppendChild(batteryNode);
@@ -194,16 +196,18 @@ private function saveLevel():int
 		gameLogic.AppendChild(decreaseTimerNode);
 		gameLogic.AppendChild(negativeBatteryFlowNode);
 		gameLogic.AppendChild(positiveBatteryFlowNode);
-		gameLogic.AppendChild(samplesToCompleteNode);
+		gameLogic.AppendChild(crystalsToCompleteNode);
 		gameLogic.AppendChild(speedNode);
-		gameLogic.AppendChild(maximumAmmoNode);
+		
+		gameLogic.AppendChild(currentNormalAmmoNode);
+		gameLogic.AppendChild(maxNormalAmmoNode);
+		gameLogic.AppendChild(currentBumpyAmmoNode);
+		gameLogic.AppendChild(maxBumpyAmmoNode);
+		
+		
 		gameLogic.AppendChild(infiniteAmmoNode);
 		gameLogic.AppendChild(jumpDrainNode);
-		gameLogic.AppendChild(shootDrainNode);
-		gameLogic.AppendChild(pickUpDrainNode);
-		gameLogic.AppendChild(placeDrainNode);
 		gameLogic.AppendChild(flashDrainNode);
-		gameLogic.AppendChild(collectDrainNode);
 		
 		//write text to it
 		batteryNode.InnerText 					= gameLogicObject.getBattery().ToString();
@@ -211,16 +215,17 @@ private function saveLevel():int
 		decreaseTimerNode.InnerText				= gameLogicObject.getDecreaseTimer().ToString();
 		negativeBatteryFlowNode.InnerText		= gameLogicObject.getNegativeBatteryFlow().ToString();
 		positiveBatteryFlowNode.InnerText		= gameLogicObject.getPositiveBatteryFlow().ToString();
-		samplesToCompleteNode.InnerText			= gameLogicObject.getSamplesToComplete().ToString();
+		crystalsToCompleteNode.InnerText		= gameLogicObject.getCrystalsToComplete().ToString();
 		speedNode.InnerText						= gameLogicObject.getSpeed().ToString();
-		maximumAmmoNode.InnerText				= gameLogicObject.getMaximumAmmo().ToString();
+		
+		currentNormalAmmoNode.InnerText			= gameLogicObject.getCurrentNormalSeeds().ToString();
+		maxNormalAmmoNode.InnerText				= gameLogicObject.getMaximumNormalSeeds().ToString();
+		currentBumpyAmmoNode.InnerText			= gameLogicObject.getCurrentBumpySeeds().ToString();
+		maxBumpyAmmoNode.InnerText				= gameLogicObject.getMaximumBumpySeeds().ToString();
+		
 		infiniteAmmoNode.InnerText				= gameLogicObject.getInfiniteAmmo().ToString();
 		jumpDrainNode.InnerText					= gameLogicObject.getJumpDrain().ToString();
-		shootDrainNode.InnerText				= gameLogicObject.getShootDrain().ToString();
-		pickUpDrainNode.InnerText				= gameLogicObject.getPickUpDrain().ToString();
-		placeDrainNode.InnerText				= gameLogicObject.getPlaceDrain().ToString();
 		flashDrainNode.InnerText				= gameLogicObject.getFlashDrain().ToString();
-		collectDrainNode.InnerText				= gameLogicObject.getCollectDrain().ToString();
 	//
 	
 	//

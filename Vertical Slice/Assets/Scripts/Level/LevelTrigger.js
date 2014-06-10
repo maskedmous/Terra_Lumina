@@ -115,7 +115,7 @@ function OnGUI()
 	}	
 	if(notFinished)
 	{
-		GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2, 300, 50), "Je hebt " + gameLogicScript.getSamplesToComplete().ToString() + "nodig om het level te eindigen");
+		GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2, 300, 50), "Je hebt " + gameLogicScript.getCrystalsToComplete().ToString() + "nodig om het level te eindigen");
 	}
 	if(lost){
 		gameLogicScript.stopBattery();

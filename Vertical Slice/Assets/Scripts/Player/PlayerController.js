@@ -214,7 +214,8 @@ public function jump():void
 	}
 }
 
-function chargeShot():void {
+function chargeShot():void
+{
 	if (currentSeeds > 0) {
 		lineRenderer.enabled = true;
 		soundEngine.playSoundEffect("aim");

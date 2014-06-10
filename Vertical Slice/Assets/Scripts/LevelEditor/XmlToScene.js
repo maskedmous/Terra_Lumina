@@ -128,17 +128,31 @@ public function loadLevel()
 					{
 						gameLogic.setPositiveBatteryFlow(int.Parse(gameLogicStats.InnerText));
 					}
-					if(gameLogicStats.Name == "SamplesToComplete")
+					if(gameLogicStats.Name == "CrystalsToComplete")
 					{
-						gameLogic.setSamplesToComplete(int.Parse(gameLogicStats.InnerText));
+						gameLogic.setCrystalsToComplete(int.Parse(gameLogicStats.InnerText));
 					}
-					if (gameLogicStats.Name == "Speed") {
+					if (gameLogicStats.Name == "Speed")
+					{
 						gameLogic.setSpeed(float.Parse(gameLogicStats.InnerText));
 					}
 					
-					if (gameLogicStats.Name == "MaximumAmmo")
+					if(gameLogicStats.Name == "CurrentNormalAmmo")
 					{
-						gameLogic.setMaximumAmmo(int.Parse(gameLogicStats.InnerText));
+						gameLogic.setCurrentNormalSeeds(int.Parse(gameLogicStats.InnerText));
+					}
+					
+					if(gameLogicStats.Name == "MaximumNormalAmmo")
+					{
+						gameLogic.setMaximumNormalSeeds(int.Parse(gameLogicStats.InnerText));
+					}
+					if(gameLogicStats.Name == "CurrentBumpyAmmo")
+					{
+						gameLogic.setCurrentBumpySeeds(int.Parse(gameLogicStats.InnerText));
+					}
+					if(gameLogicStats.Name == "MaximumBumpyAmmo")
+					{
+						gameLogic.setMaximumBumpySeeds(int.Parse(gameLogicStats.InnerText));
 					}
 					
 					if(gameLogicStats.Name == "InfiniteAmmo")
@@ -146,23 +160,14 @@ public function loadLevel()
 						gameLogic.setInfiniteAmmo(boolean.Parse(gameLogicStats.InnerText));
 					}
 					
-					if (gameLogicStats.Name == "JumpDrain") {
+					if (gameLogicStats.Name == "JumpDrain")
+					{
 						gameLogic.setJumpDrain(float.Parse(gameLogicStats.InnerText));
 					}
-					if (gameLogicStats.Name == "ShootDrain") {
-						gameLogic.setShootDrain(float.Parse(gameLogicStats.InnerText));
-					}
-					if (gameLogicStats.Name == "PickUpDrain") {
-						gameLogic.setPickUpDrain(float.Parse(gameLogicStats.InnerText));
-					}
-					if (gameLogicStats.Name == "PlaceDrain") {
-						gameLogic.setPlaceDrain(float.Parse(gameLogicStats.InnerText));
-					}
-					if (gameLogicStats.Name == "FlashDrain") {
+					
+					if (gameLogicStats.Name == "FlashDrain")
+					{
 						gameLogic.setFlashDrain(float.Parse(gameLogicStats.InnerText));
-					}
-					if (gameLogicStats.Name == "CollectDrain") {
-						gameLogic.setCollectDrain(float.Parse(gameLogicStats.InnerText));
 					}
 				}
 			}
