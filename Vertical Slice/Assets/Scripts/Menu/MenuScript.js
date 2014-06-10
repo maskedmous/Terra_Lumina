@@ -124,16 +124,25 @@ public function Awake():void
 	levelsXmlFilePath = Application.dataPath + "/LevelsXML/";
 	fillXmlLevelArray();
 	fillLevelArray();
-	
+}
+
+public function OnEnable():void
+{
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesEnded += touchEnded;
 		TouchManager.Instance.TouchesBegan += touchBegan;
 		TouchManager.Instance.TouchesMoved += touchMoved;
 	}
-	else
+}
+
+public function OnDisable():void
+{
+	if(TouchManager.Instance != null)
 	{
-		Debug.LogError("Touch Manager is null");
+		TouchManager.Instance.TouchesEnded -= touchEnded;
+		TouchManager.Instance.TouchesBegan -= touchBegan;
+		TouchManager.Instance.TouchesMoved -= touchMoved;
 	}
 }
 

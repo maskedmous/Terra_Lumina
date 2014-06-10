@@ -71,14 +71,21 @@ public function Awake():void
 	{
 		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
 	}
-	
+}
+
+public function OnEnable()
+{
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesBegan += touchBegan;
 	}
-	else
+}
+
+public function OnDisable()
+{
+	if(TouchManager.Instance != null)
 	{
-		Debug.LogError("Touch Manager is null");
+		TouchManager.Instance.TouchesBegan -= touchBegan;
 	}
 }
 
@@ -276,26 +283,32 @@ private function scaleRect(rect:Rect):Rect
 
 function readTouch()
 {
-	for each(var touch in TouchManager.Instance.ActiveTouches)
+	if(endLevelTriggerObject != null)
 	{
-		var position:Vector2 = touch.Position;
-		//sendRay(position);
-		
-		position = Vector2(position.x, (position.y - Screen.height)*-1);
-		
-		if(!isTouchingButton(position))
+		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
 		{
-			if(movementLeftEnabled && position.x < (Screen.width / 2))
+			for each(var touch in TouchManager.Instance.ActiveTouches)
 			{
-				playerController.move(position.x);
-			}
-			else if(movementRightEnabled && position.x > (Screen.width / 2))
-			{
-				playerController.move(position.x);
-			}
-			if (chargingShot) {
-				chargingShot = false;
-				playerController.resetShot();
+				var position:Vector2 = touch.Position;
+				//sendRay(position);
+				
+				position = Vector2(position.x, (position.y - Screen.height)*-1);
+				
+				if(!isTouchingButton(position))
+				{
+					if(movementLeftEnabled && position.x < (Screen.width / 2))
+					{
+						playerController.move(position.x);
+					}
+					else if(movementRightEnabled && position.x > (Screen.width / 2))
+					{
+						playerController.move(position.x);
+					}
+					if (chargingShot) {
+						chargingShot = false;
+						playerController.resetShot();
+					}
+				}
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+import TouchScript;
+
 private var finished:boolean = false;
 private var lost:boolean = false;
 private var gameLogicScript:GameLogic = null;
@@ -29,29 +31,36 @@ public function Awake()
 	//get the textures from the texture loader
 	toMenuWinTexture = textureLoader.getTexture("WIN - return to menu");
 	toMenuLoseTexture = textureLoader.getTexture("LOSE - return to menu");
-	
+}
+
+public function OnEnable():void
+{
 	if(TouchManager.Instance != null)
 	{
-		TouchManager.Instance.TouchesBegan += touchBegan;
-	}
-	else
-	{
-		Debug.LogError("Touch Manager is null");
+		TouchManager.Instance.TouchesEnded += touchEnded;
 	}
 }
 
-private function touchBegan(sender:Object, events:TouchEventArgs):void
+public function OnDisable():void
+{
+	if(TouchManager.Instance != null)
+	{
+		TouchManager.Instance.TouchesEnded -= touchEnded;
+	}
+}
+
+private function touchEnded(sender:Object, events:TouchEventArgs):void
 {
 	for each(var touchPoint in events.Touches)
 	{
 		var position:Vector2 = touchPoint.Position;
 		position = Vector2(position.x, (position.y - Screen.height)*-1);
 		
-		isPressingButton(position);
+		isReleasingButton(position);
 	}
 }
 
-private function isPressingButton(inputXY:Vector2):void
+private function isReleasingButton(inputXY:Vector2):void
 {
 	if(finished)
 	{
@@ -60,6 +69,7 @@ private function isPressingButton(inputXY:Vector2):void
 			Application.LoadLevel("Menu");
 		}
 	}
+	
 	if(lost)
 	{
 		if (loseMenuRect.Contains(inputXY))
@@ -92,19 +102,16 @@ public function OnTriggerExit(object:Collider):void
 	}
 }
 
-function OnGUI() {
-	if(finished) {
+function OnGUI()
+{
+	if(finished)
+	{
 		gameLogicScript.stopBattery();
 		//first scale the buttons before drawing them
 		scaleButtons();
 
 		//this is the texture of the button
 		GUI.DrawTexture(winMenuRect, toMenuWinTexture);
-		//this is the button itself
-		if (GUI.Button(winMenuRect, "", skin))
-		{
-			Application.LoadLevel("Menu");
-		}
 	}	
 	if(notFinished)
 	{
@@ -117,11 +124,6 @@ function OnGUI() {
 
 		//this is the texture of the button
 		GUI.DrawTexture(loseMenuRect, toMenuLoseTexture);
-		//this is the button itself
-		if (GUI.Button(loseMenuRect, "", skin))
-		{
-			Application.LoadLevel("Menu");
-		}
 	}	
 	
 }
