@@ -25,18 +25,23 @@ function Awake()
 		chaseState = this.gameObject.AddComponent(ChaseState) as ChaseState;
 		returnState = this.gameObject.AddComponent(ReturnState) as ReturnState;
 	}
-	
+}
+
+function Start()
+{
 	startPosition = this.gameObject.transform.position;
 }
 
 function Update () 
 {
 	currentState.update();
+	
+	Debug.Log(startPosition);
 }
 
 function toFleeState():void
 {
-	currentState = fleeState;
+	if (currentState == moveState || currentState == chaseState || currentState == returnState) currentState = fleeState;
 }
 
 function toMoveState():void
