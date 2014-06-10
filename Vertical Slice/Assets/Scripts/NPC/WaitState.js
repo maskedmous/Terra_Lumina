@@ -26,9 +26,10 @@ class WaitState extends State {
 			this.parent.transform.position = startPosition;
 		}
 		
-		this.parent.renderer.enabled = true;
-		this.parent.collider.enabled = true;
-		this.parent.rigidbody.useGravity = true;
+		parent.transform.FindChild("slug_1").renderer.enabled = true;
+		parent.collider.enabled = true;
+		parent.rigidbody.isKinematic = false;
+		parent.rigidbody.useGravity = true;
 		waitTime = 2.0f;
 		
 		toMoveState();

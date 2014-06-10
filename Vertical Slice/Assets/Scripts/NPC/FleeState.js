@@ -7,10 +7,12 @@ class FleeState extends State {
 	}
 	
 	function toWaitState():void {
-		this.parent.rigidbody.velocity.x = 0.0f;
-		this.parent.collider.enabled = false;
-		this.parent.renderer.enabled = false;
-		this.parent.rigidbody.useGravity = false;
+		Debug.Log("hsdfkljd");
+		parent.rigidbody.velocity.x = 0.0f;
+		parent.collider.enabled = false;
+		parent.transform.FindChild("slug_1").renderer.enabled = false;
+		parent.rigidbody.useGravity = false;
+		parent.rigidbody.isKinematic = true;
 		parentScript.toWaitState();
 	}
 }
