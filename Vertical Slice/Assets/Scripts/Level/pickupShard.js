@@ -7,7 +7,7 @@ function Start():void
 	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
 }
 
-function OnTriggerEnter(collider:Collider):void
+public function OnTriggerEnter(collider:Collider):void
 {
 	if(collider.gameObject.name == "Player")
 	{

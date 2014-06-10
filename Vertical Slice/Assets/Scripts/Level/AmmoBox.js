@@ -52,7 +52,14 @@ private function turnPickUpOffTemp():void
 
 private function turnPickUpOffPerm():void
 {
-	Destroy(this.gameObject);
+	if(this.gameObject.transform.parent.name == "AmmoBox")
+	{
+		Destroy(this.gameObject.transform.parent.gameObject);
+	}
+	else
+	{
+		Destroy(this.gameObject);
+	}
 }
 
 public function OnTriggerEnter(object:Collider):void

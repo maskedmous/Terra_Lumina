@@ -28,7 +28,7 @@ private var vy:float = 0.0f;
 
 private var isJumping:boolean = false;
 private var initializeJumping:boolean = false;
-private var jumpForce:float = 7.0f;
+private var jumpForce:float = 7.5f;
 private var wheels:List.<GameObject> = new List.<GameObject>();
 
 //shroom seed shooting
@@ -198,7 +198,6 @@ public function jump():void
 {
 	if (!isJumping) {
 		this.gameObject.rigidbody.velocity.y = jumpForce;
-		jumpForce = 7.0f;
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 		gameLogicScript.decreaseBatteryBy(3.0f);

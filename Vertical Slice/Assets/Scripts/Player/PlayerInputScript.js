@@ -134,6 +134,7 @@ private function isPressingButton(inputXY:Vector2):void
 			playerController.jump();
 			chargingShot = false;
 			playerController.resetShot();
+			return;
 		}
 	}
 	
@@ -143,6 +144,7 @@ private function isPressingButton(inputXY:Vector2):void
 		{
 			playerController.flash();
 			playerController.resetShot();
+			return;
 		}
 	}
 	
@@ -159,7 +161,8 @@ private function isPressingButton(inputXY:Vector2):void
 					chargingShot = false;
 					shootTimer = 2.0f;
 				}
-			}			
+			}
+			return;			
 		}
 	}
 	
@@ -179,6 +182,7 @@ private function isPressingButton(inputXY:Vector2):void
 					shootTimer = 2.0f;
 				}
 			}
+			return;
 		}
 	}
 }
