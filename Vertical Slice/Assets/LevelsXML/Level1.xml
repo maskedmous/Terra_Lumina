@@ -4276,14 +4276,14 @@
         <Textures>
           <TextureA>
             <Texturename>jumping text</Texturename>
-            <x>400</x>
-            <y>820</y>
+            <x>480</x>
+            <y>845</y>
             <Timer>20</Timer>
           </TextureA>
           <TextureB>
             <Texturename>Arrow2</Texturename>
-            <x>200</x>
-            <y>820</y>
+            <x>340</x>
+            <y>880</y>
             <Timer>20</Timer>
           </TextureB>
         </Textures>
@@ -4830,7 +4830,7 @@
         <AlphaObject>
           <Prefab>NormalShroom 3</Prefab>
           <Position>
-            <x>23.34937</x>
+            <x>22.21551</x>
             <y>-9.301113</y>
             <z>15</z>
           </Position>
