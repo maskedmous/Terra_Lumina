@@ -34,7 +34,7 @@ private function grow():void {
 	this.gameObject.transform.localScale = Vector3(currentScale, currentScale, currentScale);
 }
 
-private function OnCollisionEnter(collision:Collision):void
+public function OnCollisionEnter(collision:Collision):void
 {
 	if (collision.gameObject.name == "Player") {
 		var onJumpParticle:Transform = this.gameObject.transform.FindChild("shroomJump");
