@@ -192,6 +192,7 @@ public function brake():void
 			}
 		}
 	}
+	else particleScript.playParticle("driveDust", 0.0f);
 }
 
 public function jump():void
