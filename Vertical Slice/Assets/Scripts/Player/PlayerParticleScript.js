@@ -44,7 +44,6 @@ public function playParticle(name:String) {
 			break;
 		case "charging":
 			if (chargingEffect.particleSystem.isPlaying) {
-				//chargingEffect.particleSystem.Clear();
 				chargingEffect.particleSystem.Stop();
 			}
 			else {
