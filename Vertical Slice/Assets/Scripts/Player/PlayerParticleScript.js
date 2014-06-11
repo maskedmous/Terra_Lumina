@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 public var jumpDust:GameObject;
-public var engineJump:GameObject;
+public var engineJump:Transform;
 public var driveDust:GameObject;
 
 private var engineJumpTimer:float = 0.0f;
@@ -9,6 +9,9 @@ private var engineJumpTimer:float = 0.0f;
 function Start () {
 	jumpDust = Instantiate(jumpDust, Vector3.zero, Quaternion.identity);
 	jumpDust.transform.rotation.eulerAngles.x = 270.0f;
+	
+	engineJump = this.gameObject.transform.FindChild("Engine");
+	engineJump.gameObject.transform.position = this.gameObject.transform.position + new Vector3(-0.9f, -0.25f, 0.0f);
 }
 
 function Update () {
@@ -40,7 +43,6 @@ public function playParticle(name:String, speed:float) {
 				if (!driveDust.particleSystem.isPlaying) driveDust.particleSystem.Play();
 			}
 			else if (driveDust.particleSystem.isPlaying) {
-				//driveDust.particleSystem.Clear();
 				driveDust.particleSystem.Stop();
 			}
 			break;
