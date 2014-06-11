@@ -36,6 +36,9 @@ function OnCollisionEnter(obj:Collision):void
 		{
 			obj.gameObject.GetComponent(PlayerController).bounceShroomY();
 			soundEngine.playSoundEffect("bounce");
+			var bounceParticle:Transform = this.gameObject.transform.FindChild("shroomJump");
+			bounceParticle.particleSystem.Clear();
+			bounceParticle.particleSystem.Play();
 		}
 		else
 		{

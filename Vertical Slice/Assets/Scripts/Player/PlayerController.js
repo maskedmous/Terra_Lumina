@@ -5,7 +5,7 @@ import System.Collections.Generic;
 private var soundEngine:SoundEngineScript = null;
 private var debugInfo:String = "";
 
-private var lastDirection:String="Right";
+private var lastDirection:String = "Right";
 private var maxSpeed:float = 8.0f;
 
 private var lineRenderer:LineRenderer = null;
@@ -115,6 +115,7 @@ private function movement():void
 	}
 	
 	if (hitFound) {
+		if (isJumping) particleScript.playParticle("landDust");
 		isJumping = false;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY| RigidbodyConstraints.FreezePositionZ;
 	}

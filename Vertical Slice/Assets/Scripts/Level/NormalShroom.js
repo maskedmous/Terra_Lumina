@@ -7,7 +7,7 @@
 	private var improveScale:float = 0.025f;
 	private var fullGrown:boolean = false;
 
-function Awake()
+function Awake():void
 {
 	counter = 30.0f;
 	currentScale = startScale;
@@ -32,4 +32,13 @@ private function grow():void {
 		 }
 	}
 	this.gameObject.transform.localScale = Vector3(currentScale, currentScale, currentScale);
+}
+
+private function OnCollisionEnter(collision:Collision):void
+{
+	if (collision.gameObject.name == "Player") {
+		var onJumpParticle:Transform = this.gameObject.transform.FindChild("shroomJump");
+		onJumpParticle.particleSystem.Clear();
+		onJumpParticle.particleSystem.Play();
+	}
 }

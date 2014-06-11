@@ -20,7 +20,10 @@ function OnTriggerStay(hit:Collider):void
 	{
 		if(!gameLogic.getCharging())
 		{
+			var particleScript:PlayerParticleScript = hit.gameObject.GetComponent(PlayerParticleScript);
+			particleScript.playParticle("charging");
 			gameLogic.setCharging(true);
+			
 		}
 		charge();
 		displayFact();
@@ -31,6 +34,8 @@ public function OnTriggerExit(hit:Collider):void
 {
 	if (hit.gameObject.name == "Player")
 	{
+		var particleScript:PlayerParticleScript = hit.gameObject.GetComponent(PlayerParticleScript);
+		particleScript.playParticle("charging");
 		gameLogic.setCharging(false);
 		stopDisplay();
 	}

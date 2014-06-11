@@ -1,14 +1,19 @@
 ﻿#pragma strict
 
 public var jumpDust:GameObject;
-public var engineJump:Transform;
+public var landDust:GameObject;
 public var driveDust:GameObject;
+public var chargingEffect:GameObject;
+
+public var engineJump:Transform;
 
 private var engineJumpTimer:float = 0.0f;
 
 function Start () {
 	jumpDust = Instantiate(jumpDust, Vector3.zero, Quaternion.identity);
 	jumpDust.transform.rotation.eulerAngles.x = 270.0f;
+	
+	landDust = Instantiate(landDust, Vector3.zero, Quaternion.identity);
 	
 	engineJump = this.gameObject.transform.FindChild("Engine");
 	engineJump.gameObject.transform.position = this.gameObject.transform.position + new Vector3(-0.9f, -0.25f, 0.0f);
@@ -31,6 +36,20 @@ public function playParticle(name:String) {
 		case "engineJump":
 			engineJump.particleEmitter.emit = true;
 			engineJumpTimer = 0.2f;
+			break;
+		case "landDust":
+			landDust.transform.position = this.gameObject.transform.position - new Vector3(0.0f, 0.5f, 0.0f);
+			landDust.particleSystem.Clear();
+			landDust.particleSystem.Play();
+			break;
+		case "charging":
+			if (chargingEffect.particleSystem.isPlaying) {
+				//chargingEffect.particleSystem.Clear();
+				chargingEffect.particleSystem.Stop();
+			}
+			else {
+				chargingEffect.particleSystem.Play();
+			}
 			break;
 	}
 }
