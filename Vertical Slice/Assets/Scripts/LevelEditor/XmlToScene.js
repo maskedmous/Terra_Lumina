@@ -165,6 +165,23 @@ public function loadLevel()
 					{
 						gameLogic.setFlashDrain(float.Parse(gameLogicStats.InnerText));
 					}
+		
+					if (gameLogicStats.Name == "PlatinumTime")
+					{
+						gameLogic.setPlatinumTime(int.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "GoldTime")
+					{
+						gameLogic.setGoldTime(int.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "SilverTime")
+					{
+						gameLogic.setSilverTime(int.Parse(gameLogicStats.InnerText));
+					}
+					if (gameLogicStats.Name == "BronzeTime")
+					{
+						gameLogic.setBronzeTime(int.Parse(gameLogicStats.InnerText));
+					}
 				}
 			}
 			

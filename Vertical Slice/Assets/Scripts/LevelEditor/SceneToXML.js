@@ -180,14 +180,19 @@ private function saveLevel():int
 		var crystalsToCompleteNode:XmlElement		= xmlDocument.CreateElement("CrystalsToComplete");
 		var speedNode:XmlElement					= xmlDocument.CreateElement("Speed");
 		
-		var currentNormalAmmoNode:XmlElement			= xmlDocument.CreateElement("CurrentNormalAmmo");
-		var maxNormalAmmoNode:XmlElement				= xmlDocument.CreateElement("MaximumNormalAmmo");
-		var currentBumpyAmmoNode:XmlElement				= xmlDocument.CreateElement("CurrentBumpyAmmo");
-		var maxBumpyAmmoNode:XmlElement					= xmlDocument.CreateElement("MaximumBumpyAmmo");
+		var currentNormalAmmoNode:XmlElement		= xmlDocument.CreateElement("CurrentNormalAmmo");
+		var maxNormalAmmoNode:XmlElement			= xmlDocument.CreateElement("MaximumNormalAmmo");
+		var currentBumpyAmmoNode:XmlElement			= xmlDocument.CreateElement("CurrentBumpyAmmo");
+		var maxBumpyAmmoNode:XmlElement				= xmlDocument.CreateElement("MaximumBumpyAmmo");
 		
 		var infiniteAmmoNode:XmlElement				= xmlDocument.CreateElement("InfiniteAmmo");
 		var jumpDrainNode:XmlElement				= xmlDocument.CreateElement("JumpDrain"); 
 		var flashDrainNode:XmlElement				= xmlDocument.CreateElement("FlashDrain");
+		
+		var platinumTimeNode:XmlElement				= xmlDocument.CreateElement("PlatinumTime");
+		var goldTimeNode:XmlElement					= xmlDocument.CreateElement("GoldTime");
+		var silverTimeNode:XmlElement				= xmlDocument.CreateElement("SilverTime");
+		var bronzeTimeNode:XmlElement				= xmlDocument.CreateElement("BronzeTime");
 
 			
 		//append them
@@ -209,6 +214,12 @@ private function saveLevel():int
 		gameLogic.AppendChild(jumpDrainNode);
 		gameLogic.AppendChild(flashDrainNode);
 		
+		gameLogic.AppendChild(platinumTimeNode);
+		gameLogic.AppendChild(goldTimeNode);
+		gameLogic.AppendChild(silverTimeNode);
+		gameLogic.AppendChild(bronzeTimeNode);
+		
+		
 		//write text to it
 		batteryNode.InnerText 					= gameLogicObject.getBattery().ToString();
 		maximumBatteryCapacityNode.InnerText	= gameLogicObject.getBatteryCapacity().ToString();
@@ -225,6 +236,11 @@ private function saveLevel():int
 		infiniteAmmoNode.InnerText				= gameLogicObject.getInfiniteAmmo().ToString();
 		jumpDrainNode.InnerText					= gameLogicObject.getJumpDrain().ToString();
 		flashDrainNode.InnerText				= gameLogicObject.getFlashDrain().ToString();
+		
+		platinumTimeNode.InnerText				= gameLogicObject.getPlatinumTime().ToString();
+		goldTimeNode.InnerText					= gameLogicObject.getGoldTime().ToString();
+		silverTimeNode.InnerText				= gameLogicObject.getSilverTime().ToString();
+		bronzeTimeNode.InnerText				= gameLogicObject.getBronzeTime().ToString();
 	//
 	
 	//

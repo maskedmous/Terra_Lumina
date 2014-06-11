@@ -50,12 +50,14 @@ private var timerInt:int = 0;
 /*
 	Score Variables
 */
-public var techieTime:int = 45;
+public var techieTime:int 	= 45;
+
 public var platinumTime:int = 50;
-public var goldTime:int = 80;
-public var silverTime:int = 130;
-public var bronzeTime:int = 180;
-public var shardScore:int = 100;
+public var goldTime:int 	= 80;
+public var silverTime:int 	= 130;
+public var bronzeTime:int 	= 180;
+
+public var shardScore:int 	= 100;
 
 /*
 	Array Variables
@@ -387,6 +389,34 @@ public function getMaxCrystals():int
 
 /*
 
+Timers
+
+*/
+
+public function getPlatinumTime():int
+{
+	return platinumTime;
+}
+
+public function getGoldTime():int
+{
+	return goldTime;
+}
+
+public function getSilverTime():int
+{
+	return silverTime;
+}
+
+public function getBronzeTime():int
+{
+	return bronzeTime;
+}
+
+
+
+/*
+
 Setters
 
 */
@@ -479,6 +509,32 @@ public function setCrystalsToComplete(value:int):void
 public function setMaxCrystals(value:int):void
 {
 	maxCrystals = value;
+}
+
+/*
+
+Timers
+
+*/
+
+public function setPlatinumTime(value:int):void
+{
+	platinumTime = value;
+}
+
+public function setGoldTime(value:int):void
+{
+	goldTime = value;
+}
+
+public function setSilverTime(value:int):void
+{
+	silverTime = value;
+}
+
+public function setBronzeTime(value:int):void
+{
+	bronzeTime = value;
 }
 
 
