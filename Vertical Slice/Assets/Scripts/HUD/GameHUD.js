@@ -158,8 +158,8 @@ public function OnGUI():void
 	}
 	else
 	{
-		var currentAmountOfAmmo:int = gameLogic.getCurrentAmmo();
-		var maximumAmountOfAmmo:int = gameLogic.getMaximumAmmo();
+		var currentAmountOfNormalAmmo:int = gameLogic.getCurrentNormalSeeds();
+		var maximumAmountOfNormalAmmo:int = gameLogic.getMaximumNormalSeeds();
 		//draw currentAmmo / maximum ammo
 	}
 }

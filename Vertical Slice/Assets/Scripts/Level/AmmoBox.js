@@ -12,7 +12,6 @@ private var gameLogic:GameLogic = null;
 public function Awake():void
 {
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
-	
 	if(gameLogic == null) Debug.LogError("GameLogic is null");
 }
 
@@ -111,9 +110,7 @@ private function sendAmmo():void
 Getters
 
 */
-
-
-public function getRespawnTimer():float
+public function getTimeToRespawn():float
 {
 	return timeToRespawn;
 }
@@ -128,6 +125,16 @@ public function getOneTimePickup():boolean
 	return oneTimePickup;
 }
 
+public function getNormalType():boolean
+{
+	return normalType;
+}
+
+public function getBumpyType():boolean
+{
+	return bumpyType;
+}
+
 /*
 
 Setters
@@ -138,7 +145,7 @@ public function setExtraSeeds(value:int):void
 	extraSeeds = value;
 }
 
-public function setRespawnTimer(value:float):void
+public function setTimeToRespawn(value:float):void
 {
 	timeToRespawn = value;
 }
@@ -146,4 +153,14 @@ public function setRespawnTimer(value:float):void
 public function setOneTimePickup(value:boolean):void
 {
 	oneTimePickup = value;
+}
+
+public function setNormalType(value:boolean):void
+{
+	normalType = value;
+}
+
+public function setBumpyType(value:boolean):void
+{
+	bumpyType = value;
 }

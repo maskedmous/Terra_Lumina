@@ -5,7 +5,7 @@ import TouchScript;
 private var player:GameObject = null;
 private var playerController:PlayerController = null;
 private var soundEngine:SoundEngineScript = null;
-private var gameLogicScript:GameLogic;
+private var gameLogic:GameLogic;
 
 private var shootTimer:float = 0.0f;
 private var chargingShot:boolean = false;
@@ -65,7 +65,7 @@ private var scale			:Vector3;
 public function Awake():void
 {
 	playerController = this.gameObject.GetComponent("PlayerController") as PlayerController;
-	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
 	
 	if(Application.loadedLevelName == "LevelLoaderScene")
 	{
@@ -73,7 +73,7 @@ public function Awake():void
 	}
 }
 
-public function OnEnable()
+public function OnEnable():void
 {
 	if(TouchManager.Instance != null)
 	{
@@ -81,7 +81,7 @@ public function OnEnable()
 	}
 }
 
-public function OnDisable()
+public function OnDisable():void
 {
 	if(TouchManager.Instance != null)
 	{
@@ -89,7 +89,7 @@ public function OnDisable()
 	}
 }
 
-function Update ()
+public function Update ():void
 {
 	if(endLevelTriggerObject == null)
 	{
@@ -99,13 +99,14 @@ function Update ()
 			endLevelTriggerScript = endLevelTriggerObject.GetComponent(LevelTrigger) as LevelTrigger;
 		}
 	}
-	else if (!endLevelTriggerScript.getFinished())
+	else if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
 	{
 		if (chargingShot) playerController.chargeShot();
+		checkAmmo();
 		readTouch();
 		playerController.brake();
 	}
-	else if(endLevelTriggerScript.getFinished())
+	else if(endLevelTriggerScript.getFinished() || endLevelTriggerScript.getLost())
 	{
 		playerController.stopMovement();
 		playerController.stopControl();
@@ -114,14 +115,32 @@ function Update ()
 	if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;
 }
 
+private function checkAmmo()
+{
+	if(!gameLogic.getInfiniteAmmo())
+	{
+		if(gameLogic.getCurrentNormalSeeds() == 0) setNormalShroomButtonEnabled(false);
+		else setNormalShroomButtonEnabled(true);
+		
+		if(gameLogic.getCurrentBumpySeeds() == 0) setBumpyShroomButtonEnabled(false);
+		else setBumpyShroomButtonEnabled(true);
+	}
+}
+
 private function touchBegan(sender:Object, events:TouchEventArgs):void
 {
-	for each(var touchPoint in events.Touches)
+	if(endLevelTriggerObject != null)
 	{
-		var position:Vector2 = touchPoint.Position;
-		position = Vector2(position.x, (position.y - Screen.height)*-1);
-		
-		isPressingButton(position);
+		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
+		{
+			for each(var touchPoint in events.Touches)
+			{
+				var position:Vector2 = touchPoint.Position;
+				position = Vector2(position.x, (position.y - Screen.height)*-1);
+				
+				isPressingButton(position);
+			}
+		}
 	}
 }
 
@@ -156,8 +175,7 @@ private function isPressingButton(inputXY:Vector2):void
 				if (!chargingShot) chargingShot = true;
 				else
 				{
-					playerController.setShroom(0);
-					playerController.shoot();
+					playerController.shoot(0);
 					chargingShot = false;
 					shootTimer = 2.0f;
 				}
@@ -170,14 +188,12 @@ private function isPressingButton(inputXY:Vector2):void
 	{
 		if(bumpyShroomButtonRect.Contains(inputXY))
 		{
-			
 			if (shootTimer <= 0.0f)
 			{	
 				if (!chargingShot) chargingShot = true;
 				else
 				{
-					playerController.setShroom(1);
-					playerController.shoot();
+					playerController.shoot(1);
 					chargingShot = false;
 					shootTimer = 2.0f;
 				}
@@ -215,7 +231,6 @@ public function OnGUI()
 	{
 		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
 		{
-			
 			//first scale the buttons before drawing them
 			scaleButtons();
 			
@@ -288,32 +303,21 @@ private function scaleRect(rect:Rect):Rect
 
 function readTouch()
 {
-	if(endLevelTriggerObject != null)
+	for each(var touch in TouchManager.Instance.ActiveTouches)
 	{
-		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
+		var position:Vector2 = touch.Position;
+		//sendRay(position);
+		
+		position = Vector2(position.x, (position.y - Screen.height)*-1);
+		
+		if(!isTouchingButton(position))
 		{
-			for each(var touch in TouchManager.Instance.ActiveTouches)
+			playerController.move(position.x);
+			
+			if (chargingShot)
 			{
-				var position:Vector2 = touch.Position;
-				//sendRay(position);
-				
-				position = Vector2(position.x, (position.y - Screen.height)*-1);
-				
-				if(!isTouchingButton(position))
-				{
-					if(movementLeftEnabled && position.x < (Screen.width / 2))
-					{
-						playerController.move(position.x);
-					}
-					else if(movementRightEnabled && position.x > (Screen.width / 2))
-					{
-						playerController.move(position.x);
-					}
-					if (chargingShot) {
-						chargingShot = false;
-						playerController.resetShot();
-					}
-				}
+				chargingShot = false;
+				playerController.resetShot();
 			}
 		}
 	}

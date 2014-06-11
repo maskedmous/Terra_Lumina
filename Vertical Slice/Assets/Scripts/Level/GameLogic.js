@@ -1,14 +1,6 @@
  #pragma strict
 
 /*
-	Contol variables
-*/
-
-private var speed:float = 0.0f;
-public var maximumAmmo:int = 10;
-public var infiniteAmmo:boolean = false;
-private var playerController:PlayerController = null;
-/*
 	Battery variables
 */
 public var battery:float = 100.0f;					//current battery
@@ -29,10 +21,11 @@ private var lose:boolean = false;
 /*
 	Player Variables
 */
-
+private var playerController:PlayerController = null;
+private var playerInput:PlayerInputScript = null;
+public var infiniteAmmo:boolean = false;
 public var currentNormalSeeds:int = 0;
 public var maximumNormalSeeds:int = 0;
-
 public var currentBumpySeeds:int = 0;
 public var maximumBumpySeeds:int = 0;
 
@@ -78,7 +71,9 @@ private var levelTriggerScript:LevelTrigger = null;
 public function Start():void
 {
 	startTimer();
-	playerController = GameObject.Find("Player").GetComponent(PlayerController) as PlayerController;
+	var player:GameObject = GameObject.Find("Player");
+	playerController = player.GetComponent(PlayerController) as PlayerController;
+	playerInput = player.GetComponent(PlayerInputScript) as PlayerInputScript;
 }
 
 
@@ -172,16 +167,20 @@ function getCrystalsSampleCount():int
 
 function checkWin():boolean 
 {
-	if(crystalsToComplete <= getCrystalsSampleCount()){
-		if(getCrystalsSampleCount() == maxCrystals){
+	if(crystalsToComplete <= getCrystalsSampleCount())
+	{
+		if(getCrystalsSampleCount() == maxCrystals)
+		{
 			addScore(200);
 			return true;
 		}
 		else return true;
 	}
 	
-	if(crystalsToComplete >= getMaxCrystals()){
-		if(getCrystalsSampleCount() == getMaxCrystals()){
+	if(crystalsToComplete >= getMaxCrystals())
+	{
+		if(getCrystalsSampleCount() == getMaxCrystals())
+		{
 			return true;
 		}
 	}
@@ -237,28 +236,53 @@ public function addShardScore():void
 //add ammo to both instances
 public function addAmmo(amount:int):void
 {
-	currentNormalSeeds += amount;
-	currentBumpySeeds += amount;
-	
-	if(currentNormalSeeds > maximumNormalSeeds) currentNormalSeeds = maximumNormalSeeds;
-	if(currentBumpySeeds > maximumBumpySeeds) currentBumpySeeds = maximumBumpySeeds;
+	if(!infiniteAmmo)
+	{
+		currentNormalSeeds += amount;
+		currentBumpySeeds += amount;
+		
+		if(currentNormalSeeds > maximumNormalSeeds) currentNormalSeeds = maximumNormalSeeds;
+		if(currentBumpySeeds > maximumBumpySeeds) currentBumpySeeds = maximumBumpySeeds;
+	}
 }
-
 //function overload to specify type
 public function addAmmo(amount:int, ammoType:int):void
 {
-	//Type 0 = normal, Type 1 = bumpy
-	if(ammoType == 0)
+	if(!infiniteAmmo)
 	{
-		currentNormalSeeds += amount;
-		if(currentNormalSeeds > maximumNormalSeeds) currentNormalSeeds = maximumNormalSeeds;
+		//Type 0 = normal, Type 1 = bumpy
+		if(ammoType == 0)
+		{
+			currentNormalSeeds += amount;
+			if(currentNormalSeeds > maximumNormalSeeds) currentNormalSeeds = maximumNormalSeeds;
+		}
+		
+		if(ammoType == 1)
+		{
+			currentBumpySeeds += amount;
+			if(currentBumpySeeds > maximumBumpySeeds) currentBumpySeeds = maximumBumpySeeds;
+		}
 	}
+}
+
+/*
+
+Decreasers
+
+*/
+
+public function decreaseNormalSeeds():void
+{
+	currentNormalSeeds --;
 	
-	if(ammoType == 1)
-	{
-		currentBumpySeeds += amount;
-		if(currentBumpySeeds > maximumBumpySeeds) currentBumpySeeds = maximumBumpySeeds;
-	}
+	if(currentNormalSeeds == 0) playerInput.setNormalShroomButtonEnabled(false);
+}
+
+public function decreaseBumpySeeds():void
+{
+	currentBumpySeeds --;
+	
+	if(currentBumpySeeds == 0) playerInput.setBumpyShroomButtonEnabled(false);
 }
 
 /*
@@ -270,15 +294,6 @@ Getters
 //
 //Ammo
 //
-public function getCurrentAmmo():int
-{
-	return playerController.getSeeds();
-}
-
-public function getMaximumAmmo():int
-{
-	return maximumAmmo;
-}
 
 public function getInfiniteAmmo():boolean
 {
@@ -339,11 +354,6 @@ public function getPositiveBatteryFlow():int
 public function getScore():int
 {
 	return score;
-}
-
-public function getSpeed():float
-{
-	return speed;
 }
 
 public function getJumpDrain():float
@@ -441,11 +451,6 @@ function setPositiveBatteryFlow(value:int):void
 //
 //Player
 //
-
-public function setSpeed(value:float):void
-{
-	speed = value;
-}
 
 public function setJumpDrain(value:float):void
 {

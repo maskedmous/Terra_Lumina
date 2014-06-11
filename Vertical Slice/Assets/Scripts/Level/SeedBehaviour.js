@@ -21,27 +21,6 @@ function OnCollisionEnter(collision:Collision)
 			newShroom.gameObject.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
 			Destroy(this.gameObject);
 		}
-		else
-		{
-			Debug.LogError("shroomType is null or other shroom has already been created by this seed");
-		}
-	}
-}
-
-function replaceWithShroom():void
-{
-	if(shroomType != null)
-	{
-		newShroom = Instantiate(shroomType, this.transform.position, Quaternion.identity);
-		newShroom.gameObject.name = "Shroom";
-		newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
-		newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
-		newShroom.gameObject.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
-		this.gameObject.renderer.enabled = false;
-	}
-	else
-	{
-		Debug.LogError("shroomType is null");
 	}
 }
 

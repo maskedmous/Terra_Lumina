@@ -216,7 +216,6 @@ private function saveLevel():int
 		negativeBatteryFlowNode.InnerText		= gameLogicObject.getNegativeBatteryFlow().ToString();
 		positiveBatteryFlowNode.InnerText		= gameLogicObject.getPositiveBatteryFlow().ToString();
 		crystalsToCompleteNode.InnerText		= gameLogicObject.getCrystalsToComplete().ToString();
-		speedNode.InnerText						= gameLogicObject.getSpeed().ToString();
 		
 		currentNormalAmmoNode.InnerText			= gameLogicObject.getCurrentNormalSeeds().ToString();
 		maxNormalAmmoNode.InnerText				= gameLogicObject.getMaximumNormalSeeds().ToString();
@@ -297,6 +296,32 @@ private function saveLevel():int
 				zScaleNode.InnerText = obj.gameObject.transform.localScale.z.ToString();
 			}
 			//special nodes
+			if(obj.gameObject.name == "AmmoBox")
+			{
+				var ammoBoxNode:XmlElement = xmlDocument.CreateElement("AmmoBox");
+				objectNode.AppendChild(ammoBoxNode);
+				
+				var ammoBox:AmmoBox = obj.FindChild("AmmoBox").GetComponent(AmmoBox) as AmmoBox;
+				
+				var extraSeedsNode:XmlElement    = xmlDocument.CreateElement("ExtraSeeds");
+				var normalTypeNode:XmlElement    = xmlDocument.CreateElement("NormalType");
+				var bumpyTypeNode:XmlElement 	 = xmlDocument.CreateElement("BumpyType");
+				var timeToRespawnNode:XmlElement = xmlDocument.CreateElement("TimeToRespawn");
+				var oneTimePickupNode:XmlElement = xmlDocument.CreateElement("OneTimePickup");
+				
+				ammoBoxNode.AppendChild(extraSeedsNode);
+				ammoBoxNode.AppendChild(normalTypeNode);
+				ammoBoxNode.AppendChild(bumpyTypeNode);
+				ammoBoxNode.AppendChild(timeToRespawnNode);
+				ammoBoxNode.AppendChild(oneTimePickupNode);
+				
+				extraSeedsNode.InnerText 	= ammoBox.getExtraSeeds().ToString();
+				normalTypeNode.InnerText 	= ammoBox.getNormalType().ToString();
+				bumpyTypeNode.InnerText 	= ammoBox.getBumpyType().ToString();
+				timeToRespawnNode.InnerText = ammoBox.getTimeToRespawn().ToString();
+				oneTimePickupNode.InnerText = ammoBox.getOneTimePickup().ToString();
+				
+			}
 			if(obj.gameObject.name == "Slug")
 			{
 				var slugScript:SlugScript = obj.gameObject.GetComponent(SlugScript);

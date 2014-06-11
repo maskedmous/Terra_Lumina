@@ -132,10 +132,6 @@ public function loadLevel()
 					{
 						gameLogic.setCrystalsToComplete(int.Parse(gameLogicStats.InnerText));
 					}
-					if (gameLogicStats.Name == "Speed")
-					{
-						gameLogic.setSpeed(float.Parse(gameLogicStats.InnerText));
-					}
 					
 					if(gameLogicStats.Name == "CurrentNormalAmmo")
 					{
@@ -191,6 +187,13 @@ public function loadLevel()
 					//slug things
 					var slugBoundAPosition	:Vector3	= new Vector3(9999,9999,9999);
 					var slugBoundBPosition	:Vector3	= new Vector3(9999,9999,9999);
+					
+					//ammo box things
+					var extraSeeds:int = 0;
+					var normalType:boolean = false;
+					var bumpyType:boolean = false;
+					var timeToRespawn:float = 9999.9f;
+					var oneTimePickup:boolean = false;
 					
 					//tutorial things
 					var tutorialTriggerString	:String 	= "";
@@ -305,6 +308,21 @@ public function loadLevel()
 								{
 									scaling.z = float.Parse(scalingNode.InnerText);
 								}
+							}
+						}
+						
+						if(gameObjectStatsNodes.Name == "AmmoBox")
+						{
+							var ammoBoxStatsNodes:XmlNodeList = gameObjectStatsNodes.ChildNodes;
+							for each(var _ammoBoxStats in ammoBoxStatsNodes)
+							{
+								var ammoBoxStats:XmlNode = _ammoBoxStats as XmlNode;
+								
+								if(ammoBoxStats.Name == "ExtraSeeds") extraSeeds = int.Parse(ammoBoxStats.InnerText);
+								if(ammoBoxStats.Name == "NormalType") normalType = boolean.Parse(ammoBoxStats.InnerText);
+								if(ammoBoxStats.Name == "BumpyType") bumpyType = boolean.Parse(ammoBoxStats.InnerText);
+								if(ammoBoxStats.Name == "TimeToRespawn") timeToRespawn = float.Parse(ammoBoxStats.InnerText);
+								if(ammoBoxStats.Name == "OneTimePickup") oneTimePickup = boolean.Parse(ammoBoxStats.InnerText);
 							}
 						}
 						
@@ -633,6 +651,16 @@ public function loadLevel()
 							newGameObject.transform.position 	= position;
 							newGameObject.transform.eulerAngles = rotation;
 							newGameObject.transform.localScale 	= scaling;
+							
+							if(newGameObject.name == "AmmoBox")
+							{
+								var ammoBoxScript:AmmoBox = newGameObject.transform.FindChild("AmmoBox").GetComponent(AmmoBox);
+								ammoBoxScript.setExtraSeeds(extraSeeds);
+								ammoBoxScript.setNormalType(normalType);
+								ammoBoxScript.setBumpyType(bumpyType);
+								ammoBoxScript.setTimeToRespawn(timeToRespawn);
+								ammoBoxScript.setOneTimePickup(oneTimePickup);
+							}
 							
 							if(newGameObject.name == "Slug" && slugBoundAPosition != Vector3(9999,9999,9999) && slugBoundBPosition != Vector3(9999,9999,9999))
 							{
