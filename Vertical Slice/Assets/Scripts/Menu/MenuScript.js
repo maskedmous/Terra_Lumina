@@ -89,7 +89,7 @@ private var originalHeight	:float = 1080.0f;
 private var scale			:Vector3 = Vector3.zero;
 
 private var soundEngine:SoundEngineScript = null;
-private var touchEnabled:boolean = true;
+private var touchEnabled:boolean = false;
 
 
 
@@ -301,6 +301,7 @@ private function isReleasingButton(inputXY:Vector2):void
 					{
 						startMenuAnim();
 						currentMenuState = menuState.mainMenu;
+						touchEnabled = false;
 					}
 				}
 			}
@@ -311,6 +312,7 @@ private function isReleasingButton(inputXY:Vector2):void
 				{
 					startMenuAnim();
 					currentMenuState = menuState.mainMenu;
+					touchEnabled = false;
 				}
 			break;
 		}
@@ -351,6 +353,8 @@ public function OnGUI():void
 						exitButtonX += Time.deltaTime * animMultiplier;
 						if(exitButtonX >= menuButtonX){
 							menuAnim = false;
+							Debug.Log("Executed");
+							touchEnabled = true;
 						}
 					}
 				}
