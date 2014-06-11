@@ -19,7 +19,7 @@
     <DecreaseTimer>2</DecreaseTimer>
     <NegativeBatteryFlow>1</NegativeBatteryFlow>
     <PositiveBatteryFlow>5</PositiveBatteryFlow>
-    <CrystalsToComplete>0</CrystalsToComplete>
+    <CrystalsToComplete>2</CrystalsToComplete>
     <Speed>0</Speed>
     <CurrentNormalAmmo>0</CurrentNormalAmmo>
     <MaximumNormalAmmo>0</MaximumNormalAmmo>

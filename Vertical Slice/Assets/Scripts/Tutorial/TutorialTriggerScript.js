@@ -183,7 +183,7 @@ public function OnTriggerStay (collider:Collider):void
 		}
 		else if(crystalTutorial)
 		{
-			if(gameLogic.getPlantSampleCount() > 0)
+			if(gameLogic.getCrystalsSampleCount() > 0)
 			{
 				playAnimation();
 				crystalTutorial = false;

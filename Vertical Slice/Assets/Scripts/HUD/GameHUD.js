@@ -122,7 +122,7 @@ public function OnGUI():void
 	checkBatteryState();
 	scaleHud();
 	crystalsTotal = gameLogic.getCrystalsToComplete();
-	crystalsCollected = gameLogic.getPlantSampleCount();
+	crystalsCollected = gameLogic.getCrystalsSampleCount();
 	
 	GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
 	

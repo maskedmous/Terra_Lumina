@@ -67,7 +67,7 @@ public var shardScore:int = 100;
 /*
 	Array Variables
 */
-private var plantSamples:Array = new Array();
+private var crystalSamples:Array = new Array();
 
 /*
 	Other
@@ -159,21 +159,21 @@ function checkLose():void
 	}
 }
 
-function addPlantSample(newSample:GameObject):void
+function addCrystalSample(newSample:GameObject):void
 {
-	plantSamples.push(newSample);
+	crystalSamples.push(newSample);
 	addScore(100);
 }
 
-function getPlantSampleCount():int
+function getCrystalsSampleCount():int
 {
-	return plantSamples.length;
+	return crystalSamples.length;
 }
 
 function checkWin():boolean 
 {
-	if(crystalsToComplete <= getPlantSampleCount()){
-		if(getPlantSampleCount() == maxCrystals){
+	if(crystalsToComplete <= getCrystalsSampleCount()){
+		if(getCrystalsSampleCount() == maxCrystals){
 			addScore(200);
 			return true;
 		}
@@ -181,7 +181,7 @@ function checkWin():boolean
 	}
 	
 	if(crystalsToComplete >= getMaxCrystals()){
-		if(getPlantSampleCount() == getMaxCrystals()){
+		if(getCrystalsSampleCount() == getMaxCrystals()){
 			return true;
 		}
 	}

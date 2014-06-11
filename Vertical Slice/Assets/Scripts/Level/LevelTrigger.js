@@ -37,7 +37,7 @@ public function OnEnable():void
 {
 	if(TouchManager.Instance != null)
 	{
-		TouchManager.Instance.TouchesEnded += touchEnded;
+		TouchManager.Instance.TouchesBegan += touchBegan;
 	}
 }
 
@@ -45,22 +45,22 @@ public function OnDisable():void
 {
 	if(TouchManager.Instance != null)
 	{
-		TouchManager.Instance.TouchesEnded -= touchEnded;
+		TouchManager.Instance.TouchesBegan -= touchBegan;
 	}
 }
 
-private function touchEnded(sender:Object, events:TouchEventArgs):void
+private function touchBegan(sender:Object, events:TouchEventArgs):void
 {
 	for each(var touchPoint in events.Touches)
 	{
 		var position:Vector2 = touchPoint.Position;
 		position = Vector2(position.x, (position.y - Screen.height)*-1);
 		
-		isReleasingButton(position);
+		isPressingButton(position);
 	}
 }
 
-private function isReleasingButton(inputXY:Vector2):void
+private function isPressingButton(inputXY:Vector2):void
 {
 	if(finished)
 	{
