@@ -28,6 +28,19 @@ private var levelIDs:Array = new Array();
 private var levelsXmlFilePath:String = "";
 private var startLevelCount:int = 1;
 
+//Menu animations
+private var menuButtonX				:float;
+public var animMultiplier			:int = 900;
+private var startAnimFinished		:boolean = false;
+private var settingsAnimFinished	:boolean = false;
+private var creditsAnimFinished		:boolean = false;
+private var clickedStart			:boolean = false;
+private var clickedSettings			:boolean = false;
+private var clickedCredits			:boolean = false;
+private var clickedQuit				:boolean = false;
+private var leaveMenuAnim			:boolean = false;
+private var menuAnim				:boolean = true;
+
 //button positions
 public 	var startButtonTexture	:Texture = null;
 public 	var startButtonPressedTexture	:Texture = null;
@@ -78,6 +91,8 @@ private var scale			:Vector3 = Vector3.zero;
 private var soundEngine:SoundEngineScript = null;
 private var touchEnabled:boolean = true;
 
+
+
 //sound slider
 private var min					:float;
 private var max					:float;
@@ -106,6 +121,9 @@ public function Awake():void
 	soundSliderTexture = textureLoader.getTexture("sliderBackground");
 	soundSliderThumbTexture = textureLoader.getTexture("sliderThumb");
 	//creditsScreen = textureLoader.getTexture("Credits");
+	
+	menuButtonX = startButtonX;
+	startMenuAnim();
 	
 	soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
 	//backButton = textureLoader.getTexture("Back");
@@ -208,19 +226,23 @@ private function isReleasingButton(inputXY:Vector2):void
 			case(menuState.mainMenu):
 			if (startButtonRect.Contains(inputXY))
 			{		  		
-		  		currentMenuState = menuState.startMenu;
+		  		
+		  		leaveMenuAnim = clickedStart = true;
 		  	}
 		  	if (settingsButtonRect.Contains(inputXY))
 		  	{
-		  		currentMenuState = menuState.optionsMenu;
+		  		
+		  		leaveMenuAnim = clickedSettings = true;
 		  	}
 		  	if (creditsButtonRect.Contains(inputXY))
 		  	{
-		  		//currentMenuState = menuState.creditsMenu;
+		  		
+		  		//leaveMenuAnim = clickedCredits = true;
 		  	}
 		  	if (exitButtonRect.Contains(inputXY))
 			{
-				Application.Quit();
+				
+				leaveMenuAnim = clickedQuit = true;
 			}
 			break;
 			
@@ -277,6 +299,7 @@ private function isReleasingButton(inputXY:Vector2):void
 					//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
 					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
 					{
+						startMenuAnim();
 						currentMenuState = menuState.mainMenu;
 					}
 				}
@@ -286,6 +309,7 @@ private function isReleasingButton(inputXY:Vector2):void
 			case(menuState.optionsMenu):
 				if (backToMenuButtonRect.Contains(inputXY))
 				{
+					startMenuAnim();
 					currentMenuState = menuState.mainMenu;
 				}
 			break;
@@ -304,6 +328,92 @@ public function OnGUI():void
 	switch(currentMenuState)
 	{
 		case(menuState.mainMenu):
+		
+			if(menuAnim){
+				if(startButtonX <= menuButtonX){
+					startButtonX += Time.deltaTime * animMultiplier;
+					if(startButtonX >= menuButtonX) startAnimFinished = true;
+				}
+				if(startAnimFinished){
+					if(settingsButtonX <= menuButtonX){
+						settingsButtonX += Time.deltaTime * animMultiplier;
+						if(settingsButtonX >= menuButtonX) settingsAnimFinished = true;
+					}
+				}
+				if(settingsAnimFinished){
+					if(creditsButtonX <= menuButtonX){
+						creditsButtonX += Time.deltaTime * animMultiplier;
+						if(creditsButtonX >= menuButtonX) creditsAnimFinished = true;
+					}
+				}
+				if(creditsAnimFinished){
+					if(exitButtonX <= menuButtonX){
+						exitButtonX += Time.deltaTime * animMultiplier;
+						if(exitButtonX >= menuButtonX){
+							menuAnim = false;
+						}
+					}
+				}
+			}
+			
+			if(leaveMenuAnim){
+				if(clickedStart){
+					if(settingsButtonX > settingsButtonTexture.width *-1) settingsButtonX -= Time.deltaTime * animMultiplier;
+					if(creditsButtonX > creditsButtonTexture.width * -1) creditsButtonX -= Time.deltaTime * animMultiplier;
+					if(exitButtonX > exitButtonTexture.width * -1) exitButtonX -= Time.deltaTime * animMultiplier;
+					
+					if(exitButtonX <= exitButtonTexture.width * -1){
+						startButtonX -= Time.deltaTime * animMultiplier;
+						if(startButtonX <= startButtonTexture.width * -1){
+							clickedStart = false;
+							leaveMenuAnim = false;
+							currentMenuState = menuState.startMenu;
+						}
+					}
+				}
+				if(clickedSettings){
+					if(startButtonX > startButtonTexture.width *-1) startButtonX -= Time.deltaTime * animMultiplier;
+					if(creditsButtonX > creditsButtonTexture.width * -1) creditsButtonX -= Time.deltaTime * animMultiplier;
+					if(exitButtonX > exitButtonTexture.width * -1) exitButtonX -= Time.deltaTime * animMultiplier;
+					
+					if(exitButtonX <= exitButtonTexture.width * -1){
+						settingsButtonX -= Time.deltaTime * animMultiplier;
+						if(settingsButtonX <= settingsButtonTexture.width * -1){
+							clickedSettings = false;
+							leaveMenuAnim = false;
+							currentMenuState = menuState.optionsMenu;
+						}
+					}
+				}
+				if(clickedCredits){
+					if(settingsButtonX > settingsButtonTexture.width *-1) settingsButtonX -= Time.deltaTime * animMultiplier;
+					if(startButtonX > startButtonTexture.width * -1) startButtonX -= Time.deltaTime * animMultiplier;
+					if(exitButtonX > exitButtonTexture.width * -1) exitButtonX -= Time.deltaTime * animMultiplier;
+					
+					if(exitButtonX <= exitButtonTexture.width * -1){
+						creditsButtonX -= Time.deltaTime * animMultiplier;
+						if(creditsButtonX <= creditsButtonTexture.width * -1){
+							clickedCredits = false;
+							leaveMenuAnim = false;
+							//currentMenuState = menuState.creditsMenu;
+						}
+					}
+				}
+				if(clickedQuit){
+					if(settingsButtonX > settingsButtonTexture.width *-1) settingsButtonX -= Time.deltaTime * animMultiplier;
+					if(creditsButtonX > creditsButtonTexture.width * -1) creditsButtonX -= Time.deltaTime * animMultiplier;
+					if(startButtonX > startButtonTexture.width * -1) startButtonX -= Time.deltaTime * animMultiplier;
+					
+					if(startButtonX <= startButtonTexture.width * -1){
+						exitButtonX -= Time.deltaTime * animMultiplier;
+						if(exitButtonX <= exitButtonTexture.width * -1){
+							clickedQuit = false;
+							leaveMenuAnim = false;
+							Application.Quit();
+						}
+					}
+				}
+			}
 			//start button
 			GUI.DrawTexture(startButtonRect, startButtonTexture);
 		  	
@@ -427,6 +537,15 @@ private function scaleRect(rect:Rect):Rect
 {
 	var newRect:Rect = new Rect(rect.x * scale.x, rect.y * scale.y, rect.width * scale.x, rect.height * scale.y);
 	return newRect;
+}
+
+private function startMenuAnim(){
+	startButtonX = startButtonTexture.width * -1;
+	settingsButtonX = settingsButtonTexture.width * -1;
+	creditsButtonX = creditsButtonTexture.width * -1;
+	exitButtonX = exitButtonTexture.width * -1;
+	menuAnim = true;
+	startAnimFinished = settingsAnimFinished = creditsAnimFinished = false;
 }
 
 private function fillXmlLevelArray():void
