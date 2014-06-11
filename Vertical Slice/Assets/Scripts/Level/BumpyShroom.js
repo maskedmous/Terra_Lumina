@@ -46,6 +46,11 @@ function OnCollisionEnter(obj:Collision):void
 
 private function grow():void {
 	currentScale += improveScale;
-	if (currentScale > 1.0f) fullGrown = true;
+	if (currentScale >= 1.0f){
+		 fullGrown = true;
+		 if(currentScale > 1.0f) {
+		 	currentScale = 1.0f;
+		 }
+	}
 	this.gameObject.transform.localScale = Vector3(currentScale, currentScale, currentScale);
 }
