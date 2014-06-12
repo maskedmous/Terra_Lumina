@@ -29,7 +29,10 @@ private var levelsXmlFilePath:String = "";
 private var startLevelCount:int = 1;
 
 //Menu animations
-private var menuButtonX				:float;
+private var menuButtonXStart		:float;
+private var menuButtonXSettings		:float;
+private var menuButtonXCredits		:float;
+private var menuButtonXExit			:float;
 public var animMultiplier			:int = 1800;
 private var startAnimFinished		:boolean = false;
 private var settingsAnimFinished	:boolean = false;
@@ -119,7 +122,10 @@ public function Awake():void
 	soundSliderThumbTexture 		= textureLoader.getTexture("sliderThumb");
 	//creditsScreen = textureLoader.getTexture("Credits");
 	
-	menuButtonX = startButtonX;
+	menuButtonXStart 	= startButtonX;
+	menuButtonXSettings = settingsButtonX;
+	menuButtonXCredits 	= creditsButtonX;
+	menuButtonXExit 	= exitButtonX;
 	startMenuAnim();
 	
 	soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
@@ -329,26 +335,36 @@ public function OnGUI():void
 		case(menuState.mainMenu):
 		
 			if(menuAnim){
-				if(startButtonX <= menuButtonX){
+				if(startButtonX <= menuButtonXStart){
 					startButtonX += Time.deltaTime * animMultiplier;
-					if(startButtonX >= menuButtonX) startAnimFinished = true;
+					if(startButtonX >= menuButtonXStart){
+						startAnimFinished = true;
+						startButtonX = menuButtonXStart;	
+					}
 				}
 				if(startAnimFinished){
-					if(settingsButtonX <= menuButtonX){
+					if(settingsButtonX <= menuButtonXSettings){
 						settingsButtonX += Time.deltaTime * animMultiplier;
-						if(settingsButtonX >= menuButtonX) settingsAnimFinished = true;
+						if(settingsButtonX >= menuButtonXSettings){
+							settingsAnimFinished = true;
+							settingsButtonX = menuButtonXSettings;
+						}
 					}
 				}
 				if(settingsAnimFinished){
-					if(creditsButtonX <= menuButtonX){
+					if(creditsButtonX <= menuButtonXCredits){
 						creditsButtonX += Time.deltaTime * animMultiplier;
-						if(creditsButtonX >= menuButtonX) creditsAnimFinished = true;
+						if(creditsButtonX >= menuButtonXCredits){
+							creditsAnimFinished = true;
+							creditsButtonX = menuButtonXCredits;
+						}
 					}
 				}
 				if(creditsAnimFinished){
-					if(exitButtonX <= menuButtonX){
+					if(exitButtonX <= menuButtonXExit){
 						exitButtonX += Time.deltaTime * animMultiplier;
-						if(exitButtonX >= menuButtonX){
+						if(exitButtonX >= menuButtonXExit){
+							exitButtonX = menuButtonXExit;
 							menuAnim = false;
 							touchEnabled = true;
 						}
