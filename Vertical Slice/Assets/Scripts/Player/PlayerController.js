@@ -392,7 +392,7 @@ function bounceShroomY():void
 
 function bounceShroomX():void
 {
-	var velocity = this.gameObject.rigidbody.velocity.x;
+	var velocity:float = this.gameObject.rigidbody.velocity.x;
 	if(Mathf.Abs(velocity) < 0.4)
 	{
 		if(velocity < 0.0f) velocity = -3.0f;

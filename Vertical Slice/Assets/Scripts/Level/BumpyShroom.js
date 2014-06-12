@@ -7,7 +7,7 @@ private var currentScale:float = 0.0f;
 private var improveScale:float = 0.025f;
 private var fullGrown:boolean = false;
 
-private var yDifference:float = 1.4f;
+private var yDifference:float = 1.0f;
 
 private var soundEngine:SoundEngineScript = null;
 
