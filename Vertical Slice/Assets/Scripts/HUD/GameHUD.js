@@ -38,14 +38,27 @@ private var seedsRect:Rect;
 public var seedsX:float = 20.0f;
 public var seedsY:float = 280.0f;
 
-public var leftSideNumberX:float = 0.0f;
-public var leftSideNumberY:float = 0.0f;
+/*
 
-public var middleDivideX:float = 0.0f;
-public var middleDivideY:float = 0.0f;
+public var normalSeedsTexture:Texture2D = null;
+private var normalSeedsRect:Rect;
+public var normalSeedsX:float = 20.0f;
+public var normalSeedsY:float = 280.0f;
+private var normalSeedsInfinityRect;
+public var normalSeedsInfinityX:float = 0.0f;
+public var normalSeedsInfinityY:float = 0.0f;
 
-public var rightSideNumberX:float = 0.0f;
-public var rightsideNumberX:float = 0.0f;
+public var bumpySeedsTexture:Texture2D = null;
+private var bumpySeedsRect:Rect;
+public var bumpySeedsX:float = 20.0f;
+public var bumpySeedsY:float = 280.0f;
+private var bumpySeedsInfinityRect;
+public var bumpySeedsInfinityX:float = 0.0f;
+public var bumpySeedsInfinityY:float = 0.0f;
+
+private var fontSkin:GUIStyle = new GUIStyle();
+
+*/
 
 private var infinityRect:Rect;
 private var infiniteAmmo:boolean = false;
@@ -95,6 +108,8 @@ public function Awake()
 		number9 = textureLoader.getTexture("number9");
 		infinity = textureLoader.getTexture("infinity");
 		seedsTexture = textureLoader.getTexture("SeedElement");
+		//normalSeedsTexture = textureLoader.getTexture("NormalSeedElement");
+		//bumpySeedsTexture = textureLoader.getTexture("BumpySeedElement");
 		
 		crystalActive = textureLoader.getTexture("Crystal Active");
 		crystalInactive = textureLoader.getTexture("Crystal Inactive");
@@ -150,17 +165,25 @@ public function OnGUI():void
 	
 	//draw the seed hud
 	GUI.DrawTexture(seedsRect, seedsTexture);
+	//GUI.DrawTexture(normalSeedsRect, normalSeedsTexture);
+	//GUI.DrawTexture(bumpySeedsRect, bumpySeedsRect);
 	
 	if(infiniteAmmo)
 	{
 		//draw infinite sign
 		GUI.DrawTexture(infinityRect, infinity);
+		//GUI.DrawTexture(normalSeedsInfinityRect, infinity);
+		//GUI.DrawTexture(bumpySeedsInfinityRect, infinity);
 	}
 	else
 	{
-		var currentAmountOfNormalAmmo:int = gameLogic.getCurrentNormalSeeds();
-		var maximumAmountOfNormalAmmo:int = gameLogic.getMaximumNormalSeeds();
+		var currentNormalAmmo:int = gameLogic.getCurrentNormalSeeds();
+		var maximumNormalAmmo:int = gameLogic.getMaximumNormalSeeds();
+		
+		var currentBumpyAmmo:int = gameLogic.getCurrentBumpySeeds();
+		var maximumBumpyAmmo:int = gameLogic.getMaximumBumpySeeds();
 		//draw currentAmmo / maximum ammo
+		//
 	}
 }
 
