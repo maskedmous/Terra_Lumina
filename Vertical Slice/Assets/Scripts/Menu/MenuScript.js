@@ -135,7 +135,8 @@ public function Awake():void
 	max = soundSliderTexture.width;
 	calculationLength = max - min;
 	calculation = (soundSliderThumbX - min) / calculationLength;
-	soundEngine.changeVolume(Mathf.Clamp(calculation, 0.0, 1.0));
+	soundEngine.changeVolume(soundEngine.getVolume());
+	soundSliderThumbX = soundEngine.getVolume() * calculationLength + min;
 	
 	if(startButtonTexture == null || exitButtonTexture == null || settingsButtonTexture == null || background == null || loadingScreen == null)
 	{

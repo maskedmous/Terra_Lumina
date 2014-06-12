@@ -77,6 +77,12 @@ public function changeVolume(newVolume:float):void
 	}
 	
 	audio.volume = newVolume;
+	volume = newVolume;
+}
+
+public function getVolume():float
+{
+	return volume;
 }
 
 public function changeMute(newMute:boolean):void
