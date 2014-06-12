@@ -53,7 +53,6 @@ function Awake():void {
 	particleScript = this.gameObject.GetComponent("PlayerParticleScript") as PlayerParticleScript;
 	
 	anim = GetComponent(Animator);
-	print(anim);
 	
 	if(Application.loadedLevelName == "LevelLoaderScene")
 	{
