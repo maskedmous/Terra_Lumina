@@ -15,7 +15,7 @@ function Start () {
 	landDust = Instantiate(landDust, Vector3.zero, Quaternion.identity);
 	
 	driveDust = this.gameObject.transform.FindChild("DriveDust");
-	driveDust.gameObject.transform.localPosition = new Vector3(-1.35f, -0.76f, 0.0f);
+	driveDust.gameObject.transform.localPosition = new Vector3(-0.68f, -0.40f, -0.4f);
 	driveDust.gameObject.transform.rotation.eulerAngles.y = 270.0f;
 	
 	engineJump = this.gameObject.transform.FindChild("Engine");
