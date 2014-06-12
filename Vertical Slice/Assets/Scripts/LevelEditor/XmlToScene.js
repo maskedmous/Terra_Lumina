@@ -21,7 +21,7 @@ public function setLevel(levelString:String):void
 	}
 }
 
-public function loadLevel()
+public function loadLevel():void
 {
 	var filePath:String = xmlPath + xmlLevel;
 	var xmlDocument:XmlDocument = new XmlDocument();
@@ -869,6 +869,6 @@ public function loadLevel()
 		Application.LoadLevel("Menu");
 	}
 	
-	Debug.Log("Finished Loading");
+	Debug.Log("Finished Loading Level: " + xmlLevel);
 	Destroy(this.gameObject);
 }

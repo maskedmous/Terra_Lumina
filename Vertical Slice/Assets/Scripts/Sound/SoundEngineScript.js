@@ -2,7 +2,7 @@
 
 private var volume:float = 1.0f;
 //private var muteBool:boolean;
-static var bgMusicExists:boolean = false;
+static var soundEngineExists:boolean = false;
 
 private var aim:boolean = false;
 private var drive:boolean = false;
@@ -26,10 +26,10 @@ public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
 	
-	if(bgMusicExists == false) {
-		this.audio.volume = volume;
-		this.audio.loop = true;
-		bgMusicExists = true;
+	if(soundEngineExists == false) {
+		audio.volume = volume;
+		audio.loop = true;
+		soundEngineExists = true;
 		
 		bounceSound = Resources.Load("SoundEffects/Shroom Bounce", AudioClip);
 		jumpSound = Resources.Load("SoundEffects/Rover Jump", AudioClip);
@@ -76,17 +76,17 @@ public function changeVolume(newVolume:float):void
 		Debug.LogError("Trying to set the volume lower than 0, corrected it to 0");
 	}
 	
-	this.audio.audio.volume = newVolume;
+	audio.volume = newVolume;
 }
 
 public function changeMute(newMute:boolean):void
 {
-	this.audio.audio.mute = newMute;
+	audio.mute = newMute;
 }
 
 public function changeLoop(newLoop:boolean):void
 {
-	this.audio.audio.loop = newLoop;
+	audio.loop = newLoop;
 }
 
 public function playSoundEffect(name:String):void {

@@ -4,7 +4,7 @@ import TouchScript;
 import System.IO;
 import System.Xml;
 
-enum menuState {mainMenu, startMenu, optionsMenu, creditsMenu}
+enum menuState {mainMenu, startMenu, optionsMenu, creditsMenu, loadingLevel}
 
 private var currentMenuState:menuState = menuState.mainMenu;
 private var BUTTONWIDTH		:float 		= Screen.width/6;
@@ -265,6 +265,8 @@ private function isReleasingButton(inputXY:Vector2):void
 					{
 						touchEnabled = false;
 						setLevelFileNameByInt(i);
+						currentMenuState = menuState.loadingLevel;
+						background = loadingScreen;
 						loadLevel();
 					}
 					
