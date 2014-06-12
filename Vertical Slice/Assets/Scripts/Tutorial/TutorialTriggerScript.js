@@ -220,6 +220,8 @@ private function playAnimation():IEnumerator
 	{
 		var animation:Animation = blockObject.GetComponent(Animation);
 		animation.Play();
+		var particleSystem:ParticleSystem = blockObject.transform.FindChild("rockDust").GetComponent(ParticleSystem);
+		particleSystem.Play();
 		
 		yield WaitForSeconds(animation.GetClip("Take 001").length);
 		Destroy(blockObject);

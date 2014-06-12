@@ -76,7 +76,7 @@ function Update():void
 {
 	if(control)
 	{
-		movement();
+		checkIfJumping();
 		
 		if(flashBool == true) {
 			flash();
@@ -100,7 +100,7 @@ public function stopControl():void
 	control = false;
 }
 
-private function movement():void
+private function checkIfJumping():void
 {
 	var hitFound:boolean = false;
 	var hitDown:RaycastHit;
@@ -128,7 +128,6 @@ private function movement():void
 	if (cRot > 45.0f && cRot < 180.0f) this.gameObject.transform.rotation.eulerAngles.z = 45.0f;
 	if (cRot > 180.0f && cRot < 315.0f) this.gameObject.transform.rotation.eulerAngles.z = 315.0f;
 }
-
 
 public function move(mousePos:float):void {
 	if(soundEngine != null)
