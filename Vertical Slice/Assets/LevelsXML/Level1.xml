@@ -20,7 +20,7 @@
     <NegativeBatteryFlow>1</NegativeBatteryFlow>
     <PositiveBatteryFlow>5</PositiveBatteryFlow>
     <CrystalsToComplete>2</CrystalsToComplete>
-    <Speed>0</Speed>
+    <Speed />
     <CurrentNormalAmmo>0</CurrentNormalAmmo>
     <MaximumNormalAmmo>0</MaximumNormalAmmo>
     <CurrentBumpyAmmo>0</CurrentBumpyAmmo>
@@ -28,6 +28,10 @@
     <InfiniteAmmo>True</InfiniteAmmo>
     <JumpDrain>0</JumpDrain>
     <FlashDrain>0</FlashDrain>
+    <PlatinumTime>50</PlatinumTime>
+    <GoldTime>65</GoldTime>
+    <SilverTime>90</SilverTime>
+    <BronzeTime>120</BronzeTime>
   </GameLogic>
   <Level>
     <GameObject>
@@ -5087,8 +5091,8 @@
   </Level>
   <Player>
     <Position>
-      <x>-22.3</x>
-      <y>-12.8</y>
+      <x>-20.22</x>
+      <y>-13.13685</y>
       <z>15</z>
     </Position>
     <Rotation>
