@@ -68,6 +68,7 @@ private var crystalSamples:Array = new Array();
 	Other
 */
 private var levelTriggerScript:LevelTrigger = null;
+private var anim:Animator;
 
 
 public function Start():void
@@ -76,6 +77,8 @@ public function Start():void
 	var player:GameObject = GameObject.Find("Player");
 	playerController = player.GetComponent(PlayerController) as PlayerController;
 	playerInput = player.GetComponent(PlayerInputScript) as PlayerInputScript;
+	
+	anim = player.GetComponent(Animator);
 }
 
 
@@ -94,6 +97,7 @@ public function Update():void
 	if(!charging)
 	{
 		decreaseBattery();
+		anim.SetBool("isCharging", false);
 	}
 	else if(secondTimer != 0.0f)
 	{
@@ -131,6 +135,7 @@ public function decreaseBatteryBy(value:float):void
 
 function addBatteryPower():void
 {
+	anim.SetBool("isCharging", true);
 	if(battery < maximumBatteryCapacity)
 	{
 		battery += positiveBatteryFlow;

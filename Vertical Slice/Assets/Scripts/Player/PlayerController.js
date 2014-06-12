@@ -45,10 +45,15 @@ private var counter:float = 0.0f;
 
 private var control:boolean = true;
 
+private var anim:Animator;
+
 function Awake():void {
 	gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
 	
 	particleScript = this.gameObject.GetComponent("PlayerParticleScript") as PlayerParticleScript;
+	
+	anim = GetComponent(Animator);
+	print(anim);
 	
 	if(Application.loadedLevelName == "LevelLoaderScene")
 	{
@@ -88,11 +93,18 @@ function Update():void
 			}
 		}
 	}
+	if(isJumping){
+		anim.SetBool("inAir", true);
+	}
+	if(!isJumping){
+		anim.SetBool("inAir", false);
+	}
 }
 
 public function stopMovement():void
 {
 	this.gameObject.rigidbody.velocity.x = 0;
+	anim.SetBool("isMoving", false);
 }
 
 public function stopControl():void
@@ -140,6 +152,7 @@ public function move(mousePos:float):void {
 	}
 	if (mousePos > Screen.width / 2) moveRight();
 	if (mousePos < Screen.width / 2) moveLeft();
+	anim.SetBool("isMoving", true);
 }
 
 private function moveLeft():void
@@ -176,6 +189,7 @@ public function brake():void
 			if(vx != 0.0f)
 			{
 			 	this.gameObject.rigidbody.velocity.x = 0.0f;
+			 	anim.SetBool("isMoving", false);
 			 	if(soundEngine != null)
 			 	{
 				 	if(soundEngine.getDrive() == true)
