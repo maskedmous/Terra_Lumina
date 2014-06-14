@@ -312,8 +312,15 @@ function readTouch()
 		
 		if(!isTouchingButton(position))
 		{
-			playerController.move(position.x);
-			
+			if (position.x > Screen.width / 2)
+			{
+				if(movementRightEnabled) playerController.move(position.x);
+			}
+			if (position.x < Screen.width / 2)
+			{
+				if(movementLeftEnabled) playerController.move(position.x);
+			}
+
 			if (chargingShot)
 			{
 				chargingShot = false;

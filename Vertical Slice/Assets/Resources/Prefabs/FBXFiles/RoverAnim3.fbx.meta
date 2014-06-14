@@ -143,6 +143,7 @@ ModelImporter:
     400136: RoverBodyMesh_MeshPart1
     4300000: RoverBodyMesh_MeshPart0
     4300002: RoverBodyMesh_MeshPart1
+    4300004: RoverBodyMesh
     7400000: Move
     7400002: Jump Start
     7400004: Jump Idle
@@ -154,6 +155,7 @@ ModelImporter:
     9500000: //RootNode
     13700000: RoverBodyMesh_MeshPart0
     13700002: RoverBodyMesh_MeshPart1
+    13700004: RoverBodyMesh
   materials:
     importMaterials: 1
     materialName: 0
