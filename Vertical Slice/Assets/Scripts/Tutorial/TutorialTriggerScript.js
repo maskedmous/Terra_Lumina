@@ -23,7 +23,13 @@ public var shootBumpyShroomButtonEnabled	:boolean = false;
 //alpha GameObject
 public var alphaObject:GameObject = null;
 
+private var blinkingTime:float = 4.0f;
 //tutorial kind
+public var jumpButtonTutorial:boolean 	= false;
+public var normalShroomButtonTutorial:boolean = false;
+public var flashButtonTutorial:boolean = false;
+public var bumpyShroomButtonTutorial:boolean = false;
+
 public var lightTutorial	:boolean 	= false;
 public var slugTutorial		:boolean 	= false;
 public var crystalTutorial	:boolean 	= false;
@@ -137,12 +143,21 @@ private function changeControls():void
 	else 							   playerInput.setBumpyShroomButtonEnabled(true);
 }
 
+private function blinkButtons():void
+{
+	if(jumpButtonTutorial) playerInput.setBlinkingJumpButton(true);
+	else if(normalShroomButtonTutorial) playerInput.setBlinkingNormalShroomButton(true);
+	else if(flashButtonTutorial) playerInput.setBlinkingFlashButton(true);
+	else if(bumpyShroomButtonTutorial) playerInput.setBlinkingBumpyShroomButton(true);
+}
+
 public function OnTriggerEnter(collider:Collider):void
 {
 	//change the controls upon entering the trigger box
 	if(collider.gameObject.name == "Player")
 	{
 		changeControls();
+		blinkButtons();
 		if(tutorialTextureA != null || tutorialTextureB != null)
 		{
 			showTutorialTextures = true;
@@ -171,6 +186,10 @@ public function OnTriggerStay (collider:Collider):void
 		if(timePassed > timerTexB)
 		{
 			//tutorialTextureB = null;
+		}
+		if(timePassed > blinkingTime)
+		{
+			resetBlinkingButtons();
 		}
 		
 		if(lightTutorial)
@@ -207,11 +226,21 @@ public function OnTriggerExit (collider:Collider):void
 		label.gameObject.guiText.text = "";
 		showTutorialTextures = false;
 		
+		resetBlinkingButtons();
+		
 		if(destroyOnExit)
 		{
 			Destroy(this.gameObject);
 		}
 	}
+}
+
+private function resetBlinkingButtons():void
+{
+	if(jumpButtonTutorial) playerInput.setBlinkingJumpButton(false);
+	else if(normalShroomButtonTutorial) playerInput.setBlinkingNormalShroomButton(false);
+	else if(flashButtonTutorial) playerInput.setBlinkingFlashButton(false);
+	else if(bumpyShroomButtonTutorial) playerInput.setBlinkingBumpyShroomButton(false);
 }
 
 private function playAnimation():IEnumerator
@@ -251,6 +280,27 @@ public function setAlphaObject(alphaObj:GameObject):void
 {
 	alphaObject = alphaObj;
 }
+
+public function setJumpButtonTutorial(value:boolean):void
+{
+	jumpButtonTutorial = value;
+}
+
+public function setNormalShroomButtonTutorial(value:boolean):void
+{
+	normalShroomButtonTutorial = value;
+}
+
+public function setFlashButtonTutorial(value:boolean):void
+{
+	flashButtonTutorial = value;
+}
+
+public function setBumpyShroomButtonTutorial(value:boolean):void
+{
+	bumpyShroomButtonTutorial = value;
+}
+
 
 public function setLightTutorial(value:boolean):void
 {
@@ -370,6 +420,26 @@ public function getAlphaObject():GameObject
 	}
 	
 	return null;
+}
+
+public function getJumpButtonTutorial():boolean
+{
+	return jumpButtonTutorial;
+}
+
+public function getNormalShroomButtonTutorial():boolean
+{
+	return normalShroomButtonTutorial;
+}
+
+public function getFlashButtonTutorial():boolean
+{
+	return flashButtonTutorial;
+}
+
+public function getBumpyShroomButtonTutorial():boolean
+{
+	return bumpyShroomButtonTutorial;
 }
 
 public function getLightTutorial():boolean

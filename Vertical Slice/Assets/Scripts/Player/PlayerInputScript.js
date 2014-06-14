@@ -20,27 +20,34 @@ private var bumpyShroomButtonEnabled	:boolean = true;
 private var movementLeftEnabled			:boolean = true;
 private var movementRightEnabled		:boolean = true;
 
+private var blinkingCounter				:float 	 = 0.5f;
+private var blinkingJumpButton			:boolean = false;
+private var blinkingFlashButton			:boolean = false;
+private var blinkingNormalShroomButton	:boolean = false;
+private var blinkingBumpyShroomButton	:boolean = false;
+
 //an empty guiStyle
 private var guiStyle:GUIStyle = new GUIStyle();
 
 
 //button positions
-public 	var jumpButtonTexture			:Texture = null;
-public  var jumpButtonInactiveTexture 	:Texture2D = null;
+private var currentJumpButtonTexture	:Texture2D 	= null;
+public 	var jumpButtonTexture			:Texture2D 	= null;
+public  var jumpButtonInactiveTexture 	:Texture2D 	= null;
 private var jumpButtonRect				:Rect;
-public var jumpButtonX					:float = 0.0f;
+public  var jumpButtonX					:float = 0.0f;
 public 	var jumpButtonY					:float = 780.0f;
 
 
-
-public var flashButtonTexture			:Texture = null;
-public var flashButtonInactiveTexture	:Texture2D = null;
+private var currentFlashButtonTexture	:Texture2D	= null;
+public  var flashButtonTexture			:Texture2D = null;
+public  var flashButtonInactiveTexture	:Texture2D = null;
 private var flashButtonRect				:Rect;
-public var flashButtonX				:float = 0.0f;
-public var flashButtonY				:float = 900.0f;
+public  var flashButtonX				:float = 0.0f;
+public  var flashButtonY				:float = 900.0f;
 
 
-
+private var currentNormalShroomButtonTexture	:Texture2D = null;
 public 	var normalShroomButtonTexture			:Texture2D = null;
 public  var normalShroomButtonInactiveTexture	:Texture2D = null;
 private var normalShroomButtonRect				:Rect;
@@ -48,7 +55,7 @@ public 	var normalShroomButtonX					:float = 1600.0f;
 public 	var normalShroomButtonY					:float = 900.0f;
 
 
-
+private var currentBumpyShroomButtonTexture:Texture2D = null;
 public 	var bumpyShroomButtonTexture		:Texture2D = null;
 public 	var bumpyShroomButtonInactiveTexture:Texture2D = null;
 private var bumpyShroomButtonRect			:Rect;
@@ -71,6 +78,11 @@ public function Awake():void
 	{
 		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
 	}
+	
+	currentJumpButtonTexture			= jumpButtonTexture;
+	currentFlashButtonTexture			= flashButtonTexture;
+	currentNormalShroomButtonTexture 	= normalShroomButtonTexture;
+	currentBumpyShroomButtonTexture		= bumpyShroomButtonTexture;
 }
 
 public function OnEnable():void
@@ -233,12 +245,13 @@ public function OnGUI()
 		{
 			//first scale the buttons before drawing them
 			scaleButtons();
+			checkBlinkingButtons();
 			
 			//if the jump button is enabled it will be drawn
 			if(jumpButtonEnabled)
 			{
 				//this is the texture of the button
-				GUI.DrawTexture(jumpButtonRect, jumpButtonTexture);
+				GUI.DrawTexture(jumpButtonRect, currentJumpButtonTexture);
 			}
 			else
 			{
@@ -247,7 +260,7 @@ public function OnGUI()
 			}
 			if (flashButtonEnabled)
 			{
-				GUI.DrawTexture(flashButtonRect, flashButtonTexture);
+				GUI.DrawTexture(flashButtonRect, currentFlashButtonTexture);
 			}
 			else {
 				GUI.DrawTexture(flashButtonRect, flashButtonInactiveTexture);
@@ -255,7 +268,7 @@ public function OnGUI()
 			
 			if(normalShroomButtonEnabled)
 			{
-				GUI.DrawTexture(normalShroomButtonRect, normalShroomButtonTexture);
+				GUI.DrawTexture(normalShroomButtonRect, currentNormalShroomButtonTexture);
 			}
 			else
 			{
@@ -264,12 +277,45 @@ public function OnGUI()
 			
 			if(bumpyShroomButtonEnabled)
 			{
-				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonTexture);
+				GUI.DrawTexture(bumpyShroomButtonRect, currentBumpyShroomButtonTexture);
 
 			}
 			else
 			{
 				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonInactiveTexture);
+			}
+		}
+	}
+}
+
+private function checkBlinkingButtons():void
+{
+	if(blinkingJumpButton || blinkingFlashButton || blinkingNormalShroomButton || blinkingBumpyShroomButton)
+	{
+		blinkingCounter -= Time.deltaTime;
+		if(blinkingCounter <= 0.0f)
+		{
+			blinkingCounter = 0.75f;
+			
+			if(blinkingJumpButton)
+			{
+				if(currentJumpButtonTexture == jumpButtonTexture) currentJumpButtonTexture = jumpButtonInactiveTexture;
+				else currentJumpButtonTexture = jumpButtonTexture;
+			}
+			else if(blinkingFlashButton)
+			{
+				if(currentFlashButtonTexture == flashButtonTexture) currentFlashButtonTexture = flashButtonInactiveTexture;
+				else currentFlashButtonTexture = flashButtonTexture;
+			}
+			else if(blinkingNormalShroomButton)
+			{
+				if(currentNormalShroomButtonTexture == normalShroomButtonTexture) currentNormalShroomButtonTexture = normalShroomButtonInactiveTexture;
+				else currentNormalShroomButtonTexture = normalShroomButtonTexture;
+			}
+			else if(blinkingBumpyShroomButton)
+			{
+				if(currentBumpyShroomButtonTexture == bumpyShroomButtonTexture) currentBumpyShroomButtonTexture = bumpyShroomButtonInactiveTexture;
+				else currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
 			}
 		}
 	}
@@ -370,4 +416,28 @@ public function setNormalShroomButtonEnabled(value:boolean):void
 public function setBumpyShroomButtonEnabled(value:boolean):void
 {
 	bumpyShroomButtonEnabled = value;
+}
+
+public function setBlinkingJumpButton(value:boolean):void
+{
+	if(!value) currentJumpButtonTexture = jumpButtonTexture;
+	blinkingJumpButton = value;
+}
+
+public function setBlinkingFlashButton(value:boolean):void
+{
+	if(!value) currentFlashButtonTexture = flashButtonTexture;
+	blinkingFlashButton = value;
+}
+
+public function setBlinkingNormalShroomButton(value:boolean):void
+{
+	if(!value) currentNormalShroomButtonTexture = normalShroomButtonTexture;
+	blinkingNormalShroomButton = value;
+}
+
+public function setBlinkingBumpyShroomButton(value:boolean):void
+{
+	if(!value) currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
+	blinkingBumpyShroomButton = value;
 }

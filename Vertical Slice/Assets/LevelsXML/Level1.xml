@@ -4263,7 +4263,7 @@
     <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
-        <x>-6.29208</x>
+        <x>-6.999996</x>
         <y>-11.64903</y>
         <z>15</z>
       </Position>
@@ -4281,6 +4281,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>True</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4308,7 +4312,7 @@
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
         <BoundingBox>
-          <x>10</x>
+          <x>11.27</x>
           <y>5.44</y>
           <z>2.56</z>
         </BoundingBox>
@@ -4335,6 +4339,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4383,6 +4391,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4419,7 +4431,7 @@
     <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
-        <x>1.269569</x>
+        <x>1.763489</x>
         <y>-8.17652</y>
         <z>15.04191</z>
       </Position>
@@ -4437,6 +4449,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4464,7 +4480,7 @@
         <DestroyOnExit>True</DestroyOnExit>
         <DestroyOnCompletion>False</DestroyOnCompletion>
         <BoundingBox>
-          <x>3.13</x>
+          <x>5.07</x>
           <y>2.47</y>
           <z>2.92</z>
         </BoundingBox>
@@ -4491,6 +4507,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>True</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>True</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4569,6 +4589,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4635,6 +4659,10 @@
             <z>1</z>
           </Scaling>
         </AlphaObject>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>True</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4689,6 +4717,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4737,6 +4769,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>True</CrystalTutorial>
@@ -4784,6 +4820,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>True</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4863,6 +4903,10 @@
             <z>1</z>
           </Scaling>
         </AlphaObject>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>True</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4917,6 +4961,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -4947,7 +4995,7 @@
     <GameObject>
       <Prefab>TutorialObject</Prefab>
       <Position>
-        <x>22.60062</x>
+        <x>21.6614</x>
         <y>-7.88104</y>
         <z>15</z>
       </Position>
@@ -4965,6 +5013,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -5013,6 +5065,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
@@ -5061,6 +5117,10 @@
         <TriggerString>
         </TriggerString>
         <Timer>0</Timer>
+        <JumpButtonTutorial>False</JumpButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
+        <FlashButtonTutorial>False</FlashButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>

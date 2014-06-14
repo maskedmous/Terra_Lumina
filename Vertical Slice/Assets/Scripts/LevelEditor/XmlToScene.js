@@ -222,6 +222,11 @@ public function loadLevel():void
 					var alphaObjectRotation		:Vector3	= new Vector3(9999,9999,9999);
 					var alphaObjectScaling		:Vector3	= new Vector3(9999,9999,9999);
 					
+					var jumpButtonTutorial				:boolean	= false;
+					var normalShroomButtonTutorial		:boolean	= false;
+					var flashButtonTutorial				:boolean	= false;
+					var bumpyShroomButtonTutorial		:boolean	= false;
+					
 					var lightTutorial			:boolean	= false;
 					var slugTutorial			:boolean	= false;
 					var crystalTutorial			:boolean	= false;
@@ -492,6 +497,24 @@ public function loadLevel():void
 									}
 								}
 								
+								if(tutorialNodeStats.Name == "JumpButtonTutorial")
+								{
+									jumpButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+								}
+								if(tutorialNodeStats.Name == "NormalShroomButtonTutorial")
+								{
+								 	normalShroomButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+								}
+								if(tutorialNodeStats.Name == "FlashButtonTutorial")
+								{
+								 	flashButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+								}
+								if(tutorialNodeStats.Name == "BumpyShroomButtonTutorial")
+								{
+									bumpyShroomButtonTutorial = boolean.Parse(tutorialNodeStats.InnerText);
+								}
+								
+								
 								if(tutorialNodeStats.Name == "LightTutorial")
 								{
 									lightTutorial = boolean.Parse(tutorialNodeStats.InnerText);
@@ -753,6 +776,10 @@ public function loadLevel():void
 									triggerScript.setBlockObject(newBlockObject);
 								}
 								
+								triggerScript.setJumpButtonTutorial(jumpButtonTutorial);
+								triggerScript.setNormalShroomButtonTutorial(normalShroomButtonTutorial);
+								triggerScript.setFlashButtonTutorial(flashButtonTutorial);
+								triggerScript.setBumpyShroomButtonTutorial(bumpyShroomButtonTutorial);
 								triggerScript.setLightTutorial(lightTutorial);
 								triggerScript.setSlugTutorial(slugTutorial);
 								triggerScript.setCrystalTutorial(crystalTutorial);

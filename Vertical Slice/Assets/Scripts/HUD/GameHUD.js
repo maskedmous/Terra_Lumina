@@ -8,7 +8,8 @@ private var currentBatteryRect		:Rect;
 private var currentBatteryX			:float	   = -50.0f;
 private var currentBatteryY			:float	   = -19.0f;
 
-private var currentBatteryPower		:float 	   = 0.0f;
+private var blinkingCounter:float = 0.5f;
+private var showBattery:boolean = true;
 
 private var batteryBarTextures		:Array = new Array();
 public var batteryBarTex:Texture2D = null;
@@ -139,15 +140,17 @@ public function OnGUI():void
 	crystalsTotal = gameLogic.getCrystalsToComplete();
 	crystalsCollected = gameLogic.getCrystalsSampleCount();
 	
-	GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
-	
-	for(var j:int = 0; j < amountOfBatteryBars; j++)
+	if(showBattery)
 	{
-		var batteryBarTexture:Texture2D = batteryBarTextures[j] as Texture2D;
-		//draw from bot to top
-		GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
-	}
+		GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
 	
+		for(var j:int = 0; j < amountOfBatteryBars; j++)
+		{
+			var batteryBarTexture:Texture2D = batteryBarTextures[j] as Texture2D;
+			//draw from bot to top
+			GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
+		}
+	}
 	//draw the crystals
 	for(var i:int = 0; i < crystalsTotal; ++i)
 	{
@@ -228,22 +231,38 @@ private function scaleRect(rect:Rect):Rect
 private function checkBatteryState():void
 {
 	var maxBattery:float = gameLogic.getBatteryCapacity();
-	currentBatteryPower = gameLogic.getBattery();
+	var currentBatteryPower		:float 	   = gameLogic.getBattery();
 	
 	amountOfBatteryBars = currentBatteryPower / (maxBattery / 10);
 	
-	if(currentBatteryPower >= 30)
+	if(amountOfBatteryBars >= 5)
 	{
 		if(currentBatteryTexture != highBatteryTexture)
 		{
 			currentBatteryTexture = highBatteryTexture;
 		}
+		
+		if(!showBattery) showBattery = true;
 	}
-	else if( currentBatteryPower < 25)
+	else if(amountOfBatteryBars <= 4)
 	{
+		
 		if(currentBatteryTexture != lowBatteryTexture)
 		{
 			currentBatteryTexture = lowBatteryTexture;
+		}
+		if(amountOfBatteryBars >= 4 && !showBattery) showBattery = true;
+		
+		if(amountOfBatteryBars <= 3)
+		{
+			blinkingCounter -= Time.deltaTime;
+			
+			if(blinkingCounter < 0)
+			{
+				blinkingCounter = 0.75f;
+				if(showBattery) showBattery = false;
+				else showBattery = true;
+			}
 		}
 	}
 }

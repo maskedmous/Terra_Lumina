@@ -473,14 +473,28 @@ private function saveLevel():int
 					    
 				}
 				
+				var jumpButtonTutorialNode:XmlElement = xmlDocument.CreateElement("JumpButtonTutorial");
+				var normalShroomButtonTutorialNode:XmlElement = xmlDocument.CreateElement("NormalShroomButtonTutorial");
+				var flashButtonTutorialNode:XmlElement = xmlDocument.CreateElement("FlashButtonTutorial");
+				var bumpyShroomButtonTutorialNode:XmlElement = xmlDocument.CreateElement("BumpyShroomButtonTutorial");
+				
 				var lightTutorialNode:XmlElement = xmlDocument.CreateElement("LightTutorial");
 				var slugTutorialNode:XmlElement = xmlDocument.CreateElement("SlugTutorial");
 				var crystalTutorialNode:XmlElement = xmlDocument.CreateElement("CrystalTutorial");
 				
+				tutorialNode.AppendChild(jumpButtonTutorialNode);
+				tutorialNode.AppendChild(normalShroomButtonTutorialNode);
+				tutorialNode.AppendChild(flashButtonTutorialNode);
+				tutorialNode.AppendChild(bumpyShroomButtonTutorialNode);
 				tutorialNode.AppendChild(lightTutorialNode);
 				tutorialNode.AppendChild(slugTutorialNode);
 				tutorialNode.AppendChild(crystalTutorialNode);
 				
+				
+				jumpButtonTutorialNode.InnerText = triggerScript.getJumpButtonTutorial().ToString();
+				normalShroomButtonTutorialNode.InnerText = triggerScript.getNormalShroomButtonTutorial().ToString();
+				flashButtonTutorialNode.InnerText = triggerScript.getFlashButtonTutorial().ToString();
+				bumpyShroomButtonTutorialNode.InnerText = triggerScript.getBumpyShroomButtonTutorial().ToString();
 				lightTutorialNode.InnerText 	= triggerScript.getLightTutorial().ToString();
 				slugTutorialNode.InnerText		= triggerScript.getSlugTutorial().ToString();
 				crystalTutorialNode.InnerText 	= triggerScript.getCrystalTutorial().ToString();
