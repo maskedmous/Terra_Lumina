@@ -77,7 +77,7 @@ private function getMediumXml():String
 		Debug.LogError("mediumXml asked but not set");
 		return "";
 	}
-	return easyXml;
+	return mediumXml;
 }
 
 private function getHardXml():String
@@ -87,7 +87,7 @@ private function getHardXml():String
 		Debug.LogError("hardXml asked but not set");
 		return "";
 	}
-	return easyXml;
+	return hardXml;
 }
 
 public function getLevelID():int

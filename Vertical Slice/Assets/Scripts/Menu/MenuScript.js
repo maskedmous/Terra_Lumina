@@ -21,6 +21,9 @@ private var creditsScreen	:Texture2D	= null;
 private var empty			:String = "";
 private var skin			:GUIStyle = new GUIStyle();
 
+private var difficulty:String = "Easy";
+private var openDifficultyMenu:boolean = false;
+
 private var levelFilename:String = "";
 private var levels:Array = new Array();
 private var xmlLevels:Array = new Array();
@@ -477,6 +480,29 @@ public function OnGUI():void
 				//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
 				GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton);
 			}
+			
+			if(GUI.Button(scaleRect(new Rect(1700, 100, 100,50)), difficulty))
+			{
+				openDifficultyMenu = true;
+			}
+			if(openDifficultyMenu)
+			{
+				if(GUI.Button(scaleRect(new Rect(1700, 150, 100, 50)), "Easy"))
+				{
+					difficulty = "Easy";
+					openDifficultyMenu = false;
+				}
+				if(GUI.Button(scaleRect(new Rect(1700, 200, 100, 50)), "Medium"))
+				{
+					difficulty = "Medium";
+					openDifficultyMenu = false;
+				}
+				if(GUI.Button(scaleRect(new Rect(1700, 250, 100,50)), "Hard"))
+				{
+					difficulty = "Hard";
+					openDifficultyMenu = false;
+				}
+			}
 		break;
 		
 		case(menuState.optionsMenu):
@@ -718,12 +744,12 @@ private function setLevelFileNameByInt(level:int):IEnumerator
 	//array position of the Level
 	var arrayint:int = level - 1;
 	//get difficulty somehow??
-	var difficulty:String = "Easy";
 	//difficulty = database.getDifficulty()?
 	//get the Level
 	var aLevel:Level = levels[arrayint] as Level;
 	//get the file that has to be loaded
 	levelFilename =	aLevel.getLevelXmlByDifficulty(difficulty);
+	Debug.Log(levelFilename);
 }
 
 private function loadLevel():IEnumerator
