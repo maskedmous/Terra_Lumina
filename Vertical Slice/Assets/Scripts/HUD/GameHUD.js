@@ -121,14 +121,15 @@ public function OnGUI():void
 	if(showBattery && currentBatteryTexture != null)
 	{
 		GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
-	}
-	if(batteryBarTextures.Count > 0)
-	{
-		for(var j:int = 0; j < amountOfBatteryBars; j++)
+	
+		if(batteryBarTextures.Count > 0)
 		{
-			var batteryBarTexture:Texture2D = batteryBarTextures[j] as Texture2D;
-			//draw from bot to top
-			GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
+			for(var j:int = 0; j < amountOfBatteryBars; j++)
+			{
+				var batteryBarTexture:Texture2D = batteryBarTextures[j] as Texture2D;
+				//draw from bot to top
+				GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
+			}
 		}
 	}
 	if(crystalActive != null && crystalInactive != null)
