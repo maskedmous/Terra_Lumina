@@ -205,9 +205,9 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>6.556799</x>
-        <y>6.556799</y>
-        <z>6.556799</z>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -411,6 +411,24 @@
     <GameObject>
       <Prefab>GroundDeadStart2</Prefab>
       <Position>
+        <x>171.2802</x>
+        <y>4.64761</y>
+        <z>15.21501</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>180</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundDeadStart2</Prefab>
+      <Position>
         <x>116.8276</x>
         <y>4.075452</y>
         <z>15.21501</z>
@@ -450,24 +468,6 @@
         <x>-17.13215</x>
         <y>-2.243122</y>
         <z>18.07783</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>180</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundDeadStart2</Prefab>
-      <Position>
-        <x>171.2802</x>
-        <y>4.64761</y>
-        <z>15.21501</z>
       </Position>
       <Rotation>
         <x>0</x>

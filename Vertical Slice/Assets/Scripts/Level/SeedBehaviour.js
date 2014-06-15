@@ -21,10 +21,11 @@ function OnCollisionEnter(collision:Collision)
 		if(shroomType != null && newShroom == null)
 		{
 			newShroom = Instantiate(shroomType, this.transform.position, Quaternion.identity);
+			if(shroomType.name == "BumpyShroom") newShroom.transform.position += Vector3(0.0f, 0.56f, 0.0f);
 			newShroom.gameObject.name = "Shroom";
 			newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
-			newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
-			newShroom.gameObject.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
+//			newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
+			
 			Destroy(this.gameObject);
 		}
 	}
