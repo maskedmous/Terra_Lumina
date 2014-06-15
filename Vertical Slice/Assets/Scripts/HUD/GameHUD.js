@@ -11,24 +11,12 @@ private var currentBatteryY			:float	   = -19.0f;
 private var blinkingCounter:float = 0.5f;
 private var showBattery:boolean = true;
 
-private var batteryBarTextures		:Array = new Array();
-public var batteryBarTex:Texture2D = null;
+public var batteryBarTextures		:Array = new Array();
+private var batteryBarTex:Texture2D = null;
 private var batteryBarRect			:Rect;
 public var batteryBarX				:float = 46.0f;
 public var batteryBarY				:float = 33.0f;
 private var amountOfBatteryBars		:int   = 0;
-
-private var number0:Texture2D = null;
-private var number1:Texture2D = null;
-private var number2:Texture2D = null;
-private var number3:Texture2D = null;
-private var number4:Texture2D = null;
-private var number5:Texture2D = null;
-private var number6:Texture2D = null;
-private var number7:Texture2D = null;
-private var number8:Texture2D = null;
-private var number9:Texture2D = null;
-private var infinity:Texture2D = null;
 
 public var highBatteryTexture		:Texture2D = null;
 public var lowBatteryTexture		:Texture2D = null;
@@ -60,7 +48,7 @@ public var bumpySeedsInfinityY:float = 0.0f;
 private var fontSkin:GUIStyle = new GUIStyle();
 
 */
-
+public var infinity:Texture2D = null;
 private var infinityRect:Rect;
 private var infiniteAmmo:boolean = false;
 public var infinityAmmoX:float = 120.0f;
@@ -89,7 +77,7 @@ private var gameLogic:GameLogic = null;
 public function Awake()
 {
 	var textureLoader:TextureLoader = null;
-	textureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
+	if(GameObject.Find("TextureLoader") != null) textureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
 	
 	if(textureLoader != null)
 	{
@@ -97,16 +85,6 @@ public function Awake()
 		lowBatteryTexture 		= textureLoader.getTexture("BatteryDanger");
 		currentBatteryTexture = highBatteryTexture;
 		
-		number0 = textureLoader.getTexture("number0");
-		number1 = textureLoader.getTexture("number1");
-		number2 = textureLoader.getTexture("number2");
-		number3 = textureLoader.getTexture("number3");
-		number4 = textureLoader.getTexture("number4");
-		number5 = textureLoader.getTexture("number5");
-		number6 = textureLoader.getTexture("number6");
-		number7 = textureLoader.getTexture("number7");
-		number8 = textureLoader.getTexture("number8");
-		number9 = textureLoader.getTexture("number9");
 		infinity = textureLoader.getTexture("infinity");
 		seedsTexture = textureLoader.getTexture("SeedElement");
 		//normalSeedsTexture = textureLoader.getTexture("NormalSeedElement");
@@ -140,10 +118,12 @@ public function OnGUI():void
 	crystalsTotal = gameLogic.getCrystalsToComplete();
 	crystalsCollected = gameLogic.getCrystalsSampleCount();
 	
-	if(showBattery)
+	if(showBattery && currentBatteryTexture != null)
 	{
 		GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
-	
+	}
+	if(batteryBarTextures.Count > 0)
+	{
 		for(var j:int = 0; j < amountOfBatteryBars; j++)
 		{
 			var batteryBarTexture:Texture2D = batteryBarTextures[j] as Texture2D;
@@ -151,27 +131,33 @@ public function OnGUI():void
 			GUI.DrawTexture(new Rect(batteryBarRect.x, batteryBarRect.y, batteryBarRect.width, batteryBarRect.height), batteryBarTexture);
 		}
 	}
-	//draw the crystals
-	for(var i:int = 0; i < crystalsTotal; ++i)
+	if(crystalActive != null && crystalInactive != null)
 	{
-		//amount of crystals you've picked up
-		if(i < crystalsCollected && crystalsCollected != 0)
+		//draw the crystals
+		for(var i:int = 0; i < crystalsTotal; ++i)
 		{
-			GUI.DrawTexture(new Rect(crystalActiveRect.x + i * crystalActiveRect.width, crystalActiveRect.y, crystalActiveRect.width, crystalActiveRect.height), crystalActive);
-		}
-		//amount of crystals you've not picked up yet
-		else
-		{
-			GUI.DrawTexture(new Rect(crystalInactiveRect.x + i * crystalInactiveRect.width, crystalInactiveRect.y, crystalInactiveRect.width, crystalInactiveRect.height), crystalInactive);
+			//amount of crystals you've picked up
+			if(i < crystalsCollected && crystalsCollected != 0)
+			{
+				GUI.DrawTexture(new Rect(crystalActiveRect.x + i * crystalActiveRect.width, crystalActiveRect.y, crystalActiveRect.width, crystalActiveRect.height), crystalActive);
+			}
+			//amount of crystals you've not picked up yet
+			else
+			{
+				GUI.DrawTexture(new Rect(crystalInactiveRect.x + i * crystalInactiveRect.width, crystalInactiveRect.y, crystalInactiveRect.width, crystalInactiveRect.height), crystalInactive);
+			}
 		}
 	}
 	
 	//draw the seed hud
-	GUI.DrawTexture(seedsRect, seedsTexture);
+	if(seedsTexture != null)
+	{
+		GUI.DrawTexture(seedsRect, seedsTexture);
+	}
 	//GUI.DrawTexture(normalSeedsRect, normalSeedsTexture);
 	//GUI.DrawTexture(bumpySeedsRect, bumpySeedsRect);
 	
-	if(infiniteAmmo)
+	if(infiniteAmmo && infinity != null)
 	{
 		//draw infinite sign
 		GUI.DrawTexture(infinityRect, infinity);
@@ -199,23 +185,32 @@ private function scaleHud():void
 	
 	
 	//battery bar holder
-	currentBatteryRect = new Rect(currentBatteryX, currentBatteryY, currentBatteryTexture.width, currentBatteryTexture.height);
-	currentBatteryRect 	= scaleRect(currentBatteryRect);
-	
+	if(currentBatteryTexture != null)
+	{
+		currentBatteryRect = new Rect(currentBatteryX, currentBatteryY, currentBatteryTexture.width, currentBatteryTexture.height);
+		currentBatteryRect 	= scaleRect(currentBatteryRect);
+	}
 	//bars
-	batteryBarRect = new Rect(batteryBarX, batteryBarY, batteryBarTex.width, batteryBarTex.height);
-	batteryBarRect = scaleRect(batteryBarRect);
+	if(batteryBarTex != null)
+	{
+		batteryBarRect = new Rect(batteryBarX, batteryBarY, batteryBarTex.width, batteryBarTex.height);
+		batteryBarRect = scaleRect(batteryBarRect);
+	}
 	
-	crystalInactiveRect = new Rect(crystalInactiveX, crystalInactiveY, crystalInactive.width, crystalInactive.height);
-	crystalInactiveRect = scaleRect(crystalInactiveRect);
-	
-	crystalActiveRect = new Rect(crystalActiveX, crystalActiveY, crystalActive.width, crystalActive.height);
-	crystalActiveRect = scaleRect(crystalActiveRect);
-	
-	seedsRect = new Rect(seedsX, seedsY, seedsTexture.width, seedsTexture.height);
-	seedsRect = scaleRect(seedsRect);
-	
-	if(infiniteAmmo)
+	if(crystalInactive != null && crystalActive != null)
+	{
+		crystalInactiveRect = new Rect(crystalInactiveX, crystalInactiveY, crystalInactive.width, crystalInactive.height);
+		crystalInactiveRect = scaleRect(crystalInactiveRect);
+		
+		crystalActiveRect = new Rect(crystalActiveX, crystalActiveY, crystalActive.width, crystalActive.height);
+		crystalActiveRect = scaleRect(crystalActiveRect);
+	}
+	if(seedsTexture != null)
+	{
+		seedsRect = new Rect(seedsX, seedsY, seedsTexture.width, seedsTexture.height);
+		seedsRect = scaleRect(seedsRect);
+	}
+	if(infiniteAmmo && infinity != null)
 	{
 		infinityRect = new Rect(infinityAmmoX, infinityAmmoY, infinity.width, infinity.height);
 		infinityRect = scaleRect(infinityRect);

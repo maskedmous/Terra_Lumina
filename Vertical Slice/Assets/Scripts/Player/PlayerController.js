@@ -225,8 +225,12 @@ public function jump():void
 function chargeShot():void
 {
 	lineRenderer.enabled = true;
-	soundEngine.playSoundEffect("aim");
-	soundEngine.setAim(true);
+	
+	if(soundEngine != null)
+	{
+		soundEngine.playSoundEffect("aim");
+		soundEngine.setAim(true);
+	}
 	
 	y0 = this.gameObject.transform.position.y;
 	
@@ -314,7 +318,7 @@ public function resetShot():void
 
 function shoot(shroomType:int):IEnumerator
 {
-	soundEngine.setAim(false);
+	if(soundEngine != null) soundEngine.setAim(false);
 	
 	if(!gameLogic.getInfiniteAmmo()) 
 	{
@@ -324,8 +328,16 @@ function shoot(shroomType:int):IEnumerator
 		
 	//create new seed
 	var newSeed:GameObject = null;
-	if (getDirection() == "Right") newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject), this.gameObject.transform.position + new Vector3(2, 0, 0), Quaternion.identity);
-	else newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject), this.gameObject.transform.position - new Vector3(2, 0, 0), Quaternion.identity);
+	if (getDirection() == "Right")
+	{
+		newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject));
+		newSeed.transform.position = this.gameObject.transform.position + new Vector3(2, 0, 0);
+	}
+	else
+	{
+		newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject));
+		newSeed.transform.position = this.gameObject.transform.position - new Vector3(2, 0, 0);
+	}
 	newSeed.gameObject.name = "Seed";
 	newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
 	newSeed.gameObject.GetComponent(SeedBehaviour).setShroomType(shrooms[shroomType]);

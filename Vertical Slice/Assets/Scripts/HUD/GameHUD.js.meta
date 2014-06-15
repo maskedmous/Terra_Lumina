@@ -2,7 +2,16 @@ fileFormatVersion: 2
 guid: 2dad5d9856906a54dafdf396c2eb23af
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - currentBatteryTexture: {fileID: 2800000, guid: cc3974bb472459b4aa9b0a10b94753c1,
+      type: 3}
+  - highBatteryTexture: {fileID: 2800000, guid: cc3974bb472459b4aa9b0a10b94753c1,
+      type: 3}
+  - lowBatteryTexture: {fileID: 2800000, guid: 86697566728684d42986128de9ca8ee8, type: 3}
+  - seedsTexture: {fileID: 2800000, guid: 490100e4eb9614e44a642c3b9f91a563, type: 3}
+  - infinity: {fileID: 2800000, guid: 0a58a54833a276b4aa278057b4746825, type: 3}
+  - crystalActive: {fileID: 2800000, guid: 352d6f3cd56f28443aeeacb4e6300cd2, type: 3}
+  - crystalInactive: {fileID: 2800000, guid: aca8ba5a2c41834488725cb75bafe757, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

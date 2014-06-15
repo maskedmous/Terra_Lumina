@@ -8,13 +8,13 @@ private var gameLogicScript:GameLogic = null;
 private var notFinished:boolean = false;
 private var skin:GUIStyle = new GUIStyle();
 
-private var toMenuWinTexture:Texture	= null;
-private var winMenuRect		:Rect;
+public var toMenuWinTexture:Texture	= null;
+private var winMenuRect:Rect;
 public var winMenuX:float = 300.0f;
 public var winMenuY:float = 300.0f;
 
-private var toMenuLoseTexture:Texture	= null;
-private var loseMenuRect		:Rect;
+public var toMenuLoseTexture:Texture = null;
+private var loseMenuRect:Rect;
 public var loseMenuX:float = 300.0f;
 public var loseMenuY:float = 300.0f;
 
@@ -27,10 +27,13 @@ private var scale			:Vector3 = Vector3.zero;
 public function Awake()
 {
 	gameLogicScript = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
-	var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader) as TextureLoader;
-	//get the textures from the texture loader
-	toMenuWinTexture = textureLoader.getTexture("WIN - return to menu");
-	toMenuLoseTexture = textureLoader.getTexture("LOSE - return to menu");
+	if(GameObject.Find("TextureLoader") != null)
+	{
+		var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader) as TextureLoader;
+		//get the textures from the texture loader
+		toMenuWinTexture = textureLoader.getTexture("WIN - return to menu");
+		toMenuLoseTexture = textureLoader.getTexture("LOSE - return to menu");
+	}
 }
 
 public function OnEnable():void

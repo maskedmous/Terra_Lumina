@@ -7,6 +7,12 @@ private var startScale:float = 0.2f;
 private var currentScale:float = 0.0f;
 private var improveScale:float = 0.025f;
 private var newShroom:GameObject = null;
+private var meshRenderer:MeshRenderer = null;
+
+public function Awake():void
+{
+	meshRenderer = this.gameObject.GetComponent(MeshRenderer);
+}
 
 function OnCollisionEnter(collision:Collision)
 {
@@ -27,4 +33,13 @@ function OnCollisionEnter(collision:Collision)
 function setShroomType(aShroomType:GameObject)
 {
 	shroomType = aShroomType;
+	
+	if(shroomType.name == "NormalShroom")
+	{
+		meshRenderer.material = Resources.Load("Prefabs/Materials/NormalShroomMaterial", Material);
+	}
+	else if(shroomType.name == "BumpyShroom")
+	{
+		meshRenderer.material = Resources.Load("Prefabs/Materials/BumpyShroomMaterial", Material);
+	}
 }

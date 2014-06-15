@@ -14,7 +14,7 @@ private var soundEngine:SoundEngineScript = null;
 function Awake () {
 	counter = 30.0f;
 	currentScale = startScale;
-	soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
+	if(GameObject.Find("SoundEngine") != null) soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
 }
 
 function Update () {
@@ -35,7 +35,10 @@ function OnCollisionEnter(obj:Collision):void
 		if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) > yDifference)
 		{
 			obj.gameObject.GetComponent(PlayerController).bounceShroomY();
-			soundEngine.playSoundEffect("bounce");
+			if(soundEngine != null)
+			{
+				soundEngine.playSoundEffect("bounce");
+			}
 			var bounceParticle:Transform = this.gameObject.transform.FindChild("shroomJump");
 			bounceParticle.particleSystem.Clear();
 			bounceParticle.particleSystem.Play();
