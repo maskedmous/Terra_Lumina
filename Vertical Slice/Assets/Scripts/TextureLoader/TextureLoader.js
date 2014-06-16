@@ -8,6 +8,8 @@
 //Create a scene, a GameObject, attach the script
 //fill in the desired filePath
 //fill in the desired fileType what it should search for
+//fill in the next scene it should load
+//add a loading screen texture
 //
 //
 ///////////////////////////////////////////////////
@@ -28,7 +30,6 @@ public class TextureLoader extends MonoBehaviour
 	private var fileCount:int			= 0;				//the amount of files that are to be loaded
 	private var loadedFiles:int			= 0;				//the amount that is loaded at this point
 	private var textureArray:Array 		= new Array();		//array where we put all textures in
-	private var textureNameArray:Array 	= new Array();		//the texture names because www.texture does not save the texture name
 	private var guiStyle:GUIStyle		= new GUIStyle();
 	private var loaded:boolean			= false;
 	//static variables not to be touched
@@ -92,14 +93,16 @@ public class TextureLoader extends MonoBehaviour
 		for(file in fileInfo)
 		{	
 			//download the file via WWW
-			var wwwPNG = new WWW("file://"+file);
+			var wwwTexture = new WWW("file://"+file);
 			//wait for it to download
-			yield wwwPNG;
-			//put the texture into the array
-			textureArray.push(wwwPNG.texture);
-			//put the name of the texture into a separate array
-			textureNameArray.push(Path.GetFileNameWithoutExtension(file));
+			yield wwwTexture;
+			var texture:Texture2D = wwwTexture.texture;
+			//assign the name to the texture
+			var pngName:String = Path.GetFileNameWithoutExtension(file);
 			
+			texture.name = pngName;
+			//put the texture into the array
+			textureArray.push(texture);
 			loadedFiles++;
 		}
 		loaded = true;
@@ -155,8 +158,9 @@ public class TextureLoader extends MonoBehaviour
 					//download the texture
 					var wwwTexture = new WWW("file://"+file);
 					//add it to the array
-					textureArray.push(wwwTexture.texture);
-					textureNameArray.push(Path.GetFileNameWithoutExtension(file));
+					var texture:Texture2D = wwwTexture.texture;
+					texture.name = textureName;
+					textureArray.push(texture);
 				}
 				else
 				{
@@ -173,20 +177,16 @@ public class TextureLoader extends MonoBehaviour
 	
 	//getter for textures
 	public function getTexture(textureName:String):Texture2D
-	{
-		//our variable texture initialized with a null
-		var texture:Texture2D = null;
-		
+	{		
 		//go through the textureNameArray with the given textureName
-		for(var i:int = 0; i<textureNameArray.length; ++i)
+		for(var i:int = 0; i<textureArray.length; ++i)
 		{
+			var checkTexture:Texture2D = textureArray[i] as Texture2D;
 			//if the names match
-			if(textureNameArray[i] == textureName)
+			if(checkTexture.name == textureName)
 			{
-				//get the texture from the textureArray
-				texture = textureArray[i] as Texture2D;
 				//texture was found so return it
-				return texture;
+				return checkTexture;
 			}
 		}
 		//texture hasn't been return yet which means it is not found
@@ -197,12 +197,12 @@ public class TextureLoader extends MonoBehaviour
 	//checks if the texture is already in the textureArray
 	private function textureExistsAlready(textureName:String):boolean
 	{
-		for(var i:int = 0; i<textureNameArray.length; ++i)
+		for(var i:int = 0; i<textureArray.length; ++i)
 		{
 			//get the name from the textureNameArray and compare it with the incoming textureName
-			var check:String = textureNameArray[i] as String;
+			var texture:Texture2D = textureArray[i] as Texture2D;
 			//if this is true then it is already in the array
-			if(check == textureName)
+			if(texture.name == textureName)
 			{
 				//the texture is already in the array return true
 				return true;
