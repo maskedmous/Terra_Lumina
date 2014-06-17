@@ -428,7 +428,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -980,7 +980,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Disappear
       takeName: Take 001
-      firstFrame: 24
+      firstFrame: 25
       lastFrame: 56
       wrapMode: 0
       orientationOffsetY: 0
