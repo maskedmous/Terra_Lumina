@@ -263,7 +263,7 @@ private function isReleasingButton(inputXY:Vector2):void
 			
 			for(var i:int = startLevelCount; i < startLevelCount + 6; ++i)
 			{
-				if(i <= levels.length)
+				if(i <= levelIDs.length)
 				{	
 					if(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize).Contains(inputXY))
 					{
@@ -459,7 +459,7 @@ public function OnGUI():void
 			
 			for(var i:int = startLevelCount; i < startLevelCount + 6; ++i)
 			{
-				if(i <= levels.length)
+				if(i <= levelIDs.length)
 				{
 					GUI.DrawTexture(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), level1, ScaleMode.StretchToFill);
 					
@@ -747,10 +747,14 @@ private function setLevelFileNameByInt(level:int):IEnumerator
 	//get difficulty somehow??
 	//difficulty = database.getDifficulty()?
 	//get the Level
-	var aLevel:Level = levels[arrayint] as Level;
+	//var aLevel:Level = levels[arrayint] as Level;
+	var aLevel:Level = getLevelByID(levelIDs[arrayint]);
 	//get the file that has to be loaded
 	levelFilename =	aLevel.getLevelXmlByDifficulty(difficulty);
 	Debug.Log(levelFilename);
+	Debug.Log("Level ID: " + aLevel.getLevelID());
+	Debug.Log("Difficulty: " + difficulty);
+	
 }
 
 private function loadLevel():IEnumerator
