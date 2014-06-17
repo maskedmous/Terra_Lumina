@@ -594,19 +594,22 @@ private function saveLevel():int
 				
 				var movementLeftEnabledNode				:XmlElement = xmlDocument.CreateElement("MovementLeft");
 				var movementRightEnabledNode			:XmlElement = xmlDocument.CreateElement("MovementRight");
-				var jumpButtonEnabledNode				:XmlElement	= xmlDocument.CreateElement("Jumpbutton");
+				var jumpButtonEnabledNode				:XmlElement	= xmlDocument.CreateElement("JumpButton");
+				var flashButtonEnabledNode				:XmlElement = xmlDocument.CreateElement("FlashButton");
 				var shootNormalShroomButtonEnabledNode	:XmlElement = xmlDocument.CreateElement("NormalShroomButton");
 				var shootBumpyShroomButtonEnabledNode	:XmlElement = xmlDocument.CreateElement("BumpyShroomButton");
 				
 				buttonsEnabledNode.AppendChild(movementLeftEnabledNode);
 				buttonsEnabledNode.AppendChild(movementRightEnabledNode);
 				buttonsEnabledNode.AppendChild(jumpButtonEnabledNode);
+				buttonsEnabledNode.AppendChild(flashButtonEnabledNode);
 				buttonsEnabledNode.AppendChild(shootNormalShroomButtonEnabledNode);
 				buttonsEnabledNode.AppendChild(shootBumpyShroomButtonEnabledNode);
 				
 				movementLeftEnabledNode.InnerText 				= triggerScript.getMovementLeftEnabled().ToString();
 				movementRightEnabledNode.InnerText 				= triggerScript.getMovementRightEnabled().ToString();
 				jumpButtonEnabledNode.InnerText 				= triggerScript.getJumpButtonEnabled().ToString();
+				flashButtonEnabledNode.InnerText				= triggerScript.getFlashButtonEnabled().ToString();
 				shootNormalShroomButtonEnabledNode.InnerText 	= triggerScript.getNormalShroomButtonEnabled().ToString();
 				shootBumpyShroomButtonEnabledNode.InnerText 	= triggerScript.getBumpyShroomButtonEnabled().ToString();
 				

@@ -237,6 +237,7 @@ public function loadLevel():void
 					var movementLeftEnabled		:boolean	= true;
 					var movementRightEnabled	:boolean	= true;
 					var jumpButtonEnabled		:boolean	= true;
+					var flashButtonEnabled		:boolean	= true;
 					var normalShroomButtonEnabled:boolean	= true;
 					var bumpyShroomButtonEnabled:boolean	= true;
 					
@@ -570,9 +571,13 @@ public function loadLevel():void
 										{
 											movementRightEnabled = boolean.Parse(buttonNodeStats.InnerText);
 										}
-										if(buttonNodeStats.Name == "Jumpbutton")
+										if(buttonNodeStats.Name == "JumpButton")
 										{
 											jumpButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
+										}
+										if(buttonNodeStats.Name == "FlashButton")
+										{
+											flashButtonEnabled = boolean.Parse(buttonNodeStats.InnerText);
 										}
 										if(buttonNodeStats.Name == "NormalShroomButton")
 										{
@@ -788,6 +793,7 @@ public function loadLevel():void
 								triggerScript.setMovementLeftEnabled(movementLeftEnabled);
 								triggerScript.setMovementRightEnabled(movementRightEnabled);
 								triggerScript.setJumpButtonEnabled(jumpButtonEnabled);
+								triggerScript.setFlashButtonEnabled(flashButtonEnabled);
 								triggerScript.setNormalShroomButtonEnabled(normalShroomButtonEnabled);
 								triggerScript.setBumpyShroomButtonEnabled(bumpyShroomButtonEnabled);
 								

@@ -183,7 +183,7 @@
       </Position>
       <Rotation>
         <x>270</x>
-        <y>0</y>
+        <y>0.1194148</y>
         <z>0</z>
       </Rotation>
       <Scaling>
@@ -231,8 +231,8 @@
     <GameObject>
       <Prefab>EndLevelTrigger</Prefab>
       <Position>
-        <x>184.5</x>
-        <y>-10.36</y>
+        <x>186.6014</x>
+        <y>-11.41892</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -241,9 +241,9 @@
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>7.35</x>
-        <y>7.1</y>
-        <z>1.77</z>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -291,6 +291,24 @@
       </Position>
       <Rotation>
         <x>287.1855</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FoilegeCollection</Prefab>
+      <Position>
+        <x>139.2413</x>
+        <y>-10.87004</y>
+        <z>22.65137</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
         <y>0</y>
         <z>0</z>
       </Rotation>
@@ -1329,24 +1347,6 @@
     <GameObject>
       <Prefab>NewBgRock1</Prefab>
       <Position>
-        <x>140.9131</x>
-        <y>-15.59364</y>
-        <z>25.50303</z>
-      </Position>
-      <Rotation>
-        <x>90</x>
-        <y>122.8046</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>0.70318</x>
-        <y>0.698103</y>
-        <z>0.5713834</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>NewBgRock1</Prefab>
-      <Position>
         <x>84.53218</x>
         <y>-15.88673</y>
         <z>28.70606</z>
@@ -1540,24 +1540,6 @@
         <x>1</x>
         <y>1</y>
         <z>0.697003</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>NewBgRock1</Prefab>
-      <Position>
-        <x>140.9131</x>
-        <y>-19.03708</y>
-        <z>25.50303</z>
-      </Position>
-      <Rotation>
-        <x>90</x>
-        <y>40.47699</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>0.70318</x>
-        <y>0.698103</y>
-        <z>0.762892</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -2206,24 +2188,6 @@
         <x>1.175338</x>
         <y>1.175338</y>
         <z>1.175338</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>NewBgRock1</Prefab>
-      <Position>
-        <x>140.9131</x>
-        <y>-22.9526</y>
-        <z>25.50303</z>
-      </Position>
-      <Rotation>
-        <x>90</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>0.7031798</x>
-        <y>0.6981032</y>
-        <z>0.7628921</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -2985,24 +2949,6 @@
     <GameObject>
       <Prefab>NewBgRock1</Prefab>
       <Position>
-        <x>140.9131</x>
-        <y>-31.17278</y>
-        <z>25.50303</z>
-      </Position>
-      <Rotation>
-        <x>90</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>0.70318</x>
-        <y>0.698103</y>
-        <z>0.762892</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>NewBgRock1</Prefab>
-      <Position>
         <x>-13.25946</x>
         <y>-23.01264</y>
         <z>28.18803</z>
@@ -3016,24 +2962,6 @@
         <x>1</x>
         <y>1</y>
         <z>0.780538</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>NewBgRock1</Prefab>
-      <Position>
-        <x>140.9131</x>
-        <y>-27.11219</y>
-        <z>25.50303</z>
-      </Position>
-      <Rotation>
-        <x>90</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>0.70318</x>
-        <y>0.698103</y>
-        <z>0.762892</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -3921,24 +3849,6 @@
     <GameObject>
       <Prefab>Point light</Prefab>
       <Position>
-        <x>142.8136</x>
-        <y>-8.262063</y>
-        <z>19.43708</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light</Prefab>
-      <Position>
         <x>87.33394</x>
         <y>-18.32363</y>
         <z>18.52409</z>
@@ -4327,7 +4237,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4385,7 +4296,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4437,7 +4349,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4495,7 +4408,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4550,23 +4464,6 @@
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>True</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
-        <SlugObject>
-          <Position>
-            <x>45.94069</x>
-            <y>-14.08008</y>
-            <z>15</z>
-          </Position>
-          <SlugBoundA>
-            <x>39.43846</x>
-            <y>-13.5829</y>
-            <z>15</z>
-          </SlugBoundA>
-          <SlugBoundB>
-            <x>53.7337</x>
-            <y>-13.63099</y>
-            <z>15</z>
-          </SlugBoundB>
-        </SlugObject>
         <BlockObject>
           <Position>
             <x>60.76022</x>
@@ -4577,7 +4474,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>True</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4635,7 +4533,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>False</MovementRight>
-          <Jumpbutton>False</Jumpbutton>
+          <JumpButton>False</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4705,7 +4604,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4763,7 +4663,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4822,7 +4723,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4873,7 +4775,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>False</Jumpbutton>
+          <JumpButton>False</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4949,7 +4852,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -4998,7 +4902,7 @@
         </TriggerString>
         <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
-        <NormalShroomButtonTutorial>True</NormalShroomButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
         <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
@@ -5007,7 +4911,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -5050,7 +4955,7 @@
         </TriggerString>
         <Timer>0</Timer>
         <JumpButtonTutorial>False</JumpButtonTutorial>
-        <NormalShroomButtonTutorial>True</NormalShroomButtonTutorial>
+        <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
         <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
@@ -5059,7 +4964,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
@@ -5104,14 +5010,15 @@
         <JumpButtonTutorial>False</JumpButtonTutorial>
         <NormalShroomButtonTutorial>False</NormalShroomButtonTutorial>
         <FlashButtonTutorial>False</FlashButtonTutorial>
-        <BumpyShroomButtonTutorial>True</BumpyShroomButtonTutorial>
+        <BumpyShroomButtonTutorial>False</BumpyShroomButtonTutorial>
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>True</Jumpbutton>
+          <JumpButton>True</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
@@ -5163,7 +5070,8 @@
         <ButtonsEnabled>
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
-          <Jumpbutton>False</Jumpbutton>
+          <JumpButton>False</JumpButton>
+          <FlashButton>False</FlashButton>
           <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>

@@ -481,6 +481,10 @@ public function getJumpButtonEnabled():boolean
 {
 	return jumpButtonEnabled;
 }
+public function getFlashButtonEnabled():boolean
+{
+	return flashButtonEnabled;
+}
 public function getNormalShroomButtonEnabled():boolean
 {
 	return shootNormalShroomButtonEnabled;
