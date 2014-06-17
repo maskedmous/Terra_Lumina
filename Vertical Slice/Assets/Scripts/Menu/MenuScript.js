@@ -15,6 +15,7 @@ private var background		:Texture	= null;
 private var loadingScreen	:Texture	= null;
 private var level1			:Texture	= null;
 private var backToMenuButton:Texture	= null;
+private var backToMenuButtonPressed:Texture	= null;
 
 private var creditsScreen	:Texture2D	= null;
 
@@ -73,8 +74,12 @@ public 	var exitButtonX			:float = -30.0f;
 public 	var exitButtonY			:float = 720.0f;
 
 private var backToMenuButtonRect	:Rect;
-public var backToMenuButtonX		:float = 20.0f;
-public var backToMenuButtonY		:float = 400.0f;
+public var backToMenuButtonX		:float = -25.0f;
+public var backToMenuButtonY		:float = 870.0f;
+
+private var creditsScreenRect		:Rect;
+public var creditsScreenX			:float = 220.0;
+public var creditsScreenY			:float = 100.0;
 
 // settings vars
 public var soundSliderTexture		:Texture2D = null;
@@ -120,10 +125,11 @@ public function Awake():void
 	background 						= textureLoader.getTexture("Background");
 	loadingScreen					= textureLoader.getTexture("Loading");
 	level1 							= textureLoader.getTexture("Level1");
-	backToMenuButton 				= textureLoader.getTexture("Hoofdmenu");
+	backToMenuButton 				= textureLoader.getTexture("Terug");
+	backToMenuButtonPressed 		= textureLoader.getTexture("Terug Pressed");
 	soundSliderTexture 				= textureLoader.getTexture("sliderBackground");
 	soundSliderThumbTexture 		= textureLoader.getTexture("sliderThumb");
-	//creditsScreen = textureLoader.getTexture("Credits");
+	creditsScreen 					= textureLoader.getTexture("Credits Screen");
 	
 	menuButtonXStart 	= startButtonX;
 	menuButtonXSettings = settingsButtonX;
@@ -244,7 +250,7 @@ private function isReleasingButton(inputXY:Vector2):void
 		  	if (creditsButtonRect.Contains(inputXY))
 		  	{
 		  		
-		  		//leaveMenuAnim = clickedCredits = true;
+		  		leaveMenuAnim = clickedCredits = true;
 		  	}
 		  	if (exitButtonRect.Contains(inputXY))
 			{
@@ -317,6 +323,15 @@ private function isReleasingButton(inputXY:Vector2):void
 			break;
 			
 			case(menuState.optionsMenu):
+				if (backToMenuButtonRect.Contains(inputXY))
+				{
+					startMenuAnim();
+					currentMenuState = menuState.mainMenu;
+					touchEnabled = false;
+				}
+			break;
+			
+			case(menuState.creditsMenu):
 				if (backToMenuButtonRect.Contains(inputXY))
 				{
 					startMenuAnim();
@@ -417,7 +432,7 @@ public function OnGUI():void
 						if(creditsButtonX <= creditsButtonTexture.width * -1){
 							clickedCredits = false;
 							leaveMenuAnim = false;
-							//currentMenuState = menuState.creditsMenu;
+							currentMenuState = menuState.creditsMenu;
 						}
 					}
 				}
@@ -514,8 +529,8 @@ public function OnGUI():void
 
 		break;
 		case(menuState.creditsMenu):
-			//show credits
-			//backbutton
+			GUI.DrawTexture(creditsScreenRect, creditsScreen);
+			GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
 		break;
 	}
 }
@@ -550,6 +565,15 @@ private function scaleButtons():void
 	
 		soundSliderRect  	 = scaleRect(soundSliderRect);
 		soundSliderThumbRect = scaleRect(soundSliderThumbRect);
+		backToMenuButtonRect = scaleRect(backToMenuButtonRect);
+	}
+	
+	if(currentMenuState == menuState.creditsMenu)
+	{
+		creditsScreenRect = new Rect(creditsScreenX, creditsScreenY, creditsScreen.width, creditsScreen.height);
+		backToMenuButtonRect 	= new Rect(backToMenuButtonX	, backToMenuButtonY	, backToMenuButton.width	, backToMenuButton.height);
+		
+		creditsScreenRect = scaleRect(creditsScreenRect);
 		backToMenuButtonRect = scaleRect(backToMenuButtonRect);
 	}
 }
