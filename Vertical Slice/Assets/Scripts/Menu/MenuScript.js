@@ -107,6 +107,11 @@ private var max					:float;
 private var calculationLength	:float;
 private var calculation			:float;
 
+public var levelButtonSpaceX:float = 265.0f;
+public var levelButtonSpaceY:float = 0.0f;
+public var levelButtonX:float = 500.0f;
+public var levelButtonY:float = 300.0f;
+
 public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
@@ -239,7 +244,6 @@ private function isReleasingButton(inputXY:Vector2):void
 			case(menuState.mainMenu):
 			if (startButtonRect.Contains(inputXY))
 			{		  		
-		  		
 		  		leaveMenuAnim = clickedStart = true;
 		  	}
 		  	if (settingsButtonRect.Contains(inputXY))
@@ -262,8 +266,8 @@ private function isReleasingButton(inputXY:Vector2):void
 			case(menuState.startMenu):
 			//show all levels (max 6? per screen)
 			var levelCount:int = startLevelCount;
-			var spaceCountX:int = 1;
-			var spaceCountY:int = 1;
+			var spaceCountX:int = 0;
+			var spaceCountY:int = 0;
 			var levelButtonXSize:float = Screen.width 	/ 9;
 			var levelButtonYSize:float = Screen.height 	/ 5;
 			
@@ -271,7 +275,7 @@ private function isReleasingButton(inputXY:Vector2):void
 			{
 				if(i <= levelIDs.length)
 				{	
-					if(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize).Contains(inputXY))
+					if(scaleRect(new Rect(levelButtonX + (levelButtonSpaceX * spaceCountX), levelButtonY + (levelButtonSpaceY * spaceCountY), level1.width, level1.height)).Contains(inputXY))
 					{
 						touchEnabled = false;
 						setLevelFileNameByInt(i);
@@ -283,9 +287,9 @@ private function isReleasingButton(inputXY:Vector2):void
 					spaceCountX ++;
 					levelCount ++;
 					
-					if(levelCount == 4)
+					if(levelCount == 3)
 					{
-						spaceCountY = 3;
+						spaceCountY ++;
 						spaceCountX = 1;
 					}
 				}
@@ -312,7 +316,7 @@ private function isReleasingButton(inputXY:Vector2):void
 				if(startLevelCount < 6)
 				{
 					//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
-					if(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize).Contains(inputXY))
+					if(backToMenuButtonRect.Contains(inputXY))
 					{
 						startMenuAnim();
 						currentMenuState = menuState.mainMenu;
@@ -467,8 +471,8 @@ public function OnGUI():void
 		case(menuState.startMenu):
 			//show all levels (max 6? per screen)
 			var levelCount:int = startLevelCount;
-			var spaceCountX:int = 1;
-			var spaceCountY:int = 1;
+			var spaceCountX:int = 0;
+			var spaceCountY:int = 0;
 			var levelButtonXSize:float = Screen.width 	/ 9;
 			var levelButtonYSize:float = Screen.height 	/ 5;
 			
@@ -476,14 +480,14 @@ public function OnGUI():void
 			{
 				if(i <= levelIDs.length)
 				{
-					GUI.DrawTexture(new Rect(spaceCountX * (levelButtonXSize * 2), spaceCountY * levelButtonYSize, levelButtonXSize, levelButtonYSize), level1, ScaleMode.StretchToFill);
+					GUI.DrawTexture(scaleRect(new Rect(levelButtonX + (levelButtonSpaceX * spaceCountX), levelButtonY + (levelButtonSpaceY * spaceCountY), level1.width, level1.height)), level1, ScaleMode.StretchToFill);
 					
 					spaceCountX ++;
 					levelCount ++;
 					
-					if(levelCount == 4)
+					if(levelCount == 3)
 					{
-						spaceCountY = 3;
+						spaceCountY ++;
 						spaceCountX = 1;
 					}
 				}
@@ -493,7 +497,7 @@ public function OnGUI():void
 			if(startLevelCount < 6)
 			{
 				//GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton, ScaleMode.StretchToFill);
-				GUI.DrawTexture(new Rect(0, levelButtonYSize * 2, levelButtonXSize, levelButtonYSize), backToMenuButton);
+				GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
 			}
 			
 			if(GUI.Button(scaleRect(new Rect(1700, 100, 100,50)), difficulty))
@@ -556,7 +560,11 @@ private function scaleButtons():void
 		creditsButtonRect  	= scaleRect(creditsButtonRect);
 		exitButtonRect  	= scaleRect(exitButtonRect);
 	}
-	
+	if(currentMenuState == menuState.startMenu)
+	{
+		backToMenuButtonRect = new Rect(backToMenuButtonX	, backToMenuButtonY	, backToMenuButton.width	, backToMenuButton.height);
+		backToMenuButtonRect = scaleRect(backToMenuButtonRect);
+	}
 	if(currentMenuState == menuState.optionsMenu)
 	{
 		soundSliderRect 		= new Rect(soundSliderX			, soundSliderY		, soundSliderTexture.width	, soundSliderTexture.height);
