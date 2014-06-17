@@ -649,12 +649,13 @@ private function sortByLevelID():void
 {
 	levelIDs.sort();
 	
-	var sortedArray:Array = new Array();
+	/*var sortedArray:Array = new Array();
 	
 	for(var i:int = 0; i < levelIDs.length; ++i)
 	{
 		sortedArray.push(getLevelByID(levelIDs[i]));
 	}
+	*/
 }
 
 private function getLevelID(levelFilename:String):int

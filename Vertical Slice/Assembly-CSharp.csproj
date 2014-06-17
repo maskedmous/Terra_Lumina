@@ -50,8 +50,10 @@
      <Compile Include="Assets\MatcapShaders\MatCap Shaders\Demo\Assets\MC_SwitchTexture.cs" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureAdd_Bumped.shader" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_TextureMult_Bumped.shader" />
+     <None Include="Assets\LevelsXML\Level3.xml" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_Lit.shader" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_Plain_Bumped.shader" />
+     <None Include="Assets\LevelsXML\Tutorial.xml" />
      <None Include="Assets\MatcapShaders\MatCap Shaders\Shaders\MatCap_Plain_AdditiveZ.shader" />
      <None Include="Assets\MatcapShaders\!JMO Assets Readme.txt" />
      <None Include="Assets\LevelsXML\Level1.xml" />

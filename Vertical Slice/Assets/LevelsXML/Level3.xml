@@ -1,6 +1,6 @@
 <Root>
-  <LevelID>1</LevelID>
-  <Difficulty>Easy</Difficulty>
+  <LevelID>0</LevelID>
+  <Difficulty>Hard</Difficulty>
   <Camera>
     <Position>
       <x>-19.08201</x>
@@ -34,6 +34,222 @@
     <BronzeTime>120</BronzeTime>
   </GameLogic>
   <Level>
+    <GameObject>
+      <Prefab>GroundPieceGround Slope (up) 1</Prefab>
+      <Position>
+        <x>59.01331</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround Slope (up) 1</Prefab>
+      <Position>
+        <x>149.0133</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround Wall (down) 1</Prefab>
+      <Position>
+        <x>-30.98667</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround Wall (down) 1</Prefab>
+      <Position>
+        <x>39.01332</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround Wall (up) 1</Prefab>
+      <Position>
+        <x>-0.9866905</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround Wall (up) 1</Prefab>
+      <Position>
+        <x>99.01332</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround Wall (up) 1</Prefab>
+      <Position>
+        <x>189.0133</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround wide 1</Prefab>
+      <Position>
+        <x>119.0147</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround wide 1</Prefab>
+      <Position>
+        <x>159.0147</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGround wide 1</Prefab>
+      <Position>
+        <x>109.0133</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGroundNarrow1</Prefab>
+      <Position>
+        <x>49.01332</x>
+        <y>-16.49659</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>GroundPieceGroundNarrow1</Prefab>
+      <Position>
+        <x>106.9756</x>
+        <y>4.082696</y>
+        <z>14.21535</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>180</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
@@ -3403,8 +3619,8 @@
     <GameObject>
       <Prefab>ShardPickUp</Prefab>
       <Position>
-        <x>-30.25763</x>
-        <y>-6.618681</y>
+        <x>-24.32758</x>
+        <y>-13.10374</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -11632,222 +11848,6 @@
       <Prefab>GroundPieceGround Slope (up) 1</Prefab>
       <Position>
         <x>96.97568</x>
-        <y>4.082696</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>180</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround Slope (up) 1</Prefab>
-      <Position>
-        <x>59.01331</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround Slope (up) 1</Prefab>
-      <Position>
-        <x>149.0133</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround Wall (down) 1</Prefab>
-      <Position>
-        <x>-30.98667</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround Wall (down) 1</Prefab>
-      <Position>
-        <x>39.01332</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround Wall (up) 1</Prefab>
-      <Position>
-        <x>-0.9866905</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround Wall (up) 1</Prefab>
-      <Position>
-        <x>99.01332</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround Wall (up) 1</Prefab>
-      <Position>
-        <x>189.0133</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround wide 1</Prefab>
-      <Position>
-        <x>119.0147</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround wide 1</Prefab>
-      <Position>
-        <x>159.0147</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGround wide 1</Prefab>
-      <Position>
-        <x>109.0133</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGroundNarrow1</Prefab>
-      <Position>
-        <x>49.01332</x>
-        <y>-16.49659</y>
-        <z>14.21535</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>GroundPieceGroundNarrow1</Prefab>
-      <Position>
-        <x>106.9756</x>
         <y>4.082696</y>
         <z>14.21535</z>
       </Position>
