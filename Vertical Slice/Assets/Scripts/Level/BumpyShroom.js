@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
-private var counter:float = -1.0f;
+private var counter:float = 10.0f;
+private var growCounter:float = 2.5f;
 
 private var startScale:float = 0.2f;
 private var currentScale:float = 0.0f;
@@ -21,47 +22,50 @@ function Awake () {
 	animationController.Play("Grow");
 }
 
-//function Update () {
-//	if (fullGrown) {	
-//		counter -= Time.deltaTime;
-//		if(counter <= 0.0f){
-//			Destroy(this.gameObject);
-//		}
-//	}
-//	else grow();
-//}
+function Update () {
+	if(!animationController.GetCurrentAnimatorStateInfo(0).IsName("Grow")){
+		animationController.SetBool("doneGrowing", true);
+		fullGrown = true;
+	} 
+	/*if(growCounter >= 0){
+		growCounter -= Time.deltaTime;
+	}
+	if(growCounter <= 0){
+		animationController.SetBool("doneGrowing", true);
+		fullGrown = true;
+		print(fullGrown);
+	}*/
+	if (fullGrown) {	
+		counter -= Time.deltaTime;
+		if(counter <= 0.0f){
+			Destroy(this.gameObject.transform.parent.parent.gameObject);
+		}
+	}
+}
 
 function OnCollisionEnter(obj:Collision):void
 {
 	//collision and executed once
 	if(obj.gameObject.name == "Player")
 	{
-		if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) > yDifference)
-		{
-			obj.gameObject.GetComponent(PlayerController).bounceShroomY();
-			if(soundEngine != null)
+		if(animationController.GetBool("doneGrowing") == true){
+			if(Mathf.Abs(this.gameObject.transform.position.y - obj.gameObject.transform.position.y) > yDifference)
 			{
-				soundEngine.playSoundEffect("bounce");
+				
+				obj.gameObject.GetComponent(PlayerController).bounceShroomY();
+				if(soundEngine != null)
+				{
+					soundEngine.playSoundEffect("bounce");
+				}
+				animationController.Play("Bounce");
+				var bounceParticle:Transform = this.gameObject.transform.FindChild("shroomJump");
+				bounceParticle.particleSystem.Clear();
+				bounceParticle.particleSystem.Play();
 			}
-			animationController.Play("Bounce");
-			var bounceParticle:Transform = this.gameObject.transform.FindChild("shroomJump");
-			bounceParticle.particleSystem.Clear();
-			bounceParticle.particleSystem.Play();
-		}
-		else
-		{
-			obj.gameObject.GetComponent(PlayerController).bounceShroomX();
+			else
+			{
+				obj.gameObject.GetComponent(PlayerController).bounceShroomX();
+			}
 		}
 	}
 }
-
-//private function grow():void {
-//	currentScale += improveScale;
-//	if (currentScale >= 1.0f){
-//		 fullGrown = true;
-//		 if(currentScale > 1.0f) {
-//		 	currentScale = 1.0f;
-//		 }
-//	}
-//	this.gameObject.transform.localScale = Vector3(currentScale, currentScale, currentScale);
-//}

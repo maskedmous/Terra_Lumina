@@ -22,6 +22,7 @@ function OnCollisionEnter(collision:Collision)
 		{
 			newShroom = Instantiate(shroomType, this.transform.position, Quaternion.identity);
 			if(shroomType.name == "BumpyShroom") newShroom.transform.position += Vector3(0.0f, 0.56f, 0.0f);
+			else if(shroomType.name == "NormalShroom") newShroom.transform.position += Vector3(0.0f, 0.9f, 0.0f);
 			newShroom.gameObject.name = "Shroom";
 			newShroom.gameObject.transform.parent = GameObject.Find("Level").transform;
 //			newShroom.gameObject.transform.localScale = Vector3(startScale, startScale, startScale);
