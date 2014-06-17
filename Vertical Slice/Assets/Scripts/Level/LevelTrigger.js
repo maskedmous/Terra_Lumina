@@ -10,13 +10,13 @@ private var skin:GUIStyle = new GUIStyle();
 
 public var toMenuWinTexture:Texture	= null;
 private var winMenuRect:Rect;
-public var winMenuX:float = 300.0f;
-public var winMenuY:float = 300.0f;
+public var winMenuX:float = 0.0f;
+public var winMenuY:float = 0.0f;
 
 public var toMenuLoseTexture:Texture = null;
 private var loseMenuRect:Rect;
-public var loseMenuX:float = 300.0f;
-public var loseMenuY:float = 300.0f;
+public var loseMenuX:float = 0.0f;
+public var loseMenuY:float = 0.0f;
 
 //scales for button positions
 private var originalWidth 	:float = 1920.0f;
