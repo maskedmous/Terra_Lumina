@@ -21,38 +21,26 @@ private var amountOfBatteryBars		:int   = 0;
 public var highBatteryTexture		:Texture2D = null;
 public var lowBatteryTexture		:Texture2D = null;
 
-//seeds hud
-public var seedsTexture:Texture2D = null;
-private var seedsRect:Rect;
-public var seedsX:float = 20.0f;
-public var seedsY:float = 280.0f;
-
-/*
-
 public var normalSeedsTexture:Texture2D = null;
 private var normalSeedsRect:Rect;
 public var normalSeedsX:float = 20.0f;
 public var normalSeedsY:float = 280.0f;
-private var normalSeedsInfinityRect;
-public var normalSeedsInfinityX:float = 0.0f;
-public var normalSeedsInfinityY:float = 0.0f;
+private var normalSeedsInfinityRect:Rect;
+public var normalSeedsInfinityX:float = 117.0f;
+public var normalSeedsInfinityY:float = 297.0f;
 
 public var bumpySeedsTexture:Texture2D = null;
 private var bumpySeedsRect:Rect;
 public var bumpySeedsX:float = 20.0f;
-public var bumpySeedsY:float = 280.0f;
-private var bumpySeedsInfinityRect;
-public var bumpySeedsInfinityX:float = 0.0f;
-public var bumpySeedsInfinityY:float = 0.0f;
+public var bumpySeedsY:float = 365.0f;
+private var bumpySeedsInfinityRect:Rect;
+public var bumpySeedsInfinityX:float = 117.0f;
+public var bumpySeedsInfinityY:float = 385.0f;
 
 private var fontSkin:GUIStyle = new GUIStyle();
 
-*/
 public var infinity:Texture2D = null;
-private var infinityRect:Rect;
 private var infiniteAmmo:boolean = false;
-public var infinityAmmoX:float = 120.0f;
-public var infinityAmmoY:float = 300.0f;
 
 //crystals hud
 private var crystalsTotal:int;
@@ -86,9 +74,8 @@ public function Awake()
 		currentBatteryTexture = highBatteryTexture;
 		
 		infinity = textureLoader.getTexture("infinity");
-		seedsTexture = textureLoader.getTexture("SeedElement");
-		//normalSeedsTexture = textureLoader.getTexture("NormalSeedElement");
-		//bumpySeedsTexture = textureLoader.getTexture("BumpySeedElement");
+		normalSeedsTexture = textureLoader.getTexture("SeedNormal");
+		bumpySeedsTexture = textureLoader.getTexture("SeedBumpy");
 		
 		crystalActive = textureLoader.getTexture("Crystal Active");
 		crystalInactive = textureLoader.getTexture("Crystal Inactive");
@@ -150,20 +137,16 @@ public function OnGUI():void
 		}
 	}
 	
-	//draw the seed hud
-	if(seedsTexture != null)
+	if(normalSeedsTexture != null && bumpySeedsTexture != null)
 	{
-		GUI.DrawTexture(seedsRect, seedsTexture);
+		GUI.DrawTexture(normalSeedsRect, normalSeedsTexture);
+		GUI.DrawTexture(bumpySeedsRect, bumpySeedsTexture);
 	}
-	//GUI.DrawTexture(normalSeedsRect, normalSeedsTexture);
-	//GUI.DrawTexture(bumpySeedsRect, bumpySeedsRect);
-	
-	if(infiniteAmmo && infinity != null)
+	if(infiniteAmmo == true && infinity != null)
 	{
 		//draw infinite sign
-		GUI.DrawTexture(infinityRect, infinity);
-		//GUI.DrawTexture(normalSeedsInfinityRect, infinity);
-		//GUI.DrawTexture(bumpySeedsInfinityRect, infinity);
+		GUI.DrawTexture(normalSeedsInfinityRect, infinity);
+		GUI.DrawTexture(bumpySeedsInfinityRect, infinity);
 	}
 	else
 	{
@@ -206,15 +189,25 @@ private function scaleHud():void
 		crystalActiveRect = new Rect(crystalActiveX, crystalActiveY, crystalActive.width, crystalActive.height);
 		crystalActiveRect = scaleRect(crystalActiveRect);
 	}
-	if(seedsTexture != null)
+
+	if(normalSeedsTexture != null && bumpySeedsTexture != null)
 	{
-		seedsRect = new Rect(seedsX, seedsY, seedsTexture.width, seedsTexture.height);
-		seedsRect = scaleRect(seedsRect);
+		normalSeedsRect = new Rect(normalSeedsX, normalSeedsY, normalSeedsTexture.width, normalSeedsTexture.height);
+		normalSeedsRect = scaleRect(normalSeedsRect);
+		
+		bumpySeedsRect = new Rect(bumpySeedsX, bumpySeedsY, bumpySeedsTexture.width, bumpySeedsTexture.height);
+		bumpySeedsRect = scaleRect(bumpySeedsRect);
+		
 	}
 	if(infiniteAmmo && infinity != null)
 	{
-		infinityRect = new Rect(infinityAmmoX, infinityAmmoY, infinity.width, infinity.height);
-		infinityRect = scaleRect(infinityRect);
+//		infinityRect = new Rect(infinityAmmoX, infinityAmmoY, infinity.width, infinity.height);
+//		infinityRect = scaleRect(infinityRect);
+
+		normalSeedsInfinityRect = new Rect(normalSeedsInfinityX, normalSeedsInfinityY, infinity.width, infinity.height);
+		normalSeedsInfinityRect = scaleRect(normalSeedsInfinityRect);
+		bumpySeedsInfinityRect = new Rect(bumpySeedsInfinityX, bumpySeedsInfinityY, infinity.width, infinity.height);
+		bumpySeedsInfinityRect = scaleRect(bumpySeedsInfinityRect);
 	}
 }
 

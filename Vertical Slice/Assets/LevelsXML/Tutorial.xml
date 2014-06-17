@@ -121,6 +121,42 @@
       </Scaling>
     </GameObject>
     <GameObject>
+      <Prefab>BgLit</Prefab>
+      <Position>
+        <x>293.5869</x>
+        <y>0</y>
+        <z>247.7885</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>0.100211</x>
+        <y>0.100211</y>
+        <z>0.100211</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>BgTrans</Prefab>
+      <Position>
+        <x>293.5869</x>
+        <y>-16.83908</y>
+        <z>212.4814</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>0.080723</x>
+        <y>0.052358</y>
+        <z>0.080723</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
       <Prefab>BumpyShroom 1</Prefab>
       <Position>
         <x>66.04071</x>

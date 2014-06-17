@@ -134,6 +134,8 @@ private function changeControls():void
 	if(!jumpButtonEnabled) playerInput.setJumpButtonEnabled(false);
 	else 				   playerInput.setJumpButtonEnabled(true);
 	
+	if(!flashButtonEnabled) playerInput.setFlashButtonEnabled(false);
+	else					playerInput.setFlashButtonEnabled(true);
 	
 	if(!shootNormalShroomButtonEnabled) playerInput.setNormalShroomButtonEnabled(false);
 	else 								playerInput.setNormalShroomButtonEnabled(true);
@@ -181,11 +183,11 @@ public function OnTriggerStay (collider:Collider):void
 		
 		if(timePassed > timerTexA)
 		{
-			//tutorialTextureA = null;
+			tutorialTextureA = null;
 		}
 		if(timePassed > timerTexB)
 		{
-			//tutorialTextureB = null;
+			tutorialTextureB = null;
 		}
 		if(timePassed > blinkingTime)
 		{
