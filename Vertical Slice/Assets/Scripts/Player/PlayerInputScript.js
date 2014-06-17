@@ -34,14 +34,16 @@ private var guiStyle:GUIStyle = new GUIStyle();
 private var currentJumpButtonTexture	:Texture2D 	= null;
 public 	var jumpButtonTexture			:Texture2D 	= null;
 public  var jumpButtonInactiveTexture 	:Texture2D 	= null;
+public	var jumpButtonActiveTexture		:Texture2D	= null;
 private var jumpButtonRect				:Rect;
 public  var jumpButtonX					:float = 0.0f;
 public 	var jumpButtonY					:float = 780.0f;
 
 
-private var currentFlashButtonTexture	:Texture2D	= null;
+private var currentFlashButtonTexture	:Texture2D = null;
 public  var flashButtonTexture			:Texture2D = null;
 public  var flashButtonInactiveTexture	:Texture2D = null;
+public	var flashButtonActiveTexture	:Texture2D = null;
 private var flashButtonRect				:Rect;
 public  var flashButtonX				:float = 0.0f;
 public  var flashButtonY				:float = 900.0f;
@@ -50,14 +52,16 @@ public  var flashButtonY				:float = 900.0f;
 private var currentNormalShroomButtonTexture	:Texture2D = null;
 public 	var normalShroomButtonTexture			:Texture2D = null;
 public  var normalShroomButtonInactiveTexture	:Texture2D = null;
+public	var normalShroomButtonActiveTexture		:Texture2D = null;
 private var normalShroomButtonRect				:Rect;
 public 	var normalShroomButtonX					:float = 1600.0f;
 public 	var normalShroomButtonY					:float = 900.0f;
 
 
-private var currentBumpyShroomButtonTexture:Texture2D = null;
+private var currentBumpyShroomButtonTexture :Texture2D = null;
 public 	var bumpyShroomButtonTexture		:Texture2D = null;
 public 	var bumpyShroomButtonInactiveTexture:Texture2D = null;
+public	var bumpyShroomButtonActiveTexture	:Texture2D = null;
 private var bumpyShroomButtonRect			:Rect;
 public 	var bumpyShroomButtonX				:float = 1600.0f;
 public 	var bumpyShroomButtonY				:float = 720.0f;
@@ -90,6 +94,7 @@ public function OnEnable():void
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesBegan += touchBegan;
+		TouchManager.Instance.TouchesEnded += touchEnded;
 	}
 }
 
@@ -98,6 +103,7 @@ public function OnDisable():void
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesBegan -= touchBegan;
+		TouchManager.Instance.TouchesEnded -= touchEnded;
 	}
 }
 
@@ -156,12 +162,70 @@ private function touchBegan(sender:Object, events:TouchEventArgs):void
 	}
 }
 
+private function touchEnded(sender:Object, events:TouchEventArgs):void
+{
+	if(endLevelTriggerObject != null)
+	{
+		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
+		{
+			for each(var touchPoint in events.Touches)
+			{
+				var position:Vector2 = touchPoint.Position;
+				position = Vector2(position.x, (position.y - Screen.height)*-1);
+				
+				isReleasingButton(position);
+			}
+		}
+	}
+}
+
+private function isReleasingButton(inputXY:Vector2):void
+{
+	if(jumpButtonEnabled)
+	{
+		if(jumpButtonRect.Contains(inputXY))
+		{
+			currentJumpButtonTexture = jumpButtonTexture;
+			return;
+		}
+	}
+	
+	if (flashButtonEnabled)
+	{
+		if (flashButtonRect.Contains(inputXY))
+		{
+			currentFlashButtonTexture = flashButtonTexture;
+			return;
+		}
+	}
+	
+	if(normalShroomButtonEnabled)
+	{
+		if(normalShroomButtonRect.Contains(inputXY))
+		{	
+			currentNormalShroomButtonTexture = normalShroomButtonTexture;
+			return;			
+		}
+	}
+	
+	if(bumpyShroomButtonEnabled)
+	{
+		if(bumpyShroomButtonRect.Contains(inputXY))
+		{
+			currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
+			return;
+		}
+	}
+}
+
+
 private function isPressingButton(inputXY:Vector2):void
 {
 	if(jumpButtonEnabled)
 	{
 		if(jumpButtonRect.Contains(inputXY))
 		{
+			currentJumpButtonTexture = jumpButtonActiveTexture;
 			playerController.jump();
 			chargingShot = false;
 			playerController.resetShot();
@@ -173,6 +237,7 @@ private function isPressingButton(inputXY:Vector2):void
 	{
 		if (flashButtonRect.Contains(inputXY))
 		{
+			currentFlashButtonTexture = flashButtonActiveTexture;
 			playerController.flash();
 			playerController.resetShot();
 			return;
@@ -183,6 +248,7 @@ private function isPressingButton(inputXY:Vector2):void
 	{
 		if(normalShroomButtonRect.Contains(inputXY))
 		{	
+			currentNormalShroomButtonTexture = normalShroomButtonActiveTexture;
 			if (shootTimer <= 0.0f) {	
 				if (!chargingShot) chargingShot = true;
 				else
@@ -200,6 +266,7 @@ private function isPressingButton(inputXY:Vector2):void
 	{
 		if(bumpyShroomButtonRect.Contains(inputXY))
 		{
+			currentBumpyShroomButtonTexture = bumpyShroomButtonActiveTexture;
 			if (shootTimer <= 0.0f)
 			{	
 				if (!chargingShot) chargingShot = true;
