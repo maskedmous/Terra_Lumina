@@ -36,7 +36,7 @@ private var isShooting:boolean = false;								//is it shooting at the moment?
 private var shrooms:List.<GameObject> = new List.<GameObject>();	//list of shrooms to shoot (should be 2)
 private var crystals:List.<GameObject> = new List.<GameObject>();	//the samples you collect
 
-private var gameLogic:GameLogic   		= null;
+private var gameLogic:GameLogic = null;
 private var particleScript:PlayerParticleScript	= null;
 
 public var flashlight:GameObject;
@@ -45,7 +45,7 @@ private var counter:float = 0.0f;
 
 private var control:boolean = true;
 
-private var anim:Animator;
+private var anim:Animator = null;
 
 function Awake():void {
 	gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
@@ -92,10 +92,10 @@ function Update():void
 			}
 		}
 	}
-	if(isJumping){
+	if(isJumping) {
 		anim.SetBool("inAir", true);
 	}
-	if(!isJumping){
+	if(!isJumping) {
 		anim.SetBool("inAir", false);
 	}
 }

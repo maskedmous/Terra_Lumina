@@ -9,9 +9,8 @@ class FleeState extends State {
 	function toWaitState():void {
 		parent.rigidbody.velocity.x = 0.0f;
 		parent.collider.enabled = false;
-		parent.transform.FindChild("slug_1").renderer.enabled = false;
-		//parent.rigidbody.useGravity = false;
-		//parent.rigidbody.isKinematic = true;
+		parent.rigidbody.useGravity = false;
+		parent.rigidbody.isKinematic = true;
 		parentScript.toWaitState();
 	}
 }

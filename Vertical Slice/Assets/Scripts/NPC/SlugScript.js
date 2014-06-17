@@ -13,6 +13,8 @@ public var slugBoundB:GameObject;
 
 public var difficulty:String = "";
 
+private var anim:Animator = null;
+
 function Awake()
 {
 	fleeState = this.gameObject.AddComponent(FleeState) as FleeState;
@@ -25,6 +27,8 @@ function Awake()
 		chaseState = this.gameObject.AddComponent(ChaseState) as ChaseState;
 		returnState = this.gameObject.AddComponent(ReturnState) as ReturnState;
 	}
+	
+	anim = this.gameObject.GetComponent(Animator);
 }
 
 function Start()
@@ -40,11 +44,13 @@ function Update ()
 function toFleeState():void
 {
 	if (currentState == moveState || currentState == chaseState || currentState == returnState) currentState = fleeState;
+	anim.SetBool("isMoving", false);
 }
 
 function toMoveState():void
 {
 	currentState = moveState;
+	anim.SetBool("isMoving", true);
 }
 
 function toWaitState():void
