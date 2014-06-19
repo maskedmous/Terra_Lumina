@@ -23,10 +23,10 @@ function Awake()
 	
 	currentState = moveState;
 	
-	if (difficulty == "Hard") {
+	/*if (difficulty == "Hard") {
 		chaseState = this.gameObject.AddComponent(ChaseState) as ChaseState;
 		returnState = this.gameObject.AddComponent(ReturnState) as ReturnState;
-	}
+	}*/
 	
 	anim = this.gameObject.GetComponent(Animator);
 }

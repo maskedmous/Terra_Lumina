@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-private var waitTime:float = 7.0f;
+private var waitTime:float = 7.81f;
 
 private var player:GameObject = null;
 
@@ -29,7 +29,7 @@ class WaitState extends State {
 		parent.collider.enabled = true;
 		parent.rigidbody.isKinematic = false;
 		parent.rigidbody.useGravity = true;
-		waitTime = 7.0f;
+		waitTime = 7.81f;
 		
 		toMoveState();
 	}
