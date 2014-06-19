@@ -1,12 +1,13 @@
 ﻿#pragma strict
 
-private var waitTime:float = 7.81f;
+private var waitTime:float = 10.2f;
 
 private var player:GameObject = null;
 
 class WaitState extends State {
 	
 	function update():void {
+		Debug.Log(waitTime);
 		waitTime -= Time.deltaTime;
 		if (waitTime < 0) appear();
 	}
@@ -16,29 +17,21 @@ class WaitState extends State {
 	}
 	
 	function appear():void {
-		var startPosition:Vector3 = this.parentScript.getStart();
-		var playerPosition:Vector3 = target.transform.position;
-		
-		if (Vector3.Distance(startPosition, playerPosition) < 3.0f) {
-			findNewSpawnPoint();
-		}
-		else {
-			this.parent.transform.position = startPosition;
-		}
+//		var startPosition:Vector3 = this.parentScript.getStart();
+//		var playerPosition:Vector3 = target.transform.position;
+//		
+//		if (Vector3.Distance(startPosition, playerPosition) < 3.0f) {
+//			findNewSpawnPoint();
+//		}
+//		else {
+//			this.parent.transform.position = startPosition;
+//		}
 		
 		parent.collider.enabled = true;
 		parent.rigidbody.isKinematic = false;
 		parent.rigidbody.useGravity = true;
-		waitTime = 7.81f;
+		waitTime = 10.2f;
 		
 		toMoveState();
-	}
-	
-	function findNewSpawnPoint():void {
-		var currentSpawnPoint:Vector3 = Vector3.zero;
-		currentSpawnPoint = parentScript.getStart();
-		var newSpawnPoint:Vector3 = Vector3.zero;
-		newSpawnPoint = currentSpawnPoint + new Vector3(-3.0f, 0.0f, 0.0f);
-		this.parent.transform.position = newSpawnPoint;
 	}
 }
