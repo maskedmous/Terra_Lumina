@@ -156,7 +156,7 @@ public function move(mousePos:float):void {
 
 private function moveLeft():void
 {
-	if (this.gameObject.rigidbody.velocity.x > -maxSpeed) this.gameObject.rigidbody.velocity.x -= 15 * Time.deltaTime;
+	if (this.gameObject.rigidbody.velocity.x > -maxSpeed) this.gameObject.rigidbody.velocity.x -= 10.0f * Time.deltaTime;
 	if (this.getDirection() == "Right")	{
 		this.gameObject.transform.rotation.eulerAngles.y = 180.0f;
 		this.gameObject.transform.rotation.eulerAngles.z *= -1;
@@ -167,7 +167,7 @@ private function moveLeft():void
 
 private function moveRight():void
 {
-	if (this.gameObject.rigidbody.velocity.x < maxSpeed) this.gameObject.rigidbody.velocity.x += 15 * Time.deltaTime;
+	if (this.gameObject.rigidbody.velocity.x < maxSpeed) this.gameObject.rigidbody.velocity.x += 10.0f * Time.deltaTime;
 	if (this.getDirection() == "Left")	{
 		this.gameObject.transform.rotation.eulerAngles.y = 0.0f;
 		this.gameObject.transform.rotation.eulerAngles.z *= -1;
