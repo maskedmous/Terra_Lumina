@@ -7,6 +7,9 @@ private var playerController:PlayerController = null;
 private var soundEngine:SoundEngineScript = null;
 private var gameLogic:GameLogic;
 
+private var inactive					:boolean = false;
+private var inactiveTimer				:float = 60.0;
+
 private var shootTimer:float = 0.0f;
 private var chargingShot:boolean = false;
 
@@ -94,6 +97,7 @@ public function OnEnable():void
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesBegan += touchBegan;
+		TouchManager.Instance.TouchesEnded += touchEnded;
 	}
 }
 
@@ -102,6 +106,7 @@ public function OnDisable():void
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesBegan -= touchBegan;
+		TouchManager.Instance.TouchesEnded -= touchEnded;
 	}
 }
 
@@ -130,6 +135,18 @@ public function Update ():void
 	}
 	
 	if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;
+	
+	
+	if(!inactive) inactiveTimer = 60.0;
+	if(inactive)
+	{
+		inactiveTimer -= Time.deltaTime;
+		print(inactiveTimer);
+	}
+	if(inactiveTimer <= 0.0)
+	{
+		Application.LoadLevel("Menu");
+	}
 }
 
 private function checkAmmo()
@@ -146,6 +163,7 @@ private function checkAmmo()
 
 private function touchBegan(sender:Object, events:TouchEventArgs):void
 {
+	inactive = false;
 	if(endLevelTriggerObject != null)
 	{
 		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
@@ -159,6 +177,11 @@ private function touchBegan(sender:Object, events:TouchEventArgs):void
 			}
 		}
 	}
+}
+
+private function touchEnded(sender:Object, events:TouchEventArgs):void{
+	inactive = true;
+	print("player no touch screen so inactive = " + inactive);
 }
 
 private function checkReleasingButton():void
@@ -216,6 +239,8 @@ private function checkReleasingButton():void
 
 private function isPressingButton(inputXY:Vector2):void
 {
+	inactive = false;
+	print("player touches button so inactive = " + inactive);
 	if(jumpButtonEnabled)
 	{
 		if(jumpButtonRect.Contains(inputXY))
@@ -415,8 +440,13 @@ private function scaleRect(rect:Rect):Rect
 
 function readTouch()
 {
+	
 	for each(var touch in TouchManager.Instance.ActiveTouches)
 	{
+	
+		inactive = false;
+		print("player touches screen so inactive = " + inactive);
+	
 		var position:Vector2 = touch.Position;
 		//sendRay(position);
 		
