@@ -4464,6 +4464,23 @@
         <LightTutorial>False</LightTutorial>
         <SlugTutorial>True</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
+        <SlugObject>
+          <Position>
+            <x>45.94069</x>
+            <y>-14.08008</y>
+            <z>15</z>
+          </Position>
+          <SlugBoundA>
+            <x>53.7337</x>
+            <y>-13.63099</y>
+            <z>15</z>
+          </SlugBoundA>
+          <SlugBoundB>
+            <x>39.43846</x>
+            <y>-13.5829</y>
+            <z>15</z>
+          </SlugBoundB>
+        </SlugObject>
         <BlockObject>
           <Position>
             <x>60.76022</x>
@@ -5095,8 +5112,8 @@
   </Level>
   <Player>
     <Position>
-      <x>-22.35262</x>
-      <y>-13.13685</y>
+      <x>-21.63909</x>
+      <y>-12.90781</y>
       <z>15</z>
     </Position>
     <Rotation>

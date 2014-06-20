@@ -7,7 +7,6 @@ private var player:GameObject = null;
 class WaitState extends State {
 	
 	function update():void {
-		Debug.Log(waitTime);
 		waitTime -= Time.deltaTime;
 		if (waitTime < 0) appear();
 	}

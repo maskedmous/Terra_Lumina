@@ -7,7 +7,6 @@ private var playerController:PlayerController = null;
 private var soundEngine:SoundEngineScript = null;
 private var gameLogic:GameLogic;
 
-private var inactive					:boolean = false;
 private var inactiveTimer				:float = 60.0;
 
 private var shootTimer:float = 0.0f;
@@ -97,7 +96,6 @@ public function OnEnable():void
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesBegan += touchBegan;
-		TouchManager.Instance.TouchesEnded += touchEnded;
 	}
 }
 
@@ -106,7 +104,6 @@ public function OnDisable():void
 	if(TouchManager.Instance != null)
 	{
 		TouchManager.Instance.TouchesBegan -= touchBegan;
-		TouchManager.Instance.TouchesEnded -= touchEnded;
 	}
 }
 
@@ -137,16 +134,20 @@ public function Update ():void
 	if (shootTimer > 0.0f) shootTimer -= Time.deltaTime;
 	
 	
-	if(!inactive) inactiveTimer = 60.0;
-	if(inactive)
+	//check if the player is inactive for 60, if so return to menu
+	if(TouchManager.Instance.ActiveTouches.Count == 0)
 	{
 		inactiveTimer -= Time.deltaTime;
-		print(inactiveTimer);
+		if(inactiveTimer <= 0.0f)
+		{
+			Application.LoadLevel("Menu");
+		}
 	}
-	if(inactiveTimer <= 0.0)
+	else
 	{
-		Application.LoadLevel("Menu");
+		inactiveTimer = 60.0f;
 	}
+	
 }
 
 private function checkAmmo()
@@ -163,7 +164,6 @@ private function checkAmmo()
 
 private function touchBegan(sender:Object, events:TouchEventArgs):void
 {
-	inactive = false;
 	if(endLevelTriggerObject != null)
 	{
 		if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
@@ -177,11 +177,6 @@ private function touchBegan(sender:Object, events:TouchEventArgs):void
 			}
 		}
 	}
-}
-
-private function touchEnded(sender:Object, events:TouchEventArgs):void{
-	inactive = true;
-	print("player no touch screen so inactive = " + inactive);
 }
 
 private function checkReleasingButton():void
@@ -239,8 +234,6 @@ private function checkReleasingButton():void
 
 private function isPressingButton(inputXY:Vector2):void
 {
-	inactive = false;
-	print("player touches button so inactive = " + inactive);
 	if(jumpButtonEnabled)
 	{
 		if(jumpButtonRect.Contains(inputXY))
@@ -442,11 +435,7 @@ function readTouch()
 {
 	
 	for each(var touch in TouchManager.Instance.ActiveTouches)
-	{
-	
-		inactive = false;
-		print("player touches screen so inactive = " + inactive);
-	
+	{	
 		var position:Vector2 = touch.Position;
 		//sendRay(position);
 		
@@ -454,20 +443,23 @@ function readTouch()
 		
 		if(!isTouchingButton(position))
 		{
-			if (position.x > Screen.width / 2)
-			{
-				if(movementRightEnabled) playerController.move(position.x);
-			}
-			if (position.x < Screen.width / 2)
-			{
-				if(movementLeftEnabled) playerController.move(position.x);
-			}
-
 			if (chargingShot)
 			{
 				chargingShot = false;
 				playerController.resetShot();
 			}
+			if (position.x > Screen.width / 2)
+			{
+				if(movementRightEnabled) playerController.move(position.x);
+				return;
+			}
+			if (position.x < Screen.width / 2)
+			{
+				if(movementLeftEnabled) playerController.move(position.x);
+				return;
+			}
+
+
 		}
 	}
 }
