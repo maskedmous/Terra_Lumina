@@ -433,7 +433,6 @@ private function scaleRect(rect:Rect):Rect
 
 function readTouch()
 {
-	
 	for each(var touch in TouchManager.Instance.ActiveTouches)
 	{	
 		var position:Vector2 = touch.Position;
