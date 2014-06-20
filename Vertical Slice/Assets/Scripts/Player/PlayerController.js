@@ -79,7 +79,6 @@ function Start():void {
 
 function Update():void
 {
-	Debug.Log(this.gameObject.rigidbody.velocity.x);
 	if(control)
 	{
 		checkIfJumping();
