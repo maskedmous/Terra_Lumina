@@ -12,7 +12,7 @@
 
 function Awake():void
 {
-	counter = 30.0f;
+	counter = 15.0f;
 	currentScale = startScale;
 	
 	animationController = transform.parent.parent.GetComponent(Animator);
