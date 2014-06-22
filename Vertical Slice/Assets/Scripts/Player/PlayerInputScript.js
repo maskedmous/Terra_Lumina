@@ -382,11 +382,11 @@ public function OnGUI()
 				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonInactiveTexture);
 			}
 		}
-		if(!escapePressed)
+		if(!escapePressed && escapeButton != null)
 		{
 			GUI.DrawTexture(escapeButtonRect, escapeButton);
 		}
-		if(escapePressed)
+		if(escapePressed && escapeButtonPressed != null)
 		{
 			GUI.DrawTexture(escapeButtonRect, escapeButtonPressed);
 		}
@@ -438,8 +438,11 @@ private function scaleButtons():void
 	flashButtonRect			= new Rect(flashButtonX			, flashButtonY			, flashButtonTexture.width			, flashButtonTexture.height);
 	normalShroomButtonRect	= new Rect(normalShroomButtonX	, normalShroomButtonY	, normalShroomButtonTexture.width	, normalShroomButtonTexture.height);
 	bumpyShroomButtonRect  	= new Rect(bumpyShroomButtonX	, bumpyShroomButtonY	, bumpyShroomButtonTexture.width	, bumpyShroomButtonTexture.height);
-	escapeButtonRect 		= new Rect(escapeButtonX, escapeButtonY, escapeButton.width, escapeButton.height);
 	
+	if(escapeButton != null)
+	{
+		escapeButtonRect 		= new Rect(escapeButtonX, escapeButtonY, escapeButton.width, escapeButton.height);
+	}
 	//second scale the rectangles
 	jumpButtonRect 			= scaleRect(jumpButtonRect);
 	flashButtonRect			= scaleRect(flashButtonRect);

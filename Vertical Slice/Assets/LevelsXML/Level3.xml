@@ -16,16 +16,16 @@
   <GameLogic>
     <Battery>50</Battery>
     <MaximumBatteryCapacity>120</MaximumBatteryCapacity>
-    <DecreaseTimer>2</DecreaseTimer>
+    <DecreaseTimer>1</DecreaseTimer>
     <NegativeBatteryFlow>1</NegativeBatteryFlow>
     <PositiveBatteryFlow>5</PositiveBatteryFlow>
-    <CrystalsToComplete>3</CrystalsToComplete>
+    <CrystalsToComplete>6</CrystalsToComplete>
     <Speed />
     <CurrentNormalAmmo>0</CurrentNormalAmmo>
-    <MaximumNormalAmmo>0</MaximumNormalAmmo>
+    <MaximumNormalAmmo>15</MaximumNormalAmmo>
     <CurrentBumpyAmmo>0</CurrentBumpyAmmo>
-    <MaximumBumpyAmmo>0</MaximumBumpyAmmo>
-    <InfiniteAmmo>True</InfiniteAmmo>
+    <MaximumBumpyAmmo>15</MaximumBumpyAmmo>
+    <InfiniteAmmo>False</InfiniteAmmo>
     <JumpDrain>0</JumpDrain>
     <FlashDrain>0</FlashDrain>
     <PlatinumTime>50</PlatinumTime>
@@ -52,9 +52,9 @@
         <z>1</z>
       </Scaling>
       <AmmoBox>
-        <ExtraSeeds>5</ExtraSeeds>
-        <NormalType>True</NormalType>
-        <BumpyType>False</BumpyType>
+        <ExtraSeeds>2</ExtraSeeds>
+        <NormalType>False</NormalType>
+        <BumpyType>True</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
         <OneTimePickup>False</OneTimePickup>
       </AmmoBox>
@@ -77,9 +77,84 @@
         <z>1</z>
       </Scaling>
       <AmmoBox>
-        <ExtraSeeds>5</ExtraSeeds>
+        <ExtraSeeds>2</ExtraSeeds>
         <NormalType>True</NormalType>
         <BumpyType>False</BumpyType>
+        <TimeToRespawn>20</TimeToRespawn>
+        <OneTimePickup>False</OneTimePickup>
+      </AmmoBox>
+    </GameObject>
+    <GameObject>
+      <Prefab>AmmoBox</Prefab>
+      <Position>
+        <x>330.2162</x>
+        <y>-10.48052</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+      <AmmoBox>
+        <ExtraSeeds>1</ExtraSeeds>
+        <NormalType>True</NormalType>
+        <BumpyType>True</BumpyType>
+        <TimeToRespawn>20</TimeToRespawn>
+        <OneTimePickup>True</OneTimePickup>
+      </AmmoBox>
+    </GameObject>
+    <GameObject>
+      <Prefab>AmmoBox</Prefab>
+      <Position>
+        <x>423.2162</x>
+        <y>-13.48052</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+      <AmmoBox>
+        <ExtraSeeds>2</ExtraSeeds>
+        <NormalType>True</NormalType>
+        <BumpyType>True</BumpyType>
+        <TimeToRespawn>20</TimeToRespawn>
+        <OneTimePickup>True</OneTimePickup>
+      </AmmoBox>
+    </GameObject>
+    <GameObject>
+      <Prefab>AmmoBox</Prefab>
+      <Position>
+        <x>159.5806</x>
+        <y>-7.288016</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+      <AmmoBox>
+        <ExtraSeeds>3</ExtraSeeds>
+        <NormalType>False</NormalType>
+        <BumpyType>True</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
         <OneTimePickup>False</OneTimePickup>
       </AmmoBox>
@@ -681,25 +756,25 @@
     <GameObject>
       <Prefab>FoilegeCollection</Prefab>
       <Position>
-        <x>390.7021</x>
-        <y>-4.27662</y>
-        <z>23.89207</z>
+        <x>574.4393</x>
+        <y>-4.402503</y>
+        <z>23.12554</z>
       </Position>
       <Rotation>
         <x>0</x>
-        <y>18.70953</y>
+        <y>0</y>
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>1.632445</x>
-        <y>1.632445</y>
-        <z>1.632445</z>
+        <x>1.522549</x>
+        <y>1.522549</y>
+        <z>1.522549</z>
       </Scaling>
     </GameObject>
     <GameObject>
       <Prefab>FoilegeCollection</Prefab>
       <Position>
-        <x>138.4008</x>
+        <x>138.6468</x>
         <y>-9.925831</y>
         <z>23.12554</z>
       </Position>
@@ -717,19 +792,19 @@
     <GameObject>
       <Prefab>FoilegeCollection</Prefab>
       <Position>
-        <x>568.3758</x>
-        <y>-4.27662</y>
-        <z>23.89207</z>
+        <x>392.5582</x>
+        <y>-4.402503</y>
+        <z>23.12554</z>
       </Position>
       <Rotation>
         <x>0</x>
-        <y>18.70953</y>
+        <y>0</y>
         <z>0</z>
       </Rotation>
       <Scaling>
-        <x>1.632445</x>
-        <y>1.632445</y>
-        <z>1.632445</z>
+        <x>1.522549</x>
+        <y>1.522549</y>
+        <z>1.522549</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -4623,6 +4698,24 @@
     <GameObject>
       <Prefab>NewBgRock1</Prefab>
       <Position>
+        <x>64.72784</x>
+        <y>-33.9481</y>
+        <z>111.2921</z>
+      </Position>
+      <Rotation>
+        <x>90</x>
+        <y>44.11889</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>3.112103</x>
+        <y>3.112103</y>
+        <z>2.315871</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>NewBgRock1</Prefab>
+      <Position>
         <x>348.6646</x>
         <y>-5.308353</y>
         <z>31.18986</z>
@@ -5847,6 +5940,24 @@
     <GameObject>
       <Prefab>NewBgRock1</Prefab>
       <Position>
+        <x>519.8719</x>
+        <y>-28.82898</y>
+        <z>58.7388</z>
+      </Position>
+      <Rotation>
+        <x>90</x>
+        <y>44.11889</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>3.112103</x>
+        <y>3.112103</y>
+        <z>2.315871</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>NewBgRock1</Prefab>
+      <Position>
         <x>513.7548</x>
         <y>-26.51044</y>
         <z>28.70606</z>
@@ -6912,6 +7023,42 @@
         <x>347.1138</x>
         <y>-24.88429</y>
         <z>61.25519</z>
+      </Position>
+      <Rotation>
+        <x>90</x>
+        <y>44.11889</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>3.112103</x>
+        <y>3.112103</y>
+        <z>2.315871</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>NewBgRock1</Prefab>
+      <Position>
+        <x>317.5164</x>
+        <y>-33.71584</y>
+        <z>122.8687</z>
+      </Position>
+      <Rotation>
+        <x>90</x>
+        <y>44.11889</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>3.112103</x>
+        <y>3.112103</y>
+        <z>2.315871</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>NewBgRock1</Prefab>
+      <Position>
+        <x>236.6632</x>
+        <y>-32.51453</y>
+        <z>137.1098</z>
       </Position>
       <Rotation>
         <x>90</x>
@@ -8331,6 +8478,24 @@
     <GameObject>
       <Prefab>NewBgRock1</Prefab>
       <Position>
+        <x>99.26451</x>
+        <y>-31.34616</y>
+        <z>49.18395</z>
+      </Position>
+      <Rotation>
+        <x>42.86308</x>
+        <y>253.3988</y>
+        <z>120.7182</z>
+      </Rotation>
+      <Scaling>
+        <x>1.978665</x>
+        <y>1.978664</y>
+        <z>1.236185</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>NewBgRock1</Prefab>
+      <Position>
         <x>215.5663</x>
         <y>7.049799</y>
         <z>104.3478</z>
@@ -8980,7 +9145,25 @@
       <Prefab>NormalShroomNew</Prefab>
       <Position>
         <x>-6.438221</x>
-        <y>-14.18446</y>
+        <y>-159.4886</y>
+        <z>422.8588</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>NormalShroomNew</Prefab>
+      <Position>
+        <x>-6.196133</x>
+        <y>-14.14002</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -10669,42 +10852,6 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>-16.01158</x>
-        <y>-12.75181</y>
-        <z>15.03534</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>6.223583</x>
-        <y>-7.226851</y>
-        <z>13.78605</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
       <Prefab>Point light</Prefab>
       <Position>
         <x>14.36148</x>
@@ -11337,63 +11484,9 @@
     <GameObject>
       <Prefab>Point light2</Prefab>
       <Position>
-        <x>322.7418</x>
-        <y>-17.75389</y>
-        <z>13.53579</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>472.8587</x>
-        <y>-2.315607</y>
-        <z>13.66458</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>64.13396</x>
-        <y>-7.127731</y>
-        <z>14.03968</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>450.1046</x>
-        <y>-7.403862</y>
-        <z>13.53579</z>
+        <x>472.6329</x>
+        <y>-2.63331</y>
+        <z>11.33344</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -11412,6 +11505,96 @@
         <x>47.8001</x>
         <y>-13.44958</y>
         <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>449.6687</x>
+        <y>-8.216341</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>323.1515</x>
+        <y>-17.11758</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light3</Prefab>
+      <Position>
+        <x>6.594231</x>
+        <y>-7.545329</y>
+        <z>14.22875</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light3</Prefab>
+      <Position>
+        <x>-16.60302</x>
+        <y>-12.75181</y>
+        <z>15.03534</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light3</Prefab>
+      <Position>
+        <x>63.94821</x>
+        <y>-8.108992</y>
+        <z>14.24174</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -11458,6 +11641,420 @@
         <x>3.82041</x>
         <y>3.820409</y>
         <z>3.820409</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>340.5253</x>
+        <y>-1.887452</y>
+        <z>15.08085</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>248.2156</x>
+        <y>-8.987849</y>
+        <z>14.24654</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>402.6841</x>
+        <y>-11.97649</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>471.7575</x>
+        <y>-5.898509</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>532.5551</x>
+        <y>-10.51098</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>385.4448</x>
+        <y>-8.043226</y>
+        <z>14.76146</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>347.7416</x>
+        <y>-1.887452</y>
+        <z>15.08085</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>303.1204</x>
+        <y>-9.95514</y>
+        <z>14.24654</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>580.2911</x>
+        <y>-4.869617</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>139.2156</x>
+        <y>-9.571594</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>407.2765</x>
+        <y>-13.56625</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>322.7416</x>
+        <y>-14.97896</y>
+        <z>14.24654</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>473.658</x>
+        <y>-5.898509</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>392.9716</x>
+        <y>-8.245445</y>
+        <z>14.76146</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>565.6956</x>
+        <y>-10.86962</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>575.6956</x>
+        <y>-6.869617</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>529.4484</x>
+        <y>-1.979136</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>299.9464</x>
+        <y>-11.32435</y>
+        <z>14.24654</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>377.9716</x>
+        <y>-8.245445</y>
+        <z>14.76146</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>570.6956</x>
+        <y>-8.869617</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>560.6956</x>
+        <y>-12.86962</y>
+        <z>14.82404</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>180</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>260.1104</x>
+        <y>-11.7223</y>
+        <z>14.24654</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>RockFloat</Prefab>
+      <Position>
+        <x>370.4448</x>
+        <y>-8.043226</y>
+        <z>14.76146</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>126.2591</x>
+        <y>113.9581</y>
+        <z>100</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -11913,420 +12510,6 @@
     <GameObject>
       <Prefab>RockFloat</Prefab>
       <Position>
-        <x>340.5253</x>
-        <y>-1.887452</y>
-        <z>15.08085</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>248.2156</x>
-        <y>-8.987849</y>
-        <z>14.24654</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>402.6841</x>
-        <y>-11.97649</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>471.7575</x>
-        <y>-5.898509</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>532.5551</x>
-        <y>-10.51098</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>385.4448</x>
-        <y>-8.043226</y>
-        <z>14.76146</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>347.7416</x>
-        <y>-1.887452</y>
-        <z>15.08085</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>303.1204</x>
-        <y>-9.95514</y>
-        <z>14.24654</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>580.2911</x>
-        <y>-4.869617</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>139.2156</x>
-        <y>-9.571594</y>
-        <z>15</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>407.2765</x>
-        <y>-13.56625</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>322.7416</x>
-        <y>-14.97896</y>
-        <z>14.24654</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>473.658</x>
-        <y>-5.898509</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>392.9716</x>
-        <y>-8.245445</y>
-        <z>14.76146</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>565.6956</x>
-        <y>-10.86962</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>575.6956</x>
-        <y>-6.869617</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>529.4484</x>
-        <y>-1.979136</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>299.9464</x>
-        <y>-11.32435</y>
-        <z>14.24654</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>377.9716</x>
-        <y>-8.245445</y>
-        <z>14.76146</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>570.6956</x>
-        <y>-8.869617</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>560.6956</x>
-        <y>-12.86962</y>
-        <z>14.82404</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>180</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>260.1104</x>
-        <y>-11.7223</y>
-        <z>14.24654</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
-        <x>370.4448</x>
-        <y>-8.043226</y>
-        <z>14.76146</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>126.2591</x>
-        <y>113.9581</y>
-        <z>100</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>RockFloat</Prefab>
-      <Position>
         <x>415.9285</x>
         <y>-13.86065</y>
         <z>14.82404</z>
@@ -12340,6 +12523,42 @@
         <x>126.2591</x>
         <y>113.9581</y>
         <z>100</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>560.6871</x>
+        <y>-10.59071</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>270.0519</x>
+        <y>-13.2238</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -12363,8 +12582,188 @@
     <GameObject>
       <Prefab>ShardPickUp</Prefab>
       <Position>
-        <x>193.0537</x>
+        <x>222.9875</x>
+        <y>-12.86815</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>370.3126</x>
+        <y>-5.696387</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>415.5924</x>
+        <y>-11.53298</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>190.6827</x>
         <y>-8.303981</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>237.8249</x>
+        <y>-9.94983</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>288.1762</x>
+        <y>-11.08772</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>295.5554</x>
+        <y>-9.66367</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>291.6069</x>
+        <y>-9.857859</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>156.2596</x>
+        <y>-8.098688</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>524.5762</x>
+        <y>-4.977607</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>309.8892</x>
+        <y>-6.408879</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -12399,8 +12798,80 @@
     <GameObject>
       <Prefab>ShardPickUp</Prefab>
       <Position>
+        <x>-3.01593</x>
+        <y>-9.646642</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>240.7433</x>
+        <y>-7.891644</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>174.8126</x>
+        <y>-13.2556</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
         <x>347.8122</x>
         <y>0.5786608</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>525.2292</x>
+        <y>-0.9084839</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -12453,6 +12924,78 @@
     <GameObject>
       <Prefab>ShardPickUp</Prefab>
       <Position>
+        <x>-6.055649</x>
+        <y>-11.36291</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>505.5279</x>
+        <y>-3.239902</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>353.3625</x>
+        <y>-8.173985</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>235.9203</x>
+        <y>-12.86815</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
         <x>305.9267</x>
         <y>-18.16204</y>
         <z>15</z>
@@ -12489,8 +13032,98 @@
     <GameObject>
       <Prefab>ShardPickUp</Prefab>
       <Position>
+        <x>75.65925</x>
+        <y>-12.97106</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>26.22847</x>
+        <y>-4.77449</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>436.6627</x>
+        <y>-12.89549</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>479.9666</x>
+        <y>-3.239902</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
         <x>529.4881</x>
         <y>0.3982939</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>588.6871</x>
+        <y>-7.71221</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -12525,8 +13158,332 @@
     <GameObject>
       <Prefab>ShardPickUp</Prefab>
       <Position>
+        <x>244.491</x>
+        <y>-6.847192</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>246.1641</x>
+        <y>-18.2029</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>543.2198</x>
+        <y>-10.45987</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>352.9505</x>
+        <y>-3.947494</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>133.4622</x>
+        <y>-8.412121</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>39.95186</x>
+        <y>-12.97106</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>463.6762</x>
+        <y>-3.239902</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>136.1962</x>
+        <y>-6.845442</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>131.8341</x>
+        <y>-10.40887</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>98.98659</x>
+        <y>-7.889894</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>351.7048</x>
+        <y>-1.138383</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>330.1566</x>
+        <y>-12.90541</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>36.15802</x>
+        <y>-8.42782</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>96.0118</x>
+        <y>-10.33189</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
         <x>580.2584</x>
         <y>-2.491618</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>322.562</x>
+        <y>-12.44791</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>524.5762</x>
+        <y>-8.142481</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>440.8962</x>
+        <y>-8.272692</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>270</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>ShardPickUp</Prefab>
+      <Position>
+        <x>284.8103</x>
+        <y>-13.2238</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -12687,15 +13644,15 @@
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
-          <FlashButton>False</FlashButton>
+          <FlashButton>True</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
         <DestroyOnExit>False</DestroyOnExit>
         <DestroyOnCompletion>True</DestroyOnCompletion>
         <BoundingBox>
-          <x>0.57</x>
-          <y>1.04</y>
+          <x>0.93</x>
+          <y>1.1</y>
           <z>2.53</z>
         </BoundingBox>
       </Tutorial>
@@ -12804,7 +13761,7 @@
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
           <FlashButton>False</FlashButton>
-          <NormalShroomButton>True</NormalShroomButton>
+          <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
         <Textures>
@@ -13012,7 +13969,7 @@
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
           <FlashButton>True</FlashButton>
-          <NormalShroomButton>True</NormalShroomButton>
+          <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
         <Textures>
@@ -13124,7 +14081,7 @@
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
           <FlashButton>False</FlashButton>
-          <NormalShroomButton>True</NormalShroomButton>
+          <NormalShroomButton>False</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
         <Textures>
@@ -13176,7 +14133,7 @@
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
-          <FlashButton>False</FlashButton>
+          <FlashButton>True</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
@@ -13400,7 +14357,7 @@
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
-          <FlashButton>False</FlashButton>
+          <FlashButton>True</FlashButton>
           <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
@@ -13554,8 +14511,8 @@
   </Level>
   <Player>
     <Position>
-      <x>-21.63909</x>
-      <y>-12.90781</y>
+      <x>-21.14179</x>
+      <y>-11.1924</y>
       <z>15</z>
     </Position>
     <Rotation>
