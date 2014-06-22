@@ -68,7 +68,12 @@ private var bumpyShroomButtonRect			:Rect;
 public 	var bumpyShroomButtonX				:float = 1600.0f;
 public 	var bumpyShroomButtonY				:float = 720.0f;
 
-
+public var escapeButton						:Texture2D = null;
+private var escapeButtonRect				:Rect;
+public var escapeButtonPressed				:Texture2D = null;
+public var escapeButtonX					:float = 1650.0f;
+public var escapeButtonY					:float = 20.0f;
+private var escapePressed					:boolean = false;
 
 //scales for button positions
 private var originalWidth 	:float = 1920;
@@ -207,6 +212,10 @@ private function checkReleasingButton():void
 			{
 				bumpyShroomButtonTouched = true;
 			}
+			else if(escapeButtonRect.Contains(inputXY))
+			{
+				Application.LoadLevel("Menu");
+			}
 	}
 	
 	//no return so nothing is touched reset the ones that are enabled
@@ -297,6 +306,10 @@ private function isPressingButton(inputXY:Vector2):void
 			return;
 		}
 	}
+	if(escapeButtonRect.Contains(inputXY))
+	{
+		escapePressed = true;
+	}
 }
 
 private function isTouchingButton(inputXY:Vector2):boolean
@@ -369,6 +382,14 @@ public function OnGUI()
 				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonInactiveTexture);
 			}
 		}
+		if(!escapePressed)
+		{
+			GUI.DrawTexture(escapeButtonRect, escapeButton);
+		}
+		if(escapePressed)
+		{
+			GUI.DrawTexture(escapeButtonRect, escapeButtonPressed);
+		}
 	}
 }
 
@@ -417,12 +438,14 @@ private function scaleButtons():void
 	flashButtonRect			= new Rect(flashButtonX			, flashButtonY			, flashButtonTexture.width			, flashButtonTexture.height);
 	normalShroomButtonRect	= new Rect(normalShroomButtonX	, normalShroomButtonY	, normalShroomButtonTexture.width	, normalShroomButtonTexture.height);
 	bumpyShroomButtonRect  	= new Rect(bumpyShroomButtonX	, bumpyShroomButtonY	, bumpyShroomButtonTexture.width	, bumpyShroomButtonTexture.height);
+	escapeButtonRect 		= new Rect(escapeButtonX, escapeButtonY, escapeButton.width, escapeButton.height);
 	
 	//second scale the rectangles
 	jumpButtonRect 			= scaleRect(jumpButtonRect);
 	flashButtonRect			= scaleRect(flashButtonRect);
 	normalShroomButtonRect	= scaleRect(normalShroomButtonRect);
 	bumpyShroomButtonRect  	= scaleRect(bumpyShroomButtonRect);
+	escapeButtonRect 		= scaleRect(escapeButtonRect);
 }
 
 private function scaleRect(rect:Rect):Rect
