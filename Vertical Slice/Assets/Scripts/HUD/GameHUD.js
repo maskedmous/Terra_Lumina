@@ -28,6 +28,8 @@ public var normalSeedsY:float = 280.0f;
 private var normalSeedsInfinityRect:Rect;
 public var normalSeedsInfinityX:float = 117.0f;
 public var normalSeedsInfinityY:float = 297.0f;
+public var normalSeedsAmmoCountX:float = 130.0f;
+public var normalSeedsAmmoCountY:float = 320.0f;
 
 public var bumpySeedsTexture:Texture2D = null;
 private var bumpySeedsRect:Rect;
@@ -36,6 +38,8 @@ public var bumpySeedsY:float = 365.0f;
 private var bumpySeedsInfinityRect:Rect;
 public var bumpySeedsInfinityX:float = 117.0f;
 public var bumpySeedsInfinityY:float = 385.0f;
+public var bumpySeedsAmmoCountX:float = 130.0f;
+public var bumpySeedsAmmoCountY:float = 407.0f;
 
 private var fontSkin:GUIStyle = new GUIStyle();
 
@@ -87,6 +91,11 @@ public function Awake()
 		
 		batteryBarTex = batteryBarTextures[0] as Texture2D;
 	}
+	fontSkin.font = Resources.Load("Fonts/sofachrome rg", Font);
+	//font colour
+	fontSkin.normal.textColor.b = 197.0 / 255.0;
+	fontSkin.normal.textColor.g = 185.0 / 255.0;
+	fontSkin.normal.textColor.r = 147.0 / 255.0;
 	
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 	checkInfiniteAmmo();
@@ -136,7 +145,6 @@ public function OnGUI():void
 			}
 		}
 	}
-	
 	if(normalSeedsTexture != null && bumpySeedsTexture != null)
 	{
 		GUI.DrawTexture(normalSeedsRect, normalSeedsTexture);
@@ -150,13 +158,17 @@ public function OnGUI():void
 	}
 	else
 	{
+		fontSkin.fontSize = scale.x * 26;
+
 		var currentNormalAmmo:int = gameLogic.getCurrentNormalSeeds();
 		var maximumNormalAmmo:int = gameLogic.getMaximumNormalSeeds();
 		
+		GUI.Label(scaleRect(new Rect(normalSeedsAmmoCountX, normalSeedsAmmoCountY, 100, 100)), currentNormalAmmo.ToString() + "/" + maximumNormalAmmo.ToString(), fontSkin);
+		
 		var currentBumpyAmmo:int = gameLogic.getCurrentBumpySeeds();
 		var maximumBumpyAmmo:int = gameLogic.getMaximumBumpySeeds();
-		//draw currentAmmo / maximum ammo
-		//
+		
+		GUI.Label(scaleRect(new Rect(bumpySeedsAmmoCountX, bumpySeedsAmmoCountY, 100,100)), currentBumpyAmmo.ToString() + "/" + maximumBumpyAmmo.ToString(), fontSkin);
 	}
 }
 
