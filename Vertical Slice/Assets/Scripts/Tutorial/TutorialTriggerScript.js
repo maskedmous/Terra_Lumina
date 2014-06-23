@@ -66,6 +66,10 @@ public function Awake():void
 {
 	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript) as PlayerInputScript;
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+	if (this.gameObject.transform.localPosition.x < -20.0f) {
+		Debug.Log("hello world");
+		this.gameObject.AddComponent("CameraStartScript");
+	}
 }
 //Start because label might not be created yet
 public function Start ():void

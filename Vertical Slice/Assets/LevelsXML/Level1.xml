@@ -11500,168 +11500,6 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>472.6329</x>
-        <y>-2.63331</y>
-        <z>11.33344</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>47.8001</x>
-        <y>-13.44958</y>
-        <z>11.33344</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>449.6687</x>
-        <y>-8.216341</y>
-        <z>11.33344</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>323.1515</x>
-        <y>-17.11758</y>
-        <z>11.33344</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light3</Prefab>
-      <Position>
-        <x>6.594231</x>
-        <y>-7.545329</y>
-        <z>14.22875</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light3</Prefab>
-      <Position>
-        <x>-16.60302</x>
-        <y>-12.75181</y>
-        <z>15.03534</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light3</Prefab>
-      <Position>
-        <x>63.94821</x>
-        <y>-8.108992</y>
-        <z>14.24174</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>rock 3</Prefab>
-      <Position>
-        <x>-42.70927</x>
-        <y>-29.70078</y>
-        <z>25.013</z>
-      </Position>
-      <Rotation>
-        <x>342.9086</x>
-        <y>333.3571</y>
-        <z>27.26575</z>
-      </Rotation>
-      <Scaling>
-        <x>3.82041</x>
-        <y>3.820409</y>
-        <z>3.820409</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>rock 3</Prefab>
-      <Position>
-        <x>631.4789</x>
-        <y>-20.31708</y>
-        <z>21.37471</z>
-      </Position>
-      <Rotation>
-        <x>342.9086</x>
-        <y>333.3571</y>
-        <z>27.26577</z>
-      </Rotation>
-      <Scaling>
-        <x>3.82041</x>
-        <y>3.820409</y>
-        <z>3.820409</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
       <Prefab>Point light</Prefab>
       <Position>
         <x>528.8498</x>
@@ -12109,6 +11947,168 @@
         <x>1</x>
         <y>1</y>
         <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>472.6329</x>
+        <y>-2.63331</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>47.8001</x>
+        <y>-13.44958</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>449.6687</x>
+        <y>-8.216341</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>323.1515</x>
+        <y>-17.11758</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light3</Prefab>
+      <Position>
+        <x>6.594231</x>
+        <y>-7.545329</y>
+        <z>14.22875</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light3</Prefab>
+      <Position>
+        <x>-16.60302</x>
+        <y>-12.75181</y>
+        <z>15.03534</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light3</Prefab>
+      <Position>
+        <x>63.94821</x>
+        <y>-8.108992</y>
+        <z>14.24174</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>rock 3</Prefab>
+      <Position>
+        <x>-42.70927</x>
+        <y>-29.70078</y>
+        <z>25.013</z>
+      </Position>
+      <Rotation>
+        <x>342.9086</x>
+        <y>333.3571</y>
+        <z>27.26575</z>
+      </Rotation>
+      <Scaling>
+        <x>3.82041</x>
+        <y>3.820409</y>
+        <z>3.820409</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>rock 3</Prefab>
+      <Position>
+        <x>631.4789</x>
+        <y>-20.31708</y>
+        <z>21.37471</z>
+      </Position>
+      <Rotation>
+        <x>342.9086</x>
+        <y>333.3571</y>
+        <z>27.26577</z>
+      </Rotation>
+      <Scaling>
+        <x>3.82041</x>
+        <y>3.820409</y>
+        <z>3.820409</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -14042,7 +14042,7 @@
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
         <ButtonsEnabled>
-          <MovementLeft>True</MovementLeft>
+          <MovementLeft>False</MovementLeft>
           <MovementRight>False</MovementRight>
           <JumpButton>False</JumpButton>
           <FlashButton>False</FlashButton>
