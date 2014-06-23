@@ -6,7 +6,6 @@ private var speed:float = 70.0f;
 function Start ():void {
 	cam = Camera.main;
 	cam.transform.position.x = 610.0f;
-	Debug.Log("hello world");
 }
 
 function Update ():void {

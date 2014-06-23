@@ -13,8 +13,8 @@ public var tutorialText:String 	= "";
 public var textInSeconds:int 	= 0;
 
 //movement and button availability
-public var movementLeftEnabled				:boolean = true;
-public var movementRightEnabled				:boolean = true;
+public var movementLeftEnabled				:boolean = false;
+public var movementRightEnabled				:boolean = false;
 public var jumpButtonEnabled				:boolean = false;
 public var flashButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
@@ -66,10 +66,6 @@ public function Awake():void
 {
 	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript) as PlayerInputScript;
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
-	if (this.gameObject.transform.localPosition.x < -20.0f) {
-		Debug.Log("hello world");
-		this.gameObject.AddComponent("CameraStartScript");
-	}
 }
 //Start because label might not be created yet
 public function Start ():void
@@ -79,6 +75,11 @@ public function Start ():void
 	if(label == null)
 	{
 		Debug.LogError("Not initialized properly");
+	}
+	
+	if (!movementLeftEnabled) {
+		Debug.Log("hello world");
+		this.gameObject.AddComponent("CameraStartScript");
 	}
 }
 
