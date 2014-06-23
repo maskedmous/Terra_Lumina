@@ -2863,7 +2863,7 @@
         <z>1</z>
       </Scaling>
       <AmmoBox>
-        <ExtraSeeds>5</ExtraSeeds>
+        <ExtraSeeds>10</ExtraSeeds>
         <NormalType>True</NormalType>
         <BumpyType>False</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
@@ -2888,7 +2888,7 @@
         <z>1</z>
       </Scaling>
       <AmmoBox>
-        <ExtraSeeds>5</ExtraSeeds>
+        <ExtraSeeds>10</ExtraSeeds>
         <NormalType>True</NormalType>
         <BumpyType>False</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
@@ -13588,42 +13588,6 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>392.5582</x>
-        <y>-4.402503</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1.522549</x>
-        <y>1.522549</y>
-        <z>1.522549</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>574.4393</x>
-        <y>-4.402503</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1.522549</x>
-        <y>1.522549</y>
-        <z>1.522549</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
       <Prefab>Point light3</Prefab>
       <Position>
         <x>63.94821</x>
@@ -14431,6 +14395,117 @@
         <x>1</x>
         <y>1</y>
         <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>AmmoBox</Prefab>
+      <Position>
+        <x>159.5806</x>
+        <y>-7.288016</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+      <AmmoBox>
+        <ExtraSeeds>10</ExtraSeeds>
+        <NormalType>False</NormalType>
+        <BumpyType>True</BumpyType>
+        <TimeToRespawn>20</TimeToRespawn>
+        <OneTimePickup>False</OneTimePickup>
+      </AmmoBox>
+    </GameObject>
+    <GameObject>
+      <Prefab>AmmoBox</Prefab>
+      <Position>
+        <x>330.2162</x>
+        <y>-10.48052</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+      <AmmoBox>
+        <ExtraSeeds>6</ExtraSeeds>
+        <NormalType>True</NormalType>
+        <BumpyType>True</BumpyType>
+        <TimeToRespawn>20</TimeToRespawn>
+        <OneTimePickup>True</OneTimePickup>
+      </AmmoBox>
+    </GameObject>
+    <GameObject>
+      <Prefab>AmmoBox</Prefab>
+      <Position>
+        <x>423.2162</x>
+        <y>-13.48052</y>
+        <z>15</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+      <AmmoBox>
+        <ExtraSeeds>10</ExtraSeeds>
+        <NormalType>True</NormalType>
+        <BumpyType>True</BumpyType>
+        <TimeToRespawn>20</TimeToRespawn>
+        <OneTimePickup>True</OneTimePickup>
+      </AmmoBox>
+    </GameObject>
+    <GameObject>
+      <Prefab>FoilegeCollection</Prefab>
+      <Position>
+        <x>395.7623</x>
+        <y>-4.464445</y>
+        <z>23.12554</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1.508631</x>
+        <y>1.50863</y>
+        <z>1.50863</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>FoilegeCollection</Prefab>
+      <Position>
+        <x>577.3387</x>
+        <y>-4.464445</y>
+        <z>23.12554</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1.508631</x>
+        <y>1.50863</y>
+        <z>1.50863</z>
       </Scaling>
     </GameObject>
   </Level>
