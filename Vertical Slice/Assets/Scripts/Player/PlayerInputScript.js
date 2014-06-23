@@ -68,9 +68,10 @@ private var bumpyShroomButtonRect			:Rect;
 public 	var bumpyShroomButtonX				:float = 1600.0f;
 public 	var bumpyShroomButtonY				:float = 720.0f;
 
-public var escapeButton						:Texture2D = null;
+private var currentEscapeButtonTexture		:Texture2D = null;
+public var escapeButtonTexture				:Texture2D = null;
+public var escapeButtonActiveTexture		:Texture2D = null;
 private var escapeButtonRect				:Rect;
-public var escapeButtonPressed				:Texture2D = null;
 public var escapeButtonX					:float = 1650.0f;
 public var escapeButtonY					:float = 20.0f;
 private var escapePressed					:boolean = false;
@@ -94,6 +95,7 @@ public function Awake():void
 	currentFlashButtonTexture			= flashButtonTexture;
 	currentNormalShroomButtonTexture 	= normalShroomButtonTexture;
 	currentBumpyShroomButtonTexture		= bumpyShroomButtonTexture;
+	currentEscapeButtonTexture			= escapeButtonTexture;
 }
 
 public function OnEnable():void
@@ -184,12 +186,14 @@ private function touchBegan(sender:Object, events:TouchEventArgs):void
 	}
 }
 
+//checks whether the button is being pressed or not
 private function checkReleasingButton():void
 {
 	var jumpingButtonTouched		:boolean = false;
 	var flashButtonTouched			:boolean = false;
 	var normalShroomButtonTouched	:boolean = false;
 	var bumpyShroomButtonTouched	:boolean = false;
+	var escapeButtonTouched			:boolean = false;
 	
 	for each(var touchPoint in TouchManager.Instance.ActiveTouches)
 	{
@@ -214,11 +218,11 @@ private function checkReleasingButton():void
 			}
 			else if(escapeButtonRect.Contains(inputXY))
 			{
-				Application.LoadLevel("Menu");
+				escapeButtonTouched = true;
 			}
 	}
 	
-	//no return so nothing is touched reset the ones that are enabled
+		//none of the buttons are touched so reset their textures
 		if(jumpButtonEnabled && !blinkingJumpButton && !jumpingButtonTouched)
 		{
 			currentJumpButtonTexture = jumpButtonTexture;
@@ -237,6 +241,10 @@ private function checkReleasingButton():void
 		if(bumpyShroomButtonEnabled && !blinkingBumpyShroomButton && !bumpyShroomButtonTouched)
 		{
 			currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
+		}
+		if(!escapeButtonTouched)
+		{
+			currentEscapeButtonTexture = escapeButtonTexture;
 		}
 }
 
@@ -309,7 +317,17 @@ private function isPressingButton(inputXY:Vector2):void
 	if(escapeButtonRect.Contains(inputXY))
 	{
 		escapePressed = true;
+		currentEscapeButtonTexture = escapeButtonActiveTexture;
+		Application.LoadLevel("Menu");	//Line to be deleted with update YES / NO
+		return;
 	}
+//	if(escapePressed)
+//	{
+//		if(escapeYesRect.Contains(inputXY))
+//		{
+//			//return to menu
+//		}	
+//	}
 }
 
 private function isTouchingButton(inputXY:Vector2):boolean
@@ -327,6 +345,10 @@ private function isTouchingButton(inputXY:Vector2):boolean
 		return true;
 	}
 	if(bumpyShroomButtonRect.Contains(inputXY))
+	{
+		return true;
+	}
+	if(escapeButtonRect.Contains(inputXY))
 	{
 		return true;
 	}
@@ -375,20 +397,16 @@ public function OnGUI()
 			if(bumpyShroomButtonEnabled)
 			{
 				GUI.DrawTexture(bumpyShroomButtonRect, currentBumpyShroomButtonTexture);
-
 			}
 			else
 			{
 				GUI.DrawTexture(bumpyShroomButtonRect, bumpyShroomButtonInactiveTexture);
 			}
-		}
-		if(!escapePressed && escapeButton != null)
-		{
-			GUI.DrawTexture(escapeButtonRect, escapeButton);
-		}
-		if(escapePressed && escapeButtonPressed != null)
-		{
-			GUI.DrawTexture(escapeButtonRect, escapeButtonPressed);
+			
+			if(!escapePressed && escapeButtonTexture != null)
+			{
+				GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
+			}
 		}
 	}
 }
@@ -439,16 +457,18 @@ private function scaleButtons():void
 	normalShroomButtonRect	= new Rect(normalShroomButtonX	, normalShroomButtonY	, normalShroomButtonTexture.width	, normalShroomButtonTexture.height);
 	bumpyShroomButtonRect  	= new Rect(bumpyShroomButtonX	, bumpyShroomButtonY	, bumpyShroomButtonTexture.width	, bumpyShroomButtonTexture.height);
 	
-	if(escapeButton != null)
+	if(escapeButtonTexture != null)
 	{
-		escapeButtonRect 		= new Rect(escapeButtonX, escapeButtonY, escapeButton.width, escapeButton.height);
+		escapeButtonRect 		= new Rect(escapeButtonX, escapeButtonY, escapeButtonTexture.width, escapeButtonTexture.height);
+		escapeButtonRect 		= scaleRect(escapeButtonRect);
 	}
+	
 	//second scale the rectangles
 	jumpButtonRect 			= scaleRect(jumpButtonRect);
 	flashButtonRect			= scaleRect(flashButtonRect);
 	normalShroomButtonRect	= scaleRect(normalShroomButtonRect);
 	bumpyShroomButtonRect  	= scaleRect(bumpyShroomButtonRect);
-	escapeButtonRect 		= scaleRect(escapeButtonRect);
+	
 }
 
 private function scaleRect(rect:Rect):Rect
