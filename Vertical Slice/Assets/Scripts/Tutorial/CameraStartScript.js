@@ -5,7 +5,7 @@ private var speed:float = 70.0f;
 
 function Start ():void {
 	cam = Camera.main;
-	cam.transform.position.x = 610.0f;
+	cam.transform.position.x = GameObject.Find("EndLevelTrigger").transform.position.x;
 }
 
 function Update ():void {
@@ -25,4 +25,6 @@ private function startGame():void {
 	tutorialTriggerScript.setMovementLeftEnabled(true);
 	playerInputScript.setMovementLeftEnabled(true);
 	cameraScript.setMove(true);
+	
+	Destroy(this);
 }
