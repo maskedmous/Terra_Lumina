@@ -23,6 +23,7 @@ private var lose:boolean = false;
 */
 private var playerController:PlayerController = null;
 private var playerInput:PlayerInputScript = null;
+private var soundEngine:SoundEngineScript = null;
 public var infiniteAmmo:boolean = false;
 public var currentNormalSeeds:int = 0;
 public var maximumNormalSeeds:int = 0;
@@ -77,6 +78,11 @@ public function Start():void
 	var player:GameObject = GameObject.Find("Player");
 	playerController = player.GetComponent(PlayerController) as PlayerController;
 	playerInput = player.GetComponent(PlayerInputScript) as PlayerInputScript;
+	
+	if(Application.loadedLevelName == "LevelLoaderScene")
+	{
+		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
+	}
 	
 	anim = player.GetComponent(Animator);
 }
@@ -198,11 +204,13 @@ function checkWin():boolean
 function gameOverWin():void
 {
 	levelTriggerScript.setFinished(true);
+	soundEngine.playSoundEffect("win");
 }
 
 function gameOverLose():void
 {
 	levelTriggerScript.setLost(true);
+	soundEngine.playSoundEffect("lose");
 }
 
 function startTimer():void

@@ -49,37 +49,41 @@ private var leaveMenuAnim			:boolean = false;
 private var menuAnim				:boolean = true;
 
 //button positions
-public 	var startButtonTexture	:Texture = null;
+public 	var startButtonTexture			:Texture = null;
 public 	var startButtonPressedTexture	:Texture = null;
-private var startButtonRect		:Rect;
-public  var startButtonX			:float = -70.0f;
-public 	var startButtonY			:float = 220.0f;
+public  var currentStartTexture			:Texture2D = null;
+private var startButtonRect				:Rect;
+public  var startButtonX				:float = -70.0f;
+public 	var startButtonY				:float = 220.0f;
 
-public 	var settingsButtonTexture:Texture2D = null;
+public 	var settingsButtonTexture		:Texture2D = null;
 public 	var settingsButtonPressedTexture:Texture2D = null;
-private var settingsButtonRect	:Rect;
-public 	var settingsButtonX		:float = -60.0f;
-public 	var settingsButtonY		:float = 430.0f;
+public  var currentSettingsTexture		:Texture2D = null;
+private var settingsButtonRect			:Rect;
+public 	var settingsButtonX				:float = -60.0f;
+public 	var settingsButtonY				:float = 430.0f;
 
-public 	var creditsButtonTexture:Texture2D = null;
-public 	var creditsButtonPressedTexture:Texture2D = null;
-private var creditsButtonRect	:Rect;
-public 	var creditsButtonX		:float = -55.0f;
-public 	var creditsButtonY		:float = 575.0f;
+public 	var creditsButtonTexture		:Texture2D = null;
+public 	var creditsButtonPressedTexture	:Texture2D = null;
+public  var currentCreditsTexture		:Texture2D = null;
+private var creditsButtonRect			:Rect;
+public 	var creditsButtonX				:float = -55.0f;
+public 	var creditsButtonY				:float = 575.0f;
 
-public 	var exitButtonTexture	:Texture2D = null;
+public 	var exitButtonTexture			:Texture2D = null;
 public 	var exitButtonPressedTexture	:Texture2D = null;
-private var exitButtonRect		:Rect;
-public 	var exitButtonX			:float = -30.0f;
-public 	var exitButtonY			:float = 720.0f;
+public  var currentExitTexture			:Texture2D = null;
+private var exitButtonRect				:Rect;
+public 	var exitButtonX					:float = -30.0f;
+public 	var exitButtonY					:float = 720.0f;
 
-private var backToMenuButtonRect	:Rect;
-public var backToMenuButtonX		:float = -25.0f;
-public var backToMenuButtonY		:float = 870.0f;
+private var backToMenuButtonRect		:Rect;
+public var backToMenuButtonX			:float = -25.0f;
+public var backToMenuButtonY			:float = 870.0f;
 
-private var creditsScreenRect		:Rect;
-public var creditsScreenX			:float = 220.0;
-public var creditsScreenY			:float = 100.0;
+private var creditsScreenRect			:Rect;
+public var creditsScreenX				:float = 220.0;
+public var creditsScreenY				:float = 100.0;
 
 // settings vars
 public var soundSliderTexture		:Texture2D = null;
@@ -135,6 +139,11 @@ public function Awake():void
 	soundSliderTexture 				= textureLoader.getTexture("sliderBackground");
 	soundSliderThumbTexture 		= textureLoader.getTexture("sliderThumb");
 	creditsScreen 					= textureLoader.getTexture("Credits Screen");
+	
+	currentStartTexture = startButtonTexture;
+	currentSettingsTexture = settingsButtonTexture;
+	currentCreditsTexture = creditsButtonTexture;
+	currentExitTexture = exitButtonTexture;
 	
 	menuButtonXStart 	= startButtonX;
 	menuButtonXSettings = settingsButtonX;
@@ -360,6 +369,11 @@ public function OnGUI():void
 		case(menuState.mainMenu):
 		
 			if(menuAnim){
+				currentStartTexture = startButtonTexture;
+				currentSettingsTexture = settingsButtonTexture;
+				currentCreditsTexture = creditsButtonTexture;
+				currentExitTexture = exitButtonTexture;
+				
 				if(startButtonX <= menuButtonXStart){
 					startButtonX += Time.deltaTime * animMultiplier;
 					if(startButtonX >= menuButtonXStart){
@@ -399,6 +413,7 @@ public function OnGUI():void
 			
 			if(leaveMenuAnim){
 				if(clickedStart){
+					currentStartTexture = startButtonPressedTexture;
 					if(settingsButtonX > settingsButtonTexture.width *-1) settingsButtonX -= Time.deltaTime * animMultiplier;
 					if(creditsButtonX > creditsButtonTexture.width * -1) creditsButtonX -= Time.deltaTime * animMultiplier;
 					if(exitButtonX > exitButtonTexture.width * -1) exitButtonX -= Time.deltaTime * animMultiplier;
@@ -413,6 +428,7 @@ public function OnGUI():void
 					}
 				}
 				if(clickedSettings){
+					currentSettingsTexture = settingsButtonPressedTexture;
 					if(startButtonX > startButtonTexture.width *-1) startButtonX -= Time.deltaTime * animMultiplier;
 					if(creditsButtonX > creditsButtonTexture.width * -1) creditsButtonX -= Time.deltaTime * animMultiplier;
 					if(exitButtonX > exitButtonTexture.width * -1) exitButtonX -= Time.deltaTime * animMultiplier;
@@ -427,6 +443,7 @@ public function OnGUI():void
 					}
 				}
 				if(clickedCredits){
+					currentCreditsTexture = creditsButtonPressedTexture;
 					if(settingsButtonX > settingsButtonTexture.width *-1) settingsButtonX -= Time.deltaTime * animMultiplier;
 					if(startButtonX > startButtonTexture.width * -1) startButtonX -= Time.deltaTime * animMultiplier;
 					if(exitButtonX > exitButtonTexture.width * -1) exitButtonX -= Time.deltaTime * animMultiplier;
@@ -441,6 +458,7 @@ public function OnGUI():void
 					}
 				}
 				if(clickedQuit){
+					currentExitTexture = exitButtonPressedTexture;
 					if(settingsButtonX > settingsButtonTexture.width *-1) settingsButtonX -= Time.deltaTime * animMultiplier;
 					if(creditsButtonX > creditsButtonTexture.width * -1) creditsButtonX -= Time.deltaTime * animMultiplier;
 					if(startButtonX > startButtonTexture.width * -1) startButtonX -= Time.deltaTime * animMultiplier;
@@ -456,16 +474,16 @@ public function OnGUI():void
 				}
 			}
 			//start button
-			GUI.DrawTexture(startButtonRect, startButtonTexture);
+			GUI.DrawTexture(startButtonRect, currentStartTexture);
 		  	
 		  	//settings button
-		  	GUI.DrawTexture(settingsButtonRect, settingsButtonTexture);
+		  	GUI.DrawTexture(settingsButtonRect, currentSettingsTexture);
 		  	
 		  	//credits button
-		  	GUI.DrawTexture(creditsButtonRect, creditsButtonTexture);
+		  	GUI.DrawTexture(creditsButtonRect, currentCreditsTexture);
 
 		  	//exit button
-		  	GUI.DrawTexture(exitButtonRect, exitButtonTexture);
+		  	GUI.DrawTexture(exitButtonRect, currentExitTexture);
 		break;
 		
 		case(menuState.startMenu):

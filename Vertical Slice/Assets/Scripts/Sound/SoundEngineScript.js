@@ -21,6 +21,9 @@ private var roverStopSound:AudioClip;
 private var roverAimSound:AudioClip;
 private var rockBreakingSound:AudioClip;
 private var sunChargingSound:AudioClip;
+private var crystalPickup:AudioClip;
+private var winSound:AudioClip;
+private var loseSound:AudioClip;
 
 public function Awake():void
 {
@@ -32,17 +35,20 @@ public function Awake():void
 		soundEngineExists = true;
 		
 		bounceSound = Resources.Load("SoundEffects/Shroom Bounce", AudioClip);
-		jumpSound = Resources.Load("SoundEffects/Rover Jump", AudioClip);
+		jumpSound = Resources.Load("SoundEffects/Rover Jump New 3", AudioClip);
 		shootingSound = Resources.Load("SoundEffects/Rover Shoot", AudioClip);
 		slugForwardSound = Resources.Load("SoundEffects/Move forward", AudioClip);
 		slugBackwardSound = Resources.Load("SoundEffects/Move backwards", AudioClip);
-		roverDriveSound = Resources.Load("SoundEffects/Rover Drive - Loop This", AudioClip);
-		roverStartSound = Resources.Load("SoundEffects/Rover Drive Startup", AudioClip);
-		roverStopSound = Resources.Load("SoundEffects/Rover Drive Stop", AudioClip);
+		roverDriveSound = Resources.Load("SoundEffects/Rover Drive New", AudioClip);
+		roverStartSound = Resources.Load("SoundEffects/Rover Drive Start New", AudioClip);
+		roverStopSound = Resources.Load("SoundEffects/Rover Drive Stop New", AudioClip);
 		roverAimSound = Resources.Load("SoundEffects/Rover Aim", AudioClip);
 		flashSound = Resources.Load("SoundEffects/Rover Flashlight", AudioClip);
-		//rockBreakingSound = Resources.Load("SoundEffects/...", AudioClip);
+		rockBreakingSound = Resources.Load("SoundEffects/Rock Barrier Break v2", AudioClip);
+		crystalPickup = Resources.Load("SoundEffects/DiamondPickup", AudioClip);
 		//sunChargingSound = Resources.Load("SoundEffects/...", AudioClip);
+		winSound = Resources.Load("SoundEffects/Winsound v2", AudioClip);
+		loseSound = Resources.Load("SoundEffects/Losesound v1", AudioClip);
 	}
 	else {
 		Destroy(this.gameObject);
@@ -55,7 +61,7 @@ public function Update():void {
 	}
 	if(driveTimerBool == true){
 		driveTimer += Time.deltaTime;
-		if(driveTimer >= 3.0f){
+		if(driveTimer >= 1.0f){
 			driveTimerBool = false;
 			driveTimer = 0.0f;
 		}
@@ -135,8 +141,17 @@ public function playSoundEffect(name:String):void {
 	if(name == "rock"){
 		audio.PlayOneShot(rockBreakingSound);
 	}
+	if(name == "pickup"){
+		audio.PlayOneShot(crystalPickup);
+	}
 	if(name == "sun"){
 		audio.PlayOneShot(sunChargingSound);
+	}
+	if(name == "win"){
+		audio.PlayOneShot(winSound);
+	}
+	if(name == "lose"){
+		audio.PlayOneShot(loseSound);
 	}
 }
 

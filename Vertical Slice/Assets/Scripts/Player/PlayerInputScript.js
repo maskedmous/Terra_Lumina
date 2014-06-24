@@ -77,6 +77,18 @@ public var escapeButtonX					:float = 1650.0f;
 public var escapeButtonY					:float = 20.0f;
 private var escapePressed					:boolean = false;
 
+public var confirmationTrueTexture			:Texture2D = null;
+public var confirmationFalseTexture			:Texture2D = null;
+public var confirmationScreenTexture		:Texture2D = null;
+private var confirmationScreenRect			:Rect;
+public var confirmationScreenX				:float = 500.0f;
+public var confirmationScreenY				:float = 200.0f;
+public var confirmationButtonY				:float = 500.0f;
+public var confirmationTrueX				:float = 600.0f;
+public var confirmationFalseX				:float = 700.0f; 
+private var confirmationTrueRect			:Rect;
+private var confirmationFalseRect			:Rect;
+
 //scales for button positions
 private var originalWidth 	:float = 1920;
 private var originalHeight	:float = 1080;
@@ -328,10 +340,16 @@ private function isPressingButton(inputXY:Vector2):void
 	}
 //	if(escapePressed)
 //	{
-//		if(escapeYesRect.Contains(inputXY))
+//		if(escapeTrueRect.Contains(inputXY))
 //		{
-//			//return to menu
+//			Application.LoadLevel("Menu");
+//			return;
 //		}	
+//		if(escapeFalseRect.Contains(inputXY))
+//		{
+//			escapePressed = false;
+//			return;
+//		}
 //	}
 }
 
@@ -412,6 +430,13 @@ public function OnGUI()
 			{
 				GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
 			}
+			
+			if(escapePressed)
+			{
+				GUI.DrawTexture(confirmationScreenRect, confirmationScreenTexture);
+				GUI.DrawTexture(confirmationTrueRect, confirmationTrueTexture);
+				GUI.DrawTexture(confirmationFalseRect, confirmationFalseTexture);
+			}
 		}
 	}
 }
@@ -466,6 +491,16 @@ private function scaleButtons():void
 	{
 		escapeButtonRect 		= new Rect(escapeButtonX, escapeButtonY, escapeButtonTexture.width, escapeButtonTexture.height);
 		escapeButtonRect 		= scaleRect(escapeButtonRect);
+	}
+	if(escapePressed)
+	{
+		confirmationScreenRect 		= new Rect(confirmationScreenX, confirmationScreenY, confirmationScreenTexture.width, confirmationScreenTexture.height);
+		confirmationTrueRect 		= new Rect(confirmationTrueX, confirmationButtonY, confirmationTrueTexture.width, confirmationTrueTexture.height);
+		confirmationFalseRect 		= new Rect(confirmationFalseX, confirmationButtonY, confirmationFalseTexture.width, confirmationFalseTexture.height);
+		
+		confirmationScreenRect 		= scaleRect(confirmationScreenRect);
+		confirmationTrueRect 		= scaleRect(confirmationTrueRect);
+		confirmationFalseRect 		= scaleRect(confirmationFalseRect);
 	}
 	
 	//second scale the rectangles
