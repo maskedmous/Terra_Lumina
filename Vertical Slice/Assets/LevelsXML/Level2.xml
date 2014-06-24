@@ -56,7 +56,7 @@
         <NormalType>True</NormalType>
         <BumpyType>False</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
-        <OneTimePickup>False</OneTimePickup>
+        <OneTimePickup>True</OneTimePickup>
       </AmmoBox>
     </GameObject>
     <GameObject>
@@ -81,14 +81,14 @@
         <NormalType>True</NormalType>
         <BumpyType>False</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
-        <OneTimePickup>False</OneTimePickup>
+        <OneTimePickup>True</OneTimePickup>
       </AmmoBox>
     </GameObject>
     <GameObject>
       <Prefab>AmmoBox</Prefab>
       <Position>
         <x>159.5806</x>
-        <y>-7.288016</y>
+        <y>-7.66344</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -106,14 +106,14 @@
         <NormalType>False</NormalType>
         <BumpyType>True</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
-        <OneTimePickup>False</OneTimePickup>
+        <OneTimePickup>True</OneTimePickup>
       </AmmoBox>
     </GameObject>
     <GameObject>
       <Prefab>AmmoBox</Prefab>
       <Position>
         <x>330.2162</x>
-        <y>-10.48052</y>
+        <y>-13.33291</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -138,7 +138,7 @@
       <Prefab>AmmoBox</Prefab>
       <Position>
         <x>423.2162</x>
-        <y>-13.48052</y>
+        <y>-13.85475</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -751,60 +751,6 @@
         <x>1</x>
         <y>1</y>
         <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>574.4393</x>
-        <y>-4.402503</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1.522549</x>
-        <y>1.522549</y>
-        <z>1.522549</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>138.6468</x>
-        <y>-9.925831</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>FoilegeCollection</Prefab>
-      <Position>
-        <x>392.5582</x>
-        <y>-4.402503</y>
-        <z>23.12554</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1.522549</x>
-        <y>1.522549</y>
-        <z>1.522549</z>
       </Scaling>
     </GameObject>
     <GameObject>
@@ -11482,60 +11428,6 @@
       </Scaling>
     </GameObject>
     <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>472.6329</x>
-        <y>-2.63331</y>
-        <z>11.33344</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>47.8001</x>
-        <y>-13.44958</y>
-        <z>11.33344</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>Point light2</Prefab>
-      <Position>
-        <x>449.6687</x>
-        <y>-8.216341</y>
-        <z>11.33344</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
       <Prefab>Point light</Prefab>
       <Position>
         <x>528.8498</x>
@@ -11973,6 +11865,60 @@
         <x>247.1089</x>
         <y>-15.17358</y>
         <z>119.1276</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>472.6329</x>
+        <y>-2.63331</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>47.8001</x>
+        <y>-13.44958</y>
+        <z>11.33344</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
+    </GameObject>
+    <GameObject>
+      <Prefab>Point light2</Prefab>
+      <Position>
+        <x>449.6687</x>
+        <y>-8.216341</y>
+        <z>11.33344</z>
       </Position>
       <Rotation>
         <x>0</x>
@@ -14024,7 +13970,7 @@
         <SlugTutorial>False</SlugTutorial>
         <CrystalTutorial>False</CrystalTutorial>
         <ButtonsEnabled>
-          <MovementLeft>True</MovementLeft>
+          <MovementLeft>False</MovementLeft>
           <MovementRight>False</MovementRight>
           <JumpButton>False</JumpButton>
           <FlashButton>False</FlashButton>
