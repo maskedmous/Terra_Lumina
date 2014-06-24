@@ -84,6 +84,7 @@ private function startGame():void {
 	var cameraScript:CameraScript = Camera.main.GetComponent("CameraScript") as CameraScript;
 	
 	tutorialTriggerScript.setMovementLeftEnabled(true);
+	tutorialTriggerScript.setCameraMoving(false);
 	playerInputScript.setMovementLeftEnabled(true);
 	cameraScript.setMove(true);
 	

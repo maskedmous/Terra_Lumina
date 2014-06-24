@@ -62,6 +62,8 @@ public var timerTexB		:float		= -1;
 public var destroyOnExit:boolean = false;
 public var destroyOnCompletion:boolean = false;
 
+private var cameraMoving:boolean = false;
+
 public function Awake():void
 {
 	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript) as PlayerInputScript;
@@ -79,7 +81,7 @@ public function Start ():void
 	
 	Debug.Log(movementLeftEnabled);
 	if (!movementLeftEnabled) {
-		Debug.Log("hello world");
+		cameraMoving = true;
 		this.gameObject.AddComponent("CameraStartScript");
 	}
 }
@@ -111,7 +113,7 @@ private function scaleRect(rect:Rect):Rect
 
 public function OnGUI():void
 {
-	if(showTutorialTextures)
+	if(showTutorialTextures && !cameraMoving)
 	{
 		scaleButtons();
 		
@@ -177,7 +179,7 @@ public function OnTriggerStay (collider:Collider):void
 {
 	if(collider.gameObject.name == "Player")
 	{
-		timePassed += Time.deltaTime;
+		if (!cameraMoving) timePassed += Time.deltaTime;
 		if(timePassed > textInSeconds)
 		{
 			label.gameObject.guiText.text = "";
@@ -557,4 +559,9 @@ public function getDestroyOnExit():boolean
 public function getDestroyOnCompletion():boolean
 {
 	return destroyOnCompletion;
+}
+
+public function setCameraMoving(value:boolean)
+{
+	cameraMoving = value;
 }
