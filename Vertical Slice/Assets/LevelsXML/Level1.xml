@@ -13778,8 +13778,8 @@
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
-          <FlashButton>False</FlashButton>
-          <NormalShroomButton>False</NormalShroomButton>
+          <FlashButton>True</FlashButton>
+          <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
         <Textures>
@@ -13987,7 +13987,7 @@
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
           <FlashButton>True</FlashButton>
-          <NormalShroomButton>False</NormalShroomButton>
+          <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>False</BumpyShroomButton>
         </ButtonsEnabled>
         <Textures>
@@ -14098,8 +14098,8 @@
           <MovementLeft>True</MovementLeft>
           <MovementRight>True</MovementRight>
           <JumpButton>True</JumpButton>
-          <FlashButton>False</FlashButton>
-          <NormalShroomButton>False</NormalShroomButton>
+          <FlashButton>True</FlashButton>
+          <NormalShroomButton>True</NormalShroomButton>
           <BumpyShroomButton>True</BumpyShroomButton>
         </ButtonsEnabled>
         <Textures>
