@@ -21,6 +21,15 @@ private var amountOfBatteryBars		:int   = 0;
 public var highBatteryTexture		:Texture2D = null;
 public var lowBatteryTexture		:Texture2D = null;
 
+public var scoreTexture:Texture2D = null;
+private var scoreRect:Rect;
+public var scoreX:float = 200.0f;
+public var scoreY:float = -60.0f;
+
+private var scoreTextRect:Rect;
+public var scoreTextX:float = 420.0f;
+public var scoreTextY:float = 38.0f;
+
 public var normalSeedsTexture:Texture2D = null;
 private var normalSeedsRect:Rect;
 public var normalSeedsX:float = 20.0f;
@@ -84,6 +93,8 @@ public function Awake()
 		crystalActive = textureLoader.getTexture("Crystal Active");
 		crystalInactive = textureLoader.getTexture("Crystal Inactive");
 		
+		scoreTexture = textureLoader.getTexture("Score");
+		
 		for(var i:int = 0; i < 10; ++i)
 		{
 			batteryBarTextures.push(textureLoader.getTexture("BatteryBar"+i.ToString()));
@@ -114,6 +125,7 @@ public function OnGUI():void
 	crystalsTotal = gameLogic.getCrystalsToComplete();
 	crystalsCollected = gameLogic.getCrystalsSampleCount();
 	
+	
 	if(showBattery && currentBatteryTexture != null)
 	{
 		GUI.DrawTexture(currentBatteryRect, currentBatteryTexture);
@@ -128,6 +140,14 @@ public function OnGUI():void
 			}
 		}
 	}
+	if(scoreTexture != null)
+	{
+		var scoreText:String = gameLogic.getScore().ToString();
+		GUI.DrawTexture(scoreRect,scoreTexture);
+		fontSkin.fontSize = scale.x * 30;
+		GUI.Label(scoreTextRect,  scoreText, fontSkin);
+	}
+	
 	if(crystalActive != null && crystalInactive != null)
 	{
 		//draw the crystals
@@ -193,6 +213,15 @@ private function scaleHud():void
 		batteryBarRect = scaleRect(batteryBarRect);
 	}
 	
+	if(scoreTexture != null)
+	{
+		scoreRect = new Rect(scoreX, scoreY, scoreTexture.width, scoreTexture.height);
+		scoreRect = scaleRect(scoreRect);
+		
+		scoreTextRect = new Rect(scoreTextX, scoreTextY, 200, 80);
+		scoreTextRect = scaleRect(scoreTextRect);
+	}
+	
 	if(crystalInactive != null && crystalActive != null)
 	{
 		crystalInactiveRect = new Rect(crystalInactiveX, crystalInactiveY, crystalInactive.width, crystalInactive.height);
@@ -213,9 +242,6 @@ private function scaleHud():void
 	}
 	if(infiniteAmmo && infinity != null)
 	{
-//		infinityRect = new Rect(infinityAmmoX, infinityAmmoY, infinity.width, infinity.height);
-//		infinityRect = scaleRect(infinityRect);
-
 		normalSeedsInfinityRect = new Rect(normalSeedsInfinityX, normalSeedsInfinityY, infinity.width, infinity.height);
 		normalSeedsInfinityRect = scaleRect(normalSeedsInfinityRect);
 		bumpySeedsInfinityRect = new Rect(bumpySeedsInfinityX, bumpySeedsInfinityY, infinity.width, infinity.height);
