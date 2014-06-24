@@ -38,7 +38,11 @@ function Start()
 
 function Update () 
 {
-	currentState.update();
+	var myPos:Vector3 = this.gameObject.transform.position;
+	if (myPos.x > slugBoundA.transform.position.x && myPos.x > slugBoundB.transform.position.x) resetPosition();
+	else if (myPos.x < slugBoundA.transform.position.x && myPos.x < slugBoundB.transform.position.x ) resetPosition();
+	
+	currentState.update();	
 }
 
 function toFleeState():void
@@ -66,6 +70,11 @@ function toReturnState():void
 function toChaseState():void
 {
 	currentState = chaseState;
+}
+
+private function resetPosition():void
+{
+	this.gameObject.transform.position = startPosition;
 }
 
 function getDifficulty():String 
