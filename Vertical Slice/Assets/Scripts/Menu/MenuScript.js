@@ -49,8 +49,8 @@ private var leaveMenuAnim			:boolean = false;
 private var menuAnim				:boolean = true;
 
 //button positions
-public 	var startButtonTexture			:Texture = null;
-public 	var startButtonPressedTexture	:Texture = null;
+public 	var startButtonTexture			:Texture2D = null;
+public 	var startButtonPressedTexture	:Texture2D = null;
 public  var currentStartTexture			:Texture2D = null;
 private var startButtonRect				:Rect;
 public  var startButtonX				:float = -70.0f;
@@ -580,10 +580,10 @@ private function scaleButtons():void
 	//first put the rectangles back to its original size before scaling
 	if(currentMenuState == menuState.mainMenu)
 	{
-		startButtonRect 		= new Rect(startButtonX			, startButtonY			, startButtonTexture.width			, startButtonTexture.height);
+		startButtonRect 		= new Rect(startButtonX		, startButtonY		, startButtonTexture.width		, startButtonTexture.height);
 		settingsButtonRect  	= new Rect(settingsButtonX	, settingsButtonY	, settingsButtonTexture.width	, settingsButtonTexture.height);
 		creditsButtonRect  		= new Rect(creditsButtonX	, creditsButtonY	, creditsButtonTexture.width	, creditsButtonTexture.height);
-		exitButtonRect			= new Rect(exitButtonX	, exitButtonY	, exitButtonTexture.width	, exitButtonTexture.height);
+		exitButtonRect			= new Rect(exitButtonX		, exitButtonY		, exitButtonTexture.width		, exitButtonTexture.height);
 		
 		//second scale the rectangles
 		startButtonRect 	= scaleRect(startButtonRect);
@@ -609,8 +609,8 @@ private function scaleButtons():void
 	
 	if(currentMenuState == menuState.creditsMenu)
 	{
-		creditsScreenRect = new Rect(creditsScreenX, creditsScreenY, creditsScreen.width, creditsScreen.height);
-		backToMenuButtonRect 	= new Rect(backToMenuButtonX	, backToMenuButtonY	, backToMenuButton.width	, backToMenuButton.height);
+		creditsScreenRect 	 = new Rect(creditsScreenX		, creditsScreenY	, creditsScreen.width		, creditsScreen.height);
+		backToMenuButtonRect = new Rect(backToMenuButtonX	, backToMenuButtonY	, backToMenuButton.width	, backToMenuButton.height);
 		
 		creditsScreenRect = scaleRect(creditsScreenRect);
 		backToMenuButtonRect = scaleRect(backToMenuButtonRect);
@@ -624,10 +624,10 @@ private function scaleRect(rect:Rect):Rect
 }
 
 private function startMenuAnim(){
-	startButtonX = startButtonTexture.width * -1;
-	settingsButtonX = settingsButtonTexture.width * -1;
-	creditsButtonX = creditsButtonTexture.width * -1;
-	exitButtonX = exitButtonTexture.width * -1;
+	startButtonX 	= startButtonTexture.width 		* -1;
+	settingsButtonX = settingsButtonTexture.width 	* -1;
+	creditsButtonX 	= creditsButtonTexture.width 	* -1;
+	exitButtonX 	= exitButtonTexture.width 		* -1;
 	menuAnim = true;
 	startAnimFinished = settingsAnimFinished = creditsAnimFinished = false;
 }
@@ -711,14 +711,6 @@ private function fillLevelArray():void
 private function sortByLevelID():void
 {
 	levelIDs.sort();
-	
-	/*var sortedArray:Array = new Array();
-	
-	for(var i:int = 0; i < levelIDs.length; ++i)
-	{
-		sortedArray.push(getLevelByID(levelIDs[i]));
-	}
-	*/
 }
 
 private function getLevelID(levelFilename:String):int
