@@ -78,8 +78,6 @@ public function Start ():void
 	{
 		Debug.LogError("Not initialized properly");
 	}
-	
-	Debug.Log(movementLeftEnabled);
 	if (!movementLeftEnabled) {
 		cameraMoving = true;
 		this.gameObject.AddComponent("CameraStartScript");

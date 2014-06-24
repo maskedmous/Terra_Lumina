@@ -153,9 +153,14 @@ function addBatteryPower():void
 	}
 }
 
-function stopBattery():void
+public function stopBattery():void
 {
 	stopBatteryBool = true;
+}
+
+public function startBattery():void
+{
+	stopBatteryBool = false;
 }
 
 function checkLose():void

@@ -223,12 +223,10 @@ private function checkReleasingButton():void
 			}
 			else if(normalShroomButtonRect.Contains(inputXY))
 			{	
-				Debug.Log("Touching normal Button");
 				normalShroomButtonTouched = true;			
 			}
 			else if(bumpyShroomButtonRect.Contains(inputXY))
 			{
-				Debug.Log("Touching bumpy Button");
 				bumpyShroomButtonTouched = true;
 			}
 			else if(escapeButtonRect.Contains(inputXY))
@@ -254,7 +252,6 @@ private function checkReleasingButton():void
 		}
 		if(normalShroomButtonEnabled && chargingNormalShot && !normalShroomButtonTouched)
 		{
-			Debug.Log("Shooting normal");
 			if(blinkingNormalShroomButton) blinkingNormalShroomButton = false;
 			playerController.shoot(0);
 			chargingNormalShot = false;
@@ -266,7 +263,6 @@ private function checkReleasingButton():void
 		}
 		if(bumpyShroomButtonEnabled && chargingBumpyShot && !bumpyShroomButtonTouched)
 		{
-			Debug.Log("Shooting bumpy");
 			if(blinkingBumpyShroomButton) blinkingBumpyShroomButton = false;
 			playerController.shoot(1);
 			chargingBumpyShot = false;

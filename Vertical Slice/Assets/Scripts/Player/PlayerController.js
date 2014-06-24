@@ -48,12 +48,31 @@ private var control:boolean = true;
 
 private var anim:Animator = null;
 
+private var currentMaterial:Material = null;
+private var currentRoverTexture			:Texture2D = null;
+private var highBatteryRoverTexture		:Texture2D = null;
+private var yellowBatteryRoverTexture	:Texture2D = null;
+private var redBatteryRoverTexture		:Texture2D = null;
+
 function Awake():void {
 	gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
 	
 	particleScript = this.gameObject.GetComponent("PlayerParticleScript") as PlayerParticleScript;
 	
 	anim = GetComponent(Animator);
+	
+	if(GameObject.Find("TextureLoader") != null)
+	{
+		var textureLoader:TextureLoader = GameObject.Find("TextureLoader").GetComponent(TextureLoader);
+		
+		highBatteryRoverTexture 	= textureLoader.getTexture("FinalTexture");
+		yellowBatteryRoverTexture 	= textureLoader.getTexture("FinalTextureYellowWarning");
+		redBatteryRoverTexture 		= textureLoader.getTexture("FinalTextureRedWarning");
+		
+		var roverMesh:GameObject = this.gameObject.transform.FindChild("RoverBodyMesh").gameObject;
+		currentMaterial = roverMesh.renderer.material;
+		currentRoverTexture = currentMaterial.GetTexture(0) as Texture2D;
+	}
 	
 	if(Application.loadedLevelName == "LevelLoaderScene")
 	{
@@ -79,6 +98,7 @@ function Start():void {
 
 function Update():void
 {
+	checkBatteryStatus();
 	if(control)
 	{
 		checkIfJumping();
@@ -430,4 +450,38 @@ function bounceShroomX():void
 		velocity = -10.0f;
 	}
 	this.gameObject.rigidbody.velocity.x = velocity;
+}
+
+private function checkBatteryStatus():void
+{
+	var maxBattery			:float = gameLogic.getBatteryCapacity();
+	var currentBatteryPower	:float = gameLogic.getBattery();
+	
+	var amountOfBatteryBars:int = currentBatteryPower / (maxBattery / 10);
+	
+	if(amountOfBatteryBars >= 6)
+	{
+		if(currentRoverTexture != highBatteryRoverTexture)
+		{
+			currentRoverTexture = highBatteryRoverTexture;
+			currentMaterial.SetTexture(0, highBatteryRoverTexture);
+		}
+	}
+	else if(amountOfBatteryBars >= 4 && amountOfBatteryBars <= 5)
+	{		
+		if(currentRoverTexture != yellowBatteryRoverTexture)
+		{
+			currentRoverTexture = yellowBatteryRoverTexture;
+			currentMaterial.SetTexture(0, yellowBatteryRoverTexture);
+		}
+	}
+		
+	else if(amountOfBatteryBars <= 3)
+	{
+		if(currentRoverTexture != redBatteryRoverTexture)
+		{
+			currentRoverTexture = redBatteryRoverTexture;
+			currentMaterial.SetTexture(0, redBatteryRoverTexture);
+		}
+	}
 }

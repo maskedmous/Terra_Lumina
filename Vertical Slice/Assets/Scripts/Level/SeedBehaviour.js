@@ -14,7 +14,12 @@ public function Awake():void
 	meshRenderer = this.gameObject.GetComponent(MeshRenderer);
 }
 
-function OnCollisionEnter(collision:Collision)
+public function Update():void
+{
+	if(this.gameObject.transform.position.y < -80) Destroy(this.gameObject);
+}
+
+public function OnCollisionEnter(collision:Collision):void
 {
 	if (collision.gameObject.name.Contains("GroundPiece"))
 	{
@@ -32,7 +37,7 @@ function OnCollisionEnter(collision:Collision)
 	}
 }
 
-function setShroomType(aShroomType:GameObject)
+public function setShroomType(aShroomType:GameObject):void
 {
 	shroomType = aShroomType;
 	

@@ -13,6 +13,8 @@ private var currentCrystal:int = 0;
 private var startPos:Vector3 = Vector3.zero;
 private var targetPos:Vector3 = Vector3.zero;
 
+private var gameLogic:GameLogic = null;
+
 function Start ():void {
 	cam = Camera.main;
 	cam.transform.position.x = GameObject.Find("EndLevelTrigger").transform.position.x;
@@ -26,6 +28,9 @@ function Start ():void {
 	
 	startPos = Camera.main.gameObject.transform.position;
 	targetPos = crystalPositions[0];
+	
+	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
+	gameLogic.stopBattery();
 }
 
 function Update ():void {
@@ -43,7 +48,7 @@ private function moveCamera():void
 	Camera.main.gameObject.transform.position = Vector3.MoveTowards(camPos, targetPos, speed * Time.deltaTime);
 	Camera.main.gameObject.transform.position.z = 3.0f;
 
-	if (Mathf.Abs(camPos.x - targetPos.x) < 3.0f) {
+	if (Mathf.Abs(camPos.x - targetPos.x) < 0.2f) {
 		timer -= Time.deltaTime;
 		speed = 0.0f;
 		if (timer < 0) {
@@ -87,6 +92,8 @@ private function startGame():void {
 	tutorialTriggerScript.setCameraMoving(false);
 	playerInputScript.setMovementLeftEnabled(true);
 	cameraScript.setMove(true);
+	
+	gameLogic.startBattery();
 	
 	Destroy(this);
 }
