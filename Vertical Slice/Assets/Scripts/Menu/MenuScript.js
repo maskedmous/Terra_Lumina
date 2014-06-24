@@ -116,6 +116,8 @@ public var levelButtonSpaceY:float = 0.0f;
 public var levelButtonX:float = 500.0f;
 public var levelButtonY:float = 300.0f;
 
+private var anim:Animator = null;
+
 public function Awake():void
 {
 	DontDestroyOnLoad(this.gameObject);
@@ -153,6 +155,8 @@ public function Awake():void
 	
 	soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
 	//backButton = textureLoader.getTexture("Back");
+	
+	anim = GameObject.Find("RoverAnimMenu").GetComponent(Animator);
 	
 	min = soundSliderX;
 	max = soundSliderTexture.width;
@@ -254,25 +258,28 @@ private function isReleasingButton(inputXY:Vector2):void
 			if (startButtonRect.Contains(inputXY))
 			{		  		
 		  		leaveMenuAnim = clickedStart = true;
+		  		anim.SetBool("levelBool", true);
 		  	}
 		  	if (settingsButtonRect.Contains(inputXY))
 		  	{
-		  		
+		  		anim.SetBool("settingsBool", true);
 		  		leaveMenuAnim = clickedSettings = true;
 		  	}
 		  	if (creditsButtonRect.Contains(inputXY))
 		  	{
-		  		
+		  		anim.SetBool("creditsBool", true);
 		  		leaveMenuAnim = clickedCredits = true;
 		  	}
 		  	if (exitButtonRect.Contains(inputXY))
 			{
 				
 				leaveMenuAnim = clickedQuit = true;
+				anim.SetBool("exitBool", true);
 			}
 			break;
 			
 			case(menuState.startMenu):
+			
 			//show all levels (max 6? per screen)
 			var levelCount:int = startLevelCount;
 			var spaceCountX:int = 0;
@@ -330,6 +337,7 @@ private function isReleasingButton(inputXY:Vector2):void
 						startMenuAnim();
 						currentMenuState = menuState.mainMenu;
 						touchEnabled = false;
+						anim.SetBool("levelBool", false);
 					}
 				}
 			}
@@ -341,6 +349,7 @@ private function isReleasingButton(inputXY:Vector2):void
 					startMenuAnim();
 					currentMenuState = menuState.mainMenu;
 					touchEnabled = false;
+					anim.SetBool("settingsBool", false);
 				}
 			break;
 			
@@ -350,6 +359,7 @@ private function isReleasingButton(inputXY:Vector2):void
 					startMenuAnim();
 					currentMenuState = menuState.mainMenu;
 					touchEnabled = false;
+					anim.SetBool("creditsBool", false);
 				}
 			break;
 		}
@@ -406,6 +416,9 @@ public function OnGUI():void
 							exitButtonX = menuButtonXExit;
 							menuAnim = false;
 							touchEnabled = true;
+							anim.SetBool("levelBool", false);
+							anim.SetBool("settingsBool", false);
+							anim.SetBool("creditsBool", false);
 						}
 					}
 				}
