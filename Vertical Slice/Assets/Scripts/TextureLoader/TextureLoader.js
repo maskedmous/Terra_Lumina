@@ -32,6 +32,18 @@ public class TextureLoader extends MonoBehaviour
 	private var textureArray:Array 		= new Array();		//array where we put all textures in
 	private var guiStyle:GUIStyle		= new GUIStyle();
 	private var loaded:boolean			= false;
+	
+	private var dotTimer:float = 1.0f;
+	public var dotTexture:Texture2D = null;
+	public var dotX:float = 0.0f;
+	public var dotY:float = 0.0f;
+	private var firstDot:boolean = true;
+	private var secondDot:boolean = false;
+	private var thirdDot:boolean = false;
+	
+	private var scale:Vector2 = new Vector2();
+	private var originalWidth:float = 1920;
+	private var originalHeight:float = 1080;
 	//static variables not to be touched
 	static var LoaderExists:boolean = false;
 	
@@ -43,8 +55,11 @@ public class TextureLoader extends MonoBehaviour
 		//make sure it doesn't exist already
 		if(LoaderExists == false)
 		{
+			guiStyle.font = Resources.Load("Fonts/sofachrome rg", Font);
+			guiStyle.normal.textColor.b = 197.0 / 255.0;
+			guiStyle.normal.textColor.g = 185.0 / 255.0;
+			guiStyle.normal.textColor.r = 147.0 / 255.0;
 			guiStyle.fontSize = fontSize;
-			guiStyle.normal.textColor = Color.white;
 			//the filePath of the textures you want to load(use the root folder, it searches through all subfolders)
 			filePath = Application.dataPath + filePath;	//replace FolderName with the folder you store the Textures in (don't forget to copy the folder to the data folder when compiling)
 			
@@ -66,13 +81,58 @@ public class TextureLoader extends MonoBehaviour
 		}
 	}
 	
+	private function checkDot():void
+	{
+		dotTimer -= Time.deltaTime;
+		
+		if(dotTimer <= 0.0f)
+		{
+			dotTimer = 1.0f;
+			
+			if(firstDot)
+			{
+				firstDot = false;
+				secondDot = true;
+				return;
+			}
+			else if(secondDot)
+			{
+				secondDot = false;
+				thirdDot = true;
+				return;
+			}
+			else if(thirdDot)
+			{
+				thirdDot = false;
+				firstDot = true;
+				return;
+			}
+		}
+	}
+	
 	public function OnGUI():void
 	{
 		if(!loaded)
 		{
+			scale = new Vector2(Screen.width / originalWidth, Screen.height / originalHeight);
+			
 			if(loadingScreen != null)
 			{
-				GUI.DrawTexture(Rect(0,0,Screen.width, Screen.height), loadingScreen);
+				GUI.DrawTexture(new Rect(0,0, Screen.width, Screen.height), loadingScreen);
+			}
+			
+			checkDot();
+			if(firstDot)
+			{
+				GUI.DrawTexture(new Rect(dotX * scale.x, dotY * scale.y, dotTexture.width * scale.x, dotTexture.height * scale.y), dotTexture);
+			}
+			else if(secondDot)
+			{
+				GUI.DrawTexture(new Rect((dotX + 50) * scale.x, dotY * scale.y, dotTexture.width * scale.x, dotTexture.height * scale.y), dotTexture);
+			}
+			else if(thirdDot)
+			{
+				GUI.DrawTexture(new Rect((dotX + 100) * scale.x, dotY * scale.y, dotTexture.width * scale.x, dotTexture.height * scale.y), dotTexture);
 			}
 			
 			if(isLoading())

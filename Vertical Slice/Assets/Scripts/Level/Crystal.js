@@ -15,7 +15,10 @@ function OnTriggerEnter(collider:Collider)
 	if(collider.gameObject.name == "Player")
 	{
 		GameObject.Find("GameLogic").GetComponent(GameLogic).addCrystalSample(this.gameObject);
-		soundEngine.playSoundEffect("pickup");
+		if(soundEngine != null)
+		{
+			soundEngine.playSoundEffect("pickup");
+		}
 		Destroy(this.gameObject);
 	}
 }
