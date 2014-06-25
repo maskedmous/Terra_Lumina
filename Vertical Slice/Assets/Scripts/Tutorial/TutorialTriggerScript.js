@@ -6,6 +6,7 @@ private var gameLogic:GameLogic = null;
 //private var tutorialState:tutorial;
 private var label:GameObject 				= null;
 private var playerInput:PlayerInputScript 	= null;
+private var soundEngine:SoundEngineScript 	= null;
 private var timePassed:float	= 0.0f;
 
 //text to display while inside the box
@@ -68,6 +69,11 @@ public function Awake():void
 {
 	playerInput = GameObject.Find("Player").GetComponent(PlayerInputScript) as PlayerInputScript;
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic) as GameLogic;
+	
+	if(Application.loadedLevelName == "LevelLoaderScene")
+	{
+		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
+	}
 }
 //Start because label might not be created yet
 public function Start ():void
@@ -257,6 +263,7 @@ private function playAnimation():IEnumerator
 	{
 		var animation:Animation = blockObject.GetComponent(Animation);
 		animation.Play();
+		soundEngine.playSoundEffect("rock");
 		var particleSystem:ParticleSystem = blockObject.transform.FindChild("rockDust").GetComponent(ParticleSystem);
 		particleSystem.Play();
 		
