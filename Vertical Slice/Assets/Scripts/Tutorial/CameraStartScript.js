@@ -16,6 +16,11 @@ private var targetPos:Vector3 = Vector3.zero;
 
 private var gameLogic:GameLogic = null;
 
+private var tutorialTexture:Texture2D = null;
+private var tutorialRect:Rect = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
+public var textureX:float = 500.0f;
+public var textureY:float = 500.0f;
+
 function Start ():void {
 	cam = Camera.main;
 	cam.transform.position.x = GameObject.Find("EndLevelTrigger").transform.position.x;
@@ -32,6 +37,10 @@ function Start ():void {
 	
 	gameLogic = GameObject.Find("GameLogic").GetComponent(GameLogic);
 	gameLogic.stopBattery();
+	
+	tutorialTexture = Resources.Load("Textures/ScoreExplanation", Texture2D) as Texture2D;
+	//tutorialRect = new Rect(Screen.width / 2 + tutorialTexture.width / 2, Screen.height / 2 - tutorialTexture.height / 2, tutorialTexture.width, tutorialTexture.height);
+	//zonder scale proberen?
 }
 
 function Update ():void {
@@ -42,6 +51,17 @@ function Update ():void {
 		cam.transform.position.x = -19.082;
 		startGame();
 	}
+}
+
+function OnGUI():void
+{
+	GUI.DrawTexture(scaleRect(new Rect(textureX, textureY, tutorialTexture.width, tutorialTexture.height)), tutorialTexture);
+}
+
+private function scaleRect(rect:Rect):Rect
+{
+	var scale:Vector2 = new Vector2(Screen.width / 1920.0f, Screen.height / 1080.0f);
+	return new Rect(rect.x * scale.x, rect.y * scale.y, rect.width * scale.x, rect.height * scale.y);
 }
 
 private function moveCamera():void
