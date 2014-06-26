@@ -4,7 +4,8 @@ import System.Collections.Generic;
 
 private var cam:Camera;
 private var speed:float = 150.0f;
-private var timer:float = 1.0f;
+private var timer:float = 1.5f;
+private var startTimer:float = 2.0f;
 
 private var crystals:GameObject[];
 private var crystalPositions:List.<Vector3> = new List.<Vector3>();
@@ -34,7 +35,8 @@ function Start ():void {
 }
 
 function Update ():void {
-	moveCamera();
+	if (startTimer > 0) startTimer -= Time.deltaTime;
+	else moveCamera();
 	if (cam.transform.position.x < -19.0f) {
 		speed = 0.0f;
 		cam.transform.position.x = -19.082;
@@ -46,17 +48,17 @@ private function moveCamera():void
 {
 	var camPos:Vector3 = Camera.main.gameObject.transform.position;
 	Camera.main.gameObject.transform.position = Vector3.MoveTowards(camPos, targetPos, speed * Time.deltaTime);
-	Camera.main.gameObject.transform.position.z = 3.0f;
+	Camera.main.gameObject.transform.position.z = 6.0f;
 
 	if (Mathf.Abs(camPos.x - targetPos.x) < 0.2f) {
 		timer -= Time.deltaTime;
 		speed = 0.0f;
 		if (timer < 0) {
-			timer = 1.0f;
+			timer = 1.5f;
 			currentCrystal++;
 			startPos = targetPos;
 			targetPos = crystalPositions[currentCrystal];
-			speed = 150.0f;
+			speed = 140.0f;
 		}
 	}
 }
