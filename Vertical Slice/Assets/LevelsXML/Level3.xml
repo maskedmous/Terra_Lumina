@@ -9162,24 +9162,6 @@
     <GameObject>
       <Prefab>NormalShroomNew</Prefab>
       <Position>
-        <x>-6.438221</x>
-        <y>-159.4886</y>
-        <z>422.8588</z>
-      </Position>
-      <Rotation>
-        <x>0</x>
-        <y>0</y>
-        <z>0</z>
-      </Rotation>
-      <Scaling>
-        <x>1</x>
-        <y>1</y>
-        <z>1</z>
-      </Scaling>
-    </GameObject>
-    <GameObject>
-      <Prefab>NormalShroomNew</Prefab>
-      <Position>
         <x>-6.196133</x>
         <y>-14.14002</y>
         <z>15</z>
