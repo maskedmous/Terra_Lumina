@@ -9,6 +9,11 @@ private var drive:boolean = false;
 private var driveTimer:float = 0.0f;
 private var driveTimerBool:boolean = false;
 
+private var menuSound:AudioClip;
+private var easySound:AudioClip;
+private var mediumSound:AudioClip;
+private var hardSound:AudioClip;
+
 private var bounceSound:AudioClip;
 private var jumpSound:AudioClip;
 private var shootingSound:AudioClip;
@@ -34,6 +39,11 @@ public function Awake():void
 		audio.loop = true;
 		soundEngineExists = true;
 		
+		menuSound = Resources.Load("SoundEffects/Lumina Menu", AudioClip);
+		easySound = Resources.Load("SoundEffects/MusicEasy", AudioClip);
+		mediumSound = Resources.Load("SoundEffects/MusicEasy", AudioClip);
+		hardSound = Resources.Load("SoundEffects/MusicHard", AudioClip);
+		
 		bounceSound = Resources.Load("SoundEffects/Shroom Bounce", AudioClip);
 		jumpSound = Resources.Load("SoundEffects/Rover Jump New 3", AudioClip);
 		shootingSound = Resources.Load("SoundEffects/Rover Shoot", AudioClip);
@@ -53,6 +63,8 @@ public function Awake():void
 	else {
 		Destroy(this.gameObject);
 	}
+	
+	changeMusic("Menu");
 }
 
 public function Update():void {
@@ -65,6 +77,31 @@ public function Update():void {
 			driveTimerBool = false;
 			driveTimer = 0.0f;
 		}
+	}
+}
+
+public function changeMusic(name:String):void
+{
+	audio.Stop();
+	if(name == "Menu")
+	{
+		audio.clip = menuSound;
+		audio.Play();
+	}
+	if(name == "Easy")
+	{
+		audio.clip = easySound;
+		audio.Play();
+	}
+	if(name == "Medium")
+	{
+		audio.clip = mediumSound;
+		audio.Play();
+	}
+	if(name == "Hard")
+	{
+		audio.clip = hardSound;
+		audio.Play();
 	}
 }
 

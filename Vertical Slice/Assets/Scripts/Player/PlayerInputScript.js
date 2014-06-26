@@ -161,6 +161,7 @@ public function Update ():void
 		if(inactiveTimer <= 0.0f)
 		{
 			Application.LoadLevel("Menu");
+			soundEngine.changeMusic("Menu");
 		}
 	}
 	else
@@ -332,6 +333,7 @@ private function isPressingButton(inputXY:Vector2):void
 		escapePressed = true;
 		currentEscapeButtonTexture = escapeButtonActiveTexture;
 		Application.LoadLevel("Menu");	//Line to be deleted with update YES / NO
+		soundEngine.changeMusic("Menu");
 		return;
 	}
 //	if(escapePressed)
@@ -339,11 +341,13 @@ private function isPressingButton(inputXY:Vector2):void
 //		if(escapeTrueRect.Contains(inputXY))
 //		{
 //			Application.LoadLevel("Menu");
+//			soundEngine.changeMusic("Menu");
 //			return;
 //		}	
 //		if(escapeFalseRect.Contains(inputXY))
 //		{
 //			escapePressed = false;
+//			soundEngine.changeMusic("Menu");
 //			return;
 //		}
 //	}

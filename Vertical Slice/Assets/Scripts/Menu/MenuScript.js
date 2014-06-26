@@ -824,6 +824,8 @@ private function loadLevel():IEnumerator
 	levelLoader.setLevel(levelFilename);
 	//load the level
 	levelLoader.loadLevel();
+	//play the music according to the difficulty
+	soundEngine.changeMusic(difficulty);
 	//destroy this gameobject as we don't need the main menu in the game
 	Destroy(this.gameObject);
 }

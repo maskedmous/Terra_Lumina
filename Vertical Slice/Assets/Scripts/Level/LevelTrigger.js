@@ -5,6 +5,7 @@ import TouchScript;
 private var finished:boolean = false;
 private var lost:boolean = false;
 private var gameLogicScript:GameLogic = null;
+private var soundEngine:SoundEngineScript = null;
 private var notFinished:boolean = false;
 private var skin:GUIStyle = new GUIStyle();
 
@@ -33,6 +34,10 @@ public function Awake()
 		//get the textures from the texture loader
 		toMenuWinTexture = textureLoader.getTexture("WIN - return to menu");
 		toMenuLoseTexture = textureLoader.getTexture("LOSE - return to menu");
+	}
+	if(Application.loadedLevelName == "LevelLoaderScene")
+	{
+		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
 	}
 }
 
@@ -70,6 +75,7 @@ private function isPressingButton(inputXY:Vector2):void
 		if (winMenuRect.Contains(inputXY))
 		{
 			Application.LoadLevel("Menu");
+			soundEngine.changeMusic("Menu");
 		}
 	}
 	
@@ -78,6 +84,7 @@ private function isPressingButton(inputXY:Vector2):void
 		if (loseMenuRect.Contains(inputXY))
 		{
 			Application.LoadLevel("Menu");
+			soundEngine.changeMusic("Menu");
 		}
 	}
 }
