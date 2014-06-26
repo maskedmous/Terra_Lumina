@@ -270,12 +270,12 @@ private function isReleasingButton(inputXY:Vector2):void
 		  		anim.SetBool("creditsBool", true);
 		  		leaveMenuAnim = clickedCredits = true;
 		  	}
-		  	if (exitButtonRect.Contains(inputXY))
+		  	/*if (exitButtonRect.Contains(inputXY))
 			{
 				
 				leaveMenuAnim = clickedQuit = true;
 				anim.SetBool("exitBool", true);
-			}
+			}*/
 			break;
 			
 			case(menuState.startMenu):
@@ -496,7 +496,7 @@ public function OnGUI():void
 		  	GUI.DrawTexture(creditsButtonRect, currentCreditsTexture);
 
 		  	//exit button
-		  	GUI.DrawTexture(exitButtonRect, currentExitTexture);
+		  	//GUI.DrawTexture(exitButtonRect, currentExitTexture);
 		break;
 		
 		case(menuState.startMenu):
