@@ -41,7 +41,7 @@ public function Awake():void
 		
 		menuSound = Resources.Load("SoundEffects/Lumina Menu", AudioClip);
 		easySound = Resources.Load("SoundEffects/MusicEasy", AudioClip);
-		mediumSound = Resources.Load("SoundEffects/MusicEasy", AudioClip);
+		mediumSound = Resources.Load("SoundEffects/MusicMedium", AudioClip);
 		hardSound = Resources.Load("SoundEffects/MusicHard", AudioClip);
 		
 		bounceSound = Resources.Load("SoundEffects/Shroom Bounce", AudioClip);
