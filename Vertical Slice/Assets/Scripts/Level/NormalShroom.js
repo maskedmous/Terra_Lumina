@@ -1,16 +1,16 @@
 ﻿#pragma strict
 
-	private var counter:float = -1.0f;
-	
-	private var startScale:float = 0.2f;
-	private var currentScale:float = 0.0f;
-	private var improveScale:float = 0.025f;
-	private var fullGrown:boolean = false;
-	
-	private var animationController:Animator = null;
-	private var jumpedOnShroom:boolean = false;
+private var counter:float = -1.0f;
 
-function Awake():void
+private var startScale:float = 0.2f;
+private var currentScale:float = 0.0f;
+private var improveScale:float = 0.025f;
+private var fullGrown:boolean = false;
+
+private var animationController:Animator = null;
+private var jumpedOnShroom:boolean = false;
+
+public function Awake():void
 {
 	counter = 15.0f;
 	currentScale = startScale;
@@ -18,7 +18,7 @@ function Awake():void
 	animationController = transform.parent.parent.GetComponent(Animator);
 }
 
-function Update():void {
+public function Update():void {
 	if(!animationController.GetCurrentAnimatorStateInfo(0).IsName("Grow")){
 		animationController.SetBool("doneGrowing", true);
 		fullGrown = true;
@@ -26,21 +26,15 @@ function Update():void {
 	if (fullGrown) {	
 		counter -= Time.deltaTime;
 		if(counter <= 0.0f){
-			Destroy(this.gameObject.transform.parent.parent.gameObject);
+			//animationController.Play("Decay");
+			destroyShroom();
 		}
 	}
-	else grow();
 }
 
-private function grow():void {
-	currentScale += improveScale;
-	if (currentScale >= 1.0f){
-		 fullGrown = true;
-		 if(currentScale > 1.0f) {
-		 	currentScale = 1.0f;
-		 }
-	}
-	this.gameObject.transform.localScale = Vector3(currentScale, currentScale, currentScale);
+private function destroyShroom():void
+{
+	Destroy(this.gameObject.transform.parent.parent.gameObject);
 }
 
 public function OnCollisionEnter(obj:Collision):void

@@ -13,7 +13,8 @@ private var yDifference:float = 1.0f;
 
 private var soundEngine:SoundEngineScript = null;
 
-function Awake () {
+public function Awake ():void
+{
 //	counter = 30.0f;
 //	currentScale = startScale;
 	this.gameObject.transform.parent.transform.eulerAngles = Vector3(0, Random.Range(0, 360), 0);
@@ -22,28 +23,29 @@ function Awake () {
 	animationController.Play("Grow");
 }
 
-function Update () {
+public function Update ():void
+{
 	if(!animationController.GetCurrentAnimatorStateInfo(0).IsName("Grow")){
 		animationController.SetBool("doneGrowing", true);
 		fullGrown = true;
 	} 
-	/*if(growCounter >= 0){
-		growCounter -= Time.deltaTime;
-	}
-	if(growCounter <= 0){
-		animationController.SetBool("doneGrowing", true);
-		fullGrown = true;
-		print(fullGrown);
-	}*/
-	if (fullGrown) {	
+	if (fullGrown)
+	{	
 		counter -= Time.deltaTime;
-		if(counter <= 0.0f){
-			Destroy(this.gameObject.transform.parent.parent.gameObject);
+		if(counter <= 0.0f)
+		{
+			//animationController.Play("Decay");
+			destroyShroom();
 		}
 	}
 }
 
-function OnCollisionEnter(obj:Collision):void
+private function destroyShroom():void
+{
+	Destroy(this.gameObject.transform.parent.parent.gameObject);
+}
+
+public function OnCollisionEnter(obj:Collision):void
 {
 	//collision and executed once
 	if(obj.gameObject.name == "Player")

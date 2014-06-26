@@ -53,8 +53,8 @@
       </Scaling>
       <AmmoBox>
         <ExtraSeeds>5</ExtraSeeds>
-        <NormalType>True</NormalType>
-        <BumpyType>False</BumpyType>
+        <NormalType>False</NormalType>
+        <BumpyType>True</BumpyType>
         <TimeToRespawn>20</TimeToRespawn>
         <OneTimePickup>True</OneTimePickup>
       </AmmoBox>

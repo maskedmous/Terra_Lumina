@@ -53,6 +53,7 @@ ModelImporter:
     7400000: Grow
     7400002: Bounce
     7400004: Idle
+    7400006: Decay
     9500000: //RootNode
     13700000: Branch1
     13700002: Branch2
@@ -217,6 +218,76 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 61
       lastFrame: 61.0999985
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Big_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Lower_branch_CTRL/Medium_head_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL
+        weight: 1
+      - path: Main_CTRL/Main_branch_CTRL/Upper_branch_CTRL/Small_head_CTRL
+        weight: 1
+      - path: Main_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Lower_branch_JT/Lower_branch_head_base_JT/Lower_branch_head_top_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT
+        weight: 1
+      - path: Main_JT/Main_middle_JT/Main_head_base_JT/Main_head_top_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT
+        weight: 1
+      - path: Main_JT/Upper_branch_JT/Upper_branch_head_base_JT/Upper_branch_head_top_JT
+        weight: 1
+      - path: Mesh_grp
+        weight: 1
+      - path: Mesh_grp/Branch1
+        weight: 1
+      - path: Mesh_grp/Branch2
+        weight: 1
+      - path: Mesh_grp/Main
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Decay
+      takeName: Take 001
+      firstFrame: 101
+      lastFrame: 160
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -58,6 +58,7 @@ ModelImporter:
     7400000: Grow
     7400002: OnJumping
     7400004: Idle
+    7400006: Decay
     9500000: //RootNode
     13700000: Level1
     13700002: Level2
@@ -231,6 +232,80 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 81
       lastFrame: 81.0999985
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau1_CTRL/Plateau1_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1
+        weight: 1
+      - path: Main_CTRL/Plateau2_CTRL1/Plateau2_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2
+        weight: 1
+      - path: Main_CTRL/Plateau3_CTRL2/Plateau3_rim_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL
+        weight: 1
+      - path: Main_CTRL/Plateau4_CTRL/Plateau4_rim_CTRL
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT
+        weight: 1
+      - path: Rig/Plateau1Bottom_JT/Plateau1Top_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT
+        weight: 1
+      - path: Rig/Plateau2Bottom_JT/Plateau2Top_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT
+        weight: 1
+      - path: Rig/Plateau3Bottom_JT/Plateau3Top_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT
+        weight: 1
+      - path: Rig/Plateau4Bottom_JT/Plateau4Top_JT
+        weight: 1
+      - path: ShroomMesh
+        weight: 1
+      - path: ShroomMesh/Level1
+        weight: 1
+      - path: ShroomMesh/Level2
+        weight: 1
+      - path: ShroomMesh/Level3
+        weight: 1
+      - path: ShroomMesh/Level4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Decay
+      takeName: Take 001
+      firstFrame: 101
+      lastFrame: 160
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
