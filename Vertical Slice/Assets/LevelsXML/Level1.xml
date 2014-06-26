@@ -1440,7 +1440,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>559.0023</x>
+        <x>559.0133</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2214,7 +2214,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>539.0023</x>
+        <x>539.0133</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2322,7 +2322,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow2</Prefab>
       <Position>
-        <x>569.0023</x>
+        <x>569.0133</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2466,7 +2466,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow3</Prefab>
       <Position>
-        <x>579.0023</x>
+        <x>579.0147</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2538,7 +2538,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow3</Prefab>
       <Position>
-        <x>399.0133</x>
+        <x>399.0147</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2772,7 +2772,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>549.0023</x>
+        <x>549.0133</x>
         <y>-16.49659</y>
         <z>15.21535</z>
       </Position>
@@ -2916,7 +2916,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>339.0133</x>
+        <x>339.0147</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>

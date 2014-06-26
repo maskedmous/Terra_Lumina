@@ -369,7 +369,7 @@ private function isReleasingButton(inputXY:Vector2):void
 public function OnGUI():void
 {
 	//background texture
-	GUI.DrawTexture(Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill, true, 0);
+	GUI.DrawTexture(Rect(0, 0, Screen.width, Screen.height), background);
 	
 	//first scale the buttons before drawing them
 	scaleButtons();
