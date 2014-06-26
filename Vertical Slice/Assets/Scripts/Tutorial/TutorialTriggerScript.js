@@ -263,7 +263,10 @@ private function playAnimation():IEnumerator
 	{
 		var animation:Animation = blockObject.GetComponent(Animation);
 		animation.Play();
-		soundEngine.playSoundEffect("rock");
+		if(soundEngine != null)
+		{
+			soundEngine.playSoundEffect("rock");
+		}
 		var particleSystem:ParticleSystem = blockObject.transform.FindChild("rockDust").GetComponent(ParticleSystem);
 		particleSystem.Play();
 		
