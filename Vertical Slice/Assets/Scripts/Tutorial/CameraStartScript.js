@@ -48,7 +48,12 @@ function Update ():void {
 	else moveCamera();
 	if (cam.transform.position.x < -19.0f) {
 		speed = 0.0f;
-		cam.transform.position.x = -19.082;
+		cam.transform.position.x = -19.082f;
+		startGame();
+	}
+	if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.K)) {
+		speed = 0.0f;
+		cam.transform.position.x = -19.082f;
 		startGame();
 	}
 }
