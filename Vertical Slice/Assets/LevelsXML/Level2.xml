@@ -112,7 +112,7 @@
     <GameObject>
       <Prefab>AmmoBox</Prefab>
       <Position>
-        <x>330.2162</x>
+        <x>332.0308</x>
         <y>-13.33291</y>
         <z>15</z>
       </Position>
@@ -2016,7 +2016,7 @@
     <GameObject>
       <Prefab>GroundPieceGround wide 1</Prefab>
       <Position>
-        <x>359.0147</x>
+        <x>359.0133</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>

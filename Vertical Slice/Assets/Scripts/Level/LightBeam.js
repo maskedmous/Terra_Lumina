@@ -12,10 +12,8 @@ public function Awake():void
 	funFactScript = GameObject.Find("Player").GetComponent(FunFactScript) as FunFactScript;
 }
 
-
-function OnTriggerStay(hit:Collider):void
+public function OnTriggerEnter(hit:Collider):void
 {
-	//if it hits anything execute code
 	if(hit.gameObject.name == "Player")
 	{
 		if(!gameLogic.getCharging())
@@ -25,6 +23,16 @@ function OnTriggerStay(hit:Collider):void
 			gameLogic.setCharging(true);
 			
 		}
+	}
+}
+
+
+public function OnTriggerStay(hit:Collider):void
+{
+	//if it hits anything execute code
+	if(hit.gameObject.name == "Player")
+	{
+
 		charge();
 		displayFact();
 	}
@@ -35,7 +43,7 @@ public function OnTriggerExit(hit:Collider):void
 	if (hit.gameObject.name == "Player")
 	{
 		var particleScript:PlayerParticleScript = hit.gameObject.GetComponent(PlayerParticleScript);
-		particleScript.playParticle("charging");
+		particleScript.stopChargeParticle();
 		gameLogic.setCharging(false);
 		stopDisplay();
 	}
