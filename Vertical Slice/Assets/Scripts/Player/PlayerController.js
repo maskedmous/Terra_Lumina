@@ -294,14 +294,14 @@ function chargeShot():void
 	x7 = 7.0f * x8 / 8.0f;
 	
 	//trajectory function: Y = Y0 + tan(angle) * X - (gravity*x*x)/(2*v*v*cos(angle)*cos(angle))
-	var y1:float = (y0 + x1 * 0.75) - (9.81 * x1 * x1) / (1.28 * v);
-	var y2:float = (y0 + x2 * 0.75) - (9.81 * x2 * x2) / (1.28 * v);
-	var y3:float = (y0 + x3 * 0.75) - (9.81 * x3 * x3) / (1.28 * v);
-	var y4:float = (y0 + x4 * 0.75) - (9.81 * x4 * x4) / (1.28 * v);
-	var y5:float = (y0 + x5 * 0.75) - (9.81 * x5 * x5) / (1.28 * v);
-	var y6:float = (y0 + x6 * 0.75) - (9.81 * x6 * x6) / (1.28 * v);
-	var y7:float = (y0 + x7 * 0.75) - (9.81 * x7 * x7) / (1.28 * v);
-	var y8:float = (y0 + x8 * 0.75) - (9.81 * x8 * x8) / (1.28 * v);
+	var y1:float = (y0 + x1 * 0.75) - (9.81 * x1 * x1) / (1.28 * v) + 1;
+	var y2:float = (y0 + x2 * 0.75) - (9.81 * x2 * x2) / (1.28 * v) + 1;
+	var y3:float = (y0 + x3 * 0.75) - (9.81 * x3 * x3) / (1.28 * v) + 1;
+	var y4:float = (y0 + x4 * 0.75) - (9.81 * x4 * x4) / (1.28 * v) + 1;
+	var y5:float = (y0 + x5 * 0.75) - (9.81 * x5 * x5) / (1.28 * v) + 1;
+	var y6:float = (y0 + x6 * 0.75) - (9.81 * x6 * x6) / (1.28 * v) + 1;
+	var y7:float = (y0 + x7 * 0.75) - (9.81 * x7 * x7) / (1.28 * v) + 1;
+	var y8:float = (y0 + x8 * 0.75) - (9.81 * x8 * x8) / (1.28 * v) + 1;
 	//0 = y0 + x8 * tanAngle - (g * x8 * x8) / (2 * (v * v * cosAngle * cosAngle))
 	
 	if (getDirection() == "Left") {
@@ -314,7 +314,7 @@ function chargeShot():void
 		x7 = -x7;
 		x8 = -x8;
 		
-		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x - 2, y0, this.gameObject.transform.position.z));
+		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x - 2, y0 + 1, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x - 2 + x1, y1, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(2, new Vector3(this.gameObject.transform.position.x - 2 + x2, y2, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(3, new Vector3(this.gameObject.transform.position.x - 2 + x3, y3, this.gameObject.transform.position.z));
@@ -325,7 +325,7 @@ function chargeShot():void
 		lineRenderer.SetPosition(8, new Vector3(this.gameObject.transform.position.x - 2 + x8, y8, this.gameObject.transform.position.z));
 	}
 	else {	
-		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x + 2, y0, this.gameObject.transform.position.z));
+		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x + 2, y0 + 1, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x + 2 + x1, y1, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(2, new Vector3(this.gameObject.transform.position.x + 2 + x2, y2, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(3, new Vector3(this.gameObject.transform.position.x + 2 + x3, y3, this.gameObject.transform.position.z));
@@ -360,12 +360,12 @@ function shoot(shroomType:int):IEnumerator
 	if (getDirection() == "Right")
 	{
 		newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject));
-		newSeed.transform.position = this.gameObject.transform.position + new Vector3(2, 0, 0);
+		newSeed.transform.position = this.gameObject.transform.position + new Vector3(2, 1, 0);
 	}
 	else
 	{
 		newSeed = Instantiate(Resources.Load("Prefabs/Seed", GameObject));
-		newSeed.transform.position = this.gameObject.transform.position - new Vector3(2, 0, 0);
+		newSeed.transform.position = this.gameObject.transform.position - new Vector3(2, -1, 0);
 	}
 	newSeed.gameObject.name = "Seed";
 	newSeed.gameObject.transform.parent = GameObject.Find("SeedContainer").gameObject.transform;
@@ -390,7 +390,7 @@ function flash():void
 	layerMask = ~layerMask;
 	if (getDirection() == "Right") direction = new Vector3(1.0f, 0.0f, 0.0f);
 	else if (getDirection() == "Left") direction = new Vector3(-1.0f, 0.0f, 0.0f);
-	if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 100.0f, layerMask))
+	if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 30.0f, layerMask))
 	{
 		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
 		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
