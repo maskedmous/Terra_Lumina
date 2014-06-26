@@ -431,7 +431,7 @@ public function OnGUI()
 				GUI.DrawTexture(escapeButtonRect, currentEscapeButtonTexture);
 			}
 			
-			if(escapePressed)
+			if(escapePressed && confirmationScreenTexture != null)
 			{
 				GUI.DrawTexture(confirmationScreenRect, confirmationScreenTexture);
 				GUI.DrawTexture(confirmationTrueRect, confirmationTrueTexture);
@@ -492,7 +492,7 @@ private function scaleButtons():void
 		escapeButtonRect 		= new Rect(escapeButtonX, escapeButtonY, escapeButtonTexture.width, escapeButtonTexture.height);
 		escapeButtonRect 		= scaleRect(escapeButtonRect);
 	}
-	if(escapePressed)
+	if(escapePressed && confirmationScreenTexture != null)
 	{
 		confirmationScreenRect 		= new Rect(confirmationScreenX, confirmationScreenY, confirmationScreenTexture.width, confirmationScreenTexture.height);
 		confirmationTrueRect 		= new Rect(confirmationTrueX, confirmationButtonY, confirmationTrueTexture.width, confirmationTrueTexture.height);

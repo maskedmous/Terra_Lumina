@@ -59,12 +59,13 @@ public function Awake():void
 		//sunChargingSound = Resources.Load("SoundEffects/...", AudioClip);
 		winSound = Resources.Load("SoundEffects/Winsound v2", AudioClip);
 		loseSound = Resources.Load("SoundEffects/Losesound v1", AudioClip);
+		
+		changeMusic("Menu");
 	}
-	else {
+	else
+	{
 		Destroy(this.gameObject);
 	}
-	
-	changeMusic("Menu");
 }
 
 public function Update():void {
