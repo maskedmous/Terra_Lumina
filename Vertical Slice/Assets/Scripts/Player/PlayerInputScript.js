@@ -79,13 +79,15 @@ private var escapePressed					:boolean = false;
 
 public var confirmationTrueTexture			:Texture2D = null;
 public var confirmationFalseTexture			:Texture2D = null;
+public var confirmationTruePressedTexture	:Texture2D = null;
+public var confirmationFalsePressedTexture	:Texture2D = null;
 public var confirmationScreenTexture		:Texture2D = null;
 private var confirmationScreenRect			:Rect;
 public var confirmationScreenX				:float = 500.0f;
 public var confirmationScreenY				:float = 200.0f;
 public var confirmationButtonY				:float = 500.0f;
-public var confirmationTrueX				:float = 600.0f;
-public var confirmationFalseX				:float = 700.0f; 
+public var confirmationTrueX				:float = 200.0f;
+public var confirmationFalseX				:float = 1020.0f;  
 private var confirmationTrueRect			:Rect;
 private var confirmationFalseRect			:Rect;
 
@@ -332,25 +334,25 @@ private function isPressingButton(inputXY:Vector2):void
 	{
 		escapePressed = true;
 		currentEscapeButtonTexture = escapeButtonActiveTexture;
-		Application.LoadLevel("Menu");	//Line to be deleted with update YES / NO
-		soundEngine.changeMusic("Menu");
+		//Application.LoadLevel("Menu");	//Line to be deleted with update YES / NO
+		//soundEngine.changeMusic("Menu");
 		return;
 	}
-//	if(escapePressed)
-//	{
-//		if(escapeTrueRect.Contains(inputXY))
-//		{
-//			Application.LoadLevel("Menu");
-//			soundEngine.changeMusic("Menu");
-//			return;
-//		}	
-//		if(escapeFalseRect.Contains(inputXY))
-//		{
-//			escapePressed = false;
-//			soundEngine.changeMusic("Menu");
-//			return;
-//		}
-//	}
+	if(escapePressed)
+	{
+		if(confirmationTrueRect.Contains(inputXY))
+		{
+			Application.LoadLevel("Menu");
+			soundEngine.changeMusic("Menu");
+			return;
+		}	
+		if(confirmationFalseRect.Contains(inputXY))
+		{
+			escapePressed = false;
+			soundEngine.changeMusic("Menu");
+			return;
+		}
+	}
 }
 
 private function isTouchingButton(inputXY:Vector2):boolean

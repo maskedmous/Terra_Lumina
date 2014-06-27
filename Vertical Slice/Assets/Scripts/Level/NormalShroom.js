@@ -10,6 +10,8 @@ private var fullGrown:boolean = false;
 private var animationController:Animator = null;
 private var jumpedOnShroom:boolean = false;
 
+public var slowdown:float = 0.5f;
+
 public function Awake():void
 {
 	counter = 15.0f;
@@ -26,9 +28,14 @@ public function Update():void {
 	if (fullGrown) {	
 		counter -= Time.deltaTime;
 		if(counter <= 0.0f){
-			//animationController.Play("Decay");
-			destroyShroom();
+			animationController.Play("Decay");
+			this.gameObject.transform.position.y -= Time.deltaTime * slowdown;
+			//destroyShroom();
 		}
+	}
+	if(animationController.GetCurrentAnimatorStateInfo(0).IsName("doneDecay"))
+	{
+		destroyShroom();
 	}
 }
 

@@ -13,6 +13,8 @@ private var yDifference:float = 1.0f;
 
 private var soundEngine:SoundEngineScript = null;
 
+public var slowdown:float = 1.1f;
+
 public function Awake ():void
 {
 //	counter = 30.0f;
@@ -34,9 +36,14 @@ public function Update ():void
 		counter -= Time.deltaTime;
 		if(counter <= 0.0f)
 		{
-			//animationController.Play("Decay");
-			destroyShroom();
+			animationController.Play("Decay");
+			this.gameObject.transform.position.y -= Time.deltaTime * slowdown;
+			//destroyShroom();
 		}
+	}
+	if(animationController.GetCurrentAnimatorStateInfo(0).IsName("doneDecay"))
+	{
+		destroyShroom();
 	}
 }
 
