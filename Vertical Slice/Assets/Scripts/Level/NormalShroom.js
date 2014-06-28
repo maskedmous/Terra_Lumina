@@ -10,7 +10,7 @@ private var fullGrown:boolean = false;
 private var animationController:Animator = null;
 private var jumpedOnShroom:boolean = false;
 
-public var slowdown:float = 0.5f;
+public var slowdown:float = 0.65f;
 
 public function Awake():void
 {
