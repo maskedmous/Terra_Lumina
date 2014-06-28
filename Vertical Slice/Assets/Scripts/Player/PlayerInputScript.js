@@ -83,11 +83,11 @@ public var confirmationTruePressedTexture	:Texture2D = null;
 public var confirmationFalsePressedTexture	:Texture2D = null;
 public var confirmationScreenTexture		:Texture2D = null;
 private var confirmationScreenRect			:Rect;
-public var confirmationScreenX				:float = 500.0f;
-public var confirmationScreenY				:float = 200.0f;
-public var confirmationButtonY				:float = 500.0f;
-public var confirmationTrueX				:float = 200.0f;
-public var confirmationFalseX				:float = 1020.0f;  
+public var confirmationScreenX				:float = 0.0f;
+public var confirmationScreenY				:float = 0.0f;
+public var confirmationButtonY				:float = 700.0f;
+public var confirmationTrueX				:float = 288.0f;
+public var confirmationFalseX				:float = 1090.0f;   
 private var confirmationTrueRect			:Rect;
 private var confirmationFalseRect			:Rect;
 
@@ -349,7 +349,6 @@ private function isPressingButton(inputXY:Vector2):void
 		if(confirmationFalseRect.Contains(inputXY))
 		{
 			escapePressed = false;
-			soundEngine.changeMusic("Menu");
 			return;
 		}
 	}

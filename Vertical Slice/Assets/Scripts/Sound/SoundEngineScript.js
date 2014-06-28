@@ -32,12 +32,13 @@ private var loseSound:AudioClip;
 
 public function Awake():void
 {
-	DontDestroyOnLoad(this.gameObject);
+	
 	
 	if(soundEngineExists == false) {
 		audio.volume = volume;
 		audio.loop = true;
 		soundEngineExists = true;
+		DontDestroyOnLoad(this.gameObject);
 		
 		menuSound = Resources.Load("SoundEffects/Lumina Menu", AudioClip);
 		easySound = Resources.Load("SoundEffects/MusicEasy", AudioClip);
