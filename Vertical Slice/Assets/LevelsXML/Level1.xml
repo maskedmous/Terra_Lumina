@@ -13651,9 +13651,9 @@
         <DestroyOnExit>False</DestroyOnExit>
         <DestroyOnCompletion>True</DestroyOnCompletion>
         <BoundingBox>
-          <x>0.93</x>
-          <y>1.1</y>
-          <z>2.53</z>
+          <x>0.84</x>
+          <y>1.15</y>
+          <z>0.55</z>
         </BoundingBox>
       </Tutorial>
     </GameObject>
