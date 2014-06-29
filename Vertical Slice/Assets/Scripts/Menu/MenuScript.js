@@ -260,12 +260,12 @@ private function isReleasingButton(inputXY:Vector2):void
 		  		leaveMenuAnim = clickedStart = true;
 		  		anim.SetBool("levelBool", true);
 		  	}
-		  	if (settingsButtonRect.Contains(inputXY))
+		  	else if (settingsButtonRect.Contains(inputXY))
 		  	{
 		  		anim.SetBool("settingsBool", true);
 		  		leaveMenuAnim = clickedSettings = true;
 		  	}
-		  	if (creditsButtonRect.Contains(inputXY))
+		  	else if (creditsButtonRect.Contains(inputXY))
 		  	{
 		  		anim.SetBool("creditsBool", true);
 		  		leaveMenuAnim = clickedCredits = true;
