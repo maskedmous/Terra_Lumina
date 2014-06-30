@@ -82,20 +82,24 @@ public var backToMenuButtonX			:float = -25.0f;
 public var backToMenuButtonY			:float = 870.0f;
 
 private var creditsScreenRect			:Rect;
-public var creditsScreenX				:float = 220.0;
-public var creditsScreenY				:float = 100.0;
+public var creditsScreenX				:float = 0.0;
+public var creditsScreenY				:float = 0.0;
 
 // settings vars
 public var soundSliderTexture		:Texture2D = null;
 public var soundSliderThumbTexture	:Texture2D = null;
 private var soundSliderRect			:Rect;
-public 	var soundSliderX			:float = 200.0f;
-public 	var soundSliderY			:float = 675.0f;
+public 	var soundSliderX			:float = 600.0f;
+public 	var soundSliderY			:float = 360.0f;
 private var soundSliderThumbRect	:Rect;
-public 	var soundSliderThumbX		:float = 200.0f;
-public 	var soundSliderThumbY		:float = 650.0f;
+public 	var soundSliderThumbX		:float = 1350.0f;
+public 	var soundSliderThumbY		:float = 338.0f;
 private var soundSetting			:float = 1.0f;
 public var sliderSkin				:GUISkin;
+public var optionsScreenTexture		:Texture2D = null;
+private var optionsScreenRect		:Rect;
+public var optionsScreenX			:float = 0.0f;
+public var optionsScreenY			:float = 0.0f;
 
 //scales for button positions
 private var originalWidth 	:float = 1920.0f;
@@ -141,6 +145,7 @@ public function Awake():void
 	soundSliderTexture 				= textureLoader.getTexture("sliderBackground");
 	soundSliderThumbTexture 		= textureLoader.getTexture("sliderThumb");
 	creditsScreen 					= textureLoader.getTexture("Credits Screen");
+	optionsScreenTexture			= textureLoader.getTexture("Options Screen");
 	
 	currentStartTexture = startButtonTexture;
 	currentSettingsTexture = settingsButtonTexture;
@@ -558,6 +563,7 @@ public function OnGUI():void
 		case(menuState.optionsMenu):
 			GUI.DrawTexture(soundSliderRect, soundSliderTexture);
 			GUI.DrawTexture(soundSliderThumbRect, soundSliderThumbTexture);
+			GUI.DrawTexture(optionsScreenRect, optionsScreenTexture);
 
 			//back button
 			GUI.DrawTexture(backToMenuButtonRect, backToMenuButton);
@@ -600,10 +606,12 @@ private function scaleButtons():void
 	{
 		soundSliderRect 		= new Rect(soundSliderX			, soundSliderY		, soundSliderTexture.width	, soundSliderTexture.height);
 		soundSliderThumbRect 	= new Rect(soundSliderThumbX	, soundSliderThumbY	, soundSliderThumbTexture.width	, soundSliderThumbTexture.height);
+		optionsScreenRect 		= new Rect(optionsScreenX		, optionsScreenY	, optionsScreenTexture.width	, optionsScreenTexture.height);
 		backToMenuButtonRect 	= new Rect(backToMenuButtonX	, backToMenuButtonY	, backToMenuButton.width	, backToMenuButton.height);
 	
 		soundSliderRect  	 = scaleRect(soundSliderRect);
 		soundSliderThumbRect = scaleRect(soundSliderThumbRect);
+		optionsScreenRect  	 = scaleRect(optionsScreenRect);
 		backToMenuButtonRect = scaleRect(backToMenuButtonRect);
 	}
 	
