@@ -118,7 +118,7 @@ public class TextureLoader extends MonoBehaviour
 			
 			if(loadingScreen != null)
 			{
-				GUI.DrawTexture(new Rect(0,0, Screen.width, Screen.height), loadingScreen);
+				GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), loadingScreen);
 			}
 			
 			checkDot();
@@ -137,7 +137,7 @@ public class TextureLoader extends MonoBehaviour
 			
 			if(isLoading())
 			{
-				GUI.Label(Rect(Screen.width / 2, Screen.height / 2 + (Screen.height * 5 / 16), loadedLabelWidth, loadedLabelHeight), percentLoaded(), guiStyle);
+				GUI.Label(new Rect(Screen.width / 2, Screen.height / 2 + (Screen.height * 5 / 16), loadedLabelWidth, loadedLabelHeight), percentLoaded(), guiStyle);
 			}	
 		}
 	}
