@@ -163,12 +163,11 @@ public function Awake():void
 	
 	anim = GameObject.Find("RoverAnimMenu").GetComponent(Animator);
 	
-	min = soundSliderX;
-	max = soundSliderTexture.width;
+	min = soundSliderX + 27;
+	max = soundSliderX + soundSliderTexture.width - 20;
 	calculationLength = max - min;
-	calculation = (soundSliderThumbX - min) / calculationLength;
-	soundEngine.changeVolume(soundEngine.getVolume());
-	soundSliderThumbX = soundEngine.getVolume() * calculationLength + min;
+	soundSliderThumbX = (soundEngine.getVolume() * calculationLength) + min - (soundSliderThumbTexture.width / 2);
+	calculateSound();
 	
 	if(startButtonTexture == null || exitButtonTexture == null || settingsButtonTexture == null || background == null || loadingScreen == null)
 	{
@@ -200,7 +199,8 @@ public function OnDisable():void
 	}
 }
 
-private function calculateSound(){
+private function calculateSound()
+{
 	calculation = (soundSliderThumbX - min) / calculationLength;
 	soundEngine.changeVolume(Mathf.Clamp(calculation, 0.0, 1.0));
 }
@@ -214,14 +214,15 @@ private function touchMoved(sender:Object, events:TouchEventArgs):void
 				var position:Vector2 = touchPoint.Position;
 				position = Vector2(position.x, (position.y - Screen.height)*-1);
 				//scaled rect.contains position
-				if(soundSliderRect.Contains(position)){
+				if(soundSliderRect.Contains(position))
+				{
 					//sliderEnabled = true;
 					soundSliderThumbX = (position.x / scale.x) - (soundSliderThumbTexture.width / 2);
+					if(soundSliderThumbX + (soundSliderThumbTexture.width / 2) < min) soundSliderThumbX = min - (soundSliderThumbTexture.width / 2);
+					else if(soundSliderThumbX + (soundSliderThumbTexture.width / 2) > max) soundSliderThumbX = max - (soundSliderThumbTexture.width / 2);
 					calculateSound();
 				}
 			}
-			
-			//soundSliderThumbRect = new Rect(touchPoint.Position.x, soundSliderThumbRect.yMax, soundSliderThumbTexture.width, soundSliderThumbTexture.height);
 	}
 }
 
@@ -237,6 +238,8 @@ private function touchBegan(sender:Object, events:TouchEventArgs):void
 			if(soundSliderRect.Contains(position)){
 				//sliderEnabled = true;
 				soundSliderThumbX = (position.x / scale.x) - ((soundSliderThumbTexture.width / 2));
+				if(soundSliderThumbX + (soundSliderThumbTexture.width / 2) < min) soundSliderThumbX = min - (soundSliderThumbTexture.width / 2);
+				else if(soundSliderThumbX + (soundSliderThumbTexture.width / 2) > max) soundSliderThumbX = max - (soundSliderThumbTexture.width / 2);
 				calculateSound();
 			}
 		}
