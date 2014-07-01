@@ -21,7 +21,6 @@ public function OnTriggerEnter(hit:Collider):void
 			var particleScript:PlayerParticleScript = hit.gameObject.GetComponent(PlayerParticleScript);
 			particleScript.playParticle("charging");
 			gameLogic.setCharging(true);
-			
 		}
 	}
 }
@@ -32,8 +31,7 @@ public function OnTriggerStay(hit:Collider):void
 	//if it hits anything execute code
 	if(hit.gameObject.name == "Player")
 	{
-
-		charge();
+		charge(hit.gameObject);
 		displayFact();
 	}
 }
@@ -45,15 +43,26 @@ public function OnTriggerExit(hit:Collider):void
 		var particleScript:PlayerParticleScript = hit.gameObject.GetComponent(PlayerParticleScript);
 		particleScript.stopChargeParticle();
 		gameLogic.setCharging(false);
+		gameLogic.setFullyChargedFalse();
 		stopDisplay();
 	}
 }
 
-private function charge():void
+private function charge(player:GameObject):void
 {
 	if(secondTimer > increaseBatteryTimer)
 	{
-		gameLogic.addBatteryPower();
+		
+		if(gameLogic.getBattery() >= gameLogic.getBatteryCapacity())
+		{
+			var particleScript:PlayerParticleScript = player.gameObject.GetComponent(PlayerParticleScript);
+			particleScript.stopChargeParticle();
+		}
+		else
+		{
+			gameLogic.addBatteryPower();
+		}
+		
 		secondTimer = 0.0f;
 	}
 	else

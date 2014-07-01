@@ -150,6 +150,7 @@ function addBatteryPower():void
 	if(battery > maximumBatteryCapacity)
 	{
 		battery = maximumBatteryCapacity;
+		anim.SetBool("isFullyCharged", true);
 	}
 }
 
@@ -515,6 +516,10 @@ public function setCharging(value:boolean):void
 	charging = value;
 }
 
+public function setFullyChargedFalse():void
+{
+	anim.SetBool("isFullyCharged", false);
+}
 
 //
 //Crystals

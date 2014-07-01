@@ -54,7 +54,8 @@ private var highBatteryRoverTexture		:Texture2D = null;
 private var yellowBatteryRoverTexture	:Texture2D = null;
 private var redBatteryRoverTexture		:Texture2D = null;
 
-function Awake():void {
+public function Awake():void
+{
 	gameLogic = GameObject.Find("GameLogic").GetComponent("GameLogic") as GameLogic;
 	
 	particleScript = this.gameObject.GetComponent("PlayerParticleScript") as PlayerParticleScript;
@@ -83,7 +84,8 @@ function Awake():void {
 	shrooms.Add(Resources.Load("Prefabs/BumpyShroom") as GameObject);
 }
 
-function Start():void {
+public function Start():void
+{
 	lineRenderer = this.gameObject.GetComponent(LineRenderer);
 	lineRenderer.enabled = false;
 	g = -Physics.gravity.y;
@@ -96,7 +98,7 @@ function Start():void {
 	wheels.Add(this.gameObject.transform.FindChild("Wheel4").gameObject);
 }
 
-function Update():void
+public function Update():void
 {
 	checkBatteryStatus();
 	if(control)
@@ -161,10 +163,12 @@ private function checkIfJumping():void
 	if (cRot > 180.0f && cRot < 315.0f) this.gameObject.transform.rotation.eulerAngles.z = 315.0f;
 }
 
-public function move(mousePos:float):void {
+public function move(mousePos:float):void
+{
 	if(soundEngine != null)
 	{
-		if(soundEngine.getDrive() == false) {
+		if(soundEngine.getDrive() == false)
+		{
 			soundEngine.playSoundEffect("roverStart");
 			soundEngine.setDrive(true);
 		}
@@ -182,7 +186,8 @@ private function moveLeft():void
 		this.gameObject.rigidbody.velocity.x -= accelerationSpeed * Time.deltaTime;
 		if(this.gameObject.rigidbody.velocity.x < -maxSpeed) this.gameObject.rigidbody.velocity.x = -maxSpeed;
 	}
-	if (this.getDirection() == "Right")	{
+	if (this.getDirection() == "Right")
+	{
 		this.gameObject.transform.rotation.eulerAngles.y = 180.0f;
 		this.gameObject.transform.rotation.eulerAngles.z *= -1;
 		this.gameObject.transform.rotation.eulerAngles.x *= -1;
@@ -197,7 +202,8 @@ private function moveRight():void
 		this.gameObject.rigidbody.velocity.x += accelerationSpeed * Time.deltaTime;
 		if(this.gameObject.rigidbody.velocity.x > maxSpeed) this.gameObject.rigidbody.velocity.x = maxSpeed;
 	}
-	if (this.getDirection() == "Left")	{
+	if (this.getDirection() == "Left")
+	{
 		this.gameObject.transform.rotation.eulerAngles.y = 0.0f;
 		this.gameObject.transform.rotation.eulerAngles.z *= -1;
 		this.gameObject.transform.rotation.eulerAngles.x *= -1;
@@ -207,12 +213,13 @@ private function moveRight():void
 
 public function brake():void
 {
-	if (!isJumping) {
+	if (!isJumping)
+	{
 		var vx:float = this.gameObject.rigidbody.velocity.x;
 		if (Mathf.Abs(vx) > 0.01f) particleScript.playParticle("driveDust", Mathf.Abs(vx));
 		if (vx > 0.10f) this.gameObject.rigidbody.velocity.x -= 5 * Time.deltaTime;
 		else if (vx < -0.10f) this.gameObject.rigidbody.velocity.x += 5 * Time.deltaTime;
-		else if (vx > -0.05f && vx < 0.05f)
+		else if (vx > -0.10f && vx < 0.10f)
 		{
 			if(vx != 0.0f)
 			{
@@ -234,7 +241,8 @@ public function brake():void
 
 public function jump():void
 {
-	if (!isJumping) {
+	if (!isJumping)
+	{
 		this.gameObject.rigidbody.velocity.y = jumpForce;
 		isJumping = true;
 		this.gameObject.rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
@@ -244,7 +252,8 @@ public function jump():void
 		{
 			soundEngine.playSoundEffect("jump");
 		}
-		if (particleScript != null) {
+		if (particleScript != null)
+		{
 			particleScript.playParticle("jumpDust");
 			particleScript.playParticle("engineJump");
 		}
@@ -263,11 +272,13 @@ function chargeShot():void
 	
 	y0 = this.gameObject.transform.position.y;
 	
-	if (increasing) {
+	if (increasing)
+	{
 		vx += 3.0f * Time.deltaTime;
 		vy += 2.25f * Time.deltaTime;
 	}
-	else {
+	else
+	{
 		vx -= 3.0f * Time.deltaTime;
 		vy -= 2.25f * Time.deltaTime;
 	}
@@ -275,12 +286,14 @@ function chargeShot():void
 
 	//formula for max dist: d = (v*v*sin(2*angle)) / gravity
 	//replaced sin(2*angle), which is .96, with a bigger number due to the trajectory not starting on the ground.
-	if (vx < 3.0f) {
+	if (vx < 3.0f)
+	{
 		increasing = true;
 		vx = 3.0f;
 		vy = 2.25f;
 	}
-	if (vx > 8.8f) {
+	if (vx > 8.8f)
+	{
 		increasing = false;
 	}
 	
@@ -304,7 +317,8 @@ function chargeShot():void
 	var y8:float = (y0 + x8 * 0.75) - (9.81 * x8 * x8) / (1.28 * v) + 1;
 	//0 = y0 + x8 * tanAngle - (g * x8 * x8) / (2 * (v * v * cosAngle * cosAngle))
 	
-	if (getDirection() == "Left") {
+	if (getDirection() == "Left")
+	{
 		x1 = -x1;
 		x2 = -x2;
 		x3 = -x3;
@@ -324,7 +338,8 @@ function chargeShot():void
 		lineRenderer.SetPosition(7, new Vector3(this.gameObject.transform.position.x - 2 + x7, y7, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(8, new Vector3(this.gameObject.transform.position.x - 2 + x8, y8, this.gameObject.transform.position.z));
 	}
-	else {	
+	else
+	{	
 		lineRenderer.SetPosition(0, new Vector3(this.gameObject.transform.position.x + 2, y0 + 1, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(1, new Vector3(this.gameObject.transform.position.x + 2 + x1, y1, this.gameObject.transform.position.z));
 		lineRenderer.SetPosition(2, new Vector3(this.gameObject.transform.position.x + 2 + x2, y2, this.gameObject.transform.position.z));
@@ -345,7 +360,7 @@ public function resetShot():void
 	lineRenderer.enabled = false;
 }
 
-function shoot(shroomType:int):IEnumerator
+public function shoot(shroomType:int):IEnumerator
 {
 	if(soundEngine != null) soundEngine.setAim(false);
 	
@@ -382,7 +397,7 @@ function shoot(shroomType:int):IEnumerator
 	resetShot();
 }
 
-function flash():void
+public function flash():void
 {
 	var hit:RaycastHit;
 	var direction:Vector3;
@@ -412,7 +427,7 @@ public function addCrystal(crystal:GameObject):void
 	crystals.Add(crystal);
 }
 
-function setDirection(direction:String):void
+private function setDirection(direction:String):void
 {
 	if(lastDirection != direction)
 	{
@@ -420,18 +435,18 @@ function setDirection(direction:String):void
 	}
 }
 
-function getDirection():String
+private function getDirection():String
 {
 	return lastDirection;
 }
 
-function bounceShroomY():void
+public function bounceShroomY():void
 {
 	this.gameObject.rigidbody.velocity.x = 0.0f;
 	this.gameObject.rigidbody.velocity.y = 15.0f;
 }
 
-function bounceShroomX():void
+public function bounceShroomX():void
 {
 	var velocity:float = this.gameObject.rigidbody.velocity.x;
 	if(Mathf.Abs(velocity) < 0.4)
