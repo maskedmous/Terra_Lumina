@@ -468,8 +468,8 @@
     <GameObject>
       <Prefab>CrystalPickUp</Prefab>
       <Position>
-        <x>402.3001</x>
-        <y>-9.371822</y>
+        <x>402.8028</x>
+        <y>-9.625409</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -13596,7 +13596,7 @@
       </Position>
       <Rotation>
         <x>0</x>
-        <y>127.8252</y>
+        <y>117.8144</y>
         <z>0</z>
       </Rotation>
       <Scaling>

@@ -468,8 +468,8 @@
     <GameObject>
       <Prefab>CrystalPickUp</Prefab>
       <Position>
-        <x>402.3001</x>
-        <y>-9.371822</y>
+        <x>402.8028</x>
+        <y>-9.625409</y>
         <z>15</z>
       </Position>
       <Rotation>
@@ -13586,6 +13586,24 @@
           <z>15</z>
         </SlugBoundB>
       </Slug>
+    </GameObject>
+    <GameObject>
+      <Prefab>SpaceShipAnim</Prefab>
+      <Position>
+        <x>613.1508</x>
+        <y>-11.0819</y>
+        <z>20.67508</z>
+      </Position>
+      <Rotation>
+        <x>0</x>
+        <y>117.8144</y>
+        <z>0</z>
+      </Rotation>
+      <Scaling>
+        <x>1</x>
+        <y>1</y>
+        <z>1</z>
+      </Scaling>
     </GameObject>
     <GameObject>
       <Prefab>TutorialObject</Prefab>
