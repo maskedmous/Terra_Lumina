@@ -30,22 +30,22 @@ public class TextureLoader extends MonoBehaviour
 	private var fileCount:int			= 0;				//the amount of files that are to be loaded
 	private var loadedFiles:int			= 0;				//the amount that is loaded at this point
 	private var textureArray:Array 		= new Array();		//array where we put all textures in
-	private var guiStyle:GUIStyle		= new GUIStyle();
-	private var loaded:boolean			= false;
+	private var guiStyle:GUIStyle		= new GUIStyle();	//style for the loading % in a different font
+	private var loaded:boolean			= false;			//boolean to see if it is loaded or not
 	
-	private var dotTimer:float = 1.0f;
-	public var dotTexture:Texture2D = null;
-	public var dotX:float = 0.0f;
+	private var dotTimer:float = 1.0f;						//timer for going to the new dot
+	public var dotTexture:Texture2D = null;					//texture for the dot
+	public var dotX:float = 0.0f;							//position of the initial dot
 	public var dotY:float = 0.0f;
-	private var firstDot:boolean = true;
+	private var firstDot:boolean = true;					//booleans to show which dot
 	private var secondDot:boolean = false;
 	private var thirdDot:boolean = false;
 	
-	private var scale:Vector2 = new Vector2();
-	private var originalWidth:float = 1920;
+	private var scale:Vector2 = new Vector2();				//scale for texture scaling 16:9
+	private var originalWidth:float = 1920;					//original width and height of a 16:9 ratio
 	private var originalHeight:float = 1080;
 	//static variables not to be touched
-	static var LoaderExists:boolean = false;
+	static var LoaderExists:boolean = false;				//static to check if the loader exists already or not
 	
 	public function Awake():void
 	{
@@ -55,20 +55,22 @@ public class TextureLoader extends MonoBehaviour
 		//make sure it doesn't exist already
 		if(LoaderExists == false)
 		{
-			guiStyle.font = Resources.Load("Fonts/sofachrome rg", Font);
-			guiStyle.normal.textColor.b = 197.0 / 255.0;
+			LoaderExists = true;				//putting the loader exists on true
+			
+			guiStyle.font = Resources.Load("Fonts/sofachrome rg", Font);		//loading the font
+			guiStyle.normal.textColor.b = 197.0 / 255.0;						//setting the color of the font
 			guiStyle.normal.textColor.g = 185.0 / 255.0;
 			guiStyle.normal.textColor.r = 147.0 / 255.0;
-			guiStyle.fontSize = fontSize;
-			//the filePath of the textures you want to load(use the root folder, it searches through all subfolders)
-			filePath = Application.dataPath + filePath;	//replace FolderName with the folder you store the Textures in (don't forget to copy the folder to the data folder when compiling)
+			guiStyle.fontSize = fontSize;										//setting the size of the font
 			
-			//check if the filePath is initialized
-			if(filePath != Application.dataPath + "/FolderName" && nextScene != "someScene")	//don't change this
+			//the filePath of the textures you want to load(use the root folder, it searches through all subfolders)
+			filePath = Application.dataPath + filePath;
+			
+			//check if the filePath is initialized properly
+			if(filePath != Application.dataPath + "/FolderName" && nextScene != "someScene")	//don't change this its a check, fill in the public variables instead
 			{
-				Debug.Log("Loading Textures...");
-				fillTextureArray();
-				LoaderExists = true;
+				Debug.Log("Loading Textures...");	//showing that it'll load textures
+				fillTextureArray();					//calling the function to fill the array
 			}
 			else
 			{
@@ -77,10 +79,12 @@ public class TextureLoader extends MonoBehaviour
 		}
 		else
 		{
+			//destroy this because it exists already
 			Destroy(this.gameObject);
 		}
 	}
 	
+	//checking the dot which dot to show first second or third
 	private function checkDot():void
 	{
 		dotTimer -= Time.deltaTime;
@@ -114,14 +118,18 @@ public class TextureLoader extends MonoBehaviour
 	{
 		if(!loaded)
 		{
+			//scale every OnGUI call so there won't be isues resizing the window in a 16:9 aspect ratio
 			scale = new Vector2(Screen.width / originalWidth, Screen.height / originalHeight);
 			
+			//draw the loading screen
 			if(loadingScreen != null)
 			{
 				GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), loadingScreen);
 			}
 			
+			//check which dot to show
 			checkDot();
+			//draw the dot on the screen
 			if(firstDot)
 			{
 				GUI.DrawTexture(new Rect(dotX * scale.x, dotY * scale.y, dotTexture.width * scale.x, dotTexture.height * scale.y), dotTexture);
@@ -134,7 +142,7 @@ public class TextureLoader extends MonoBehaviour
 			{
 				GUI.DrawTexture(new Rect((dotX + 100) * scale.x, dotY * scale.y, dotTexture.width * scale.x, dotTexture.height * scale.y), dotTexture);
 			}
-			
+			//if it is still loading, update the progress
 			if(isLoading())
 			{
 				GUI.Label(new Rect(Screen.width / 2, Screen.height / 2 + (Screen.height * 5 / 16), loadedLabelWidth, loadedLabelHeight), percentLoaded(), guiStyle);
@@ -159,16 +167,15 @@ public class TextureLoader extends MonoBehaviour
 			var texture:Texture2D = wwwTexture.texture;
 			//assign the name to the texture
 			var pngName:String = Path.GetFileNameWithoutExtension(file);
-			
 			texture.name = pngName;
 			//put the texture into the array
 			textureArray.push(texture);
+			//loaded files + 1
 			loadedFiles++;
 		}
-		loaded = true;
-		Debug.Log("Done loading textures");
-		//its done loading so load the next scene
-		Application.LoadLevel(nextScene);
+		loaded = true; 						// it is loaded up so loaded is true
+		Debug.Log("Done loading textures");	//giving the msg that it is done loading
+		Application.LoadLevel(nextScene);	//its done loading so load the next scene
 	}
 	
 	//returns boolean if it is still loading files
@@ -182,6 +189,7 @@ public class TextureLoader extends MonoBehaviour
 		return true;
 	}
 	
+	//calculating the progress of loading files
 	public function percentLoaded():String
 	{
 		var part:float = currentLoaded();
@@ -196,12 +204,14 @@ public class TextureLoader extends MonoBehaviour
 	{
 		return fileCount;
 	}
+	
 	//returns the amount of files that are loaded currently
 	public function currentLoaded():int
 	{
 		return loadedFiles;
 	}
 	
+	//load additional textures into the array if the path is different
 	public function loadTextureInArray(aFilePath:String, textureName:String):IEnumerator
 	{
 		//searching for the specific texture

@@ -3,56 +3,51 @@
 //gamelogic
 private var gameLogic:GameLogic = null;
 
-//private var tutorialState:tutorial;
-private var label:GameObject 				= null;
-private var playerInput:PlayerInputScript 	= null;
-private var soundEngine:SoundEngineScript 	= null;
-private var timePassed:float	= 0.0f;
-
-//text to display while inside the box
-public var tutorialText:String 	= "";
-public var textInSeconds:int 	= 0;
+private var playerInput:PlayerInputScript 	= null;	//player input to change controls
+private var soundEngine:SoundEngineScript 	= null;	//sound engine to play sounds
+private var timePassed:float	= 0.0f;				//count the time has passed during player visit
 
 //movement and button availability
-public var movementLeftEnabled				:boolean = false;
-public var movementRightEnabled				:boolean = false;
-public var jumpButtonEnabled				:boolean = false;
+public var movementLeftEnabled				:boolean = true;	//default movement is true
+public var movementRightEnabled				:boolean = true;
+public var jumpButtonEnabled				:boolean = false;	//other controls that are false will be disabled upon entering
 public var flashButtonEnabled				:boolean = false;
 public var shootNormalShroomButtonEnabled	:boolean = false;
 public var shootBumpyShroomButtonEnabled	:boolean = false;
 
 //alpha GameObject
-public var alphaObject:GameObject = null;
+public var alphaObject:GameObject = null;						//an object that is transparent
 
-private var blinkingTime:float = 4.0f;
+private var blinkingTime:float = 4.0f;							//blinking time of the buttons
 //tutorial kind
-public var jumpButtonTutorial:boolean 	= false;
-public var normalShroomButtonTutorial:boolean = false;
-public var flashButtonTutorial:boolean = false;
-public var bumpyShroomButtonTutorial:boolean = false;
-
-public var lightTutorial	:boolean 	= false;
-public var slugTutorial		:boolean 	= false;
-public var crystalTutorial	:boolean 	= false;
+public var jumpButtonTutorial			:boolean = false;		//kinds of tutorials that will have special functions
+public var normalShroomButtonTutorial	:boolean = false;
+public var flashButtonTutorial			:boolean = false;
+public var bumpyShroomButtonTutorial	:boolean = false;
+//special tutorials with barriers (block objects)
+public var lightTutorial				:boolean 	= false;
+public var slugTutorial					:boolean 	= false;
+public var crystalTutorial				:boolean 	= false;
 
 //slug tutorial
-public var slugObject:GameObject = null;
+public var slugObject:GameObject = null;	//the slug for the slug tutorial
 
 //block object
-public var blockObject:GameObject = null;
+public var blockObject:GameObject = null;	//the barrier that will break down for some tutorials
 
-//texture for the tutorial to show
+//scaling of the textures
 private var scale:Vector2;
 private var originalWidth	:float = 1920.0f;
 private var originalHeight	:float = 1080.0f;
+//texture for the tutorial to show
 private var showTutorialTextures:boolean = false;
-
-private var tutorialTextureARect:Rect;
+//tutorial texture A
+private var tutorialTextureARect:Rect;				//position and texture placed by the creative
 public var tutorialTextureA	:Texture2D 	= null;
 public var xPositionTexA	:float 		= 0.0f;
 public var yPositionTexA	:float 		= 0.0f;
-public var timerTexA		:float		= -1.0f;
-
+public var timerTexA		:float		= -1.0f;	//timer of the texture that it'll go away
+//tutorial texture B
 private var tutorialTextureBRect:Rect;
 public var tutorialTextureB	:Texture2D 	= null;
 public var xPositionTexB	:float 		= 0;
@@ -75,22 +70,19 @@ public function Awake():void
 		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript) as SoundEngineScript;
 	}
 }
-//Start because label might not be created yet
+
 public function Start ():void
 {
-	label = GameObject.Find("Label");
-	//if the label is still null log the error
-	if(label == null)
+	//left is normally always enabled
+	if (!movementLeftEnabled)
 	{
-		Debug.LogError("Not initialized properly");
-	}
-	if (!movementLeftEnabled) {
-		cameraMoving = true;
-		this.gameObject.AddComponent("CameraStartScript");
+		cameraMoving = true;								//camera should move true
+		this.gameObject.AddComponent("CameraStartScript");	//add the component required for the intro
 	}
 }
 
-private function scaleButtons():void
+//scaling the textures to show
+private function scaleTextures():void
 {
 	//get the current scale by using the current screen size and the original screen size
 	//original width / height is defined in a variable at top, we use an aspect ratio of 16:9 and original screen size of 1920x1080
@@ -108,18 +100,18 @@ private function scaleButtons():void
 		tutorialTextureBRect = scaleRect(tutorialTextureBRect);
 	}
 }
-
+//scaling the rectangle
 private function scaleRect(rect:Rect):Rect
 {
 	var newRect:Rect = new Rect(rect.x * scale.x, rect.y * scale.y, rect.width * scale.x, rect.height * scale.y);
 	return newRect;
 }
-
+//show the textures on screen
 public function OnGUI():void
 {
 	if(showTutorialTextures && !cameraMoving)
 	{
-		scaleButtons();
+		scaleTextures();
 		
 		if(tutorialTextureA != null)
 		{
@@ -132,16 +124,14 @@ public function OnGUI():void
 	}
 }
 
-//enables or disables controls
+//enables or disables controls called by onTriggerEnter
 private function changeControls():void
 {
 	if(!movementLeftEnabled) playerInput.setMovementLeftEnabled(false);
 	else 					 playerInput.setMovementLeftEnabled(true);
 	
-	
 	if(!movementRightEnabled) playerInput.setMovementRightEnabled(false);
 	else 					  playerInput.setMovementRightEnabled(true);
-	
 	
 	if(!jumpButtonEnabled) playerInput.setJumpButtonEnabled(false);
 	else 				   playerInput.setJumpButtonEnabled(true);
@@ -152,11 +142,11 @@ private function changeControls():void
 	if(!shootNormalShroomButtonEnabled) playerInput.setNormalShroomButtonEnabled(false);
 	else 								playerInput.setNormalShroomButtonEnabled(true);
 	
-	
 	if(!shootBumpyShroomButtonEnabled) playerInput.setBumpyShroomButtonEnabled(false);
 	else 							   playerInput.setBumpyShroomButtonEnabled(true);
 }
 
+//blink the buttons
 private function blinkButtons():void
 {
 	if(jumpButtonTutorial) playerInput.setBlinkingJumpButton(true);
@@ -165,90 +155,7 @@ private function blinkButtons():void
 	else if(bumpyShroomButtonTutorial) playerInput.setBlinkingBumpyShroomButton(true);
 }
 
-public function OnTriggerEnter(collider:Collider):void
-{
-	//change the controls upon entering the trigger box
-	if(collider.gameObject.name == "Player")
-	{
-		changeControls();
-		blinkButtons();
-		if(tutorialTextureA != null || tutorialTextureB != null)
-		{
-			showTutorialTextures = true;
-		}
-	}
-}
-
-public function OnTriggerStay (collider:Collider):void
-{
-	if(collider.gameObject.name == "Player")
-	{
-		if (!cameraMoving) timePassed += Time.deltaTime;
-		if(timePassed > textInSeconds)
-		{
-			label.gameObject.guiText.text = "";
-		}
-		else
-		{
-			label.gameObject.guiText.text = tutorialText;
-		}
-		
-		if(timePassed > timerTexA)
-		{
-			tutorialTextureA = null;
-		}
-		if(timePassed > timerTexB)
-		{
-			tutorialTextureB = null;
-		}
-		if(timePassed > blinkingTime)
-		{
-			resetBlinkingButtons();
-		}
-		
-		if(lightTutorial)
-		{
-			if(gameLogic.getBattery() == gameLogic.getBatteryCapacity())
-			{
-				playAnimation();
-				lightTutorial = false;			//completed objective
-			}
-		}
-		else if(crystalTutorial)
-		{
-			if(gameLogic.getCrystalsSampleCount() > 0)
-			{
-				playAnimation();
-				crystalTutorial = false;
-			}
-		}
-		else if(slugTutorial)
-		{
-			if(slugObject.GetComponent(SlugScript).isWaitState())
-			{
-				playAnimation();
-				slugTutorial = false;
-			}
-		}
-	}
-}
-
-public function OnTriggerExit (collider:Collider):void
-{
-	if(collider.name == "Player")
-	{
-		label.gameObject.guiText.text = "";
-		showTutorialTextures = false;
-		
-		resetBlinkingButtons();
-		
-		if(destroyOnExit)
-		{
-			Destroy(this.gameObject);
-		}
-	}
-}
-
+//reset the blinking buttons
 private function resetBlinkingButtons():void
 {
 	if(jumpButtonTutorial) playerInput.setBlinkingJumpButton(false);
@@ -280,19 +187,85 @@ private function playAnimation():IEnumerator
 	}
 }
 
+//on trigger enter it should change controls and maybe blink buttons if it is a tutorial
+public function OnTriggerEnter(collider:Collider):void
+{
+	//change the controls upon entering the trigger box
+	if(collider.gameObject.name == "Player")
+	{
+		changeControls();
+		blinkButtons();
+		if(tutorialTextureA != null || tutorialTextureB != null)
+		{
+			showTutorialTextures = true;
+		}
+	}
+}
+//while the player stays inside the tutorial box
+public function OnTriggerStay (collider:Collider):void
+{
+	if(collider.gameObject.name == "Player")
+	{
+		if (!cameraMoving) timePassed += Time.deltaTime;
+		if(timePassed > timerTexA)
+		{
+			tutorialTextureA = null;
+		}
+		if(timePassed > timerTexB)
+		{
+			tutorialTextureB = null;
+		}
+		if(timePassed > blinkingTime)
+		{
+			resetBlinkingButtons();
+		}
+		
+		if(lightTutorial)
+		{
+			//if the tutorial is complete, play the animation and put it on false
+			if(gameLogic.getBattery() == gameLogic.getBatteryCapacity())
+			{
+				playAnimation();				//play the animation of the barrier
+				lightTutorial = false;			//completed objective
+			}
+		}
+		else if(crystalTutorial)
+		{
+			if(gameLogic.getCrystalsSampleCount() > 0)
+			{
+				playAnimation();
+				crystalTutorial = false;
+			}
+		}
+		else if(slugTutorial)
+		{
+			if(slugObject.GetComponent(SlugScript).isWaitState())
+			{
+				playAnimation();
+				slugTutorial = false;
+			}
+		}
+	}
+}
+//when the player leaves the trigger box
+public function OnTriggerExit (collider:Collider):void
+{
+	if(collider.name == "Player")
+	{
+		showTutorialTextures = false;	//stop showing textures
+		
+		resetBlinkingButtons();			//stop blinking buttons
+		
+		if(destroyOnExit)
+		{
+			Destroy(this.gameObject);	//if it is destroy on exit then destroy the object
+		}
+	}
+}
+
 //
 //setters
 //
-
-public function setTutorialText(text:String):void
-{
-	tutorialText = text;
-}
-
-public function setTextInSeconds(value:int):void
-{
-	textInSeconds = value;
-}
 
 public function setAlphaObject(alphaObj:GameObject):void
 {
@@ -420,16 +393,6 @@ public function setDestroyOnCompletion(value:boolean):void
 //
 //getters
 //
-public function getTutorialText():String
-{
-	return tutorialText;
-}
-
-public function getTextInSeconds():int
-{
-	return textInSeconds;
-}
-
 public function getAlphaObject():GameObject
 {
 	if(alphaObject != null)

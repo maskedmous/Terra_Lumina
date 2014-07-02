@@ -35,7 +35,7 @@ private var wheels:List.<GameObject> = new List.<GameObject>();
 //shroom seed shooting
 private var isShooting:boolean = false;								//is it shooting at the moment?
 private var shrooms:List.<GameObject> = new List.<GameObject>();	//list of shrooms to shoot (should be 2)
-private var crystals:List.<GameObject> = new List.<GameObject>();	//the samples you collect
+private var crystals:List.<GameObject> = new List.<GameObject>();	//the crystals you collect
 
 private var gameLogic:GameLogic = null;
 private var particleScript:PlayerParticleScript	= null;
@@ -260,7 +260,7 @@ public function jump():void
 	}
 }
 
-function chargeShot():void
+public function chargeShot():void
 {
 	lineRenderer.enabled = true;
 	
@@ -393,7 +393,8 @@ public function shoot(shroomType:int):IEnumerator
 	
 	if (getDirection() == "Left") vx = -vx;
 	newSeed.rigidbody.velocity = new Vector3(vx, vy, 0.0f);
-	yield WaitForSeconds(1.5f);
+	
+	yield WaitForSeconds(1.5f);	//wait for 1.5 sec to reset the shot, removing the arc
 	resetShot();
 }
 
@@ -405,7 +406,7 @@ public function flash():void
 	layerMask = ~layerMask;
 	if (getDirection() == "Right") direction = new Vector3(1.0f, 0.0f, 0.0f);
 	else if (getDirection() == "Left") direction = new Vector3(-1.0f, 0.0f, 0.0f);
-	if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 30.0f, layerMask))
+	if (Physics.Raycast(this.gameObject.transform.position, direction, hit, 20.0f, layerMask))
 	{
 		if (hit.collider.gameObject.name == "Slug") hit.collider.gameObject.GetComponent(SlugScript).toFleeState();
 		if (hit.collider.gameObject.name == "Web") hit.collider.gameObject.SetActive(false);
@@ -467,6 +468,7 @@ public function bounceShroomX():void
 	this.gameObject.rigidbody.velocity.x = velocity;
 }
 
+//check the battery status and change the texture if needed
 private function checkBatteryStatus():void
 {
 	var maxBattery			:float = gameLogic.getBatteryCapacity();

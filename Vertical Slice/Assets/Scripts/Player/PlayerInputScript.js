@@ -1,45 +1,41 @@
 ﻿#pragma strict
 
-import TouchScript;
+import TouchScript;	//we're making use of a touch library so import it
 
-private var player:GameObject = null;
-private var playerController:PlayerController = null;
-private var soundEngine:SoundEngineScript = null;
-private var gameLogic:GameLogic;
+private var player:GameObject = null;					//the player itself
+private var playerController:PlayerController = null;	//the controller
+private var soundEngine:SoundEngineScript = null;		//sound engine for sounds
+private var gameLogic:GameLogic;						//the Game Logic
 
-private var inactiveTimer				:float = 60.0;
+private var inactiveTimer				:float = 60.0;	//if the player is inactive for 60 seconds go back to the menu
 
-private var shootTimer:float = 0.0f;
+private var shootTimer:float = 0.0f;				//cooldown for shooting set after shooting
 private var chargingNormalShot:boolean = false;
 private var chargingBumpyShot:boolean = false;
 
 private var endLevelTriggerObject:GameObject 	= null;
 private var endLevelTriggerScript:LevelTrigger 	= null;
 
-private var jumpButtonEnabled			:boolean = true;
+private var jumpButtonEnabled			:boolean = true;	//enables / disables controls
 private var flashButtonEnabled			:boolean = true;
 private var normalShroomButtonEnabled	:boolean = true;
 private var bumpyShroomButtonEnabled	:boolean = true;
 private var movementLeftEnabled			:boolean = true;
 private var movementRightEnabled		:boolean = true;
 
-private var blinkingCounter				:float 	 = 0.5f;
-private var blinkingJumpButton			:boolean = false;
+private var blinkingCounter				:float 	 = 0.75f;	//0.75 sec there 0.75 sec not (blinking!)
+private var blinkingJumpButton			:boolean = false;	//which button should blink
 private var blinkingFlashButton			:boolean = false;
 private var blinkingNormalShroomButton	:boolean = false;
 private var blinkingBumpyShroomButton	:boolean = false;
 
-//an empty guiStyle
-private var guiStyle:GUIStyle = new GUIStyle();
-
-
 //button positions
-private var currentJumpButtonTexture	:Texture2D 	= null;
-public 	var jumpButtonTexture			:Texture2D 	= null;
-public  var jumpButtonInactiveTexture 	:Texture2D 	= null;
-public	var jumpButtonActiveTexture		:Texture2D	= null;
+private var currentJumpButtonTexture	:Texture2D 	= null;	//texture of the button
+public 	var jumpButtonTexture			:Texture2D 	= null;	//normal texture
+public  var jumpButtonInactiveTexture 	:Texture2D 	= null;	//inactive texture
+public	var jumpButtonActiveTexture		:Texture2D	= null;	//when pressed texture
 private var jumpButtonRect				:Rect;
-public  var jumpButtonX					:float = 0.0f;
+public  var jumpButtonX					:float = 0.0f;		//position of the button
 public 	var jumpButtonY					:float = 780.0f;
 
 
@@ -91,7 +87,7 @@ public var confirmationFalseX				:float = 1090.0f;
 private var confirmationTrueRect			:Rect;
 private var confirmationFalseRect			:Rect;
 
-//scales for button positions
+//scale for buttons
 private var originalWidth 	:float = 1920;
 private var originalHeight	:float = 1080;
 private var scale			:Vector3;
@@ -106,6 +102,7 @@ public function Awake():void
 		soundEngine = GameObject.Find("SoundEngine").GetComponent(SoundEngineScript);
 	}
 	
+	//initialize the button textures
 	currentJumpButtonTexture			= jumpButtonTexture;
 	currentFlashButtonTexture			= flashButtonTexture;
 	currentNormalShroomButtonTexture 	= normalShroomButtonTexture;
@@ -113,11 +110,12 @@ public function Awake():void
 	currentEscapeButtonTexture			= escapeButtonTexture;
 }
 
+//when the player is enabled it should add a touchBegan event to the touch manager
 public function OnEnable():void
 {
 	if(TouchManager.Instance != null)
 	{
-		TouchManager.Instance.TouchesBegan += touchBegan;
+		TouchManager.Instance.TouchesBegan += touchBegan;	//giving the function pointer to the touch manager
 	}
 }
 
@@ -125,12 +123,13 @@ public function OnDisable():void
 {
 	if(TouchManager.Instance != null)
 	{
-		TouchManager.Instance.TouchesBegan -= touchBegan;
+		TouchManager.Instance.TouchesBegan -= touchBegan;	//removing the function pointer
 	}
 }
 
 public function Update ():void
 {
+	//fix to get the endlevel trigger as it might not have been loaded yet when the player is initialized
 	if(endLevelTriggerObject == null)
 	{
 		if(GameObject.Find("EndLevelTrigger") != null)
@@ -139,6 +138,7 @@ public function Update ():void
 			endLevelTriggerScript = endLevelTriggerObject.GetComponent(LevelTrigger) as LevelTrigger;
 		}
 	}
+	//if the game is not finished or lost yet, check for input
 	else if (!endLevelTriggerScript.getFinished() && !endLevelTriggerScript.getLost())
 	{
 		checkReleasingButton();
@@ -147,6 +147,7 @@ public function Update ():void
 		readTouch();
 		playerController.brake();
 	}
+	//else if the game is lost or finished stop the moment and control of the player
 	else if(endLevelTriggerScript.getFinished() || endLevelTriggerScript.getLost())
 	{
 		playerController.stopMovement();
@@ -169,10 +170,9 @@ public function Update ():void
 	else
 	{
 		inactiveTimer = 60.0f;
-	}
-	
+	}	
 }
-
+//check the ammo
 private function checkAmmo()
 {
 	if(!gameLogic.getInfiniteAmmo())
@@ -184,7 +184,7 @@ private function checkAmmo()
 		else setBumpyShroomButtonEnabled(true);
 	}
 }
-
+//on press event handler
 private function touchBegan(sender:Object, events:TouchEventArgs):void
 {
 	if(endLevelTriggerObject != null)
@@ -194,9 +194,9 @@ private function touchBegan(sender:Object, events:TouchEventArgs):void
 			for each(var touchPoint in events.Touches)
 			{
 				var position:Vector2 = touchPoint.Position;
-				position = new Vector2(position.x, (position.y - Screen.height)*-1);
+				position = new Vector2(position.x, (position.y - Screen.height)*-1);	//position of the press is Y inverted
 				
-				isPressingButton(position);
+				isPressingButton(position);	//check if the player is pressing a button if so activate it
 			}
 		}
 	}
@@ -253,6 +253,7 @@ private function checkReleasingButton():void
 		{
 			currentNormalShroomButtonTexture = normalShroomButtonTexture;
 		}
+		//extra check to see if the player should shoot a mushroom
 		if(normalShroomButtonEnabled && chargingNormalShot && !normalShroomButtonTouched)
 		{
 			if(blinkingNormalShroomButton) blinkingNormalShroomButton = false;
@@ -264,6 +265,7 @@ private function checkReleasingButton():void
 		{
 			currentBumpyShroomButtonTexture = bumpyShroomButtonTexture;
 		}
+		//extra check to see if the player should shoot a mushroom
 		if(bumpyShroomButtonEnabled && chargingBumpyShot && !bumpyShroomButtonTouched)
 		{
 			if(blinkingBumpyShroomButton) blinkingBumpyShroomButton = false;
@@ -277,7 +279,7 @@ private function checkReleasingButton():void
 		}
 }
 
-
+//if the player is pressing a button
 private function isPressingButton(inputXY:Vector2):void
 {
 	if(jumpButtonEnabled)
@@ -311,9 +313,7 @@ private function isPressingButton(inputXY:Vector2):void
 		if(normalShroomButtonRect.Contains(inputXY))
 		{	
 			currentNormalShroomButtonTexture = normalShroomButtonActiveTexture;
-			if (shootTimer <= 0.0f) {	
-				if (!chargingNormalShot) chargingNormalShot = true;
-			}
+			if (shootTimer <= 0.0f && !chargingNormalShot) chargingNormalShot = true;
 			return;			
 		}
 	}
@@ -323,10 +323,7 @@ private function isPressingButton(inputXY:Vector2):void
 		if(bumpyShroomButtonRect.Contains(inputXY))
 		{
 			currentBumpyShroomButtonTexture = bumpyShroomButtonActiveTexture;
-			if (shootTimer <= 0.0f)
-			{	
-				if (!chargingBumpyShot) chargingBumpyShot = true;
-			}
+			if (shootTimer <= 0.0f && !chargingBumpyShot) chargingBumpyShot = true;
 			return;
 		}
 	}
@@ -334,8 +331,6 @@ private function isPressingButton(inputXY:Vector2):void
 	{
 		escapePressed = true;
 		currentEscapeButtonTexture = escapeButtonActiveTexture;
-		//Application.LoadLevel("Menu");	//Line to be deleted with update YES / NO
-		//soundEngine.changeMusic("Menu");
 		return;
 	}
 	if(escapePressed)
@@ -353,7 +348,7 @@ private function isPressingButton(inputXY:Vector2):void
 		}
 	}
 }
-
+//check if the player is touching a button
 private function isTouchingButton(inputXY:Vector2):boolean
 {	
 	if(jumpButtonRect.Contains(inputXY))
@@ -376,11 +371,10 @@ private function isTouchingButton(inputXY:Vector2):boolean
 	{
 		return true;
 	}
-	
 	return false;
 }
 
-public function OnGUI()
+public function OnGUI():void
 {
 	if(endLevelTriggerObject != null)
 	{
@@ -441,12 +435,15 @@ public function OnGUI()
 		}
 	}
 }
-
+//check for blinking buttons, if so blink em!
 private function checkBlinkingButtons():void
 {
+	//first check if either one of the buttons should blink
 	if(blinkingJumpButton || blinkingFlashButton || blinkingNormalShroomButton || blinkingBumpyShroomButton)
 	{
+		//decrease the blinking counter
 		blinkingCounter -= Time.deltaTime;
+		//if it is 0 execute the switch
 		if(blinkingCounter <= 0.0f)
 		{
 			blinkingCounter = 0.75f;
@@ -474,7 +471,7 @@ private function checkBlinkingButtons():void
 		}
 	}
 }
-
+//scale the buttons to the right size according to the screen size with the 16:9 aspect ratio
 private function scaleButtons():void
 {
 	//get the current scale by using the current screen size and the original screen size
@@ -487,6 +484,13 @@ private function scaleButtons():void
 	flashButtonRect			= new Rect(flashButtonX			, flashButtonY			, flashButtonTexture.width			, flashButtonTexture.height);
 	normalShroomButtonRect	= new Rect(normalShroomButtonX	, normalShroomButtonY	, normalShroomButtonTexture.width	, normalShroomButtonTexture.height);
 	bumpyShroomButtonRect  	= new Rect(bumpyShroomButtonX	, bumpyShroomButtonY	, bumpyShroomButtonTexture.width	, bumpyShroomButtonTexture.height);
+	
+	//second scale the rectangles
+	jumpButtonRect 			= scaleRect(jumpButtonRect);
+	flashButtonRect			= scaleRect(flashButtonRect);
+	normalShroomButtonRect	= scaleRect(normalShroomButtonRect);
+	bumpyShroomButtonRect  	= scaleRect(bumpyShroomButtonRect);
+	
 	
 	if(escapeButtonTexture != null)
 	{
@@ -503,21 +507,15 @@ private function scaleButtons():void
 		confirmationTrueRect 		= scaleRect(confirmationTrueRect);
 		confirmationFalseRect 		= scaleRect(confirmationFalseRect);
 	}
-	
-	//second scale the rectangles
-	jumpButtonRect 			= scaleRect(jumpButtonRect);
-	flashButtonRect			= scaleRect(flashButtonRect);
-	normalShroomButtonRect	= scaleRect(normalShroomButtonRect);
-	bumpyShroomButtonRect  	= scaleRect(bumpyShroomButtonRect);
-	
 }
-
+//scaling the rectangles
 private function scaleRect(rect:Rect):Rect
 {
 	var newRect:Rect = new Rect(rect.x * scale.x, rect.y * scale.y, rect.width * scale.x, rect.height * scale.y);
 	return newRect;
 }
 
+//read all touch points and check if the player should move
 function readTouch()
 {
 	for each(var touch in TouchManager.Instance.ActiveTouches)
@@ -545,24 +543,13 @@ function readTouch()
 				if(movementLeftEnabled) playerController.move(position.x);
 				return;
 			}
-
-
 		}
 	}
 }
 
-/*private function sendRay(position:Vector2) {
-	var ray:Ray = Camera.main.ScreenPointToRay(position);
-	var hit:RaycastHit;
-	var layerMask:int = 1 << 8;
-	layerMask = ~layerMask;
-	if (Physics.Raycast(Camera.main.ScreenPointToRay(position), hit, 100.0f, layerMask)) {
-		if (hit.collider.gameObject.name == "Player") {
-			playerController.flash();
-		}
-	}
-}*/
-
+/*
+	Setters
+*/
 public function setMovementLeftEnabled(value:boolean):void
 {
 	movementLeftEnabled = value;

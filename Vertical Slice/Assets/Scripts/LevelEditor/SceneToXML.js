@@ -400,16 +400,6 @@ private function saveLevel():int
 				var tutorialNode:XmlElement = xmlDocument.CreateElement("Tutorial");
 				objectNode.AppendChild(tutorialNode);
 				
-				//trigger string
-				var triggerStringNode:XmlElement = xmlDocument.CreateElement("TriggerString");
-				tutorialNode.AppendChild(triggerStringNode);
-				triggerStringNode.InnerText = triggerScript.getTutorialText();
-				
-				//trigger text seconds
-				var triggerStringSecondsNode:XmlElement = xmlDocument.CreateElement("Timer");
-				tutorialNode.AppendChild(triggerStringSecondsNode);
-				triggerStringSecondsNode.InnerText = triggerScript.getTextInSeconds().ToString();
-				
 				//Alpha Object
 				var alphaObject:GameObject = triggerScript.getAlphaObject();
 				

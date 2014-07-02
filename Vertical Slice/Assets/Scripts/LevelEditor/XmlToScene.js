@@ -217,9 +217,7 @@ public function loadLevel():void
 						var oneTimePickup:boolean = false;
 						
 						//tutorial things
-						var tutorialTriggerString	:String 	= "";
 						var boundingBox				:Vector3 	= new Vector3(9999,9999,9999);
-						var tutorialTextTimer		:int 		= -1;
 						
 						var alphaObjectPrefabName	:String		= "";
 						var alphaObjectPosition		:Vector3	= new Vector3(9999,9999,9999);
@@ -399,14 +397,6 @@ public function loadLevel():void
 								{
 									var tutorialNodeStats:XmlNode = _tutorialNodeStats as XmlNode;
 									
-									if(tutorialNodeStats.Name == "TriggerString")
-									{
-										tutorialTriggerString = tutorialNodeStats.InnerText;
-									}
-									if(tutorialNodeStats.Name == "Timer")
-									{
-										tutorialTextTimer = int.Parse(tutorialNodeStats.InnerText);
-									}
 									if(tutorialNodeStats.Name == "AlphaObject")
 									{
 										var alphaObjectStatsNodes:XmlNodeList = tutorialNodeStats.ChildNodes;
@@ -731,10 +721,6 @@ public function loadLevel():void
 								if(newGameObject.name == "TutorialObject" && boundingBox != Vector3(9999,9999,9999))
 								{
 									var triggerScript:TutorialTriggerScript = newGameObject.GetComponent(TutorialTriggerScript);
-									//set string
-									triggerScript.setTutorialText(tutorialTriggerString);
-									//set timer
-									triggerScript.setTextInSeconds(tutorialTextTimer);
 									
 									//alpha object
 									if(alphaObjectPrefabName != "" && alphaObjectPosition != Vector3(9999,9999,9999) && alphaObjectRotation != Vector3(9999,9999,9999) && alphaObjectScaling != Vector3(9999,9999,9999))
