@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 private var target:GameObject = null;
-private var move:boolean = false;
+private var move:boolean = true;
 
 function Start ():void {
 	target = GameObject.Find("Player") as GameObject;
@@ -15,6 +15,7 @@ function Update ():void {
 	 }
 }
 
-public function setMove(value:boolean):void {
+public function setMove(value:boolean):void
+{
 	move = value;
 }

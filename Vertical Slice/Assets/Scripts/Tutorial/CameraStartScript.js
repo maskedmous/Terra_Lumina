@@ -21,12 +21,22 @@ private var tutorialRect:Rect = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
 public var textureX:float = 500.0f;
 public var textureY:float = 500.0f;
 
-function Start ():void {
+private var cameraScript:CameraScript = null;
+
+public function Awake():void
+{
+	cameraScript = Camera.main.GetComponent("CameraScript") as CameraScript;
+	cameraScript.setMove(false);
+}
+
+public function Start ():void
+{
 	cam = Camera.main;
 	cam.transform.position.x = GameObject.Find("EndLevelTrigger").transform.position.x;
 	
 	crystals = GameObject.FindGameObjectsWithTag("Pickup");
-	for (var i:int = 0; i < crystals.length; ++i) {
+	for (var i:int = 0; i < crystals.length; ++i)
+	{
 		crystalPositions.Add(crystals[i].transform.position);
 	}
 	crystalPositions.RemoveAt(0);
@@ -43,24 +53,27 @@ function Start ():void {
 	//zonder scale proberen?
 }
 
-function Update ():void {
+public function Update ():void
+{
 	if (startTimer > 0) startTimer -= Time.deltaTime;
 	else moveCamera();
-	if (cam.transform.position.x < -19.0f) {
+	if (cam.transform.position.x < -19.0f)
+	{
 		speed = 0.0f;
 		cam.transform.position.x = -19.082f;
 		startGame();
 	}
-	if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.K)) {
+	if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.K))
+	{
 		speed = 0.0f;
 		cam.transform.position.x = -19.082f;
 		startGame();
 	}
 }
 
-function OnGUI():void
+public function OnGUI():void
 {
-	GUI.DrawTexture(scaleRect(new Rect(textureX, textureY, tutorialTexture.width, tutorialTexture.height)), tutorialTexture);
+	if(tutorialTexture != null) GUI.DrawTexture(scaleRect(new Rect(textureX, textureY, tutorialTexture.width, tutorialTexture.height)), tutorialTexture);
 }
 
 private function scaleRect(rect:Rect):Rect
@@ -110,10 +123,11 @@ private function sort(list:List.<Vector3>):List.<Vector3>
 	return newList;
 }
 
-private function startGame():void {
+private function startGame():void
+{
 	var tutorialTriggerScript:TutorialTriggerScript = this.gameObject.GetComponent("TutorialTriggerScript") as TutorialTriggerScript;
 	var playerInputScript:PlayerInputScript = GameObject.Find("Player").GetComponent("PlayerInputScript") as PlayerInputScript;
-	var cameraScript:CameraScript = Camera.main.GetComponent("CameraScript") as CameraScript;
+	
 	
 	tutorialTriggerScript.setMovementLeftEnabled(true);
 	tutorialTriggerScript.setCameraMoving(false);
