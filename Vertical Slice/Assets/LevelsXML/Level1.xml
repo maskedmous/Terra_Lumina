@@ -1278,7 +1278,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>389.0133</x>
+        <x>389</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1314,7 +1314,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>289.0133</x>
+        <x>289</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1332,7 +1332,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>69.01332</x>
+        <x>69</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1404,7 +1404,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>239.0133</x>
+        <x>239</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1422,7 +1422,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>559.0133</x>
+        <x>559</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1440,7 +1440,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>129.0133</x>
+        <x>129</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1476,7 +1476,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (down) 1</Prefab>
       <Position>
-        <x>169.0133</x>
+        <x>169</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1494,7 +1494,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (up) 1</Prefab>
       <Position>
-        <x>459.0023</x>
+        <x>459</x>
         <y>-11.5015</y>
         <z>14.21535</z>
       </Position>
@@ -1512,7 +1512,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (up) 1</Prefab>
       <Position>
-        <x>59.01331</x>
+        <x>59</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1530,7 +1530,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (up) 1</Prefab>
       <Position>
-        <x>149.0133</x>
+        <x>149</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1602,7 +1602,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (up) 1</Prefab>
       <Position>
-        <x>349.0133</x>
+        <x>349</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1620,7 +1620,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Slope (up) 1</Prefab>
       <Position>
-        <x>589.0023</x>
+        <x>589</x>
         <y>-21.5015</y>
         <z>14.21535</z>
       </Position>
@@ -1656,7 +1656,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>369.0133</x>
+        <x>369</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1674,7 +1674,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>39.01332</x>
+        <x>39</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1692,7 +1692,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>509.0023</x>
+        <x>509</x>
         <y>-11.49442</y>
         <z>14.21535</z>
       </Position>
@@ -1710,7 +1710,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>529.0023</x>
+        <x>529</x>
         <y>-16.49442</y>
         <z>14.21535</z>
       </Position>
@@ -1728,7 +1728,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>-30.98667</x>
+        <x>-31</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1746,7 +1746,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>319.0133</x>
+        <x>319</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1764,7 +1764,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>469.0023</x>
+        <x>469</x>
         <y>-11.49442</y>
         <z>14.21535</z>
       </Position>
@@ -1782,7 +1782,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (down) 1</Prefab>
       <Position>
-        <x>219.0133</x>
+        <x>219</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1800,7 +1800,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>419.0133</x>
+        <x>419</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1818,7 +1818,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>-0.9866905</x>
+        <x>-0.9999962</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1836,7 +1836,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>269.0133</x>
+        <x>269</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1854,7 +1854,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>189.0133</x>
+        <x>189</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1872,7 +1872,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>439.0023</x>
+        <x>439</x>
         <y>-16.50219</y>
         <z>14.21535</z>
       </Position>
@@ -1890,7 +1890,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>309.0133</x>
+        <x>309</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1908,7 +1908,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>329.0133</x>
+        <x>329</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1926,7 +1926,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>99.01332</x>
+        <x>99</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1944,7 +1944,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>479.0023</x>
+        <x>479</x>
         <y>-11.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1962,7 +1962,7 @@
     <GameObject>
       <Prefab>GroundPieceGround Wall (up) 1</Prefab>
       <Position>
-        <x>619.0023</x>
+        <x>619</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1980,7 +1980,7 @@
     <GameObject>
       <Prefab>GroundPieceGround wide 1</Prefab>
       <Position>
-        <x>109.0133</x>
+        <x>109</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -1998,7 +1998,7 @@
     <GameObject>
       <Prefab>GroundPieceGround wide 1</Prefab>
       <Position>
-        <x>359.0133</x>
+        <x>359</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2016,7 +2016,7 @@
     <GameObject>
       <Prefab>GroundPieceGround wide 1</Prefab>
       <Position>
-        <x>119.0147</x>
+        <x>119</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2034,7 +2034,7 @@
     <GameObject>
       <Prefab>GroundPieceGround wide 1</Prefab>
       <Position>
-        <x>279.0147</x>
+        <x>279</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2052,7 +2052,7 @@
     <GameObject>
       <Prefab>GroundPieceGround wide 1</Prefab>
       <Position>
-        <x>159.0147</x>
+        <x>159</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2070,7 +2070,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>19.01332</x>
+        <x>19</x>
         <y>-11.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2106,7 +2106,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>179.0133</x>
+        <x>179</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2124,7 +2124,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>409.0133</x>
+        <x>409</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2178,7 +2178,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>49.01332</x>
+        <x>49</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2196,7 +2196,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>539.0133</x>
+        <x>539</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2214,7 +2214,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>-20.98667</x>
+        <x>-21</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2232,7 +2232,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow1</Prefab>
       <Position>
-        <x>249.0133</x>
+        <x>249</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2268,7 +2268,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow2</Prefab>
       <Position>
-        <x>139.0133</x>
+        <x>139</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2286,7 +2286,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow2</Prefab>
       <Position>
-        <x>609.0133</x>
+        <x>609</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2304,7 +2304,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow2</Prefab>
       <Position>
-        <x>569.0133</x>
+        <x>569</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2322,7 +2322,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow2</Prefab>
       <Position>
-        <x>-10.98667</x>
+        <x>-11</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2340,7 +2340,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow2</Prefab>
       <Position>
-        <x>89.01332</x>
+        <x>89</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2358,7 +2358,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow2</Prefab>
       <Position>
-        <x>299.0133</x>
+        <x>299</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2448,7 +2448,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow3</Prefab>
       <Position>
-        <x>579.0147</x>
+        <x>579</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2484,7 +2484,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow3</Prefab>
       <Position>
-        <x>79.01332</x>
+        <x>79</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2520,7 +2520,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow3</Prefab>
       <Position>
-        <x>399.0147</x>
+        <x>399</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2538,7 +2538,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrow3</Prefab>
       <Position>
-        <x>259.0133</x>
+        <x>259</x>
         <y>-21.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2682,7 +2682,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>519.0023</x>
+        <x>519</x>
         <y>-11.49659</y>
         <z>15.21535</z>
       </Position>
@@ -2700,7 +2700,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>209.0133</x>
+        <x>209</x>
         <y>-11.49659</y>
         <z>15.21535</z>
       </Position>
@@ -2718,7 +2718,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>379.0133</x>
+        <x>379</x>
         <y>-16.49659</y>
         <z>15.21535</z>
       </Position>
@@ -2736,7 +2736,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>229.0133</x>
+        <x>229</x>
         <y>-16.49659</y>
         <z>15.21535</z>
       </Position>
@@ -2754,7 +2754,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>549.0133</x>
+        <x>549</x>
         <y>-16.49659</y>
         <z>15.21535</z>
       </Position>
@@ -2772,7 +2772,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>29.01332</x>
+        <x>29</x>
         <y>-11.49659</y>
         <z>15.22838</z>
       </Position>
@@ -2790,7 +2790,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundNarrowToWide1</Prefab>
       <Position>
-        <x>499.0023</x>
+        <x>499</x>
         <y>-6.49659</y>
         <z>15.21535</z>
       </Position>
@@ -2808,7 +2808,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>599.0023</x>
+        <x>599</x>
         <y>-16.50219</y>
         <z>14.21535</z>
       </Position>
@@ -2826,7 +2826,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>489.0023</x>
+        <x>489</x>
         <y>-6.502191</y>
         <z>14.21535</z>
       </Position>
@@ -2844,7 +2844,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>449.0023</x>
+        <x>449</x>
         <y>-11.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2862,7 +2862,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>199.0133</x>
+        <x>199</x>
         <y>-11.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2880,7 +2880,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>9.013313</x>
+        <x>9.000004</x>
         <y>-11.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2898,7 +2898,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>339.0147</x>
+        <x>339</x>
         <y>-16.49659</y>
         <z>14.21535</z>
       </Position>
@@ -2916,7 +2916,7 @@
     <GameObject>
       <Prefab>GroundPieceGroundWideToNarrow1</Prefab>
       <Position>
-        <x>429.0023</x>
+        <x>429</x>
         <y>-16.525</y>
         <z>14.21535</z>
       </Position>

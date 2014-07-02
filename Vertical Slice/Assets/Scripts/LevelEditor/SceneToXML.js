@@ -13,6 +13,8 @@ public var hard:boolean = false;
 
 private var xmlPath:String 	= "";		//initialized in the awake
 
+private var prefabList:String[];
+
 function Awake()
 {
 	if(Application.loadedLevelName == "LevelEditor")
@@ -46,7 +48,6 @@ private function saveLevel():int
 {
 	var xmlDocument:XmlDocument = new XmlDocument();
 	var filePath:String = xmlPath + levelName;
-	
 	var masterNode:XmlElement = null;
 	
 	//check if the file already exists
@@ -79,7 +80,7 @@ private function saveLevel():int
 	}
 	
 	//begin saving the level elements!
-	
+	prefabList = Directory.GetFiles(Application.dataPath + "/Resources/Prefabs", "*.prefab", SearchOption.TopDirectoryOnly);
 	//
 	//Level ID
 	//
@@ -252,7 +253,8 @@ private function saveLevel():int
 		var levelObject:GameObject = GameObject.Find("Level");
 		for(var _obj in levelObject.transform)
 		{
-			var obj:Transform 			= _obj as Transform;
+			var obj:Transform 	= _obj as Transform;
+			if(!checkValidPrefab(obj.name)) return -1;
 			if(obj.gameObject.name != "SlugBound")
 			{
 				var objectNode:XmlElement 	= xmlDocument.CreateElement("GameObject");
@@ -737,4 +739,19 @@ private function saveLevel():int
 	xmlDocument.Save(filePath);
 	Debug.Log("Xml saved to: Assets/LevelsXML/" + levelName);
 	return 0;
+}
+
+private function checkValidPrefab(prefabName:String):boolean
+{	
+	for each(var prefab:String in prefabList)
+	{
+		if(Path.GetFileNameWithoutExtension(prefab) == prefabName)
+		{
+			return true;
+		}
+	}
+	//can't find it so returning false
+	Debug.LogError("Can't find prefab with the name: " + prefabName);
+	Debug.LogError("Please make sure you made a prefab of the object and is located in Resources/Prefabs");
+	return false;
 }
